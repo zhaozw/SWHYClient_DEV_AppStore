@@ -323,7 +323,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                 //println("--------------set cache---------------")
                 
                 //cache.set(value: data, key: url)   //原hanekeswift的方法
-                //print("request url host = true  \(request.URL?.host!)")
+                print("request url host = true  \(request.URL?.host!)")
                 self.serverlist.updateValue(true, forKey: request.URL?.host! ?? "AnyServer")
                 self.alive = true
                 if getcache == false {

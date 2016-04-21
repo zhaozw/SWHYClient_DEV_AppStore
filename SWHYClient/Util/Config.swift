@@ -30,6 +30,7 @@ class Config{
         static let RevokeRemoveAddressbook = "RevokeRemoveAddressbook"
     }
     
+    
     struct Encoding {
         static let GB2312 = CFStringEncodings.GB_18030_2000.rawValue
     }
@@ -37,7 +38,7 @@ class Config{
     struct URL {
         static let BaseURL = "http://swinbak.swsresearch.net"
         static let Login = "http://swinbak.swsresearch.net/Mobile/mobileInterface.nsf/ag_checkMobile?Openagent"
-        static let ToDoList = "http://swinbak.swsresearch.net/Mobile/MobileFlow.nsf/fm_workflowplatform?openform"
+        //static let ToDoList = "http://swinbak.swsresearch.net/mobile/mobileflow.nsf/fm_workflowplatform?openform"
         static let MainMenuList = "http://swinbak.swsresearch.net/Mobile/mobileInterface.nsf/fm_showMobileHP_ios?readForm"
         static let InnerAddressBook = "http://swinbak.swsresearch.net/Portal/SysBase/SysUserInfo.nsf/fm_allPersonXML?readform"
         static let InnerAddressBook_Dept = "http://swinbak.swsresearch.net/portal/SysBase/SysAppReg.nsf/fm_allDeptXML?readform"
