@@ -349,7 +349,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
             
             //这里写需要大量时间的代码
             //println("这里写需要大量时间的代码----Dispatch")
-                        
+             //print("dispatch \(res)")
             var result:Result
             switch tag{
                 

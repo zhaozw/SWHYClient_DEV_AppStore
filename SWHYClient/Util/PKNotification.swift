@@ -119,7 +119,7 @@ class PKNotificationClass: UIViewController {
         let alertVC:PKAlert = PKAlert(title:t, message:m, items:i, cancelButtonTitle:c, tintColor:tint, parent: self)
         alertVC.view.alpha = 0
         _PKNotificationSingleton.vcCollection.append(alertVC)
-        alertVC.view.center = UIApplication.sharedApplication().windows[0].center
+        //alertVC.view.center = UIApplication.sharedApplication().windows[0].center
         UIApplication.sharedApplication().windows[0].addSubview(alertVC.view)
         
         alertVC.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.1, 1.1);
@@ -143,7 +143,7 @@ class PKNotificationClass: UIViewController {
         UIApplication.sharedApplication().windows[0].addSubview(toastVC.view)
         //UIApplication.sharedApplication().windows[0].bringSubviewToFront(toastVC.view)
         
-        print("toast \(message)")
+        //print("toast \(message)")
         //println(toastVC.view.indexOfAccessibilityElement(UIApplication.sharedApplication().windows[0]))
         
         UIView.animateWithDuration(0.3,
@@ -280,12 +280,13 @@ class PKNotificationClass: UIViewController {
     }
     
     private func removeVCCollectionByObject(target:UIViewController) -> Void {
-        let cnt:Int = 0;
+        var cnt:Int = 0;
         for vc:UIViewController in _PKNotificationSingleton.vcCollection {
             if (vc == target){
                 _PKNotificationSingleton.vcCollection.removeAtIndex(cnt)
                 break;
             }
+            cnt = cnt+1
         }
     }
     
