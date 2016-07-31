@@ -222,12 +222,17 @@ class MainViewController: UIViewController{
     func doGoToView(sender:UITapGestureRecognizer!){
         
         let i = (sender.view?.tag)
-        
+        print("i = \(i)")
+        print("UserName = \(NSUserDefaults.standardUserDefaults().objectForKey("UserName") as! String)")
+        print("ubound=\(self.arrMutiData.count)")
+
         let arrobj:MainMenuItemBO = self.arrMutiData[i!] as! MainMenuItemBO
         
         if arrobj.classname != nil {
             if arrobj.classname != "" {
+                print ("arrobj.classname = \(arrobj.classname)")
                 let aClass = NSClassFromString(arrobj.classname) as! UIViewController.Type
+               // let aClass = NSClassFromString("InnerAddressBook") as! UIViewController.Type
                 let aObject = aClass.init() as UIViewController
                 Message.shared.curMenuItem = arrobj
                 //记录模块访问日志

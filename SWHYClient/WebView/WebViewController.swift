@@ -16,7 +16,23 @@ import UIKit
     var authenticated:Bool = false
     var failure_auth = 0
     var urlstr = ""
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?){
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
+    }
+    convenience init() {
+        self.init(nibName: "WebViewController", bundle: nil)
+        //self.init(nibName: "LaunchScreen", bundle: nil)
+        
+    }
+    
+    required init(coder aDecoder: NSCoder) {
+        
+        fatalError("init(coder:) has not been implemented")
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,11 +43,26 @@ import UIKit
         webView.delegate = self
         self.view.addSubview(webView)
         
+        let tmpurl:String = Message.shared.curMenuItem.uri
+        let range=tmpurl.rangeOfString("&wechat=1", options: NSStringCompareOptions()) //Swift 2.0
+        print("range =\(range)")
         
-        urlstr = Message.shared.curMenuItem.uri
+        if range != nil{
+            let endIndex=range?.startIndex 
+            urlstr = tmpurl.substringToIndex((endIndex)!) //Swift 2.0
+        }else{
+            urlstr = tmpurl
+        
+        }
+        
+        
         print("url = \(urlstr)")
         let url:NSURL = NSURL(string: urlstr)!
         request = NSURLRequest(URL: url)
+        print ("host =\(url.host)")
+        print ("path =\(url.path)")
+        print ("query =\(url.query)")
+        print ("pathExtension =\(url.pathExtension)")
         print("on load request =\(request.mainDocumentURL)")
         webView.loadRequest(request)
         
@@ -45,8 +76,12 @@ import UIKit
         self.title = Message.shared.curMenuItem.name
         let backitem = UIBarButtonItem(title: Config.UI.PreNavItem, style: UIBarButtonItemStyle.Plain, target: self, action: "returnNavView")
         self.navigationItem.leftBarButtonItem = backitem
-        
        
+        
+        let storyboard = UIStoryboard(name: "Setting", bundle: nil)
+        let webViewMenuViewController = storyboard.instantiateViewControllerWithIdentifier("WebViewMenuViewController") as! WebViewMenuViewController
+        self.slideMenuController()?.changeRightViewController(webViewMenuViewController, closeRight: true)
+        self.setNavigationBarItem()
         
     }
     
@@ -108,7 +143,7 @@ import UIKit
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         
         if self.authenticated == false { 
-            print("webview asking for permission to start loading  false")
+            print("webview asking for permission to start loading  false url = \(self.urlstr)")
             authenticated = false
             NSNotificationCenter.defaultCenter().addObserver(self, selector: "HandleNetworkResult:", name: Config.RequestTag.WebViewPreGet, object: nil)
             NetworkEngine.sharedInstance.addRequestWithUrlString(self.urlstr, tag: Config.RequestTag.WebViewPreGet,useCache:false)

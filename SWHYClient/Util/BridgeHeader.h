@@ -17,3 +17,5 @@
 #import "sqlite3.h"
 #import <time.h>
 #import "Haneke.h"
+#import "WXApiObject.h"
+#import "WXApi.h"

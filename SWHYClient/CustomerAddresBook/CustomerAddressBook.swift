@@ -214,7 +214,7 @@ import Foundation
             }   
             
         }
-        
+        /*
         for arr in infoArray{
             let obj = arr as! CustomerSectionInfo
             if obj.group.name == "基金公司投资总监（潜在）" {
@@ -222,7 +222,8 @@ import Foundation
             }
         
         }
-        
+        */
+        print("infoarray ubound \(infoArray.count)")
         self.sectionInfoArray = infoArray
         //print("============================>> End Compute")
         self.tableView.reloadData()
@@ -521,6 +522,7 @@ import Foundation
         }else{
             self.opensectionindex = NSNotFound
             self.searchDisplayController?.setActive(false, animated: true)
+            print("\(self.custlevel)  compute addressinfo")
             self.ComputeAddressInfo()
             return false
         }
@@ -537,9 +539,21 @@ import Foundation
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         //print("did select row at index path =\(indexPath)")
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let dept: CustomerAddressGroupItem = (self.sectionInfoArray[indexPath.section] as! CustomerSectionInfo).group
-        //println("---\(indexPath.row)/\(dept.addresslist.count)---")
-        let item = dept.addresslist[indexPath.row] as CustomerAddressItem
+       
+        
+        var item:CustomerAddressItem
+        
+        if tableView == self.searchDisplayController?.searchResultsTableView {
+            item = self.filteredItemList[indexPath.row] as CustomerAddressItem
+            
+            
+        } else {
+            
+            let dept: CustomerAddressGroupItem = (self.sectionInfoArray[indexPath.section] as! CustomerSectionInfo).group
+            //println("---\(indexPath.row)/\(dept.addresslist.count)---")
+            item = dept.addresslist[indexPath.row] as CustomerAddressItem
+        }
+               
         
         let nextController:CustomerAddressDetail = CustomerAddressDetail()
         Message.shared.curCustomerAddressItem = item
@@ -561,40 +575,40 @@ import Foundation
     
     func customerAddressBookHeader(customerAddressBookHeader: CustomerAddressBookHeader, sectionOpened: Int) {
         //println("++++++section open+++++++++\(sectionOpened)")
-        var sectionInfo: CustomerSectionInfo = self.sectionInfoArray[sectionOpened] as! CustomerSectionInfo
+        let sectionInfo: CustomerSectionInfo = self.sectionInfoArray[sectionOpened] as! CustomerSectionInfo
         sectionInfo.headerView.HeaderOpen = true
         
         if self.preopenindex != NSNotFound{
-            var preSectionInfo: CustomerSectionInfo = self.sectionInfoArray[preopenindex] as! CustomerSectionInfo
+            let preSectionInfo: CustomerSectionInfo = self.sectionInfoArray[preopenindex] as! CustomerSectionInfo
             preSectionInfo.headerView.ImgNarrow.image = UIImage(named:"narrow_right")
         }
         sectionInfo.headerView.ImgNarrow.image = UIImage(named:"narrow_down")
         
         
         //创建一个包含单元格索引路径的数组来实现插入单元格的操作：这些路径对应当前节的每个单元格
-        var countOfRowsToInsert = sectionInfo.group.addresslist.count
+        let countOfRowsToInsert = sectionInfo.group.addresslist.count
         //var indexPathsToInsert = NSMutableArray()
         var indexPathsToInsert:[NSIndexPath] = []
 
-        for (var i = 0; i < countOfRowsToInsert; i++) {
+        for (var i = 0; i < countOfRowsToInsert; i += 1) {
             indexPathsToInsert.append(NSIndexPath(forRow: i, inSection: sectionOpened))
         }
         
         // 创建一个包含单元格索引路径的数组来实现删除单元格的操作：这些路径对应之前打开的节的单元格
         //var indexPathsToDelete = NSMutableArray()
         var indexPathsToDelete:[NSIndexPath] = []
-        var previousOpenSectionIndex = opensectionindex
+        let previousOpenSectionIndex = opensectionindex
         //var perviousOpenSectionIndex = preopenindex
         //println("本次打开的section\(sectionOpened)  上次打开的section\(opensectionindex)")
         if previousOpenSectionIndex != NSNotFound {
-            var previousOpenSection: CustomerSectionInfo = self.sectionInfoArray[previousOpenSectionIndex] as! CustomerSectionInfo
+            let previousOpenSection: CustomerSectionInfo = self.sectionInfoArray[previousOpenSectionIndex] as! CustomerSectionInfo
             //println("will close \(previousOpenSectionIndex)")
             previousOpenSection.headerView.HeaderOpen = false
             previousOpenSection.headerView.toggleOpen(false)
             //previousOpenSection.headerView.toggleOpen(true)
             
-            var countOfRowsToDelete = previousOpenSection.group.addresslist.count
-            for (var i = 0; i < countOfRowsToDelete; i++) {
+            let countOfRowsToDelete = previousOpenSection.group.addresslist.count
+            for (var i = 0; i < countOfRowsToDelete; i += 1) {
                 indexPathsToDelete.append(NSIndexPath(forRow: i, inSection: previousOpenSectionIndex))
             }
         }
