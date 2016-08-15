@@ -233,7 +233,7 @@
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="移动手机" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6kT-aO-Vov" userLabel="title">
-                            <rect key="frame" x="10" y="13" width="70" height="21"/>
+                            <rect key="frame" x="8" y="14" width="70" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="70" id="EPO-xc-5XU"/>
                                 <constraint firstAttribute="height" constant="21" id="pnm-Fi-ujh"/>

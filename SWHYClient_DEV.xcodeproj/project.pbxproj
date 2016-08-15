@@ -12,6 +12,10 @@
 		A352DB011B05D3770035B4AF /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352DB001B05D3770035B4AF /* SettingViewController.swift */; };
 		A3532B6E1D1673A000C47D97 /* Common.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = A3532B641D164CF500C47D97 /* Common.entitlements */; };
 		A3532B6F1D16989D00C47D97 /* Common.entitlements in Sources */ = {isa = PBXBuildFile; fileRef = A3532B641D164CF500C47D97 /* Common.entitlements */; };
+		A361007A1D55AC7900B45BA2 /* FileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36100781D55A64300B45BA2 /* FileViewController.swift */; };
+		A361007B1D55AD3800B45BA2 /* NSFileManager+Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D2D8261BB7D5F7002491ED /* NSFileManager+Haneke.swift */; };
+		A361007D1D55BC8C00B45BA2 /* DaiFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A361007C1D55BC8C00B45BA2 /* DaiFileManager.swift */; };
+		A361007F1D5645DE00B45BA2 /* AudioRecorderMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A361007E1D5645DE00B45BA2 /* AudioRecorderMenuViewController.swift */; };
 		A36906811D4DCE180043AFB6 /* AudioRecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369067F1D4DCE180043AFB6 /* AudioRecorderViewController.swift */; };
 		A36906821D4DCE180043AFB6 /* AudioRecorderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A36906801D4DCE180043AFB6 /* AudioRecorderViewController.xib */; };
 		A36906851D4DEE140043AFB6 /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36906841D4DEE140043AFB6 /* AudioRecorder.swift */; };
@@ -69,6 +73,9 @@
 		A3C73B3F1ABDF00D002C299D /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C73B371ABDF00D002C299D /* WebViewController.swift */; };
 		A3C997B11D3E66CC006EE61D /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3C997B01D3E66CC006EE61D /* CoreTelephony.framework */; };
 		A3CAA52C1AC9185100600394 /* PKNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CAA52B1AC9185100600394 /* PKNotification.swift */; };
+		A3CB54DF1D5712BE00CBCFB5 /* AudioDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3CB54DE1D5712BE00CBCFB5 /* AudioDetail.xib */; };
+		A3CB54E11D571C7900CBCFB5 /* AudioDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CB54E01D571C7900CBCFB5 /* AudioDetail.swift */; };
+		A3CB54E51D575A5D00CBCFB5 /* NSURL+xattr.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CB54E41D575A5D00CBCFB5 /* NSURL+xattr.swift */; };
 		A3D2D82D1BB7D5F7002491ED /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D2D8181BB7D5F7002491ED /* Cache.swift */; };
 		A3D2D82E1BB7D5F7002491ED /* CGSize+Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D2D8191BB7D5F7002491ED /* CGSize+Swift.swift */; };
 		A3D2D82F1BB7D5F7002491ED /* CryptoSwiftMD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D2D81A1BB7D5F7002491ED /* CryptoSwiftMD5.swift */; };
@@ -80,7 +87,6 @@
 		A3D2D8351BB7D5F7002491ED /* Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D2D8201BB7D5F7002491ED /* Format.swift */; };
 		A3D2D8361BB7D5F7002491ED /* Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D2D8221BB7D5F7002491ED /* Haneke.swift */; };
 		A3D2D8391BB7D5F7002491ED /* NetworkFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D2D8251BB7D5F7002491ED /* NetworkFetcher.swift */; };
-		A3D2D83A1BB7D5F7002491ED /* NSFileManager+Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D2D8261BB7D5F7002491ED /* NSFileManager+Haneke.swift */; };
 		A3D2D83B1BB7D5F7002491ED /* NSHTTPURLResponse+Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D2D8271BB7D5F7002491ED /* NSHTTPURLResponse+Haneke.swift */; };
 		A3D2D83C1BB7D5F7002491ED /* String+Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D2D8281BB7D5F7002491ED /* String+Haneke.swift */; };
 		A3D2D83D1BB7D5F7002491ED /* UIButton+Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D2D8291BB7D5F7002491ED /* UIButton+Haneke.swift */; };
@@ -119,6 +125,8 @@
 		A3D2D8AC1BB81B47002491ED /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3BB358E1ADE609E0043CD94 /* Main.storyboard */; };
 		A3D2D8AE1BB827FB002491ED /* data.db in Resources */ = {isa = PBXBuildFile; fileRef = A3D2D8AD1BB827FB002491ED /* data.db */; };
 		A3D2D8AF1BB830E6002491ED /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A30C24C31AC53C8B003FBBB7 /* Images.xcassets */; };
+		A3D6BFF91D61FC38008EE6F3 /* lame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3D6BFF81D61FC38008EE6F3 /* lame.framework */; };
+		A3D6BFFC1D61FF65008EE6F3 /* AudioWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A3D6BFFB1D61FF65008EE6F3 /* AudioWrapper.m */; };
 		A3E8BA391CC2D4FA00B79E27 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A3E8BA371CC2D4FA00B79E27 /* CoreDataModel.xcdatamodeld */; };
 		A3EA2D001D3E617B002D936D /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A3EA2CFD1D3E617B002D936D /* libWeChatSDK.a */; };
 		A3EA2D021D3E6227002D936D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3EA2D011D3E6227002D936D /* SystemConfiguration.framework */; };
@@ -172,6 +180,9 @@
 		A352DAFC1B05D0B90035B4AF /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		A352DB001B05D3770035B4AF /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		A3532B641D164CF500C47D97 /* Common.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Common.entitlements; path = SWHYClient/Common.entitlements; sourceTree = "<group>"; };
+		A36100781D55A64300B45BA2 /* FileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileViewController.swift; sourceTree = "<group>"; };
+		A361007C1D55BC8C00B45BA2 /* DaiFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaiFileManager.swift; sourceTree = "<group>"; };
+		A361007E1D5645DE00B45BA2 /* AudioRecorderMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecorderMenuViewController.swift; sourceTree = "<group>"; };
 		A369067F1D4DCE180043AFB6 /* AudioRecorderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecorderViewController.swift; sourceTree = "<group>"; };
 		A36906801D4DCE180043AFB6 /* AudioRecorderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioRecorderViewController.xib; sourceTree = "<group>"; };
 		A36906841D4DEE140043AFB6 /* AudioRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
@@ -257,6 +268,9 @@
 		A3C7856F1ACD1B1400428160 /* back.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = back.xib; sourceTree = "<group>"; };
 		A3C997B01D3E66CC006EE61D /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		A3CAA52B1AC9185100600394 /* PKNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKNotification.swift; sourceTree = "<group>"; };
+		A3CB54DE1D5712BE00CBCFB5 /* AudioDetail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioDetail.xib; sourceTree = "<group>"; };
+		A3CB54E01D571C7900CBCFB5 /* AudioDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioDetail.swift; sourceTree = "<group>"; };
+		A3CB54E41D575A5D00CBCFB5 /* NSURL+xattr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURL+xattr.swift"; sourceTree = "<group>"; };
 		A3CD08501ABFAB1000020495 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		A3D2D8181BB7D5F7002491ED /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		A3D2D8191BB7D5F7002491ED /* CGSize+Swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGSize+Swift.swift"; sourceTree = "<group>"; };
@@ -287,6 +301,9 @@
 		A3D2D8471BB7D908002491ED /* MKTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKTextField.swift; sourceTree = "<group>"; };
 		A3D2D88E1BB80BB3002491ED /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		A3D2D8AD1BB827FB002491ED /* data.db */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = data.db; path = SWHYClient/data.db; sourceTree = "<group>"; };
+		A3D6BFF81D61FC38008EE6F3 /* lame.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = lame.framework; path = framework/lame.framework; sourceTree = "<group>"; };
+		A3D6BFFB1D61FF65008EE6F3 /* AudioWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AudioWrapper.m; path = OC/AudioWrapper.m; sourceTree = "<group>"; };
+		A3D6BFFD1D620066008EE6F3 /* AudioWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AudioWrapper.h; path = OC/AudioWrapper.h; sourceTree = "<group>"; };
 		A3E8BA381CC2D4FA00B79E27 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		A3EA2CFD1D3E617B002D936D /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		A3EA2CFE1D3E617B002D936D /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
@@ -309,6 +326,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3D6BFF91D61FC38008EE6F3 /* lame.framework in Frameworks */,
 				A3C997B11D3E66CC006EE61D /* CoreTelephony.framework in Frameworks */,
 				A3EA2D081D3E627C002D936D /* libc++.tbd in Frameworks */,
 				A3EA2D061D3E626C002D936D /* libsqlite3.0.tbd in Frameworks */,
@@ -344,6 +362,9 @@
 				A369067F1D4DCE180043AFB6 /* AudioRecorderViewController.swift */,
 				A36906801D4DCE180043AFB6 /* AudioRecorderViewController.xib */,
 				A36906841D4DEE140043AFB6 /* AudioRecorder.swift */,
+				A36100781D55A64300B45BA2 /* FileViewController.swift */,
+				A3CB54DE1D5712BE00CBCFB5 /* AudioDetail.xib */,
+				A3CB54E01D571C7900CBCFB5 /* AudioDetail.swift */,
 			);
 			path = AudioRecord;
 			sourceTree = "<group>";
@@ -485,6 +506,7 @@
 				A3BA87C61B05C2350098936C /* Setting.storyboard */,
 				A352DB001B05D3770035B4AF /* SettingViewController.swift */,
 				A3BAAC471B1BC59700A912E6 /* CustomerAddressMenuViewController.swift */,
+				A361007E1D5645DE00B45BA2 /* AudioRecorderMenuViewController.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -523,6 +545,7 @@
 		A3C73AF71ABDEF96002C299D = {
 			isa = PBXGroup;
 			children = (
+				A3D6BFF81D61FC38008EE6F3 /* lame.framework */,
 				A3C997B01D3E66CC006EE61D /* CoreTelephony.framework */,
 				A3EA2D071D3E627C002D936D /* libc++.tbd */,
 				A3EA2D051D3E626C002D936D /* libsqlite3.0.tbd */,
@@ -605,6 +628,7 @@
 		A3C73B281ABDEFD5002C299D /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				A3D6BFFA1D61FF02008EE6F3 /* OC */,
 				A3EA2CFC1D3E617B002D936D /* WeChat */,
 				A3532B671D16551A00C47D97 /* UniveralLink */,
 				A3F7A9A91BDBA16600923D23 /* SwiftKeychain */,
@@ -620,6 +644,8 @@
 				A3BD365D1AD7944700B59399 /* Message.swift */,
 				A3BA3AC41ADE3B5B003025E4 /* BridgeHeader.h */,
 				A3BA3A9B1ADE299C003025E4 /* DBAdapter.swift */,
+				A361007C1D55BC8C00B45BA2 /* DaiFileManager.swift */,
+				A3CB54E41D575A5D00CBCFB5 /* NSURL+xattr.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -687,6 +713,15 @@
 				A3AC2F151C5A255A00356744 /* Log.swift */,
 			);
 			path = Haneke;
+			sourceTree = "<group>";
+		};
+		A3D6BFFA1D61FF02008EE6F3 /* OC */ = {
+			isa = PBXGroup;
+			children = (
+				A3D6BFFB1D61FF65008EE6F3 /* AudioWrapper.m */,
+				A3D6BFFD1D620066008EE6F3 /* AudioWrapper.h */,
+			);
+			name = OC;
 			sourceTree = "<group>";
 		};
 		A3EA2CFC1D3E617B002D936D /* WeChat */ = {
@@ -803,6 +838,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A3CB54DF1D5712BE00CBCFB5 /* AudioDetail.xib in Resources */,
 				A3532B6E1D1673A000C47D97 /* Common.entitlements in Resources */,
 				A3D2D8AF1BB830E6002491ED /* Images.xcassets in Resources */,
 				A3D2D8AE1BB827FB002491ED /* data.db in Resources */,
@@ -848,6 +884,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A361007B1D55AD3800B45BA2 /* NSFileManager+Haneke.swift in Sources */,
+				A361007A1D55AC7900B45BA2 /* FileViewController.swift in Sources */,
 				A3532B6F1D16989D00C47D97 /* Common.entitlements in Sources */,
 				A3D2D8901BB80DFA002491ED /* MKButton.swift in Sources */,
 				A3D2D8911BB80DFA002491ED /* MKColor.swift in Sources */,
@@ -867,11 +905,13 @@
 				A3BDBDBD1B045E940085DFF1 /* RightMenuViewController.swift in Sources */,
 				A3C73B3B1ABDF00D002C299D /* MainMenuItem.swift in Sources */,
 				A3F7A9DB1BDBA6DE00923D23 /* GenericKey.swift in Sources */,
+				A3CB54E11D571C7900CBCFB5 /* AudioDetail.swift in Sources */,
 				A34298D11D3FB7B40086B27C /* WebViewMenuViewController.swift in Sources */,
 				A3C2E2FD1AF2199400BBBB9A /* InnerAddressDetail.swift in Sources */,
 				A3BA8A691AC1508900CDDE05 /* InnerAddressBook.swift in Sources */,
 				A3D2D83E1BB7D5F7002491ED /* UIImage+Haneke.swift in Sources */,
 				A3BDBDCF1B0462AB0085DFF1 /* StringExtension.swift in Sources */,
+				A361007D1D55BC8C00B45BA2 /* DaiFileManager.swift in Sources */,
 				A3BE90791AD4FD5300D3630B /* Util.swift in Sources */,
 				A3D2D8301BB7D5F7002491ED /* Data.swift in Sources */,
 				A3BDBDC91B0461980085DFF1 /* UIImageViewController.swift in Sources */,
@@ -881,6 +921,7 @@
 				A3C73B3F1ABDF00D002C299D /* WebViewController.swift in Sources */,
 				A3D2D83D1BB7D5F7002491ED /* UIButton+Haneke.swift in Sources */,
 				A3BDBDBF1B045EEF0085DFF1 /* InnerAddressMenuViewController.swift in Sources */,
+				A361007F1D5645DE00B45BA2 /* AudioRecorderMenuViewController.swift in Sources */,
 				A3BAAC481B1BC59700A912E6 /* CustomerAddressMenuViewController.swift in Sources */,
 				A3BA3B111ADE434B003025E4 /* SQLiteDB.swift in Sources */,
 				A3D2D8361BB7D5F7002491ED /* Haneke.swift in Sources */,
@@ -889,7 +930,6 @@
 				A36906851D4DEE140043AFB6 /* AudioRecorder.swift in Sources */,
 				A3D2D8401BB7D5F7002491ED /* UIView+Haneke.swift in Sources */,
 				A3AC2F161C5A255A00356744 /* Log.swift in Sources */,
-				A3D2D83A1BB7D5F7002491ED /* NSFileManager+Haneke.swift in Sources */,
 				A3BA34921B16DEC5002C08C5 /* CustomerAddressItem.swift in Sources */,
 				A3BA348E1B16DC95002C08C5 /* CustomerAddressBook.swift in Sources */,
 				A3BC9A631ACE6A6D0047F5C1 /* InnerAddressBookHeader.swift in Sources */,
@@ -900,6 +940,7 @@
 				A3F7A9D91BDBA6AF00923D23 /* Keychain.swift in Sources */,
 				A3C1EA2C1B27211800075F8E /* CustomerLogItem.swift in Sources */,
 				A3BDBDCB1B0462050085DFF1 /* BaseTableViewCell.swift in Sources */,
+				A3D6BFFC1D61FF65008EE6F3 /* AudioWrapper.m in Sources */,
 				A3C73B2B1ABDEFD5002C299D /* Config.swift in Sources */,
 				A3C73B3E1ABDF00D002C299D /* MainViewController.swift in Sources */,
 				A3C73B061ABDEF96002C299D /* AppDelegate.swift in Sources */,
@@ -927,6 +968,7 @@
 				A3BA3A9C1ADE299C003025E4 /* DBAdapter.swift in Sources */,
 				A3BD365E1AD7944700B59399 /* Message.swift in Sources */,
 				A3C28C9F1B25CD9A0018F308 /* CustomerAddressDetail.swift in Sources */,
+				A3CB54E51D575A5D00CBCFB5 /* NSURL+xattr.swift in Sources */,
 				A3D2D8321BB7D5F7002491ED /* DiskFetcher.swift in Sources */,
 				A3F7A9D71BDBA68800923D23 /* KeychainItem.swift in Sources */,
 				A352DB011B05D3770035B4AF /* SettingViewController.swift in Sources */,
@@ -1073,7 +1115,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yonghua Lu (A27223J676)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/framework",
+				);
 				INFOPLIST_FILE = SWHYClient/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1105,7 +1150,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yonghua Lu (A27223J676)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/framework",
+				);
 				INFOPLIST_FILE = SWHYClient/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1119,7 +1167,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dy-info.swhyclient-dev";
 				PRODUCT_NAME = SWHYClient_DEV;
-				PROVISIONING_PROFILE = "48bb29e5-7675-4c48-a46d-6290b132b5ef";
+				PROVISIONING_PROFILE = "91f631d1-f8c0-4101-985f-2fced5f75ed6";
 				SWIFT_OBJC_BRIDGING_HEADER = SWHYClient/Util/BridgeHeader.h;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

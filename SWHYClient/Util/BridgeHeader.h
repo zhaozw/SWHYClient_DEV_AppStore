@@ -19,3 +19,6 @@
 #import "Haneke.h"
 #import "WXApiObject.h"
 #import "WXApi.h"
+#import <sys/xattr.h>
+#import <string.h>
+#import "AudioWrapper.h"

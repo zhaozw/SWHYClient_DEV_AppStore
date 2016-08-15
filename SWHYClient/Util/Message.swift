@@ -19,6 +19,9 @@ class Message {
     var logout:Bool = false                     //是否登出状态
     var version:String = ""
     var upgradeURL:String = ""
+    var audioFileName:String = ""
+    
+    
     class var shared: Message {
         return Inner.instance
     }

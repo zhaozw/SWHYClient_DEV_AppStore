@@ -8,7 +8,6 @@
 
 import Foundation
 import AVFoundation
-
 //protocol AudioRecorderViewControllerDelegate: class {
  //   func audioRecorderViewControllerDismissed(withFileURL fileURL: NSURL?)
 //}
@@ -18,7 +17,7 @@ import AVFoundation
 @objc(AudioRecorder) class AudioRecorder: UIViewController{
 
 
-    var saveButton: UIBarButtonItem!
+    //@IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var recordButton: UIButton!
     //@IBOutlet weak var recordButton: UIButton!
@@ -32,12 +31,20 @@ import AVFoundation
     
     var recorder: AVAudioRecorder!
     var player: AVAudioPlayer?
-    var outputURL: NSURL
+    var outputURL: NSURL = NSURL()
+    var audioTmpPath:String = ""
+    var audioPath:String = ""
+    var audioTmpFilePath:String  = ""
+    var audioFilePath:String  = ""
+    var recording:Bool = false
+    var audioTmpFileName:String = ""
+    var audioFileName:String = ""
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?){
-        let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
-        let outputPath = documentsPath.stringByAppendingPathComponent("\(NSUUID().UUIDString).m4a")
-        outputURL = NSURL(fileURLWithPath: outputPath)
+        //let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
+       // let outputPath = documentsPath.stringByAppendingPathComponent("\(NSUUID().UUIDString).m4a")
+        //outputURL = NSURL(fileURLWithPath: outputPath)
+        
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
     }
@@ -60,19 +67,11 @@ import AVFoundation
         self.title = Message.shared.curMenuItem.name
         self.navigationController?.setNavigationBarHidden(false, animated: false)
        
+        DaiFileManager.document["/Audio_Tmp/"].delete()
         
-        
-        //navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "dismiss:")
-        //edgesForExtendedLayout = .None
-        
-        //saveButton = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "saveAudio:")
-        //navigationItem.rightBarButtonItem = saveButton
-        //saveButton.enabled = false
-        
-        let settings = [AVFormatIDKey: NSNumber(unsignedInt: kAudioFormatMPEG4AAC), AVSampleRateKey: NSNumber(integer: 44100), AVNumberOfChannelsKey: NSNumber(integer: 2)]
-        try! recorder = AVAudioRecorder(URL: outputURL, settings: settings)
-        //recorder.delegate = self
-        recorder.prepareToRecord()
+        self.audioTmpPath = DaiFileManager.document["/Audio_Tmp/"].path
+        self.audioPath = DaiFileManager.document["/Audio/"].path
+                
         
         recordButton.layer.cornerRadius = 4
         recordButtonContainer.layer.cornerRadius = 25
@@ -89,8 +88,8 @@ import AVFoundation
         self.navigationItem.leftBarButtonItem = backitem
         
         let storyboard = UIStoryboard(name: "Setting", bundle: nil)
-        let innerAddressViewController = storyboard.instantiateViewControllerWithIdentifier("InnerAddresMenuViewController") as! InnerAddressMenuViewController
-        self.slideMenuController()?.changeRightViewController(innerAddressViewController, closeRight: true)
+        let audioRecorderMenuViewController = storyboard.instantiateViewControllerWithIdentifier("AudioRecorderMenuViewController") as! AudioRecorderMenuViewController
+        self.slideMenuController()?.changeRightViewController(audioRecorderMenuViewController, closeRight: true)
         self.setNavigationBarItem()
         
         
@@ -113,9 +112,11 @@ import AVFoundation
 
     
     func returnNavView(){
-        //print("click return button")
-        self.navigationController?.popViewControllerAnimated(true)
+        print("click return button")
+        //self.navigationController?.popViewControllerAnimated(true)
         
+        let mainViewController:MainViewController = MainViewController()
+        self.slideMenuController()?.changeMainViewController(UINavigationController(rootViewController: mainViewController), close: true)
     }
     
     func audioRecorderViewControllerDismissed(withFileURL fileURL: NSURL?) {
@@ -123,30 +124,79 @@ import AVFoundation
         dismissViewControllerAnimated(true, completion: nil)
     }
 
-    func dismiss(sender: AnyObject) {
-        cleanup()
-        self.audioRecorderViewControllerDismissed(withFileURL: nil)
-    }
+    //func dismiss(sender: AnyObject) {
+    //    cleanup()
+    //    self.audioRecorderViewControllerDismissed(withFileURL: nil)
+   // }
     
-    func saveAudio(sender: AnyObject) {
-        cleanup()
-        self.audioRecorderViewControllerDismissed(withFileURL: outputURL)
+      
+    @IBAction func saveAudio(sender: AnyObject) {
+       
+        //DaiFileManager.document["/Audio_Tmp/" + self.audioTmpFileName].move(DaiFileManager.document["/Audio/" + self.audioTmpFileName])
+        
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+            let path = DaiFileManager.document["/Audio_Tmp/" + self.audioTmpFileName].path
+            let pathMp3 = DaiFileManager.document["/Audio/" + self.audioFileName].path
+           
+            print("Save Audio from \(path)")
+            print("Save Audio to \(pathMp3)")
+            AudioWrapper.audioPCMtoMP3(path, pathMp3)
+        }
+        //DaiFileManager.document["/Audio_Tmp/" + self.audioTmpFileName].delete()
+        //cleanup()
+        //self.audioRecorderViewControllerDismissed(withFileURL: outputURL)
     }
     
     @IBAction func toggleRecord(sender: AnyObject) {
         print("toggle Record")
         timeTimer?.invalidate()
         
-        if recorder.recording {
+        
+        print("sender =\(sender.enabled)")
+        if(self.recording == true){
+        //if ((recorder?.recording) != nil) {
+            print("recorder is nil")
+            self.recording = false
             recorder.stop()
         } else {
+            
+            //录制开始
+            //let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
+            //let outputPath = documentsPath.stringByAppendingPathComponent("\(NSUUID().UUIDString).m4a")
+            
+            let dateFormatter:NSDateFormatter = NSDateFormatter();
+            
+            dateFormatter.dateFormat = "yyyyMMddHHmmss";
+            let tmpdate = "\(dateFormatter.stringFromDate(NSDate()))"
+            //LinearPCM
+            self.audioTmpFileName = tmpdate+".wav"
+            self.audioFileName = tmpdate+".mp3"
+            
+            self.audioTmpFilePath = self.audioTmpPath + self.audioTmpFileName        
+            self.audioFilePath = self.audioPath + self.audioFileName
+            print(self.audioFilePath)
+            outputURL = NSURL(fileURLWithPath: audioTmpFilePath)
+            
+            //let settings = [AVFormatIDKey: NSNumber(unsignedInt: kAudioFormatMPEG4AAC), AVSampleRateKey: NSNumber(integer: 44100), AVNumberOfChannelsKey: NSNumber(integer: 2)]
+            
+            let settings = [AVFormatIDKey: NSNumber(unsignedInt: kAudioFormatLinearPCM), AVSampleRateKey: NSNumber(integer: 44100), AVNumberOfChannelsKey: NSNumber(integer: 2)]
+            //let settings = [AVNumberOfChannelsKey: NSNumber(integer: 2)]
+            
+            //let settings = [AVFormatIDKey: NSNumber(unsignedInt: kAudioFormatMPEGLayer3), AVSampleRateKey: NSNumber(integer: 44100), AVNumberOfChannelsKey: NSNumber(integer: 2)]
+            //kAudioFormatMPEG4AAC
+            try! recorder = AVAudioRecorder(URL: outputURL, settings: settings)
+
+       
+            recorder.prepareToRecord()
             milliseconds = 0
             timeLabel.text = "00:00.00"
             timeTimer = NSTimer.scheduledTimerWithTimeInterval(0.0167, target: self, selector: "updateTimeLabel:", userInfo: nil, repeats: true)
-            recorder.deleteRecording()
+            //recorder.deleteRecording()
             recorder.record()
+            self.recording = true
         }
-        
+        print("toggle record")
         updateControls()
         
     }
@@ -168,6 +218,8 @@ import AVFoundation
             self.player = nil
         }
     }
+    
+    
     
     @IBAction func play(sender: AnyObject) {
         print ("play")
@@ -193,18 +245,19 @@ import AVFoundation
     
     
     func updateControls() {
-        print ("do controls")
+        print ("update controls")
         UIView.animateWithDuration(0.2) { () -> Void in
             self.recordButton.transform = self.recorder.recording ? CGAffineTransformMakeScale(0.5, 0.5) : CGAffineTransformMakeScale(1, 1)
         }
         
         if let _ = player {
             //StopButton
+            print("stop button")
             playButton?.setImage(UIImage(named: "StopButton"), forState: .Normal)
             recordButton?.enabled = false
             recordButtonContainer?.alpha = 0.25
         } else {
-          
+          print("play button")
             playButton?.setImage(UIImage(named: "PlayButton"), forState: .Normal)
            
             recordButton?.enabled = true
@@ -213,7 +266,7 @@ import AVFoundation
         
         playButton?.enabled = !recorder.recording
         playButton?.alpha = recorder.recording ? 0.25 : 1
-        saveButton?.enabled = !recorder.recording
+        //saveButton?.enabled = !recorder.recording
         
     }
     

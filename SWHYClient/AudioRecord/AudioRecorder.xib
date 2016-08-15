@@ -83,6 +83,13 @@
                         <constraint firstAttribute="width" secondItem="eJT-iS-J70" secondAttribute="height" multiplier="60:13" id="1P2-3I-GMw"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yih-kU-35x">
+                    <rect key="frame" x="96" y="417" width="46" height="30"/>
+                    <state key="normal" title="保存"/>
+                    <connections>
+                        <action selector="saveAudio:" destination="-1" eventType="touchUpInside" id="VAy-Bs-64r"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
