@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="SWHYClient" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="SWHYClient_DEV" customModuleProvider="target">
             <connections>
                 <outlet property="btnLogin" destination="8kN-Wv-BbZ" id="Fgv-hQ-1eb"/>
                 <outlet property="btntest" destination="8wE-bJ-DfP" id="AJH-2n-gW3"/>
@@ -76,7 +76,7 @@
                         <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="bng-FL-rwX">
                             <rect key="frame" x="-19" y="-110" width="20" height="20"/>
                         </activityIndicatorView>
-                        <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bEI-sf-Kvh" userLabel="chkoffline" customClass="AIFlatSwitch" customModule="SWHYClient" customModuleProvider="target">
+                        <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bEI-sf-Kvh" userLabel="chkoffline" customClass="AIFlatSwitch" customModule="SWHYClient_DEV" customModuleProvider="target">
                             <rect key="frame" x="174" y="222" width="16" height="16"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
@@ -99,7 +99,7 @@
                                 <action selector="onSwitchValueChange:" destination="-1" eventType="valueChanged" id="0Jd-4p-vXH"/>
                             </connections>
                         </view>
-                        <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qce-Cx-hRW" userLabel="chkpassword" customClass="AIFlatSwitch" customModule="SWHYClient" customModuleProvider="target">
+                        <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qce-Cx-hRW" userLabel="chkpassword" customClass="AIFlatSwitch" customModule="SWHYClient_DEV" customModuleProvider="target">
                             <rect key="frame" x="22" y="222" width="16" height="16"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>

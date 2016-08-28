@@ -108,7 +108,7 @@ extension DaiFileManagerPath {
             //let docURL = try DaiFileManager.defaultManager.URLForDirectory(.DocumentDirectory, inDomain:.UserDomainMask, appropriateForURL:nil, create:true)
             let docURL = NSURL(fileURLWithPath: self.path)
 
-            print(docURL.absoluteURL)
+            //print(docURL.absoluteURL)
             if (docURL.getAttribute(name) != nil) {
                 value = docURL.getAttribute(name)!
             }

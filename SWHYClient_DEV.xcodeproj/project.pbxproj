@@ -133,6 +133,8 @@
 		A3EA2D041D3E625B002D936D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A3EA2D031D3E625B002D936D /* libz.tbd */; };
 		A3EA2D061D3E626C002D936D /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A3EA2D051D3E626C002D936D /* libsqlite3.0.tbd */; };
 		A3EA2D081D3E627C002D936D /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A3EA2D071D3E627C002D936D /* libc++.tbd */; };
+		A3F5710E1D68718000520721 /* MultiPartMime.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5710D1D68718000520721 /* MultiPartMime.swift */; };
+		A3F571121D6871E500520721 /* MultiPartPart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F571111D6871E500520721 /* MultiPartPart.swift */; };
 		A3F7A9971BDB9EC500923D23 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3F7A9961BDB9EC500923D23 /* Security.framework */; };
 		A3F7A9D31BDBA61100923D23 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F7A9D21BDBA61100923D23 /* KeychainService.swift */; };
 		A3F7A9D51BDBA66100923D23 /* KeychainQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F7A9D41BDBA66100923D23 /* KeychainQuery.swift */; };
@@ -312,6 +314,8 @@
 		A3EA2D031D3E625B002D936D /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		A3EA2D051D3E626C002D936D /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		A3EA2D071D3E627C002D936D /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		A3F5710D1D68718000520721 /* MultiPartMime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultiPartMime.swift; path = MultiPartMime/MultiPartMime.swift; sourceTree = "<group>"; };
+		A3F571111D6871E500520721 /* MultiPartPart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultiPartPart.swift; path = MultiPartMime/MultiPartPart.swift; sourceTree = "<group>"; };
 		A3F7A9961BDB9EC500923D23 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A3F7A9D21BDBA61100923D23 /* KeychainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		A3F7A9D41BDBA66100923D23 /* KeychainQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainQuery.swift; sourceTree = "<group>"; };
@@ -628,6 +632,7 @@
 		A3C73B281ABDEFD5002C299D /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				A3F5710A1D68708100520721 /* MultiPartMime */,
 				A3D6BFFA1D61FF02008EE6F3 /* OC */,
 				A3EA2CFC1D3E617B002D936D /* WeChat */,
 				A3532B671D16551A00C47D97 /* UniveralLink */,
@@ -732,6 +737,15 @@
 				A3EA2CFF1D3E617B002D936D /* WXApiObject.h */,
 			);
 			path = WeChat;
+			sourceTree = "<group>";
+		};
+		A3F5710A1D68708100520721 /* MultiPartMime */ = {
+			isa = PBXGroup;
+			children = (
+				A3F571111D6871E500520721 /* MultiPartPart.swift */,
+				A3F5710D1D68718000520721 /* MultiPartMime.swift */,
+			);
+			name = MultiPartMime;
 			sourceTree = "<group>";
 		};
 		A3F7A9A91BDBA16600923D23 /* SwiftKeychain */ = {
@@ -891,6 +905,7 @@
 				A3D2D8911BB80DFA002491ED /* MKColor.swift in Sources */,
 				A3D2D8921BB80DFA002491ED /* MKImageView.swift in Sources */,
 				A3D2D8931BB80DFA002491ED /* MKLabel.swift in Sources */,
+				A3F571121D6871E500520721 /* MultiPartPart.swift in Sources */,
 				A3D2D8941BB80DFA002491ED /* MKLayer.swift in Sources */,
 				A3D2D8951BB80DFA002491ED /* MKTableViewCell.swift in Sources */,
 				A3BA34941B16E510002C08C5 /* CustomerAddressGroupItem.swift in Sources */,
@@ -967,6 +982,7 @@
 				A3BA8A6C1AC1532800CDDE05 /* InnerAddresItem.swift in Sources */,
 				A3BA3A9C1ADE299C003025E4 /* DBAdapter.swift in Sources */,
 				A3BD365E1AD7944700B59399 /* Message.swift in Sources */,
+				A3F5710E1D68718000520721 /* MultiPartMime.swift in Sources */,
 				A3C28C9F1B25CD9A0018F308 /* CustomerAddressDetail.swift in Sources */,
 				A3CB54E51D575A5D00CBCFB5 /* NSURL+xattr.swift in Sources */,
 				A3D2D8321BB7D5F7002491ED /* DiskFetcher.swift in Sources */,

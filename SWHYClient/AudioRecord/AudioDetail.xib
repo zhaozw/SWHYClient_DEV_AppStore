@@ -18,6 +18,7 @@
                 <outlet property="progressSlider" destination="Nsn-LY-ga6" id="XPE-F7-bZU"/>
                 <outlet property="txtDesc" destination="0FP-6e-qIJ" id="3bz-Un-EQR"/>
                 <outlet property="txtTitle" destination="ZeY-Ex-ONz" id="pzg-Jj-cDz"/>
+                <outlet property="uploadButton" destination="tKi-2w-9eD" id="rD7-cx-ixz"/>
                 <outlet property="view" destination="lHg-pJ-2DX" id="zTJ-pl-JPW"/>
             </connections>
         </placeholder>
@@ -177,6 +178,13 @@
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tKi-2w-9eD">
+                    <rect key="frame" x="277" y="507" width="46" height="30"/>
+                    <state key="normal" title="上传"/>
+                    <connections>
+                        <action selector="doUpload:" destination="-1" eventType="touchUpInside" id="Bwt-oN-fdk"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>

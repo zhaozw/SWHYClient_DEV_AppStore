@@ -23,6 +23,9 @@ class Config{
         static let PostAccessLog = "PostAccessLog"
         static let PostCustomerLog = "PostCustomerLog"
         static let GetParameter_CallDuration = "GetParameter_CallDuration"
+        static let PostUploadAudioFile = "PostUploadAudioFile"
+        static let GetWeiXinToken = "GetWeiXinToken"
+        static let PostAudioTopic = "PostAudioTopic"
     } 
 
     struct NotifyTag {
@@ -33,6 +36,7 @@ class Config{
     
     struct Encoding {
         static let GB2312 = CFStringEncodings.GB_18030_2000.rawValue
+        static let UTF8 = NSUTF8StringEncoding
     }
     
     struct URL {
@@ -50,6 +54,13 @@ class Config{
         static let PostCustomerLog = "http://swinbak.swsresearch.net/mobile/Log.nsf/DoPostCustomerLog?openagent"
         
         static let GetParameter_CallDuration = "http://swinbak.swsresearch.net/Mobile/mobileInterface.nsf/ag_getparameter?Openagent&key=IOS-Call-Duration-Default"
+        //static let PostUploadFile = "http://192.168.1.106/audio/uploadhandler.ashx"
+        static let PostUploadAudioFile = "http://download.swsresearch.net/audio/uploadhandler.ashx"
+        
+        
+        static let GetWeiXinToken = "http://202.109.73.185/swhyweixin/gettoken.ashx?appid=swhyapp&secret=weiwei"
+        static let PostAudioTopic = "http://202.109.73.185/swhyweixin/gentopic.ashx?token="
+        static let AudioBaseURL = "http://download.swsresearch.net/audio/audiofile/"
     }
     struct Net {
         static let Domain = "swsresearch"

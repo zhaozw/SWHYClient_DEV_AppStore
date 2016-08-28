@@ -19,7 +19,8 @@
         int read, write;
         
         FILE *pcm = fopen([audioFileSavePath cStringUsingEncoding:1], "rb");  //source 被转换的音频文件位置
-        fseek(pcm, 4*1024, SEEK_CUR);                                   //skip file header
+        //fseek(pcm, 4*1024, SEEK_CUR);   //skip file header
+        fseek(pcm, 4*1024, SEEK_CUR);  
         FILE *mp3 = fopen([mp3FilePath cStringUsingEncoding:1], "wb");  //output 输出生成的Mp3文件位置
         
         const int PCM_SIZE = 8192;

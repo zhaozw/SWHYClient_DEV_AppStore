@@ -11,7 +11,7 @@ import Foundation
 import AVFoundation
 
 class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
-
+    
     @IBOutlet weak var txtTitle: UITextField!
     @IBOutlet weak var txtDesc: UITextView!
     @IBOutlet weak var lblFileName: UILabel!
@@ -21,11 +21,13 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
     @IBOutlet weak var playTimeLabel: UILabel!
     @IBOutlet weak var allTimeLabel: UILabel!
     @IBOutlet weak var lblSize: UILabel!
-        
+    @IBOutlet weak var uploadButton: UIButton!
+    
     //var audioPlayer:AVPlayerViewController = AVPlayerViewController()
     var player: AVAudioPlayer? = AVAudioPlayer()
     var timer:NSTimer?
     var audioFileName:String = ""
+    
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?){
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -52,7 +54,7 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
         fatalError("init(coder:) has not been implemented")
         
     }
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,7 +66,7 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
         //self.scrollview.scrollEnabled = true
         self.audioFileName =  Message.shared.audioFileName
         self.title = "微录音"
-
+        
         
         self.lblFileName.text = self.audioFileName
         print(DaiFileManager.document["/Audio/"+self.audioFileName].attrs)
@@ -72,24 +74,24 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
         progressSlider.setMinimumTrackImage(UIImage(named: "player_slider_playback_left"), forState: UIControlState.Normal)
         progressSlider.setMaximumTrackImage(UIImage(named: "player_slider_playback_right"), forState: UIControlState.Normal)
         progressSlider.setThumbImage(UIImage(named: "player_slider_playback_thumb"), forState: UIControlState.Normal)
-
+        
         
         print(DaiFileManager.document["/Audio/"+self.audioFileName])
         self.txtTitle.text = DaiFileManager.document["/Audio/"+self.audioFileName].getAttr("C_Title")
         self.txtDesc.text = DaiFileManager.document["/Audio/"+self.audioFileName].getAttr("C_Desc")
         
-       
+        
         let fileSize = DaiFileManager.document["/Audio/"+self.audioFileName].attrs.fileSize() 
         //let fileSize = fileSizeNumber
         var sizeMB = Double(fileSize / 1024)
         sizeMB = Double(sizeMB / 1024)
         print(String(format: "%.2f", sizeMB) + " MB")
         
-       
+        
         self.lblSize.text = String(format: "%.2f", sizeMB) + " MB"
         
- 
- 
+        
+        
         self.txtTitle.borderStyle = UITextBorderStyle.RoundedRect
         self.txtTitle.returnKeyType = UIReturnKeyType.Done      
         self.txtTitle.delegate = self
@@ -113,10 +115,10 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
         //self.setNavigationBarItem()
         
     }
-
+    
     func textDidEndEditing()
     {
-            print("结束输入...")
+        print("结束输入...")
     }
     
     func returnNavView(){
@@ -134,7 +136,7 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
         //photo.image = getImageWithUrl(currentSong.picture)
         //backgroundImageView.image = photo.image
         //titleLabel.text = currentSong.title as String
-       // artistLabel.text = currentSong.artist as String
+        // artistLabel.text = currentSong.artist as String
         playButton.selected = false
         playTimeLabel.text = "00:00"
         self.progressSlider.value = 0.0
@@ -142,7 +144,7 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
         //self.audioPlayer.
         
         do {
-            //print(DaiFileManager.document["/Audio/"+self.audioFileName].path)
+            print(DaiFileManager.document["/Audio/"+self.audioFileName].path)
             try player = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: DaiFileManager.document["/Audio/"+self.audioFileName].path))
         }
         catch let error as NSError {
@@ -155,8 +157,8 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
         var time=NSString(format:"%02d:%02d",f,m)
         //print(time)
         self.allTimeLabel.text = time as String
-
-       
+        
+        
         //player?.delegate = self
         //player?.play()
         
@@ -166,7 +168,7 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
         playButton.setImage(UIImage(named: "player_btn_play_normal.png"), forState: UIControlState.Normal)
         
     }
-
+    
     //播放
     @IBAction func playButtonClick(sender: UIButton) {
         if sender.selected {
@@ -183,7 +185,84 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
         }
         sender.selected = !sender.selected
     }
-
+    
+    @IBAction func doUpload(sender: AnyObject) {
+        //登陆成功后，上传日志
+        print("上传文件开始 --------------")
+        let filePath = DaiFileManager.document["/Audio/"+self.audioFileName].path
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "HandleNetworkResult:", name: Config.RequestTag.PostUploadAudioFile, object: nil)
+        NetworkEngine.sharedInstance.postUploadFile(Config.URL.PostUploadAudioFile, filePath: filePath, tag: Config.RequestTag.PostUploadAudioFile)
+        
+        
+    }
+    
+    func HandleNetworkResult(notify:NSNotification)
+    {
+        let result:Result = notify.valueForKey("object") as! Result
+        
+        print(result)
+        //NSNotificationCenter.defaultCenter().removeObserver(self, name: Config.RequestTag.PostUploadFile, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: result.tag, object: nil)
+        
+        if result.status == "Error" {
+            print("-------post log error-------------")
+            PKNotification.toast(result.message)
+        }else if result.status=="OK"{
+            if result.tag == Config.RequestTag.PostUploadAudioFile {
+                //Audio文件保留上传的URL地址 
+                DaiFileManager.document["/Audio/"+self.audioFileName].setAttr("C_URL", value: Config.URL.AudioBaseURL + Message.shared.postUserName + "_" + self.audioFileName)
+                PKNotification.toast(result.message)
+                
+                //print(DaiFileManager.document["/Audio/"+self.audioFileName].getAttr("C_URL"))
+                
+                
+                //上传成功的话 就获取weixin token
+                NSNotificationCenter.defaultCenter().addObserver(self, selector: "HandleNetworkResult:", name: Config.RequestTag.GetWeiXinToken, object: nil)
+                NetworkEngine.sharedInstance.addRequestWithUrlString(Config.URL.GetWeiXinToken, tag: Config.RequestTag.GetWeiXinToken, useCache: false) 
+                
+            }else if result.tag == Config.RequestTag.GetWeiXinToken{
+                print(result.message)
+                //得到token成功  发送音频信息及URL
+                
+                /*
+                {
+                    "title":"TITLE",         //标题 
+                    "content ":"CONTENT",    //内容
+                    "audiourl":"AUDIOURL",   //音频链接 
+                    "authorid ":"AUTHORID"   //作者工号
+                }
+                */
+                let title = DaiFileManager.document["/Audio/"+self.audioFileName].getAttr("C_Title")
+                let content = DaiFileManager.document["/Audio/"+self.audioFileName].getAttr("C_Desc")
+                let audiourl = DaiFileManager.document["/Audio/"+self.audioFileName].getAttr("C_URL")
+                let authorid = "00190"
+                //let json = "{\"title\":\"\(title)\",\"content\":\"\(content)\",\"audiourl\":\"\(audiourl)\",\"authorid\":\"\(authorid)\"}"
+                let json = "{title:\"\(title)\",content:\"\(content)\",audiourl:\"\(audiourl)\",authorid:\"\(authorid)\"}"
+                
+                
+                NSNotificationCenter.defaultCenter().addObserver(self, selector: "HandleNetworkResult:", name: Config.RequestTag.PostAudioTopic, object: nil)
+                //tk001hkieder25091
+                
+                print(Config.URL.PostAudioTopic+result.message)
+                NetworkEngine.sharedInstance.postRequestWithUrlString(Config.URL.PostAudioTopic+result.message, postData:json,tag:Config.RequestTag.PostAudioTopic)
+                
+                //NetworkEngine.sharedInstance.postRequestWithUrlString(Config.URL.PostAudioTopic+"tk001hkieder25092", postData:json,tag:Config.RequestTag.PostAudioTopic)
+                
+                //NetworkEngine.sharedInstance.addRequestWithUrlString(Config.URL.PostAudioTopic, tag: Config.RequestTag.PostAudioTopic, useCache: false) 
+                
+            }else if result.tag == Config.RequestTag.PostAudioTopic{
+            
+                PKNotification.toast(result.message)
+            
+            
+            }
+            
+            
+            
+        }
+        
+    }
+    
     
     func textFieldShouldReturn(textField:UITextField) -> Bool
     {
@@ -193,16 +272,16 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
         print(textField.text)
         return true;
     }
-/*
-    func textViewShouldReturn(textView: UITextView) -> Bool
-    {
-        //收起键盘
-        textView.resignFirstResponder()
-        //打印出文本框中的值
-        print(textView.text)
-        return true;
-    }
- */
+    /*
+     func textViewShouldReturn(textView: UITextView) -> Bool
+     {
+     //收起键盘
+     textView.resignFirstResponder()
+     //打印出文本框中的值
+     print(textView.text)
+     return true;
+     }
+     */
     func textFieldDidEndEditing(textField: UITextField){
         
         print("end editing \(textField.text)")
@@ -212,9 +291,9 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
         }
     }
     
-   
+    
     func textViewDidEndEditing(textView: UITextView) {
-         print("view结束编辑1\(textView)")
+        print("view结束编辑1\(textView)")
         if (textView == self.txtDesc){
             print("get obj view")
             DaiFileManager.document["/Audio/"+self.audioFileName].setAttr("C_Desc", value: textView.text)
@@ -243,5 +322,5 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
             playTimeLabel.text=time as String
         }
     }
-
+    
 }
