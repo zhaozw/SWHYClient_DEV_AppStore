@@ -55,17 +55,17 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
         //let request = NSMutableURLRequest(URL: NSURL(string: url)!)
         
-        request.setValue("application/json; charset=gb2312", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         //request.setValue("application/text", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/x-www-form-urlencoded;charset=gb2312", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/x-www-form-urlencoded;charset=utf-8", forHTTPHeaderField: "Content-Type")
         
         
         print(postData)
         
-        let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(Config.Encoding.GB2312))
+        //let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(Config.Encoding.GB2312))
         
-        //request.HTTPBody = postData.dataUsingEncoding(NSUTF8StringEncoding)     
-        request.HTTPBody = postData.dataUsingEncoding(enc)   
+        request.HTTPBody = postData.dataUsingEncoding(NSUTF8StringEncoding)     
+        //request.HTTPBody = postData.dataUsingEncoding(enc)   
         request.HTTPMethod = "POST"
         var result:String = ""
         
@@ -80,23 +80,32 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                 }
             }
             if (error != nil) {
-                print("error submitting request: \(error)")
-                result = "Error: \(error)"
-                self.dispatchResponse(result,tag: tag)
+                print("Error ====\(error!.localizedDescription) ==code=\(error!.code)")
+                var errmsg = ""
+                if error!.code == -999{
+                    //cancelled  用户名密码验证不通过时，取消请求
+                    errmsg = "用户名或密码错误"
+                }else{
+                    errmsg = "网络连接出错，请检查网络或稍后再试"
+                }
+                
+                self.success_auth = 0
+                self.alive = false
+                //print("request url host = false  \(request.URL?.host!)")
+                self.serverlist.updateValue(false, forKey: request.URL?.host!  ?? "AnyServer")
+                let result:Result = Result(status: "Error",message:errmsg,userinfo:error!,tag:tag)
+                NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
+            }else{
+                // handle the data of the successful response here
+                //let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(Config.Encoding.GB2312))
+                //let res:String = NSString(data: data!, encoding: enc)! as String
+                
+                let res:String = NSString(data: data!, encoding: NSUTF8StringEncoding)! as String
+                print(" res convert =\(res) tag:\(tag)")
+                self.dispatchResponse(res,tag: tag)    
             }
-            
-            // handle the data of the successful response here
-            // handle the data of the successful response here
-            //let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(Config.Encoding.GB2312))
-            //let res:String = NSString(data: data!, encoding: enc)! as String
-            
-            let res:String = NSString(data: data!, encoding: NSUTF8StringEncoding)! as String
-            print(" res convert =\(res)")
-            self.dispatchResponse(result,tag: tag)                
         }
         task.resume()
-        
-        
         
     }
     
@@ -150,38 +159,51 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                     }
                 }
                 if (error != nil) {
-                    print("error submitting request: \(error)")
-                    result = "Error: \(error)"
-                    self.dispatchResponse(result,tag: tag)
-                    
-                }
-                
-                // handle the data of the successful response here
-                let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(Config.Encoding.GB2312))
-                let res:String = NSString(data: data!, encoding: enc)! as String
-                
-                print(res)
-                if res.componentsSeparatedByString("OK").count > 1 {
-                    
-                    if (tag == Config.RequestTag.PostAccessLog){
-                        
-                        let sqlresult = DBAdapter.shared.markAccessLogListSync(itemlist)
-                        //println(sqlresult)
-                        //let sqlresult = 999
-                        
-                        self.dispatchResponse("系统已自动同步访问日志:\(String(sqlresult)) 条",tag: tag)
-                        
-                    }else if (tag != Config.RequestTag.PostAccessLog){
-                        
-                        
-                        
+                    print("Error ====\(error!.localizedDescription) ==code=\(error!.code)")
+                    var errmsg = ""
+                    if error!.code == -999{
+                        //cancelled  用户名密码验证不通过时，取消请求
+                        errmsg = "用户名或密码错误"
+                    }else{
+                        errmsg = "网络连接出错，请检查网络或稍后再试"
                     }
                     
-                }else if res.componentsSeparatedByString("Error").count > 1{
+                    self.success_auth = 0
+                    self.alive = false
+                    //print("request url host = false  \(request.URL?.host!)")
+                    self.serverlist.updateValue(false, forKey: request.URL?.host!  ?? "AnyServer")
+                    let result:Result = Result(status: "Error",message:errmsg,userinfo:error!,tag:tag)
+                    NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
                     
-                    result = "Error: 同步访问日志出错)"
-                    //println(result)
-                    self.dispatchResponse(result,tag: tag)
+                }else{
+                    
+                    // handle the data of the successful response here
+                    let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(Config.Encoding.GB2312))
+                    let res:String = NSString(data: data!, encoding: enc)! as String
+                    
+                    print(res)
+                    if res.componentsSeparatedByString("OK").count > 1 {
+                        
+                        if (tag == Config.RequestTag.PostAccessLog){
+                            
+                            let sqlresult = DBAdapter.shared.markAccessLogListSync(itemlist)
+                            //println(sqlresult)
+                            //let sqlresult = 999
+                            
+                            self.dispatchResponse("系统已自动同步访问日志:\(String(sqlresult)) 条",tag: tag)
+                            
+                        }else if (tag != Config.RequestTag.PostAccessLog){
+                            
+                            
+                            
+                        }
+                        
+                    }else if res.componentsSeparatedByString("Error").count > 1{
+                        
+                        result = "Error: 同步访问日志出错)"
+                        //println(result)
+                        self.dispatchResponse(result,tag: tag)
+                    }
                 }
             }
             task.resume()
@@ -246,36 +268,49 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                     }
                 }
                 if (error != nil) {
-                    print("error submitting request: \(error)")
-                    result = "Error: \(error)"
-                    self.dispatchResponse(result,tag: tag)
-                    
-                }
-                
-                // handle the data of the successful response here
-                let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(Config.Encoding.GB2312))
-                let res:String = NSString(data: data!, encoding: enc)! as String
-                
-                //print(res)
-                if res.componentsSeparatedByString("OK").count > 1 {
-                    
-                    if (tag == Config.RequestTag.PostCustomerLog){
-                        
-                        let sqlresult = DBAdapter.shared.markCustomerLogListSync(itemlist)
-                        //println(sqlresult)
-                        //let sqlresult = 999
-                        
-                        self.dispatchResponse("系统已自动同步客户通讯录日志:\(String(sqlresult)) 条",tag: tag)
-                        
-                    }else if (tag != Config.RequestTag.PostCustomerLog){
-                        
+                    print("Error ====\(error!.localizedDescription) ==code=\(error!.code)")
+                    var errmsg = ""
+                    if error!.code == -999{
+                        //cancelled  用户名密码验证不通过时，取消请求
+                        errmsg = "用户名或密码错误"
+                    }else{
+                        errmsg = "网络连接出错，请检查网络或稍后再试"
                     }
                     
-                }else if res.componentsSeparatedByString("Error").count > 1{
+                    self.success_auth = 0
+                    self.alive = false
+                    //print("request url host = false  \(request.URL?.host!)")
+                    self.serverlist.updateValue(false, forKey: request.URL?.host!  ?? "AnyServer")
+                    let result:Result = Result(status: "Error",message:errmsg,userinfo:error!,tag:tag)
+                    NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
                     
-                    result = "Error: 同步客户通讯录日志出错)"
-                    //println(result)
-                    self.dispatchResponse(result,tag: tag)
+                }else{
+                    
+                    // handle the data of the successful response here
+                    let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(Config.Encoding.GB2312))
+                    let res:String = NSString(data: data!, encoding: enc)! as String
+                    
+                    //print(res)
+                    if res.componentsSeparatedByString("OK").count > 1 {
+                        
+                        if (tag == Config.RequestTag.PostCustomerLog){
+                            
+                            let sqlresult = DBAdapter.shared.markCustomerLogListSync(itemlist)
+                            //println(sqlresult)
+                            //let sqlresult = 999
+                            
+                            self.dispatchResponse("系统已自动同步客户通讯录日志:\(String(sqlresult)) 条",tag: tag)
+                            
+                        }else if (tag != Config.RequestTag.PostCustomerLog){
+                            
+                        }
+                        
+                    }else if res.componentsSeparatedByString("Error").count > 1{
+                        
+                        result = "Error: 同步客户通讯录日志出错)"
+                        //println(result)
+                        self.dispatchResponse(result,tag: tag)
+                    }
                 }
             }
             task.resume()
@@ -321,29 +356,40 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                 }
             }
             if (error != nil) {
-                print("error submitting request: \(error)")
-                result = "Error: \(error)"
-                self.dispatchResponse(result,tag: tag)
+                print("Error ====\(error!.localizedDescription) ==code=\(error!.code)")
+                var errmsg = ""
+                if error!.code == -999{
+                    //cancelled  用户名密码验证不通过时，取消请求
+                    errmsg = "用户名或密码错误"
+                }else{
+                    errmsg = "网络连接出错，请检查网络或稍后再试"
+                }
                 
-            }
-            //print("Data = \(data)")
-            // handle the data of the successful response here
-            //let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(Config.Encoding.GB2312))
-            //let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(NSUTF8StringEncoding))
-            
-            let res:String = NSString(data: data!, encoding: NSUTF8StringEncoding)! as String
-            
-            print(" res convert =\(res)")
-            if res.componentsSeparatedByString("OK").count > 1 {
+                self.success_auth = 0
+                self.alive = false
+                //print("request url host = false  \(request.URL?.host!)")
+                self.serverlist.updateValue(false, forKey: request.URL?.host!  ?? "AnyServer")
+                let result:Result = Result(status: "Error",message:errmsg,userinfo:error!,tag:tag)
+                NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)          
+            }else{
+                // handle the data of the successful response here
+                //let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(Config.Encoding.GB2312))
+                //let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(NSUTF8StringEncoding))
                 
-                result = "Success: 上传文件成功"
-                print(result)
-                self.dispatchResponse(result,tag: tag)                
-            }else if res.componentsSeparatedByString("Error").count > 1{
+                let res:String = NSString(data: data!, encoding: NSUTF8StringEncoding)! as String
                 
-                result = "Error: 上传文件出错"
-                print(result)
-                self.dispatchResponse(result,tag: tag)
+                print(" res convert =\(res)")
+                if res.componentsSeparatedByString("OK").count > 1 {
+                    
+                    result = "Success: 上传文件成功"
+                    print(result)
+                    self.dispatchResponse(result,tag: tag)                
+                }else if res.componentsSeparatedByString("Error").count > 1{
+                    
+                    result = "Error: 上传文件出错"
+                    print(result)
+                    self.dispatchResponse(result,tag: tag)
+                }
             }
         }
         print("before resume")
@@ -427,6 +473,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
             //println("这里写需要大量时间的代码----Dispatch")
             //print("dispatch \(res)")
             var result:Result
+            print(tag)
             switch tag{
                 
             case Config.RequestTag.DoLogin:
@@ -648,7 +695,12 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                 
                 
             case Config.RequestTag.PostAudioTopic:
-                if res.componentsSeparatedByString("{'errcode':0,'errmsg':'ok'}").count > 1{
+                //{'errcode':0,'reportid':'12345678'}  成功样例
+                //let string1 = "'errcode':0,'reportid':'12345678'}"
+                print(res.containsString("reportid"))
+                if res.containsString("reportid") {
+                    //if res.componentsSeparatedByString("reportid").count > 1{
+                    
                     result = Result(status: "OK",message:"发布音频成功",userinfo:NSObject(),tag:tag)
                 }else{
                     

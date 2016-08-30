@@ -144,7 +144,7 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
         //self.audioPlayer.
         
         do {
-            print(DaiFileManager.document["/Audio/"+self.audioFileName].path)
+            //print(DaiFileManager.document["/Audio/"+self.audioFileName].path)
             try player = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: DaiFileManager.document["/Audio/"+self.audioFileName].path))
         }
         catch let error as NSError {
@@ -205,7 +205,7 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: result.tag, object: nil)
         
         if result.status == "Error" {
-            print("-------post log error-------------")
+            print("-------post  error-------------")
             PKNotification.toast(result.message)
         }else if result.status=="OK"{
             if result.tag == Config.RequestTag.PostUploadAudioFile {
@@ -246,11 +246,7 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
                 print(Config.URL.PostAudioTopic+result.message)
                 NetworkEngine.sharedInstance.postRequestWithUrlString(Config.URL.PostAudioTopic+result.message, postData:json,tag:Config.RequestTag.PostAudioTopic)
                 
-                //NetworkEngine.sharedInstance.postRequestWithUrlString(Config.URL.PostAudioTopic+"tk001hkieder25092", postData:json,tag:Config.RequestTag.PostAudioTopic)
-                
-                //NetworkEngine.sharedInstance.addRequestWithUrlString(Config.URL.PostAudioTopic, tag: Config.RequestTag.PostAudioTopic, useCache: false) 
-                
-            }else if result.tag == Config.RequestTag.PostAudioTopic{
+               }else if result.tag == Config.RequestTag.PostAudioTopic{
             
                 PKNotification.toast(result.message)
             
