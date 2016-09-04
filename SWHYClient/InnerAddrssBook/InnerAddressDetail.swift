@@ -41,7 +41,7 @@ class InnerAddressDetail: UIViewController {
         super.viewDidLoad()
         
         //self.contentView.frame.origin.y = 30
-        print("inner address detail view did load")
+        //print("inner address detail view did load")
         // Do any additional setup after loading the view.
         //self.scrollview.scrollEnabled = true
         let item:InnerAddressItem =  Message.shared.curInnerAddressItem

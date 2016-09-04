@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InnerAddressBook" customModule="SWHYClient_DEV" customModuleProvider="target">
             <connections>
-                <outlet property="searchBar" destination="ELH-nT-h9Q" id="vdo-j2-VbY"/>
+                <outlet property="searchBar" destination="ELH-nT-h9Q" id="PCG-uY-xPO"/>
                 <outlet property="searchDisplayController" destination="wz2-x9-2kP" id="N2t-GE-9fx"/>
                 <outlet property="view" destination="nrV-mP-Z37" id="SIb-QM-9sp"/>
             </connections>
@@ -22,13 +22,13 @@
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                 <textInputTraits key="textInputTraits"/>
                 <connections>
-                    <outlet property="delegate" destination="-1" id="c4r-RM-9Fy"/>
+                    <outlet property="delegate" destination="-1" id="sIK-01-Zba"/>
                 </connections>
             </searchBar>
             <connections>
                 <outlet property="delegate" destination="-1" id="7dL-Sv-5RZ"/>
             </connections>
-            <point key="canvasLocation" x="1222" y="526.5"/>
+            <point key="canvasLocation" x="1135" y="511.5"/>
         </tableView>
         <searchDisplayController id="wz2-x9-2kP">
             <connections>

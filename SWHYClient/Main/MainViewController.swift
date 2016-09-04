@@ -245,8 +245,7 @@ class MainViewController: UIViewController{
                 accessLogItem.modulename = arrobj.name
                 
                 DBAdapter.shared.syncAccessLogItem(accessLogItem)
-                
-                //aObject.title = arrobj.name
+               
                 self.navigationController?.pushViewController(aObject,animated:false);
             }}
     }

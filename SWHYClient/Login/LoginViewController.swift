@@ -407,6 +407,8 @@ class LoginViewController: UIViewController {
     }
     func gotoview(){
         //UIApplication.sharedApplication().keyWindow?.rootViewController = nvc
+       
+        
         let mainViewController:MainViewController = MainViewController()
         let nvc=UINavigationController(rootViewController:mainViewController);
         
@@ -415,6 +417,8 @@ class LoginViewController: UIViewController {
         
         let slideMenuController = SlideMenuController(mainViewController: nvc, rightMenuViewController: rightViewController)
         UIApplication.sharedApplication().keyWindow?.rootViewController = slideMenuController
+ 
+     
         
     }
 }

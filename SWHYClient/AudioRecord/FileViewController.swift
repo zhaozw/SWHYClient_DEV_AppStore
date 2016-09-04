@@ -16,27 +16,21 @@ import UIKit
     var rightBtn:UIButton?
     //var rightButtonItem:UIBarButtonItem?
     
-    required init(coder aDecoder: NSCoder) {
-        print("require init")
-        fatalError("init(coder:) has not been implemented")
-        
+    init() {
+        print("init")
+        super.init(nibName: nil, bundle: nil)
     }
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?){
-        print("override init")
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        
+    
+    required init?(coder aDecoder: NSCoder) {
+        print(" init code")
+        super.init(coder: aDecoder)
     }
-    //convenience init() {
-        //print("init class")
-        //self.init(nibName: "WebViewController", bundle: nil)
-        //self.init(nibName: "LaunchScreen", bundle: nil)
-
-    //}
-
     
     override func viewDidLoad() {
-        super.viewDidLoad()
         print("do did load fileview controller")
+        super.viewDidLoad()
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+
         initView()
         getFileList()
         setupRightBarItem()
@@ -69,24 +63,18 @@ import UIKit
     override func viewWillAppear(animated: Bool) {
         print("viewwill appear")
         super.viewWillAppear(animated)
-        self.title = Message.shared.curMenuItem.name
+        self.title = "录音库"
+            
         let backitem = UIBarButtonItem(title: Config.UI.PreNavItem, style: UIBarButtonItemStyle.Plain, target: self, action: "returnNavView")
         self.navigationItem.leftBarButtonItem = backitem
-        
-        
-        //let storyboard = UIStoryboard(name: "Setting", bundle: nil)
-        //let webViewMenuViewController = storyboard.instantiateViewControllerWithIdentifier("WebViewMenuViewController") as! WebViewMenuViewController
-        //self.slideMenuController()?.changeRightViewController(webViewMenuViewController, closeRight: true)
-        //self.setNavigationBarItem()
-        
+        self.setNavigationBarItem()
+                
     }
     
     func returnNavView(){
-        print("click return button")
-        //self.navigationController?.popViewControllerAnimated(true)
-        
         let audioRecorderViewController:AudioRecorder = AudioRecorder()
-        self.slideMenuController()?.changeMainViewController(UINavigationController(rootViewController: audioRecorderViewController), close: true)
+        let nvc=UINavigationController(rootViewController:audioRecorderViewController);
+        self.slideMenuController()?.changeMainViewController(nvc, close: true)
     }
     
     func setupRightBarItem(){

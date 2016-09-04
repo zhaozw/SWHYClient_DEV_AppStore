@@ -45,14 +45,10 @@ class AudioRecorderMenuViewController : UIViewController {
     
     func onClickEvent_AudioList(sender:UITapGestureRecognizer!){
         print("click audiolist button")
-        //let storyboard = UIStoryboard(name: "Setting", bundle: nil)
-        //let settingController = storyboard.instantiateViewControllerWithIdentifier("SettingMenuController") as! SettingViewController
-        
         let fileViewController:FileViewController = FileViewController()
-        self.fileViewController = UINavigationController(rootViewController: fileViewController)
-        //self.navigationController?.pushViewController(self.fileViewController, animated: true)
-        self.slideMenuController()?.changeMainViewController(self.fileViewController, close: true)
-        //self.slideMenuController()?.showViewController(self.fileViewController, sender: nil)
+        
+        let nvc=UINavigationController(rootViewController:fileViewController);
+        self.slideMenuController()?.changeMainViewController(nvc, close: true)
     }
     
     

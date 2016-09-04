@@ -61,7 +61,7 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
         
         
         //self.contentView.frame.origin.y = 30
-        print("inner address detail view did load")
+        //print("inner address detail view did load")
         // Do any additional setup after loading the view.
         //self.scrollview.scrollEnabled = true
         self.audioFileName =  Message.shared.audioFileName
@@ -79,7 +79,7 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
         print(DaiFileManager.document["/Audio/"+self.audioFileName])
         self.txtTitle.text = DaiFileManager.document["/Audio/"+self.audioFileName].getAttr("C_Title")
         self.txtDesc.text = DaiFileManager.document["/Audio/"+self.audioFileName].getAttr("C_Desc")
-        
+        self.allTimeLabel.text = DaiFileManager.document["/Audio/"+self.audioFileName].getAttr("C_Duration")
         
         let fileSize = DaiFileManager.document["/Audio/"+self.audioFileName].attrs.fileSize() 
         //let fileSize = fileSizeNumber
@@ -138,7 +138,7 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
         //titleLabel.text = currentSong.title as String
         // artistLabel.text = currentSong.artist as String
         playButton.selected = false
-        playTimeLabel.text = "00:00"
+        playTimeLabel.text = "00:00:00"
         self.progressSlider.value = 0.0
         //self.rotationAnimation()
         //self.audioPlayer.
@@ -151,12 +151,13 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
             NSLog("error: \(error)")
         }
         
-        let all:Int=Int((self.player!.duration))//共多少秒
-        let m:Int=all % 60//秒
-        let f:Int=Int(all/60)//分
-        var time=NSString(format:"%02d:%02d",f,m)
+        //let all:Int=Int((self.player!.duration))//共多少秒
+        //let m:Int=all % 60//秒
+        //let f:Int=Int(all/60)//分
+                
+        //var time=NSString(format:"%02d:%02d",f,m)
         //print(time)
-        self.allTimeLabel.text = time as String
+        //self.allTimeLabel.text = time as String
         
         
         //player?.delegate = self
@@ -314,7 +315,9 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
             let all:Int=Int(c)//共多少秒
             let m:Int=all % 60//秒
             let f:Int=Int(all/60)//分
-            var time=NSString(format:"%02d:%02d",f,m)
+            let hour = f / 60
+            var time=NSString(format:"%02d:%02d:%02d",hour,f,m)
+            
             playTimeLabel.text=time as String
         }
     }

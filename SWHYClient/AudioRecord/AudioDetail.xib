@@ -103,14 +103,6 @@
                         <action selector="playButtonClick:" destination="-1" eventType="touchUpInside" id="xgW-yO-jGB"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wdW-wl-Vm1">
-                    <rect key="frame" x="33" y="420" width="42" height="21"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="42" id="38f-wB-LUB"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Nsn-LY-ga6">
                     <rect key="frame" x="31" y="382" width="539" height="31"/>
                 </slider>
@@ -170,10 +162,10 @@
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="04:38" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v7e-BG-8FX">
-                    <rect key="frame" x="526" y="420" width="42" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v7e-BG-8FX">
+                    <rect key="frame" x="504" y="420" width="64" height="21"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="42" id="NPz-TZ-Ejn"/>
+                        <constraint firstAttribute="width" constant="64" id="NPz-TZ-Ejn"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <nil key="highlightedColor"/>
@@ -185,6 +177,14 @@
                         <action selector="doUpload:" destination="-1" eventType="touchUpInside" id="Bwt-oN-fdk"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wdW-wl-Vm1">
+                    <rect key="frame" x="33" y="420" width="74" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="74" id="38f-wB-LUB"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
