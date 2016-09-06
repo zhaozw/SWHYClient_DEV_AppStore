@@ -669,6 +669,15 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                 result = Result(status: "OK",message:"",userinfo:userInfo,tag:tag)
                 //NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
                 
+            case Config.RequestTag.GetPersonInfoByAD:
+                var userInfo = ""
+                //只能处理 xml encoding utf-8的
+                print(res)
+                let json = JSONClass(string:res)
+                userInfo = json["JSON"][0]["value"].asString  ?? "++"
+                result = Result(status: "OK",message:"",userinfo:userInfo,tag:tag)
+                //NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
+
             case Config.RequestTag.PostUploadAudioFile:
                 //println("dispatch \(res)  \(tag)")
                 if res.componentsSeparatedByString("Error").count > 1{

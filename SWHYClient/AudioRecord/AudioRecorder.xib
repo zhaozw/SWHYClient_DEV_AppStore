@@ -9,6 +9,7 @@
             <connections>
                 <outlet property="btn_Play" destination="t0w-Xn-l7X" id="kPK-iw-TWt"/>
                 <outlet property="btn_Record" destination="Nve-pK-r5a" id="aVO-cW-chX"/>
+                <outlet property="btn_Save" destination="Yih-kU-35x" id="j7Y-pt-jrE"/>
                 <outlet property="timeLabel" destination="WzD-2S-s64" id="fLe-2j-Ecn"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -21,11 +22,26 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WzD-2S-s64">
                     <rect key="frame" x="51" y="68" width="218" height="65"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="56"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                 </label>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eJT-iS-J70">
                     <rect key="frame" x="60" y="269" width="200" height="70"/>
                     <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t0w-Xn-l7X" customClass="MKButton" customModule="SWHYClient_DEV" customModuleProvider="target">
+                            <rect key="frame" x="120" y="17" width="80" height="36"/>
+                            <color key="backgroundColor" red="0.8146109533" green="0.8146109533" blue="0.8146109533" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="80" id="6oE-Ij-Q8L"/>
+                                <constraint firstAttribute="height" constant="36" id="cgu-rN-VSH"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" title="播  放">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="act_Play:" destination="-1" eventType="touchUpInside" id="T6z-65-Y0d"/>
+                            </connections>
+                        </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nve-pK-r5a" customClass="MKButton" customModule="SWHYClient_DEV" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="17" width="80" height="36"/>
                             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -51,21 +67,6 @@
                                 <action selector="act_Record:" destination="-1" eventType="touchUpInside" id="9Ty-Pu-8TY"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t0w-Xn-l7X" customClass="MKButton" customModule="SWHYClient_DEV" customModuleProvider="target">
-                            <rect key="frame" x="120" y="17" width="80" height="36"/>
-                            <color key="backgroundColor" red="0.8146109533" green="0.8146109533" blue="0.8146109533" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="80" id="6oE-Ij-Q8L"/>
-                                <constraint firstAttribute="height" constant="36" id="cgu-rN-VSH"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <state key="normal" title="播  放">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <connections>
-                                <action selector="act_Play:" destination="-1" eventType="touchUpInside" id="T6z-65-Y0d"/>
-                            </connections>
-                        </button>
                     </subviews>
                     <constraints>
                         <constraint firstItem="Nve-pK-r5a" firstAttribute="leading" secondItem="eJT-iS-J70" secondAttribute="leading" id="5ed-Ao-xb7"/>
@@ -75,8 +76,8 @@
                         <constraint firstAttribute="trailing" secondItem="t0w-Xn-l7X" secondAttribute="trailing" id="tCX-Z6-pIx"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yih-kU-35x">
-                    <rect key="frame" x="120" y="354" width="100" height="30"/>
+                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yih-kU-35x">
+                    <rect key="frame" x="110" y="347" width="100" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="Xe8-tx-C1X"/>
                     </constraints>
@@ -90,12 +91,13 @@
             <constraints>
                 <constraint firstItem="eJT-iS-J70" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="7HC-Le-mXG"/>
                 <constraint firstItem="eJT-iS-J70" firstAttribute="top" secondItem="WzD-2S-s64" secondAttribute="bottom" constant="136" id="7e2-1x-Uia"/>
-                <constraint firstItem="Yih-kU-35x" firstAttribute="top" secondItem="eJT-iS-J70" secondAttribute="bottom" constant="15" id="ALC-vt-Sw6"/>
-                <constraint firstItem="Yih-kU-35x" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="120" id="T0c-bp-wbR"/>
+                <constraint firstItem="Yih-kU-35x" firstAttribute="top" secondItem="eJT-iS-J70" secondAttribute="bottom" constant="8" id="ALC-vt-Sw6"/>
+                <constraint firstItem="Yih-kU-35x" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="110" id="T0c-bp-wbR"/>
                 <constraint firstItem="WzD-2S-s64" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="bdi-qN-FZt"/>
                 <constraint firstItem="WzD-2S-s64" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-152" id="bpa-nf-9dH"/>
+                <constraint firstItem="Yih-kU-35x" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ezg-5e-jdL"/>
                 <constraint firstItem="WzD-2S-s64" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="iTX-tP-KGV"/>
-                <constraint firstAttribute="bottom" secondItem="Yih-kU-35x" secondAttribute="bottom" constant="120" id="oL6-cL-d8i"/>
+                <constraint firstAttribute="bottom" secondItem="Yih-kU-35x" secondAttribute="bottom" constant="127" id="oL6-cL-d8i"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

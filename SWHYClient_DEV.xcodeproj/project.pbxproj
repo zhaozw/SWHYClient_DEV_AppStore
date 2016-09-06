@@ -75,7 +75,7 @@
 		A3C73B3F1ABDF00D002C299D /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C73B371ABDF00D002C299D /* WebViewController.swift */; };
 		A3C997B11D3E66CC006EE61D /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3C997B01D3E66CC006EE61D /* CoreTelephony.framework */; };
 		A3CAA52C1AC9185100600394 /* PKNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CAA52B1AC9185100600394 /* PKNotification.swift */; };
-		A3CB54DF1D5712BE00CBCFB5 /* AudioDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3CB54DE1D5712BE00CBCFB5 /* AudioDetail.xib */; };
+		A3CB54DF1D5712BE00CBCFB5 /* AudioDetail_bak.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3CB54DE1D5712BE00CBCFB5 /* AudioDetail_bak.xib */; };
 		A3CB54E11D571C7900CBCFB5 /* AudioDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CB54E01D571C7900CBCFB5 /* AudioDetail.swift */; };
 		A3CB54E51D575A5D00CBCFB5 /* NSURL+xattr.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CB54E41D575A5D00CBCFB5 /* NSURL+xattr.swift */; };
 		A3D2D82D1BB7D5F7002491ED /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D2D8181BB7D5F7002491ED /* Cache.swift */; };
@@ -138,6 +138,7 @@
 		A3EA2D041D3E625B002D936D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A3EA2D031D3E625B002D936D /* libz.tbd */; };
 		A3EA2D061D3E626C002D936D /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A3EA2D051D3E626C002D936D /* libsqlite3.0.tbd */; };
 		A3EA2D081D3E627C002D936D /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A3EA2D071D3E627C002D936D /* libc++.tbd */; };
+		A3EA6A581D7DB3C5003A53BD /* AudioDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3EA6A571D7DB3C5003A53BD /* AudioDetail.xib */; };
 		A3F5710E1D68718000520721 /* MultiPartMime.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5710D1D68718000520721 /* MultiPartMime.swift */; };
 		A3F571121D6871E500520721 /* MultiPartPart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F571111D6871E500520721 /* MultiPartPart.swift */; };
 		A3F7A9971BDB9EC500923D23 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3F7A9961BDB9EC500923D23 /* Security.framework */; };
@@ -277,7 +278,7 @@
 		A3C7856F1ACD1B1400428160 /* back.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = back.xib; sourceTree = "<group>"; };
 		A3C997B01D3E66CC006EE61D /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		A3CAA52B1AC9185100600394 /* PKNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PKNotification.swift; sourceTree = "<group>"; };
-		A3CB54DE1D5712BE00CBCFB5 /* AudioDetail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioDetail.xib; sourceTree = "<group>"; };
+		A3CB54DE1D5712BE00CBCFB5 /* AudioDetail_bak.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioDetail_bak.xib; sourceTree = "<group>"; };
 		A3CB54E01D571C7900CBCFB5 /* AudioDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioDetail.swift; sourceTree = "<group>"; };
 		A3CB54E41D575A5D00CBCFB5 /* NSURL+xattr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURL+xattr.swift"; sourceTree = "<group>"; };
 		A3CD08501ABFAB1000020495 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
@@ -324,6 +325,7 @@
 		A3EA2D031D3E625B002D936D /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		A3EA2D051D3E626C002D936D /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		A3EA2D071D3E627C002D936D /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		A3EA6A571D7DB3C5003A53BD /* AudioDetail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioDetail.xib; sourceTree = "<group>"; };
 		A3F5710D1D68718000520721 /* MultiPartMime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultiPartMime.swift; path = MultiPartMime/MultiPartMime.swift; sourceTree = "<group>"; };
 		A3F571111D6871E500520721 /* MultiPartPart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultiPartPart.swift; path = MultiPartMime/MultiPartPart.swift; sourceTree = "<group>"; };
 		A3F7A9961BDB9EC500923D23 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -378,12 +380,13 @@
 				A36906801D4DCE180043AFB6 /* AudioRecorderViewController.xib */,
 				A36906841D4DEE140043AFB6 /* AudioRecorder.swift */,
 				A36100781D55A64300B45BA2 /* FileViewController.swift */,
-				A3CB54DE1D5712BE00CBCFB5 /* AudioDetail.xib */,
+				A3CB54DE1D5712BE00CBCFB5 /* AudioDetail_bak.xib */,
 				A3CB54E01D571C7900CBCFB5 /* AudioDetail.swift */,
 				A3DE300C1D7C05B6005A43B8 /* AudioFileList.swift */,
 				A3DE300E1D7C06A5005A43B8 /* AudioFileList.xib */,
 				A368D1201D7C122500FFF29E /* AudioFileItem.swift */,
 				A368D1241D7C34E500FFF29E /* AudioListCell.swift */,
+				A3EA6A571D7DB3C5003A53BD /* AudioDetail.xib */,
 			);
 			path = AudioRecord;
 			sourceTree = "<group>";
@@ -867,11 +870,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A3CB54DF1D5712BE00CBCFB5 /* AudioDetail.xib in Resources */,
+				A3CB54DF1D5712BE00CBCFB5 /* AudioDetail_bak.xib in Resources */,
 				A3532B6E1D1673A000C47D97 /* Common.entitlements in Resources */,
 				A3D2D8AF1BB830E6002491ED /* Images.xcassets in Resources */,
 				A3D2D8AE1BB827FB002491ED /* data.db in Resources */,
 				A3DE300F1D7C06A5005A43B8 /* AudioFileList.xib in Resources */,
+				A3EA6A581D7DB3C5003A53BD /* AudioDetail.xib in Resources */,
 				A3D2D8AC1BB81B47002491ED /* Main.storyboard in Resources */,
 				A3D2D8A21BB810E6002491ED /* InnerAddressBookHeader.xib in Resources */,
 				A3D2D8A31BB810E6002491ED /* InnerAddressDetail.xib in Resources */,

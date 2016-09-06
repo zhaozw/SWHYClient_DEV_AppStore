@@ -20,7 +20,7 @@ class Message {
     var version:String = ""
     var upgradeURL:String = ""
     var audioFileName:String = ""
-    
+    var EmployeeId:String? = ""                  //当前用户的工号
     
     class var shared: Message {
         return Inner.instance

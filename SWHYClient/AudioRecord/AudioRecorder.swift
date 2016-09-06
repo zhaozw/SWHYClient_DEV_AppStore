@@ -21,6 +21,7 @@ import AVFoundation
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var btn_Record: MKButton!
     @IBOutlet weak var btn_Play: MKButton!
+    @IBOutlet weak var btn_Save: UIButton!
     
     var timeTimer: NSTimer?
     var milliseconds: Int = 0
@@ -218,9 +219,11 @@ import AVFoundation
         btn_Play.enabled = !recorder.recording
         if (btn_Play.enabled == false){
             print("disable")
+            btn_Save.enabled = false
             btn_Play.backgroundColor = UIColor.grayColor()
         }else{
             print("enable")
+            btn_Save.enabled = true
             //btn_Play.backgroundColor = self.recordercolor
         }
         

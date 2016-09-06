@@ -11,7 +11,7 @@ import UIKit
     var itemlist = [AudioFileItem]()
     var filteredItemList = [AudioFileItem]()
     @IBOutlet weak var searchBar: UISearchBar!
-    
+    var rightBtn:UIButton?
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?){
        
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -35,19 +35,6 @@ import UIKit
         self.tableView.dataSource = self
         self.title = "录音库"
         print("view did load")
-        //opensectionindex = NSNotFound
-        //getaddress = false
-        //getdept = false
-        /*
-         if Message.shared.loginType == "Online" {
-         NSNotificationCenter.defaultCenter().addObserver(self, selector: "HandleNetworkResult:", name: Config.RequestTag.GetInnerAddressBook, object: nil)
-         NetworkEngine.sharedInstance.addRequestWithUrlString(Config.URL.InnerAddressBook, tag: Config.RequestTag.GetInnerAddressBook,useCache:false)
-         
-         
-         NSNotificationCenter.defaultCenter().addObserver(self, selector: "HandleNetworkResult:", name: Config.RequestTag.GetInnerAddressBook_Dept, object: nil)
-         NetworkEngine.sharedInstance.addRequestWithUrlString(Config.URL.InnerAddressBook_Dept, tag: Config.RequestTag.GetInnerAddressBook_Dept,useCache:false)
-         }
-         */
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         
         
@@ -56,26 +43,7 @@ import UIKit
         let nib = UINib(nibName:"AudioListCell", bundle: nil)
         self.tableView.registerNib(nib, forCellReuseIdentifier: "Cell")
         self.searchDisplayController?.searchResultsTableView.registerNib(nib, forCellReuseIdentifier: "Cell")
-        
-        
-        
-        /*
-         if let data:AnyObject = DBAdapter.shared.queryInnerAddressList("'1'=?", paralist: ["1"]) {
-         //self.fillViewFromSql = true
-         self.itemlist = data as! [InnerAddressItem]
-         self.getaddress = true
-         }
-         
-         if let deptdata:AnyObject = DBAdapter.shared.queryInnerAddressDeptList("'1'=?", paralist: ["1"]) {
-         //self.fillViewFromSql = true
-         self.deptlist = deptdata as! [InnerAddressDeptItem]
-         self.getdept = true
-         
-         }
-         */
-        //ComputeAddressInfo()
-        
-        
+        setupRightBarItem()
     }
     
     func getFileList(){
@@ -117,11 +85,7 @@ import UIKit
         
         let backitem = UIBarButtonItem(title: Config.UI.PreNavItem, style: UIBarButtonItemStyle.Plain, target: self, action: "returnNavView")
         self.navigationItem.leftBarButtonItem = backitem
-        
-        //let storyboard = UIStoryboard(name: "Setting", bundle: nil)
-        //let innerAddressViewController = storyboard.instantiateViewControllerWithIdentifier("InnerAddresMenuViewController") as! InnerAddressMenuViewController
-        //self.slideMenuController()?.changeRightViewController(innerAddressViewController, closeRight: true)
-        //self.setNavigationBarItem()
+
         print("table reload data")
         getFileList()
         self.tableView.reloadData()
@@ -133,6 +97,43 @@ import UIKit
         self.slideMenuController()?.changeMainViewController(nvc, close: true)
     }
     
+    func setupRightBarItem(){
+        
+        //self.rightBtn = UIButton.buttonWithType(UIButtonType.Custom) as? UIButton
+        self.rightBtn = UIButton(type: UIButtonType.Custom)
+        self.rightBtn!.frame = CGRectMake(0,0,50,40)
+        //self.rightBtn?.setTitleColor(UIColor.redColor(), forState: UIControlState.Normal)
+        self.rightBtn?.setTitle("管理", forState: UIControlState.Normal)
+        self.rightBtn!.tag = 100
+        self.rightBtn!.userInteractionEnabled = true
+        self.rightBtn?.addTarget(self, action: "rightBarItemClicked", forControlEvents: UIControlEvents.TouchUpInside)
+        var barButtonItem = UIBarButtonItem(customView: self.rightBtn!)
+        self.navigationItem.rightBarButtonItem = barButtonItem
+        
+        
+        
+    }
+    func rightBarItemClicked(){
+        print("rightBarItemClicked \(self.rightBtn!.tag)")
+        if (self.rightBtn!.tag == 100)
+        {
+            self.tableView?.setEditing(true, animated: true)
+            self.rightBtn!.tag = 200
+            self.rightBtn?.setTitle("完成", forState: UIControlState.Normal)
+            //将增加按钮设置不能用
+            //self.rightButtonItem!.enabled=false
+        }
+        else
+        {
+            //恢复增加按钮
+            //self.rightButtonItem!.enabled=true
+            self.tableView?.setEditing(false, animated: true)
+            self.rightBtn!.tag = 100
+            self.rightBtn?.setTitle("管理", forState: UIControlState.Normal)
+        }
+        
+    }
+
     override func canBecomeFirstResponder() -> Bool {
         return true
     }
@@ -161,6 +162,70 @@ import UIKit
         } else {
             return self.itemlist.count
         }
+    }
+
+    //删除一行
+    override func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!){
+        print(editingStyle)
+        var index=indexPath.row as Int
+        self.itemlist.removeAtIndex(index)
+        self.tableView?.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Top)
+        NSLog("删除\(indexPath.row)")
+    }
+    
+    override func tableView(tableView: UITableView!, editActionsForRowAtIndexPath indexPath: NSIndexPath) ->  [UITableViewRowAction]?{
+        /*
+        let more = UITableViewRowAction(style: .Normal, title: "More") { action, index in
+            print("more button tapped")
+        }
+        more.backgroundColor = UIColor.lightGrayColor()
+        
+        let favorite = UITableViewRowAction(style: .Normal, title: "Favorite") { action, index in
+            print("favorite button tapped")
+        }
+        favorite.backgroundColor = UIColor.orangeColor()
+        */
+        let delete = UITableViewRowAction(style: .Default, title: "删除") { action, index in
+            print("delete button tapped")
+            
+            
+            let btn_OK:PKButton = PKButton(title: "删除",
+                                           action: { (messageLabel, items) -> Bool in
+                                            var index=indexPath.row as Int
+                                            DaiFileManager.document["/Audio/"+self.itemlist[index].filename].delete()
+                                            
+                                            self.itemlist.removeAtIndex(index)
+                                            self.tableView?.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Top)
+                                            NSLog("删除 tap \(indexPath.row)")
+                                            PKNotification.toast("已成功删除")
+                                            return true
+                                            },
+                                           fontColor: UIColor(red: 0, green: 0.55, blue: 0.9, alpha: 1.0),
+                                           backgroundColor: nil)
+            
+            // call alert
+            PKNotification.alert(
+                title: "删除",
+                message: "确认删除指定的录音?",
+                items: [btn_OK],
+                cancelButtonTitle: "取消",
+                tintColor: nil)
+            
+            
+            
+            /*
+            var index=indexPath.row as Int
+            print(self.itemlist[index])
+            DaiFileManager.document["/Audio/"+self.itemlist[index].filename].delete()
+            
+            self.itemlist.removeAtIndex(index)
+            self.tableView?.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Top)
+            NSLog("删除 tap \(indexPath.row)")
+            */
+        }
+        delete.backgroundColor = UIColor.redColor()
+        return [delete]
+        //return [delete, favorite, more]
     }
 
     

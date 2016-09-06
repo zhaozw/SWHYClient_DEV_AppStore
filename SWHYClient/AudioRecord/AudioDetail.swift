@@ -154,7 +154,7 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
         //let all:Int=Int((self.player!.duration))//共多少秒
         //let m:Int=all % 60//秒
         //let f:Int=Int(all/60)//分
-                
+        
         //var time=NSString(format:"%02d:%02d",f,m)
         //print(time)
         //self.allTimeLabel.text = time as String
@@ -189,11 +189,16 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
     
     @IBAction func doUpload(sender: AnyObject) {
         //登陆成功后，上传日志
-        print("上传文件开始 --------------")
-        let filePath = DaiFileManager.document["/Audio/"+self.audioFileName].path
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "HandleNetworkResult:", name: Config.RequestTag.PostUploadAudioFile, object: nil)
-        NetworkEngine.sharedInstance.postUploadFile(Config.URL.PostUploadAudioFile, filePath: filePath, tag: Config.RequestTag.PostUploadAudioFile)
-        
+        if(self.txtTitle.text == "" || self.txtDesc.text == ""){
+            PKNotification.toast("标题和摘要不允许为空!")
+        }else{
+            DaiFileManager.document["/Audio/"+self.audioFileName].setAttr("C_Title", value: self.txtTitle.text!)
+            DaiFileManager.document["/Audio/"+self.audioFileName].setAttr("C_Desc", value: self.txtDesc.text!)
+            print("上传文件开始 --------------")
+            let filePath = DaiFileManager.document["/Audio/"+self.audioFileName].path
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "HandleNetworkResult:", name: Config.RequestTag.PostUploadAudioFile, object: nil)
+            NetworkEngine.sharedInstance.postUploadFile(Config.URL.PostUploadAudioFile, filePath: filePath, tag: Config.RequestTag.PostUploadAudioFile)
+        }
         
     }
     
@@ -226,17 +231,19 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
                 //得到token成功  发送音频信息及URL
                 
                 /*
-                {
-                    "title":"TITLE",         //标题 
-                    "content ":"CONTENT",    //内容
-                    "audiourl":"AUDIOURL",   //音频链接 
-                    "authorid ":"AUTHORID"   //作者工号
-                }
-                */
+                 {
+                 "title":"TITLE",         //标题 
+                 "content ":"CONTENT",    //内容
+                 "audiourl":"AUDIOURL",   //音频链接 
+                 "authorid ":"AUTHORID"   //作者工号
+                 }
+                 */
                 let title = DaiFileManager.document["/Audio/"+self.audioFileName].getAttr("C_Title")
                 let content = DaiFileManager.document["/Audio/"+self.audioFileName].getAttr("C_Desc")
                 let audiourl = DaiFileManager.document["/Audio/"+self.audioFileName].getAttr("C_URL")
-                let authorid = "00190"
+                let authorid = Message.shared.EmployeeId!
+                
+                print(Message.shared.EmployeeId)
                 //let json = "{\"title\":\"\(title)\",\"content\":\"\(content)\",\"audiourl\":\"\(audiourl)\",\"authorid\":\"\(authorid)\"}"
                 let json = "{title:\"\(title)\",content:\"\(content)\",audiourl:\"\(audiourl)\",authorid:\"\(authorid)\"}"
                 
@@ -247,11 +254,11 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
                 print(Config.URL.PostAudioTopic+result.message)
                 NetworkEngine.sharedInstance.postRequestWithUrlString(Config.URL.PostAudioTopic+result.message, postData:json,tag:Config.RequestTag.PostAudioTopic)
                 
-               }else if result.tag == Config.RequestTag.PostAudioTopic{
-            
+            }else if result.tag == Config.RequestTag.PostAudioTopic{
+                
                 PKNotification.toast(result.message)
-            
-            
+                
+                
             }
             
             
