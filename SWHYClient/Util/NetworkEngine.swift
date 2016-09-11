@@ -691,7 +691,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                 }
                 
             case Config.RequestTag.GetWeiXinToken:
-                //print("dispatch \(res)  \(tag)")
+                print("dispatch \(res)  \(tag)")
                 
                 if res.componentsSeparatedByString("errcode").count > 1{
                     result = Result(status: "Error",message:res,userinfo:NSObject(),tag:tag)
@@ -705,15 +705,20 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                 
             case Config.RequestTag.PostAudioTopic:
                 //{'errcode':0,'reportid':'12345678'}  成功样例
+                //   [{'errcode':40015,'errmsg':'invalid token'}] 失败样例
                 //let string1 = "'errcode':0,'reportid':'12345678'}"
-                print(res.containsString("reportid"))
+                 var userInfo = ""
+                
+                let json = JSONClass(string:res.stringByReplacingOccurrencesOfString("\'", withString: "\"", options: NSStringCompareOptions.LiteralSearch, range: nil))
+                 //print(json)
                 if res.containsString("reportid") {
-                    //if res.componentsSeparatedByString("reportid").count > 1{
                     
-                    result = Result(status: "OK",message:"发布音频成功",userinfo:NSObject(),tag:tag)
+                    userInfo = json[0]["reportid"].asString ?? ""
+                    //print(userInfo)
+                    result = Result(status: "OK",message:"发布音频成功",userinfo:userInfo,tag:tag)
                 }else{
-                    
-                    result = Result(status: "Error",message:"发布音频失败",userinfo:NSObject(),tag:tag)
+                    userInfo = json[0]["errmsg"].asString ?? ""
+                    result = Result(status: "Error",message:"发布音频失败",userinfo:userInfo,tag:tag)
                 }
                 
                 

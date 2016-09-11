@@ -22,6 +22,7 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
     @IBOutlet weak var allTimeLabel: UILabel!
     @IBOutlet weak var lblSize: UILabel!
     @IBOutlet weak var uploadButton: UIButton!
+    @IBOutlet weak var btnCopyReportURL: UIButton!
     
     //var audioPlayer:AVPlayerViewController = AVPlayerViewController()
     var player: AVAudioPlayer? = AVAudioPlayer()
@@ -108,7 +109,24 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
         let backitem = UIBarButtonItem(title: Config.UI.PreNavItem, style: UIBarButtonItemStyle.Plain, target: self, action: "returnNavView")
         self.navigationItem.leftBarButtonItem = backitem
         setMyCurrentSong()
+        print("view reportid\(DaiFileManager.document["/Audio/"+self.audioFileName].getAttr("C_ReportID"))")
+        if DaiFileManager.document["/Audio/"+self.audioFileName].getAttr("C_ReportID") != ""{
+            btnCopyReportURL.hidden = false
         
+        }else{
+            btnCopyReportURL.hidden = true
+        }
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord)
+            try AVAudioSession.sharedInstance().overrideOutputAudioPort(AVAudioSessionPortOverride.Speaker)
+            try AVAudioSession.sharedInstance().setActive(true)
+        }
+        catch let error as NSError {
+            NSLog("Error: \(error)")
+        }
+
+        //btnCopyReportURL
         //let storyboard = UIStoryboard(name: "Setting", bundle: nil)
         //let webViewMenuViewController = storyboard.instantiateViewControllerWithIdentifier("WebViewMenuViewController") as! WebViewMenuViewController
         //self.slideMenuController()?.changeRightViewController(webViewMenuViewController, closeRight: true)
@@ -255,7 +273,12 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
                 NetworkEngine.sharedInstance.postRequestWithUrlString(Config.URL.PostAudioTopic+result.message, postData:json,tag:Config.RequestTag.PostAudioTopic)
                 
             }else if result.tag == Config.RequestTag.PostAudioTopic{
-                
+                //result.userinfo as! String
+                if result.status == "OK" {
+                    print("OK userinfo= \(result.userinfo as! String)")
+                    DaiFileManager.document["/Audio/"+self.audioFileName].setAttr("C_ReportID", value: result.userinfo as! String)
+                    btnCopyReportURL.hidden = false
+                }
                 PKNotification.toast(result.message)
                 
                 
@@ -327,6 +350,11 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
             
             playTimeLabel.text=time as String
         }
+    }
+    @IBAction func actCopyToClipBoard(sender: AnyObject) {
+        var pasteBoard = UIPasteboard.generalPasteboard()
+        pasteBoard.string = Config.URL.ViewWeiXinReport + DaiFileManager.document["/Audio/"+self.audioFileName].getAttr("C_ReportID")
+        PKNotification.toast("云聚报告地址已拷贝")
     }
     
 }

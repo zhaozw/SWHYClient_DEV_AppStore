@@ -99,19 +99,20 @@ import AVFoundation
         
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord)
+            try AVAudioSession.sharedInstance().overrideOutputAudioPort(AVAudioSessionPortOverride.Speaker)
             try AVAudioSession.sharedInstance().setActive(true)
         }
         catch let error as NSError {
             NSLog("Error: \(error)")
         }
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "stopRecording:", name: UIApplicationDidEnterBackgroundNotification, object: nil)
+        //NSNotificationCenter.defaultCenter().addObserver(self, selector: "stopRecording:", name: UIApplicationDidEnterBackgroundNotification, object: nil)
         
         
     }
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        //NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     
@@ -284,7 +285,11 @@ import AVFoundation
             
             //let settings = [AVFormatIDKey: NSNumber(unsignedInt: kAudioFormatMPEG4AAC), AVSampleRateKey: NSNumber(integer: 44100), AVNumberOfChannelsKey: NSNumber(integer: 2)]
             
-            let settings = [AVFormatIDKey: NSNumber(unsignedInt: kAudioFormatLinearPCM), AVSampleRateKey: NSNumber(integer: 44100), AVNumberOfChannelsKey: NSNumber(integer: 2)]
+            let settings = [AVFormatIDKey: NSNumber(unsignedInt: kAudioFormatLinearPCM),//编码格式
+                            AVSampleRateKey: NSNumber(integer: 44100), //声音采样率
+                            AVNumberOfChannelsKey: NSNumber(integer: 2),////采集音轨
+            AVEncoderAudioQualityKey : NSNumber(int: Int32(AVAudioQuality.High.rawValue))//音量
+            ]
             //let settings = [AVNumberOfChannelsKey: NSNumber(integer: 2)]
             
             //let settings = [AVFormatIDKey: NSNumber(unsignedInt: kAudioFormatMPEGLayer3), AVSampleRateKey: NSNumber(integer: 44100), AVNumberOfChannelsKey: NSNumber(integer: 2)]
@@ -315,8 +320,10 @@ import AVFoundation
             return
         }
         
+      
         do {
-            try player = AVAudioPlayer(contentsOfURL: outputURL)
+           try player = AVAudioPlayer(contentsOfURL: outputURL)
+            
         }
         catch let error as NSError {
             NSLog("error: \(error)")

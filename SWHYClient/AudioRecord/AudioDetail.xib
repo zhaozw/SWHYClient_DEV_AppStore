@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AudioDetail" customModule="SWHYClient_DEV" customModuleProvider="target">
             <connections>
                 <outlet property="allTimeLabel" destination="ska-Yr-mpr" id="BFK-HM-t1V"/>
+                <outlet property="btnCopyReportURL" destination="zVm-QJ-fT6" id="QxM-Dj-tTR"/>
                 <outlet property="lblFileName" destination="RA9-7K-oYm" id="IzW-p3-xiZ"/>
                 <outlet property="lblSize" destination="LeE-wH-aR2" id="pLD-un-YU5"/>
                 <outlet property="playButton" destination="wRl-yL-LSY" id="mlq-Fy-YtW"/>
@@ -513,6 +514,13 @@
                         </mask>
                     </variation>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zVm-QJ-fT6">
+                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                    <state key="normal" title="拷贝报告链接 "/>
+                    <connections>
+                        <action selector="actCopyToClipBoard:" destination="-1" eventType="touchUpInside" id="uyA-5h-ZkG"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
@@ -546,10 +554,12 @@
                 <constraint firstItem="wRl-yL-LSY" firstAttribute="leading" secondItem="9wW-bx-kzo" secondAttribute="trailing" constant="86" id="Szg-00-kak">
                     <variation key="widthClass=compact" constant="51"/>
                 </constraint>
+                <constraint firstItem="zVm-QJ-fT6" firstAttribute="trailing" secondItem="ouy-v8-aLP" secondAttribute="trailing" id="UOn-h8-1wa"/>
                 <constraint firstItem="ska-Yr-mpr" firstAttribute="baseline" secondItem="9wW-bx-kzo" secondAttribute="baseline" id="Ujg-tl-gb9"/>
                 <constraint firstItem="SYB-qC-Yq4" firstAttribute="top" secondItem="aZw-fa-Dr8" secondAttribute="bottom" id="Wjy-al-coX"/>
                 <constraint firstItem="p2f-E0-Cs9" firstAttribute="leading" secondItem="aZw-fa-Dr8" secondAttribute="leading" id="Wll-dS-SB4"/>
                 <constraint firstItem="9wW-bx-kzo" firstAttribute="top" secondItem="clX-1k-vsy" secondAttribute="bottom" constant="20" id="Xgf-Ps-Ifr"/>
+                <constraint firstItem="zVm-QJ-fT6" firstAttribute="top" secondItem="ouy-v8-aLP" secondAttribute="bottom" constant="28" id="YkU-VK-lCj"/>
                 <constraint firstItem="ska-Yr-mpr" firstAttribute="leading" secondItem="wRl-yL-LSY" secondAttribute="trailing" constant="68" id="Zg7-3M-vFE">
                     <variation key="widthClass=compact" constant="55"/>
                 </constraint>
@@ -563,6 +573,7 @@
                 <constraint firstItem="Ar0-Wl-mEI" firstAttribute="leading" secondItem="p2f-E0-Cs9" secondAttribute="leading" id="hx1-e8-b3N"/>
                 <constraint firstItem="clX-1k-vsy" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="29" id="oqf-kc-79I"/>
                 <constraint firstItem="aZw-fa-Dr8" firstAttribute="leading" secondItem="SYB-qC-Yq4" secondAttribute="leading" id="rIg-0p-KZ2"/>
+                <constraint firstItem="zVm-QJ-fT6" firstAttribute="leading" secondItem="ouy-v8-aLP" secondAttribute="leading" id="tDB-kn-FGD"/>
                 <constraint firstItem="clX-1k-vsy" firstAttribute="leading" secondItem="9wW-bx-kzo" secondAttribute="leading" id="tZG-Hq-Otw"/>
                 <constraint firstItem="ouy-v8-aLP" firstAttribute="centerX" secondItem="wRl-yL-LSY" secondAttribute="centerX" id="tdl-lY-i0p"/>
                 <constraint firstAttribute="trailing" secondItem="clX-1k-vsy" secondAttribute="trailing" constant="-81" id="xsS-bx-RIV"/>
@@ -579,8 +590,12 @@
                     <exclude reference="ska-Yr-mpr"/>
                     <exclude reference="ouy-v8-aLP"/>
                     <exclude reference="9wW-bx-kzo"/>
+                    <exclude reference="zVm-QJ-fT6"/>
                 </mask>
                 <mask key="constraints">
+                    <exclude reference="UOn-h8-1wa"/>
+                    <exclude reference="YkU-VK-lCj"/>
+                    <exclude reference="tDB-kn-FGD"/>
                     <exclude reference="D4F-ef-1fk"/>
                     <exclude reference="Ilp-pV-3uw"/>
                     <exclude reference="NOe-av-7Dd"/>
@@ -627,8 +642,12 @@
                     <include reference="ska-Yr-mpr"/>
                     <include reference="ouy-v8-aLP"/>
                     <include reference="9wW-bx-kzo"/>
+                    <include reference="zVm-QJ-fT6"/>
                 </mask>
                 <mask key="constraints">
+                    <include reference="UOn-h8-1wa"/>
+                    <include reference="YkU-VK-lCj"/>
+                    <include reference="tDB-kn-FGD"/>
                     <include reference="D4F-ef-1fk"/>
                     <include reference="Ilp-pV-3uw"/>
                     <include reference="NOe-av-7Dd"/>

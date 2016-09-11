@@ -62,6 +62,7 @@ class Config{
         static let GetWeiXinToken = "http://202.109.73.185/swhyweixin/gettoken.ashx?appid=swhyapp&secret=weiwei"
         static let PostAudioTopic = "http://202.109.73.185/swhyweixin/gentopic.ashx?token="
         static let AudioBaseURL = "http://download.swsresearch.net/audio/audiofile/"
+        static let ViewWeiXinReport = "http://wxweb.swsresearch.com/report/getDetailReportInfo.do?reportType=2&reportId="
         
         static let GetPersonInfoByAD = "http://swinbak.swsresearch.net/Portal/SysBase/SysUserInfo.nsf/ag_getPersonInfoByAD?openagent&ReturnField=txtEmployeeID&AD="
         //ReturnField是要返回的字段 可更改   AD是传入的AD账号  注意参数大小写
