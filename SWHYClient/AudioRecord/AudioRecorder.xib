@@ -79,7 +79,7 @@
                 <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yih-kU-35x">
                     <rect key="frame" x="110" y="347" width="100" height="30"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="100" id="Xe8-tx-C1X"/>
+                        <constraint firstAttribute="width" constant="100" id="hyq-50-KI2"/>
                     </constraints>
                     <state key="normal" title="保存至录音库"/>
                     <connections>
@@ -91,13 +91,12 @@
             <constraints>
                 <constraint firstItem="eJT-iS-J70" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="7HC-Le-mXG"/>
                 <constraint firstItem="eJT-iS-J70" firstAttribute="top" secondItem="WzD-2S-s64" secondAttribute="bottom" constant="136" id="7e2-1x-Uia"/>
-                <constraint firstItem="Yih-kU-35x" firstAttribute="top" secondItem="eJT-iS-J70" secondAttribute="bottom" constant="8" id="ALC-vt-Sw6"/>
-                <constraint firstItem="Yih-kU-35x" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="110" id="T0c-bp-wbR"/>
+                <constraint firstAttribute="bottom" secondItem="Yih-kU-35x" secondAttribute="bottom" constant="127" id="9mh-GY-Ppg"/>
+                <constraint firstItem="Yih-kU-35x" firstAttribute="top" secondItem="eJT-iS-J70" secondAttribute="bottom" constant="8" symbolic="YES" id="ESb-r1-wDe"/>
                 <constraint firstItem="WzD-2S-s64" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="bdi-qN-FZt"/>
                 <constraint firstItem="WzD-2S-s64" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-152" id="bpa-nf-9dH"/>
-                <constraint firstItem="Yih-kU-35x" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ezg-5e-jdL"/>
+                <constraint firstItem="Yih-kU-35x" firstAttribute="centerX" secondItem="eJT-iS-J70" secondAttribute="centerX" id="cJ6-0K-q5L"/>
                 <constraint firstItem="WzD-2S-s64" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="iTX-tP-KGV"/>
-                <constraint firstAttribute="bottom" secondItem="Yih-kU-35x" secondAttribute="bottom" constant="127" id="oL6-cL-d8i"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

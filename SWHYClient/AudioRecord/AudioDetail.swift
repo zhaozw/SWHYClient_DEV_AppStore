@@ -21,14 +21,17 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
     @IBOutlet weak var playTimeLabel: UILabel!
     @IBOutlet weak var allTimeLabel: UILabel!
     @IBOutlet weak var lblSize: UILabel!
-    @IBOutlet weak var uploadButton: UIButton!
+    @IBOutlet weak var uploadButton: MKButton!
     @IBOutlet weak var btnCopyReportURL: UIButton!
+    
+    @IBOutlet weak var lblDuration: MKLabel!
     
     //var audioPlayer:AVPlayerViewController = AVPlayerViewController()
     var player: AVAudioPlayer? = AVAudioPlayer()
     var timer:NSTimer?
     var audioFileName:String = ""
     
+    var placeholderLabel:UILabel!
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?){
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -62,8 +65,6 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
         
         
         //self.contentView.frame.origin.y = 30
-        //print("inner address detail view did load")
-        // Do any additional setup after loading the view.
         //self.scrollview.scrollEnabled = true
         self.audioFileName =  Message.shared.audioFileName
         self.title = "微录音"
@@ -81,6 +82,7 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
         self.txtTitle.text = DaiFileManager.document["/Audio/"+self.audioFileName].getAttr("C_Title")
         self.txtDesc.text = DaiFileManager.document["/Audio/"+self.audioFileName].getAttr("C_Desc")
         self.allTimeLabel.text = DaiFileManager.document["/Audio/"+self.audioFileName].getAttr("C_Duration")
+        self.lblDuration.text = self.allTimeLabel.text
         
         let fileSize = DaiFileManager.document["/Audio/"+self.audioFileName].attrs.fileSize() 
         //let fileSize = fileSizeNumber
@@ -92,14 +94,23 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
         self.lblSize.text = String(format: "%.2f", sizeMB) + " MB"
         
         
-        
-        self.txtTitle.borderStyle = UITextBorderStyle.RoundedRect
         self.txtTitle.returnKeyType = UIReturnKeyType.Done      
         self.txtTitle.delegate = self
         
         
+        
         self.txtDesc.returnKeyType = UIReturnKeyType.Default
         self.txtDesc.delegate = self
+        
+        self.placeholderLabel = UILabel.init() // placeholderLabel是全局属性  
+        self.placeholderLabel.frame = CGRectMake(5 , 5, 100, 20)  
+        self.placeholderLabel.font = UIFont.systemFontOfSize(14)  
+        self.placeholderLabel.text = "摘要"  
+        txtDesc.addSubview(self.placeholderLabel)  
+        //self.placeholderLabel.textColor = UIColor.init(colorLiteralRed: 72/256, green: 82/256, blue: 93/256, alpha: 1)  
+        self.placeholderLabel.textColor = UIColor.lightGrayColor()  
+        
+        
         //NSNotificationCenter.defaultCenter().addObserver(self, selector: "textDidEndEditing", name: UITextViewTextDidEndEditingNotification, object: nil)
     }
     override func viewWillAppear(animated: Bool) {
@@ -112,7 +123,7 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
         print("view reportid\(DaiFileManager.document["/Audio/"+self.audioFileName].getAttr("C_ReportID"))")
         if DaiFileManager.document["/Audio/"+self.audioFileName].getAttr("C_ReportID") != ""{
             btnCopyReportURL.hidden = false
-        
+            
         }else{
             btnCopyReportURL.hidden = true
         }
@@ -125,7 +136,14 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
         catch let error as NSError {
             NSLog("Error: \(error)")
         }
-
+        
+        
+        if txtDesc.text == "" {
+            self.placeholderLabel.hidden = false // 显示
+        }else{
+            self.placeholderLabel.hidden = true // 隐藏 
+        }
+        
         //btnCopyReportURL
         //let storyboard = UIStoryboard(name: "Setting", bundle: nil)
         //let webViewMenuViewController = storyboard.instantiateViewControllerWithIdentifier("WebViewMenuViewController") as! WebViewMenuViewController
@@ -133,6 +151,7 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
         //self.setNavigationBarItem()
         
     }
+    
     
     func textDidEndEditing()
     {
@@ -210,12 +229,21 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
         if(self.txtTitle.text == "" || self.txtDesc.text == ""){
             PKNotification.toast("标题和摘要不允许为空!")
         }else{
-            DaiFileManager.document["/Audio/"+self.audioFileName].setAttr("C_Title", value: self.txtTitle.text!)
-            DaiFileManager.document["/Audio/"+self.audioFileName].setAttr("C_Desc", value: self.txtDesc.text!)
-            print("上传文件开始 --------------")
-            let filePath = DaiFileManager.document["/Audio/"+self.audioFileName].path
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: "HandleNetworkResult:", name: Config.RequestTag.PostUploadAudioFile, object: nil)
-            NetworkEngine.sharedInstance.postUploadFile(Config.URL.PostUploadAudioFile, filePath: filePath, tag: Config.RequestTag.PostUploadAudioFile)
+            
+            let audiourl = DaiFileManager.document["/Audio/"+self.audioFileName].getAttr("C_URL")
+            print(audiourl)
+            if audiourl == "" {
+                DaiFileManager.document["/Audio/"+self.audioFileName].setAttr("C_Title", value: self.txtTitle.text!)
+                DaiFileManager.document["/Audio/"+self.audioFileName].setAttr("C_Desc", value: self.txtDesc.text!)
+                print("上传文件开始 --------------")
+                let filePath = DaiFileManager.document["/Audio/"+self.audioFileName].path
+                NSNotificationCenter.defaultCenter().addObserver(self, selector: "HandleNetworkResult:", name: Config.RequestTag.PostUploadAudioFile, object: nil)
+                NetworkEngine.sharedInstance.postUploadFile(Config.URL.PostUploadAudioFile, filePath: filePath, tag: Config.RequestTag.PostUploadAudioFile)
+            }else{
+                print("直接发布report")
+                NSNotificationCenter.defaultCenter().addObserver(self, selector: "HandleNetworkResult:", name: Config.RequestTag.GetWeiXinToken, object: nil)
+                NetworkEngine.sharedInstance.addRequestWithUrlString(Config.URL.GetWeiXinToken, tag: Config.RequestTag.GetWeiXinToken, useCache: false) 
+            }
         }
         
     }
@@ -236,10 +264,6 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
                 //Audio文件保留上传的URL地址 
                 DaiFileManager.document["/Audio/"+self.audioFileName].setAttr("C_URL", value: Config.URL.AudioBaseURL + Message.shared.postUserName + "_" + self.audioFileName)
                 PKNotification.toast(result.message)
-                
-                //print(DaiFileManager.document["/Audio/"+self.audioFileName].getAttr("C_URL"))
-                
-                
                 //上传成功的话 就获取weixin token
                 NSNotificationCenter.defaultCenter().addObserver(self, selector: "HandleNetworkResult:", name: Config.RequestTag.GetWeiXinToken, object: nil)
                 NetworkEngine.sharedInstance.addRequestWithUrlString(Config.URL.GetWeiXinToken, tag: Config.RequestTag.GetWeiXinToken, useCache: false) 
@@ -318,14 +342,28 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
         }
     }
     
+    func textViewShouldBeginEditing(textView: UITextView) -> Bool {  
+        print("textViewShouldBeginEditing")  
+        if textView == txtDesc {
+            self.placeholderLabel.hidden = true // 隐藏  
+        }
+        return true  
+    }  
     
     func textViewDidEndEditing(textView: UITextView) {
-        print("view结束编辑1\(textView)")
-        if (textView == self.txtDesc){
-            print("get obj view")
+        if textView == txtDesc {
             DaiFileManager.document["/Audio/"+self.audioFileName].setAttr("C_Desc", value: textView.text)
+            if textView.text.isEmpty {  
+                self.placeholderLabel.hidden = false  // 显示  
+            }  
+            else{  
+                self.placeholderLabel.hidden = true  // 隐藏  
+            }  
         }
-    }
+        print("textViewDidEndEditing")  
+    }  
+    
+    
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         if(text == "\n") {
             textView.resignFirstResponder()

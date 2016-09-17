@@ -62,6 +62,23 @@
 		A3C0000E1B1C96130050EBCE /* SMSegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C0000D1B1C96130050EBCE /* SMSegmentView.swift */; };
 		A3C1EA2C1B27211800075F8E /* CustomerLogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C1EA2B1B27211800075F8E /* CustomerLogItem.swift */; };
 		A3C28C9F1B25CD9A0018F308 /* CustomerAddressDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C28C9D1B25CD9A0018F308 /* CustomerAddressDetail.swift */; };
+		A3C2C7881D8853B800F7F5C6 /* MKActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C2C7771D8853B800F7F5C6 /* MKActivityIndicator.swift */; };
+		A3C2C7891D8853B800F7F5C6 /* MKButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C2C7781D8853B800F7F5C6 /* MKButton.swift */; };
+		A3C2C78A1D8853B800F7F5C6 /* MKCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C2C7791D8853B800F7F5C6 /* MKCardView.swift */; };
+		A3C2C78B1D8853B800F7F5C6 /* MKCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C2C77A1D8853B800F7F5C6 /* MKCollectionViewCell.swift */; };
+		A3C2C78C1D8853B800F7F5C6 /* MKColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C2C77B1D8853B800F7F5C6 /* MKColor.swift */; };
+		A3C2C78D1D8853B800F7F5C6 /* MKEmbedDrawerControllerSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C2C77C1D8853B800F7F5C6 /* MKEmbedDrawerControllerSegue.swift */; };
+		A3C2C78E1D8853B800F7F5C6 /* MKEmbedMainControllerSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C2C77D1D8853B800F7F5C6 /* MKEmbedMainControllerSegue.swift */; };
+		A3C2C78F1D8853B800F7F5C6 /* MKImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C2C77E1D8853B800F7F5C6 /* MKImageView.swift */; };
+		A3C2C7901D8853B800F7F5C6 /* MKLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C2C77F1D8853B800F7F5C6 /* MKLabel.swift */; };
+		A3C2C7911D8853B800F7F5C6 /* MKLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C2C7801D8853B800F7F5C6 /* MKLayer.swift */; };
+		A3C2C7921D8853B800F7F5C6 /* MKNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C2C7811D8853B800F7F5C6 /* MKNavigationBar.swift */; };
+		A3C2C7931D8853B800F7F5C6 /* MKRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C2C7821D8853B800F7F5C6 /* MKRefreshControl.swift */; };
+		A3C2C7941D8853B800F7F5C6 /* MKSideDrawerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C2C7831D8853B800F7F5C6 /* MKSideDrawerViewController.swift */; };
+		A3C2C7951D8853B800F7F5C6 /* MKSnackbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C2C7841D8853B800F7F5C6 /* MKSnackbar.swift */; };
+		A3C2C7961D8853B800F7F5C6 /* MKSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C2C7851D8853B800F7F5C6 /* MKSwitch.swift */; };
+		A3C2C7971D8853B800F7F5C6 /* MKTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C2C7861D8853B800F7F5C6 /* MKTableViewCell.swift */; };
+		A3C2C7981D8853B800F7F5C6 /* MKTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C2C7871D8853B800F7F5C6 /* MKTextField.swift */; };
 		A3C2E2FD1AF2199400BBBB9A /* InnerAddressDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C2E2FB1AF2199400BBBB9A /* InnerAddressDetail.swift */; };
 		A3C325461B288A3C000953C8 /* Json.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C325451B288A3C000953C8 /* Json.swift */; };
 		A3C73B061ABDEF96002C299D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C73B051ABDEF96002C299D /* AppDelegate.swift */; };
@@ -78,6 +95,7 @@
 		A3CB54DF1D5712BE00CBCFB5 /* AudioDetail_bak.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3CB54DE1D5712BE00CBCFB5 /* AudioDetail_bak.xib */; };
 		A3CB54E11D571C7900CBCFB5 /* AudioDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CB54E01D571C7900CBCFB5 /* AudioDetail.swift */; };
 		A3CB54E51D575A5D00CBCFB5 /* NSURL+xattr.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CB54E41D575A5D00CBCFB5 /* NSURL+xattr.swift */; };
+		A3CDFF9F1D8ADD9D004EFF66 /* AudioDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3CDFF9E1D8ADD9D004EFF66 /* AudioDetail.xib */; };
 		A3D2D82D1BB7D5F7002491ED /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D2D8181BB7D5F7002491ED /* Cache.swift */; };
 		A3D2D82E1BB7D5F7002491ED /* CGSize+Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D2D8191BB7D5F7002491ED /* CGSize+Swift.swift */; };
 		A3D2D82F1BB7D5F7002491ED /* CryptoSwiftMD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D2D81A1BB7D5F7002491ED /* CryptoSwiftMD5.swift */; };
@@ -95,23 +113,9 @@
 		A3D2D83E1BB7D5F7002491ED /* UIImage+Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D2D82A1BB7D5F7002491ED /* UIImage+Haneke.swift */; };
 		A3D2D83F1BB7D5F7002491ED /* UIImageView+Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D2D82B1BB7D5F7002491ED /* UIImageView+Haneke.swift */; };
 		A3D2D8401BB7D5F7002491ED /* UIView+Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D2D82C1BB7D5F7002491ED /* UIView+Haneke.swift */; };
-		A3D2D84E1BB7D908002491ED /* MKTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D2D8471BB7D908002491ED /* MKTextField.swift */; };
 		A3D2D88F1BB80BB3002491ED /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A3D2D88E1BB80BB3002491ED /* libsqlite3.tbd */; };
-		A3D2D8901BB80DFA002491ED /* MKButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D2D8411BB7D908002491ED /* MKButton.swift */; };
-		A3D2D8911BB80DFA002491ED /* MKColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D2D8421BB7D908002491ED /* MKColor.swift */; };
-		A3D2D8921BB80DFA002491ED /* MKImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D2D8431BB7D908002491ED /* MKImageView.swift */; };
-		A3D2D8931BB80DFA002491ED /* MKLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D2D8441BB7D908002491ED /* MKLabel.swift */; };
-		A3D2D8941BB80DFA002491ED /* MKLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D2D8451BB7D908002491ED /* MKLayer.swift */; };
-		A3D2D8951BB80DFA002491ED /* MKTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D2D8461BB7D908002491ED /* MKTableViewCell.swift */; };
 		A3D2D8961BB8102C002491ED /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3BA87C61B05C2350098936C /* Setting.storyboard */; };
 		A3D2D8971BB81038002491ED /* FlowWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3BD36681AD799D800B59399 /* FlowWebViewController.xib */; };
-		A3D2D8981BB8104D002491ED /* MKButton.swift in Resources */ = {isa = PBXBuildFile; fileRef = A3D2D8411BB7D908002491ED /* MKButton.swift */; };
-		A3D2D8991BB8104D002491ED /* MKColor.swift in Resources */ = {isa = PBXBuildFile; fileRef = A3D2D8421BB7D908002491ED /* MKColor.swift */; };
-		A3D2D89A1BB8104E002491ED /* MKImageView.swift in Resources */ = {isa = PBXBuildFile; fileRef = A3D2D8431BB7D908002491ED /* MKImageView.swift */; };
-		A3D2D89B1BB8104E002491ED /* MKLabel.swift in Resources */ = {isa = PBXBuildFile; fileRef = A3D2D8441BB7D908002491ED /* MKLabel.swift */; };
-		A3D2D89C1BB8104E002491ED /* MKLayer.swift in Resources */ = {isa = PBXBuildFile; fileRef = A3D2D8451BB7D908002491ED /* MKLayer.swift */; };
-		A3D2D89D1BB8104E002491ED /* MKTableViewCell.swift in Resources */ = {isa = PBXBuildFile; fileRef = A3D2D8461BB7D908002491ED /* MKTableViewCell.swift */; };
-		A3D2D89E1BB8104E002491ED /* MKTextField.swift in Resources */ = {isa = PBXBuildFile; fileRef = A3D2D8471BB7D908002491ED /* MKTextField.swift */; };
 		A3D2D8A01BB81071002491ED /* InnerAddressBook.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3BA8A681AC1508900CDDE05 /* InnerAddressBook.xib */; };
 		A3D2D8A11BB81080002491ED /* InnerAddressBookCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3B91B991AC2895900DC3D5A /* InnerAddressBookCell.xib */; };
 		A3D2D8A21BB810E6002491ED /* InnerAddressBookHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3BC9A601ACE697A0047F5C1 /* InnerAddressBookHeader.xib */; };
@@ -138,7 +142,6 @@
 		A3EA2D041D3E625B002D936D /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A3EA2D031D3E625B002D936D /* libz.tbd */; };
 		A3EA2D061D3E626C002D936D /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A3EA2D051D3E626C002D936D /* libsqlite3.0.tbd */; };
 		A3EA2D081D3E627C002D936D /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A3EA2D071D3E627C002D936D /* libc++.tbd */; };
-		A3EA6A581D7DB3C5003A53BD /* AudioDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3EA6A571D7DB3C5003A53BD /* AudioDetail.xib */; };
 		A3F5710E1D68718000520721 /* MultiPartMime.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5710D1D68718000520721 /* MultiPartMime.swift */; };
 		A3F571121D6871E500520721 /* MultiPartPart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F571111D6871E500520721 /* MultiPartPart.swift */; };
 		A3F7A9971BDB9EC500923D23 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3F7A9961BDB9EC500923D23 /* Security.framework */; };
@@ -254,6 +257,23 @@
 		A3C1EA2B1B27211800075F8E /* CustomerLogItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerLogItem.swift; sourceTree = "<group>"; };
 		A3C28C9D1B25CD9A0018F308 /* CustomerAddressDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomerAddressDetail.swift; path = SWHYClient/CustomerAddresBook/CustomerAddressDetail.swift; sourceTree = SOURCE_ROOT; };
 		A3C28C9E1B25CD9A0018F308 /* CustomerAddressDetail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomerAddressDetail.xib; path = SWHYClient/CustomerAddresBook/CustomerAddressDetail.xib; sourceTree = SOURCE_ROOT; };
+		A3C2C7771D8853B800F7F5C6 /* MKActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKActivityIndicator.swift; sourceTree = "<group>"; };
+		A3C2C7781D8853B800F7F5C6 /* MKButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKButton.swift; sourceTree = "<group>"; };
+		A3C2C7791D8853B800F7F5C6 /* MKCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKCardView.swift; sourceTree = "<group>"; };
+		A3C2C77A1D8853B800F7F5C6 /* MKCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKCollectionViewCell.swift; sourceTree = "<group>"; };
+		A3C2C77B1D8853B800F7F5C6 /* MKColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKColor.swift; sourceTree = "<group>"; };
+		A3C2C77C1D8853B800F7F5C6 /* MKEmbedDrawerControllerSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKEmbedDrawerControllerSegue.swift; sourceTree = "<group>"; };
+		A3C2C77D1D8853B800F7F5C6 /* MKEmbedMainControllerSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKEmbedMainControllerSegue.swift; sourceTree = "<group>"; };
+		A3C2C77E1D8853B800F7F5C6 /* MKImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKImageView.swift; sourceTree = "<group>"; };
+		A3C2C77F1D8853B800F7F5C6 /* MKLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKLabel.swift; sourceTree = "<group>"; };
+		A3C2C7801D8853B800F7F5C6 /* MKLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKLayer.swift; sourceTree = "<group>"; };
+		A3C2C7811D8853B800F7F5C6 /* MKNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKNavigationBar.swift; sourceTree = "<group>"; };
+		A3C2C7821D8853B800F7F5C6 /* MKRefreshControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKRefreshControl.swift; sourceTree = "<group>"; };
+		A3C2C7831D8853B800F7F5C6 /* MKSideDrawerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKSideDrawerViewController.swift; sourceTree = "<group>"; };
+		A3C2C7841D8853B800F7F5C6 /* MKSnackbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKSnackbar.swift; sourceTree = "<group>"; };
+		A3C2C7851D8853B800F7F5C6 /* MKSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKSwitch.swift; sourceTree = "<group>"; };
+		A3C2C7861D8853B800F7F5C6 /* MKTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKTableViewCell.swift; sourceTree = "<group>"; };
+		A3C2C7871D8853B800F7F5C6 /* MKTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKTextField.swift; sourceTree = "<group>"; };
 		A3C2E2FB1AF2199400BBBB9A /* InnerAddressDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InnerAddressDetail.swift; sourceTree = "<group>"; };
 		A3C2E2FC1AF2199400BBBB9A /* InnerAddressDetail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InnerAddressDetail.xib; sourceTree = "<group>"; };
 		A3C325451B288A3C000953C8 /* Json.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Json.swift; sourceTree = "<group>"; };
@@ -282,6 +302,7 @@
 		A3CB54E01D571C7900CBCFB5 /* AudioDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioDetail.swift; sourceTree = "<group>"; };
 		A3CB54E41D575A5D00CBCFB5 /* NSURL+xattr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURL+xattr.swift"; sourceTree = "<group>"; };
 		A3CD08501ABFAB1000020495 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		A3CDFF9E1D8ADD9D004EFF66 /* AudioDetail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioDetail.xib; sourceTree = "<group>"; };
 		A3D2D8181BB7D5F7002491ED /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		A3D2D8191BB7D5F7002491ED /* CGSize+Swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGSize+Swift.swift"; sourceTree = "<group>"; };
 		A3D2D81A1BB7D5F7002491ED /* CryptoSwiftMD5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CryptoSwiftMD5.swift; sourceTree = "<group>"; };
@@ -302,13 +323,6 @@
 		A3D2D82A1BB7D5F7002491ED /* UIImage+Haneke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Haneke.swift"; sourceTree = "<group>"; };
 		A3D2D82B1BB7D5F7002491ED /* UIImageView+Haneke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Haneke.swift"; sourceTree = "<group>"; };
 		A3D2D82C1BB7D5F7002491ED /* UIView+Haneke.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Haneke.swift"; sourceTree = "<group>"; };
-		A3D2D8411BB7D908002491ED /* MKButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKButton.swift; sourceTree = "<group>"; };
-		A3D2D8421BB7D908002491ED /* MKColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKColor.swift; sourceTree = "<group>"; };
-		A3D2D8431BB7D908002491ED /* MKImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKImageView.swift; sourceTree = "<group>"; };
-		A3D2D8441BB7D908002491ED /* MKLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKLabel.swift; sourceTree = "<group>"; };
-		A3D2D8451BB7D908002491ED /* MKLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKLayer.swift; sourceTree = "<group>"; };
-		A3D2D8461BB7D908002491ED /* MKTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKTableViewCell.swift; sourceTree = "<group>"; };
-		A3D2D8471BB7D908002491ED /* MKTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKTextField.swift; sourceTree = "<group>"; };
 		A3D2D88E1BB80BB3002491ED /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		A3D2D8AD1BB827FB002491ED /* data.db */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = data.db; path = SWHYClient/data.db; sourceTree = "<group>"; };
 		A3D6BFF81D61FC38008EE6F3 /* lame.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = lame.framework; path = framework/lame.framework; sourceTree = "<group>"; };
@@ -325,7 +339,6 @@
 		A3EA2D031D3E625B002D936D /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		A3EA2D051D3E626C002D936D /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		A3EA2D071D3E627C002D936D /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
-		A3EA6A571D7DB3C5003A53BD /* AudioDetail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioDetail.xib; sourceTree = "<group>"; };
 		A3F5710D1D68718000520721 /* MultiPartMime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultiPartMime.swift; path = MultiPartMime/MultiPartMime.swift; sourceTree = "<group>"; };
 		A3F571111D6871E500520721 /* MultiPartPart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultiPartPart.swift; path = MultiPartMime/MultiPartPart.swift; sourceTree = "<group>"; };
 		A3F7A9961BDB9EC500923D23 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -386,7 +399,7 @@
 				A3DE300E1D7C06A5005A43B8 /* AudioFileList.xib */,
 				A368D1201D7C122500FFF29E /* AudioFileItem.swift */,
 				A368D1241D7C34E500FFF29E /* AudioListCell.swift */,
-				A3EA6A571D7DB3C5003A53BD /* AudioDetail.xib */,
+				A3CDFF9E1D8ADD9D004EFF66 /* AudioDetail.xib */,
 			);
 			path = AudioRecord;
 			sourceTree = "<group>";
@@ -536,13 +549,23 @@
 		A3BF778E1B270D3C009EBD5A /* MaterialKit */ = {
 			isa = PBXGroup;
 			children = (
-				A3D2D8411BB7D908002491ED /* MKButton.swift */,
-				A3D2D8421BB7D908002491ED /* MKColor.swift */,
-				A3D2D8431BB7D908002491ED /* MKImageView.swift */,
-				A3D2D8441BB7D908002491ED /* MKLabel.swift */,
-				A3D2D8451BB7D908002491ED /* MKLayer.swift */,
-				A3D2D8461BB7D908002491ED /* MKTableViewCell.swift */,
-				A3D2D8471BB7D908002491ED /* MKTextField.swift */,
+				A3C2C7771D8853B800F7F5C6 /* MKActivityIndicator.swift */,
+				A3C2C7781D8853B800F7F5C6 /* MKButton.swift */,
+				A3C2C7791D8853B800F7F5C6 /* MKCardView.swift */,
+				A3C2C77A1D8853B800F7F5C6 /* MKCollectionViewCell.swift */,
+				A3C2C77B1D8853B800F7F5C6 /* MKColor.swift */,
+				A3C2C77C1D8853B800F7F5C6 /* MKEmbedDrawerControllerSegue.swift */,
+				A3C2C77D1D8853B800F7F5C6 /* MKEmbedMainControllerSegue.swift */,
+				A3C2C77E1D8853B800F7F5C6 /* MKImageView.swift */,
+				A3C2C77F1D8853B800F7F5C6 /* MKLabel.swift */,
+				A3C2C7801D8853B800F7F5C6 /* MKLayer.swift */,
+				A3C2C7811D8853B800F7F5C6 /* MKNavigationBar.swift */,
+				A3C2C7821D8853B800F7F5C6 /* MKRefreshControl.swift */,
+				A3C2C7831D8853B800F7F5C6 /* MKSideDrawerViewController.swift */,
+				A3C2C7841D8853B800F7F5C6 /* MKSnackbar.swift */,
+				A3C2C7851D8853B800F7F5C6 /* MKSwitch.swift */,
+				A3C2C7861D8853B800F7F5C6 /* MKTableViewCell.swift */,
+				A3C2C7871D8853B800F7F5C6 /* MKTextField.swift */,
 			);
 			path = MaterialKit;
 			sourceTree = "<group>";
@@ -875,8 +898,8 @@
 				A3D2D8AF1BB830E6002491ED /* Images.xcassets in Resources */,
 				A3D2D8AE1BB827FB002491ED /* data.db in Resources */,
 				A3DE300F1D7C06A5005A43B8 /* AudioFileList.xib in Resources */,
-				A3EA6A581D7DB3C5003A53BD /* AudioDetail.xib in Resources */,
 				A3D2D8AC1BB81B47002491ED /* Main.storyboard in Resources */,
+				A3CDFF9F1D8ADD9D004EFF66 /* AudioDetail.xib in Resources */,
 				A3D2D8A21BB810E6002491ED /* InnerAddressBookHeader.xib in Resources */,
 				A3D2D8A31BB810E6002491ED /* InnerAddressDetail.xib in Resources */,
 				A36906871D4DF1B90043AFB6 /* AudioRecorder.xib in Resources */,
@@ -891,14 +914,7 @@
 				A3D2D8A11BB81080002491ED /* InnerAddressBookCell.xib in Resources */,
 				A3D2D8A01BB81071002491ED /* InnerAddressBook.xib in Resources */,
 				A3DE30131D7C0A0F005A43B8 /* AudioListCell.xib in Resources */,
-				A3D2D8981BB8104D002491ED /* MKButton.swift in Resources */,
-				A3D2D8991BB8104D002491ED /* MKColor.swift in Resources */,
-				A3D2D89A1BB8104E002491ED /* MKImageView.swift in Resources */,
 				A36906821D4DCE180043AFB6 /* AudioRecorderViewController.xib in Resources */,
-				A3D2D89B1BB8104E002491ED /* MKLabel.swift in Resources */,
-				A3D2D89C1BB8104E002491ED /* MKLayer.swift in Resources */,
-				A3D2D89D1BB8104E002491ED /* MKTableViewCell.swift in Resources */,
-				A3D2D89E1BB8104E002491ED /* MKTextField.swift in Resources */,
 				A3D2D8971BB81038002491ED /* FlowWebViewController.xib in Resources */,
 				A3A082811BB92CE6009E5A04 /* Info.plist in Resources */,
 				A3D2D8961BB8102C002491ED /* Setting.storyboard in Resources */,
@@ -922,21 +938,15 @@
 				A361007B1D55AD3800B45BA2 /* NSFileManager+Haneke.swift in Sources */,
 				A361007A1D55AC7900B45BA2 /* FileViewController.swift in Sources */,
 				A3532B6F1D16989D00C47D97 /* Common.entitlements in Sources */,
-				A3D2D8901BB80DFA002491ED /* MKButton.swift in Sources */,
-				A3D2D8911BB80DFA002491ED /* MKColor.swift in Sources */,
-				A3D2D8921BB80DFA002491ED /* MKImageView.swift in Sources */,
-				A3D2D8931BB80DFA002491ED /* MKLabel.swift in Sources */,
 				A3F571121D6871E500520721 /* MultiPartPart.swift in Sources */,
-				A3D2D8941BB80DFA002491ED /* MKLayer.swift in Sources */,
-				A3D2D8951BB80DFA002491ED /* MKTableViewCell.swift in Sources */,
 				A3BA34941B16E510002C08C5 /* CustomerAddressGroupItem.swift in Sources */,
 				A3D2D8391BB7D5F7002491ED /* NetworkFetcher.swift in Sources */,
-				A3D2D84E1BB7D908002491ED /* MKTextField.swift in Sources */,
 				A3C73B391ABDF00D002C299D /* LoginViewController.swift in Sources */,
 				A3C73B3D1ABDF00D002C299D /* MainMenuItemBO.swift in Sources */,
 				A3F7A9D51BDBA66100923D23 /* KeychainQuery.swift in Sources */,
 				A3D2D8311BB7D5F7002491ED /* DiskCache.swift in Sources */,
 				A3BD36671AD799A700B59399 /* FlowWebViewController.swift in Sources */,
+				A3C2C7941D8853B800F7F5C6 /* MKSideDrawerViewController.swift in Sources */,
 				A3BDBDC51B04607E0085DFF1 /* GoViewController.swift in Sources */,
 				A3BDBDBD1B045E940085DFF1 /* RightMenuViewController.swift in Sources */,
 				A3C73B3B1ABDF00D002C299D /* MainMenuItem.swift in Sources */,
@@ -948,6 +958,7 @@
 				A3D2D83E1BB7D5F7002491ED /* UIImage+Haneke.swift in Sources */,
 				A3BDBDCF1B0462AB0085DFF1 /* StringExtension.swift in Sources */,
 				A361007D1D55BC8C00B45BA2 /* DaiFileManager.swift in Sources */,
+				A3C2C7971D8853B800F7F5C6 /* MKTableViewCell.swift in Sources */,
 				A3BE90791AD4FD5300D3630B /* Util.swift in Sources */,
 				A368D1251D7C34E500FFF29E /* AudioListCell.swift in Sources */,
 				A3D2D8301BB7D5F7002491ED /* Data.swift in Sources */,
@@ -960,9 +971,12 @@
 				A3BDBDBF1B045EEF0085DFF1 /* InnerAddressMenuViewController.swift in Sources */,
 				A361007F1D5645DE00B45BA2 /* AudioRecorderMenuViewController.swift in Sources */,
 				A3BAAC481B1BC59700A912E6 /* CustomerAddressMenuViewController.swift in Sources */,
+				A3C2C7921D8853B800F7F5C6 /* MKNavigationBar.swift in Sources */,
 				A3BA3B111ADE434B003025E4 /* SQLiteDB.swift in Sources */,
 				A3D2D8361BB7D5F7002491ED /* Haneke.swift in Sources */,
+				A3C2C78C1D8853B800F7F5C6 /* MKColor.swift in Sources */,
 				A3D2D8341BB7D5F7002491ED /* Fetcher.swift in Sources */,
+				A3C2C78E1D8853B800F7F5C6 /* MKEmbedMainControllerSegue.swift in Sources */,
 				A36906811D4DCE180043AFB6 /* AudioRecorderViewController.swift in Sources */,
 				A36906851D4DEE140043AFB6 /* AudioRecorder.swift in Sources */,
 				A3D2D8401BB7D5F7002491ED /* UIView+Haneke.swift in Sources */,
@@ -972,11 +986,15 @@
 				A3BC9A631ACE6A6D0047F5C1 /* InnerAddressBookHeader.swift in Sources */,
 				A3BA34981B16E8B8002C08C5 /* CustomerAddressBookHeader.swift in Sources */,
 				A3C73B2C1ABDEFD5002C299D /* NetworkEngine.swift in Sources */,
+				A3C2C7901D8853B800F7F5C6 /* MKLabel.swift in Sources */,
 				A352DAFD1B05D0B90035B4AF /* MenuViewController.swift in Sources */,
 				A3F7A9DD1BDBA70200923D23 /* ArchiveKey.swift in Sources */,
+				A3C2C7881D8853B800F7F5C6 /* MKActivityIndicator.swift in Sources */,
 				A3F7A9D91BDBA6AF00923D23 /* Keychain.swift in Sources */,
+				A3C2C7961D8853B800F7F5C6 /* MKSwitch.swift in Sources */,
 				A3C1EA2C1B27211800075F8E /* CustomerLogItem.swift in Sources */,
 				A3BDBDCB1B0462050085DFF1 /* BaseTableViewCell.swift in Sources */,
+				A3C2C78B1D8853B800F7F5C6 /* MKCollectionViewCell.swift in Sources */,
 				A3D6BFFC1D61FF65008EE6F3 /* AudioWrapper.m in Sources */,
 				A3C73B2B1ABDEFD5002C299D /* Config.swift in Sources */,
 				A3C73B3E1ABDF00D002C299D /* MainViewController.swift in Sources */,
@@ -985,25 +1003,33 @@
 				A3BA8A171AC11A1200CDDE05 /* SWXMLHash.swift in Sources */,
 				A3D2D82F1BB7D5F7002491ED /* CryptoSwiftMD5.swift in Sources */,
 				A3B91B9A1AC2895900DC3D5A /* InnerAddressBookCell.swift in Sources */,
+				A3C2C7981D8853B800F7F5C6 /* MKTextField.swift in Sources */,
+				A3C2C7951D8853B800F7F5C6 /* MKSnackbar.swift in Sources */,
 				A3BDBDC71B0460FA0085DFF1 /* UIViewControllerExtension.swift in Sources */,
 				A3D2D82D1BB7D5F7002491ED /* Cache.swift in Sources */,
 				A3BDBDCD1B04625D0085DFF1 /* UITableViewExtension.swift in Sources */,
+				A3C2C78F1D8853B800F7F5C6 /* MKImageView.swift in Sources */,
 				A3D2D82E1BB7D5F7002491ED /* CGSize+Swift.swift in Sources */,
+				A3C2C78D1D8853B800F7F5C6 /* MKEmbedDrawerControllerSegue.swift in Sources */,
 				A3D2D8351BB7D5F7002491ED /* Format.swift in Sources */,
 				A3BA012E1B09BA1800EA1448 /* AIFlatSwitch.swift in Sources */,
 				A3C325461B288A3C000953C8 /* Json.swift in Sources */,
+				A3C2C7911D8853B800F7F5C6 /* MKLayer.swift in Sources */,
+				A3C2C78A1D8853B800F7F5C6 /* MKCardView.swift in Sources */,
 				A3BA34961B16E81F002C08C5 /* CustomerSectionInfo.swift in Sources */,
 				A3D2D83B1BB7D5F7002491ED /* NSHTTPURLResponse+Haneke.swift in Sources */,
 				A3F7A9D31BDBA61100923D23 /* KeychainService.swift in Sources */,
 				A3D2D8331BB7D5F7002491ED /* Fetch.swift in Sources */,
 				A3BC9A651ACE6CC60047F5C1 /* SectionInfo.swift in Sources */,
 				A368D1211D7C122500FFF29E /* AudioFileItem.swift in Sources */,
+				A3C2C7891D8853B800F7F5C6 /* MKButton.swift in Sources */,
 				A3BA3B121ADE434B003025E4 /* String-Extras.swift in Sources */,
 				A3DE300D1D7C05B6005A43B8 /* AudioFileList.swift in Sources */,
 				A3D2D83C1BB7D5F7002491ED /* String+Haneke.swift in Sources */,
 				A3BC9A5A1ACE64FA0047F5C1 /* InnerAddressDeptItem.swift in Sources */,
 				A3BA73D31AFB3F82002B5C2F /* Loger.swift in Sources */,
 				A3BA8A6C1AC1532800CDDE05 /* InnerAddresItem.swift in Sources */,
+				A3C2C7931D8853B800F7F5C6 /* MKRefreshControl.swift in Sources */,
 				A3BA3A9C1ADE299C003025E4 /* DBAdapter.swift in Sources */,
 				A3BD365E1AD7944700B59399 /* Message.swift in Sources */,
 				A3F5710E1D68718000520721 /* MultiPartMime.swift in Sources */,
