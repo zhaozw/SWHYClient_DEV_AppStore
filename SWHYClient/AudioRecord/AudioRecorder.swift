@@ -8,6 +8,7 @@
 
 import Foundation
 import AVFoundation
+import AudioKit
 //protocol AudioRecorderViewControllerDelegate: class {
 //   func audioRecorderViewControllerDismissed(withFileURL fileURL: NSURL?)
 //}
@@ -22,6 +23,8 @@ import AVFoundation
     @IBOutlet weak var btn_Record: MKButton!
     @IBOutlet weak var btn_Play: MKButton!
     @IBOutlet weak var btn_Save: UIButton!
+    
+    @IBOutlet var audioInputPlot: EZAudioPlot!
     
     var timeTimer: NSTimer?
     var milliseconds: Int = 0
@@ -41,6 +44,13 @@ import AVFoundation
     var tmpdesc:String = ""
     
     var recordercolor:UIColor?
+    
+    var mic: AKMicrophone!
+    var tracker: AKFrequencyTracker!
+    var silence: AKBooster!
+
+    
+    let noteFrequencies = [16.35,17.32,18.35,19.45,20.6,21.83,23.12,24.5,25.96,27.5,29.14,30.87]
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?){
         //let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
@@ -65,6 +75,7 @@ import AVFoundation
     }
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         self.title = Message.shared.curMenuItem.name
         self.navigationController?.setNavigationBarHidden(false, animated: false)
@@ -83,7 +94,30 @@ import AVFoundation
         btn_Record.userInteractionEnabled = true
         self.recordercolor = btn_Record.backgroundColor
         
+        mic = AKMicrophone()
+        tracker = AKFrequencyTracker.init(mic)
+        silence = AKBooster(tracker, gain: 0)
+        //print(audioInputPlot.frame.width)
     }
+    func setupPlot() {
+        print(audioInputPlot.frame)
+        print(audioInputPlot.bounds)
+        //
+        //let plot = AKNodeOutputPlot(mic, frame: audioInputPlot.bounds)
+        let plot = AKNodeOutputPlot(mic, frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, 100))
+        plot.plotType = .Rolling
+        plot.shouldFill = true
+        
+        plot.shouldMirror = true
+        plot.color = UIColor.grayColor()
+        //plot.frame.width = audioInputPlot.frame.width
+
+        print(plot.frame)
+
+        //audioInputPlot.autoresizesSubviews = true
+        audioInputPlot.addSubview(plot)
+    }
+    
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -94,6 +128,11 @@ import AVFoundation
         let rightitem = UIBarButtonItem(title: "录音库 >", style: UIBarButtonItemStyle.Plain, target: self, action: "gotoNavView")
         self.navigationItem.rightBarButtonItem = rightitem
         
+        AudioKit.output = silence
+        //self.view.bringSubviewToFront(audioInputPlot)
+        //print(audioInputPlot.frame.width)
+        setupPlot()
+         //NSTimer.scheduledTimerWithTimeInterval(0.1, target: self, selector: #selector(self.updateUI), userInfo: nil, repeats: true)
         /*
          let storyboard = UIStoryboard(name: "Setting", bundle: nil)
          let audioRecorderMenuViewController = storyboard.instantiateViewControllerWithIdentifier("AudioRecorderMenuViewController") as! AudioRecorderMenuViewController
@@ -114,9 +153,12 @@ import AVFoundation
         
         
     }
+        
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         //NSNotificationCenter.defaultCenter().removeObserver(self)
+        cleanup()
+
     }
     
     
@@ -251,10 +293,18 @@ import AVFoundation
     
     func cleanup() {
         timeTimer?.invalidate()
-        if recorder.recording {
-            recorder.stop()
-            recorder.deleteRecording()
+        print("do clean up")
+        if let recorder = recorder{
+            print("do record cleanup")
+            if recorder.recording {
+                print("do recorder stop")
+                recorder.stop()
+                recorder.deleteRecording()
+                print("do AudioKit stop")
+                AudioKit.stop()
+            }
         }
+        
         if let player = player {
             player.stop()
             self.player = nil
@@ -316,12 +366,24 @@ import AVFoundation
     // MARK: Time Label
     
     func updateTimeLabel(timer: NSTimer) {
+        /*
         milliseconds++
         //let milli = (milliseconds % 60) + 39
         let sec = (milliseconds / 60) % 60
         let min = milliseconds / 3600
         let hour = min / 60
+ */
+        
+        let ti = NSInteger(recorder.currentTime)
+        
+        //var ms = Int((interval % 1) * 1000)
+        
+        let sec = ti % 60
+        let min = (ti / 60) % 60
+        let hour = (ti / 3600)
+        
         timeLabel.text = NSString(format: "%02d:%02d:%02d",hour, min, sec) as String
+        
     }
     
     
@@ -343,6 +405,7 @@ import AVFoundation
             print("recorder is nil")
             self.recording = false
             recorder.stop()
+            AudioKit.stop()
         } else {
             
             //录制开始
@@ -381,7 +444,10 @@ import AVFoundation
             timeLabel.text = "00:00:00"
             timeTimer = NSTimer.scheduledTimerWithTimeInterval(0.0167, target: self, selector: "updateTimeLabel:", userInfo: nil, repeats: true)
             //recorder.deleteRecording()
+            
             recorder.record()
+            AudioKit.start()
+            
             self.recording = true
         }
         print("toggle record")
@@ -413,5 +479,6 @@ import AVFoundation
         
         refreshControls(sender)
     }
+   
     
 }
