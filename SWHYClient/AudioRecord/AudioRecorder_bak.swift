@@ -15,7 +15,7 @@ import AudioKit
 
 //AVAudioRecorderDelegate
 
-@objc(AudioRecorder) class AudioRecorder: UIViewController,AVAudioPlayerDelegate{
+@objc(AudioRecorder_bak) class AudioRecorder_bak: UIViewController,AVAudioPlayerDelegate{
     
     
     //@IBOutlet weak var saveButton: UIButton!
@@ -23,12 +23,10 @@ import AudioKit
     @IBOutlet weak var btn_Record: MKButton!
     @IBOutlet weak var btn_Play: MKButton!
     @IBOutlet weak var btn_Save: UIButton!
-    @IBOutlet weak var btn_pause: UIButton!
     
     @IBOutlet var audioInputPlot: EZAudioPlot!
     
     var timeTimer: NSTimer?
-    var timeinterval:NSTimeInterval?
     //var milliseconds: Int = 0
     
     var recorder: AVAudioRecorder?
@@ -86,6 +84,10 @@ import AudioKit
         
         self.audioTmpPath = DaiFileManager.document["/Audio_Tmp/"].path
         self.audioPath = DaiFileManager.document["/Audio/"].path
+        
+        btn_Record.maskEnabled = true
+        btn_Record.rippleEnabled =  true
+        btn_Record.cornerRadius = 3
         
         btn_Record.userInteractionEnabled = true
         self.recordercolor = btn_Record.backgroundColor
@@ -327,35 +329,22 @@ import AudioKit
             if let recorder = recorder{
                 //btn_Play.enabled = !recorder.recording
                 if recorder.recording {
-                    //点录音开始/完成按钮后 录音中状态
-                    btn_pause.hidden = false
-                    btn_pause.enabled = true
-                    btn_pause.setTitle("录音暂停", forState: UIControlState.Normal)
-                    btn_pause.backgroundColor = UIColor.orangeColor()
+                    
+                    btn_Play.enabled = true
+                    btn_Play.setTitle("暂停录音", forState: UIControlState.Normal)
+                    btn_Play.backgroundColor = UIColor.orangeColor()
                     
                     btn_Record.enabled = true
-                    btn_Record.setTitle("录音完成", forState: UIControlState.Normal)
+                    btn_Record.setTitle("停止录音", forState: UIControlState.Normal)
                     btn_Record.backgroundColor = UIColor.redColor()
-                    
-                    btn_Play.hidden = true
-                    btn_Play.enabled = false
-                    btn_Play.setTitle("播  放", forState: UIControlState.Normal)
-                    btn_Play.backgroundColor = UIColor.grayColor()
                 }else{
-                    //点录音开始/完成铵扭后 录音停止状态
-                    btn_pause.hidden = true
-                    /*
-                     btn_pause.enabled = false
-                     btn_pause.setTitle("暂停录音", forState: UIControlState.Normal)
-                     btn_pause.backgroundColor = UIColor.orangeColor()
-                     */
-                    btn_Play.hidden = false
+                    
                     btn_Play.enabled = true
                     btn_Play.setTitle("播  放", forState: UIControlState.Normal)
                     btn_Play.backgroundColor = self.recordercolor
                     
                     btn_Record.enabled = true
-                    btn_Record.setTitle("录音开始", forState: UIControlState.Normal)
+                    btn_Record.setTitle("开始录音", forState: UIControlState.Normal)
                     btn_Record.backgroundColor = self.recordercolor
                     
                 }
@@ -367,88 +356,46 @@ import AudioKit
             
             if let player = player{
                 
-                if player.playing{
-                    //按播放/停止按钮  播放中
-                    btn_Play.setTitle("停  止", forState: UIControlState.Normal)
-                    btn_Play.backgroundColor = UIColor.redColor()
+                if btn_Play.currentTitle == "暂停录音" {
+                    btn_Play.setTitle("继续录音", forState: UIControlState.Normal)
                     
-                    btn_Record.enabled = false
-                    btn_Record.backgroundColor = UIColor.grayColor()
+                }else if btn_Play.currentTitle == "继续录音" {
+                    btn_Play.setTitle("暂停录音", forState: UIControlState.Normal)
                     
-                    btn_pause.hidden = true
-                    /*
-                     btn_pause.enabled = false
-                     btn_pause.backgroundColor = UIColor.grayColor()
-                     */
                 }else{
-                    //按播放/停止按钮后 播放停止
-                    btn_Play.enabled = true
-                    btn_Play.setTitle("播  放", forState: UIControlState.Normal)
-                    btn_Play.backgroundColor = self.recordercolor
                     
-                    ///保持原状态
-                    btn_Record.enabled = true
-                    btn_Record.backgroundColor = self.recordercolor
                     
-                    //btn_pause.hidden = false //保持原状态
-                    btn_pause.enabled = true
-                    btn_pause.setTitle("录音继续", forState: UIControlState.Normal)
-                    btn_pause.backgroundColor = UIColor.orangeColor()
-                    
+                    if player.playing{
+                        
+                        btn_Play.setTitle("停  止", forState: UIControlState.Normal)
+                        btn_Play.backgroundColor = UIColor.redColor()
+                        
+                        btn_Record.enabled = false
+                        btn_Record.backgroundColor = UIColor.grayColor()
+                    }else{
+                        
+                        btn_Play.setTitle("播  放", forState: UIControlState.Normal)
+                        btn_Play.backgroundColor = self.recordercolor
+                        
+                        btn_Record.enabled = true
+                        btn_Record.backgroundColor = self.recordercolor
+                    }
                 }
             }else{
                 
                 print("player is nil")
             }
             
-        }else if (sender as! NSObject == btn_pause){
-            //按下 录音暂停/继续 按钮后  暂停状态
-            if sender.currentTitle == "录音暂停" {
-                btn_pause.hidden = false
-                btn_pause.enabled = true
-                btn_pause.setTitle("录音继续", forState: UIControlState.Normal)
-                btn_pause.backgroundColor = UIColor.orangeColor()
-                
-                btn_Record.enabled = true
-                btn_Record.setTitle("录音完成", forState: UIControlState.Normal)
-                btn_Record.backgroundColor = UIColor.redColor()
-                
-                btn_Play.hidden = true
-                btn_Play.enabled = false
-                btn_Play.setTitle("播  放", forState: UIControlState.Normal)
-                btn_Play.backgroundColor = UIColor.grayColor()
-                
-                
-            }else if sender.currentTitle == "录音继续" {
-                btn_pause.hidden = false
-                btn_pause.enabled = true
-                btn_pause.setTitle("录音暂停", forState: UIControlState.Normal)
-                btn_pause.backgroundColor = UIColor.orangeColor()
-                
-                btn_Record.enabled = true
-                btn_Record.setTitle("录音完成", forState: UIControlState.Normal)
-                btn_Record.backgroundColor = UIColor.redColor()
-                
-                btn_Play.hidden = true
-                btn_Play.enabled = false
-                btn_Play.setTitle("播  放", forState: UIControlState.Normal)
-                btn_Play.backgroundColor = UIColor.grayColor()
-                
-            }
         }
-        
     }
     
     
     // MARK: Time Label
     
     func updateTimeLabel(timer: NSTimer) {
-        var ti:NSInteger = 0
-        if ((recorder?.recording) == true) {
-            ti = NSInteger(recorder!.currentTime)
-        }else if ((self.player?.playing) == true){
-            ti = NSInteger(self.player!.currentTime)
-        }
+        
+        let ti = NSInteger(recorder!.currentTime)
+        
         //var ms = Int((interval % 1) * 1000)
         
         let sec = ti % 60
@@ -468,57 +415,31 @@ import AudioKit
     }
     
     @IBAction func act_Record(sender: AnyObject) {
-        print("act_record \(sender.currentTitle)")
+        print("toggle Record start")
         timeTimer?.invalidate()
         //print("sender =\(sender.enabled)")
-        
         if let recorder = recorder{
-            if sender.currentTitle == "录音完成" {
-                print("set stop")
+            if recorder.recording{
                 recorder.stop()
                 AudioKit.stop()
-                btn_Save.enabled = true
-            }else if sender.currentTitle == "录音开始"{
-                print("set recording")
+            }else{
                 timeLabel.text = "00:00:00"
                 timeTimer = NSTimer.scheduledTimerWithTimeInterval(0.0167, target: self, selector: "updateTimeLabel:", userInfo: nil, repeats: true)
                 //recorder.deleteRecording()
                 //recorder.prepareToRecord()
                 recorder.record()
                 AudioKit.start()
-                btn_Save.enabled = false
             }
         }else{
             print(" no recorder object")
         }
+        print("toggle record")
         refreshControls(sender)
     }
     
-    @IBAction func act_Pause(sender: AnyObject) {
-        print(sender.currentTitle)
-        if sender.currentTitle == "录音暂停" {
-            print("pause at \(recorder!.currentTime)")
-            self.timeinterval = recorder!.currentTime
-            timeTimer?.invalidate()
-            recorder?.pause()
-            //recorder?.stop()
-            AudioKit.stop()
-            
-        }else if sender.currentTitle == "录音继续"{
-            print("re record at \(self.timeinterval)")
-            //recorder?.recordAtTime(self.timeinterval!)
-            timeTimer = NSTimer.scheduledTimerWithTimeInterval(0.0167, target: self, selector: "updateTimeLabel:", userInfo: nil, repeats: true)
-            recorder?.record()
-            AudioKit.start()
-        }
-        refreshControls(sender)
-    }
     @IBAction func act_Play(sender: AnyObject) {
         //print(self.player)
-        timeTimer?.invalidate()
-        self.player = nil
         if self.player == nil{
-            print(" create player object")
             do {
                 try self.player = AVAudioPlayer(contentsOfURL: outputURL)
             }
@@ -529,10 +450,17 @@ import AudioKit
         }
         
         if let player = self.player {
-            print("\(sender.currentTitle) \(player.duration)")
-            if sender.currentTitle == "播  放"{
-                timeTimer = NSTimer.scheduledTimerWithTimeInterval(0.0167, target: self, selector: "updateTimeLabel:", userInfo: nil, repeats: true)
+            print(sender.currentTitle)
+            if sender.currentTitle == "暂停录音" {
+                recorder?.pause()
+                AudioKit.stop()
+                
+            }else if sender.currentTitle == "继续录音"{
+                recorder?.record()
+                AudioKit.stop()
+            }else if sender.currentTitle == "播  放"{
                 player.play()
+                
                 
             }else if sender.currentTitle == "停  止"{
                 player.stop()

@@ -23,9 +23,10 @@
 		A368D1251D7C34E500FFF29E /* AudioListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A368D1241D7C34E500FFF29E /* AudioListCell.swift */; };
 		A36906811D4DCE180043AFB6 /* AudioRecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369067F1D4DCE180043AFB6 /* AudioRecorderViewController.swift */; };
 		A36906821D4DCE180043AFB6 /* AudioRecorderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A36906801D4DCE180043AFB6 /* AudioRecorderViewController.xib */; };
-		A36906851D4DEE140043AFB6 /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36906841D4DEE140043AFB6 /* AudioRecorder.swift */; };
+		A36906851D4DEE140043AFB6 /* AudioRecorder_bak.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36906841D4DEE140043AFB6 /* AudioRecorder_bak.swift */; };
 		A36906871D4DF1B90043AFB6 /* AudioRecorder.xib in Resources */ = {isa = PBXBuildFile; fileRef = A36906861D4DF1B90043AFB6 /* AudioRecorder.xib */; };
 		A3A082811BB92CE6009E5A04 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A3A082801BB92CE6009E5A04 /* Info.plist */; };
+		A3A457401D925E210036E12E /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A4573F1D925E210036E12E /* AudioRecorder.swift */; };
 		A3AC2F161C5A255A00356744 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AC2F151C5A255A00356744 /* Log.swift */; };
 		A3B91B9A1AC2895900DC3D5A /* InnerAddressBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B91B981AC2895900DC3D5A /* InnerAddressBookCell.swift */; };
 		A3BA012E1B09BA1800EA1448 /* AIFlatSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BA012D1B09BA1800EA1448 /* AIFlatSwitch.swift */; };
@@ -207,9 +208,10 @@
 		A368D1241D7C34E500FFF29E /* AudioListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioListCell.swift; sourceTree = "<group>"; };
 		A369067F1D4DCE180043AFB6 /* AudioRecorderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecorderViewController.swift; sourceTree = "<group>"; };
 		A36906801D4DCE180043AFB6 /* AudioRecorderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioRecorderViewController.xib; sourceTree = "<group>"; };
-		A36906841D4DEE140043AFB6 /* AudioRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
+		A36906841D4DEE140043AFB6 /* AudioRecorder_bak.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecorder_bak.swift; sourceTree = "<group>"; };
 		A36906861D4DF1B90043AFB6 /* AudioRecorder.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioRecorder.xib; sourceTree = "<group>"; };
 		A3A082801BB92CE6009E5A04 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = SWHYClient/Info.plist; sourceTree = "<group>"; };
+		A3A4573F1D925E210036E12E /* AudioRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
 		A3AC2F151C5A255A00356744 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		A3B91B981AC2895900DC3D5A /* InnerAddressBookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InnerAddressBookCell.swift; sourceTree = "<group>"; };
 		A3B91B991AC2895900DC3D5A /* InnerAddressBookCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InnerAddressBookCell.xib; sourceTree = "<group>"; };
@@ -402,7 +404,7 @@
 				A36906861D4DF1B90043AFB6 /* AudioRecorder.xib */,
 				A369067F1D4DCE180043AFB6 /* AudioRecorderViewController.swift */,
 				A36906801D4DCE180043AFB6 /* AudioRecorderViewController.xib */,
-				A36906841D4DEE140043AFB6 /* AudioRecorder.swift */,
+				A36906841D4DEE140043AFB6 /* AudioRecorder_bak.swift */,
 				A36100781D55A64300B45BA2 /* FileViewController.swift */,
 				A3CB54DE1D5712BE00CBCFB5 /* AudioDetail_bak.xib */,
 				A3CB54E01D571C7900CBCFB5 /* AudioDetail.swift */,
@@ -411,6 +413,7 @@
 				A368D1201D7C122500FFF29E /* AudioFileItem.swift */,
 				A368D1241D7C34E500FFF29E /* AudioListCell.swift */,
 				A3CDFF9E1D8ADD9D004EFF66 /* AudioDetail.xib */,
+				A3A4573F1D925E210036E12E /* AudioRecorder.swift */,
 			);
 			path = AudioRecord;
 			sourceTree = "<group>";
@@ -947,6 +950,7 @@
 				A3C2E2FD1AF2199400BBBB9A /* InnerAddressDetail.swift in Sources */,
 				A3BA8A691AC1508900CDDE05 /* InnerAddressBook.swift in Sources */,
 				A3FA90E71D8EEA7600CB2465 /* README.md in Sources */,
+				A3A457401D925E210036E12E /* AudioRecorder.swift in Sources */,
 				A3FA90E81D8EEA7600CB2465 /* SQLiteDB.swift in Sources */,
 				A3D2D83E1BB7D5F7002491ED /* UIImage+Haneke.swift in Sources */,
 				A3BDBDCF1B0462AB0085DFF1 /* StringExtension.swift in Sources */,
@@ -971,7 +975,7 @@
 				A3D2D8341BB7D5F7002491ED /* Fetcher.swift in Sources */,
 				A3C2C78E1D8853B800F7F5C6 /* MKEmbedMainControllerSegue.swift in Sources */,
 				A36906811D4DCE180043AFB6 /* AudioRecorderViewController.swift in Sources */,
-				A36906851D4DEE140043AFB6 /* AudioRecorder.swift in Sources */,
+				A36906851D4DEE140043AFB6 /* AudioRecorder_bak.swift in Sources */,
 				A3D2D8401BB7D5F7002491ED /* UIView+Haneke.swift in Sources */,
 				A3AC2F161C5A255A00356744 /* Log.swift in Sources */,
 				A3BA34921B16DEC5002C08C5 /* CustomerAddressItem.swift in Sources */,
