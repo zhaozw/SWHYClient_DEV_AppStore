@@ -54,6 +54,8 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>NSContactsUsageDescription</key>
+	<string>所内通讯录申请访问手机本地通讯录！</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
