@@ -145,6 +145,7 @@
 		A3EA2D081D3E627C002D936D /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A3EA2D071D3E627C002D936D /* libc++.tbd */; };
 		A3F5710E1D68718000520721 /* MultiPartMime.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5710D1D68718000520721 /* MultiPartMime.swift */; };
 		A3F571121D6871E500520721 /* MultiPartPart.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F571111D6871E500520721 /* MultiPartPart.swift */; };
+		A3F75FEF1DAFB9FE006F168D /* SwiftOverlays.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F75FEE1DAFB9FE006F168D /* SwiftOverlays.swift */; };
 		A3F7A9971BDB9EC500923D23 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3F7A9961BDB9EC500923D23 /* Security.framework */; };
 		A3F7A9D31BDBA61100923D23 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F7A9D21BDBA61100923D23 /* KeychainService.swift */; };
 		A3F7A9D51BDBA66100923D23 /* KeychainQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F7A9D41BDBA66100923D23 /* KeychainQuery.swift */; };
@@ -345,6 +346,7 @@
 		A3EA2D071D3E627C002D936D /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		A3F5710D1D68718000520721 /* MultiPartMime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultiPartMime.swift; path = MultiPartMime/MultiPartMime.swift; sourceTree = "<group>"; };
 		A3F571111D6871E500520721 /* MultiPartPart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MultiPartPart.swift; path = MultiPartMime/MultiPartPart.swift; sourceTree = "<group>"; };
+		A3F75FEE1DAFB9FE006F168D /* SwiftOverlays.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftOverlays.swift; sourceTree = "<group>"; };
 		A3F7A9961BDB9EC500923D23 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A3F7A9D21BDBA61100923D23 /* KeychainService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
 		A3F7A9D41BDBA66100923D23 /* KeychainQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainQuery.swift; sourceTree = "<group>"; };
@@ -421,6 +423,7 @@
 		A3BA012A1B09B9D900EA1448 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
+				A3F75FED1DAFB9D6006F168D /* SwiftOverlays */,
 				A3BF778E1B270D3C009EBD5A /* MaterialKit */,
 				A3BA012D1B09BA1800EA1448 /* AIFlatSwitch.swift */,
 			);
@@ -751,6 +754,14 @@
 			name = MultiPartMime;
 			sourceTree = "<group>";
 		};
+		A3F75FED1DAFB9D6006F168D /* SwiftOverlays */ = {
+			isa = PBXGroup;
+			children = (
+				A3F75FEE1DAFB9FE006F168D /* SwiftOverlays.swift */,
+			);
+			path = SwiftOverlays;
+			sourceTree = "<group>";
+		};
 		A3F7A9A91BDBA16600923D23 /* SwiftKeychain */ = {
 			isa = PBXGroup;
 			children = (
@@ -1037,6 +1048,7 @@
 				A3BA51481B07F21A00F1800A /* ContactHelper.swift in Sources */,
 				A3BDBDC31B04601A0085DFF1 /* NonMemuController.swift in Sources */,
 				A3BDBDB91B045A940085DFF1 /* SlideMenuController.swift in Sources */,
+				A3F75FEF1DAFB9FE006F168D /* SwiftOverlays.swift in Sources */,
 				A3C0000E1B1C96130050EBCE /* SMSegmentView.swift in Sources */,
 				A3BAF41D1B19796E00D3EA3C /* CustomerAddressBookCell.swift in Sources */,
 				A3CAA52C1AC9185100600394 /* PKNotification.swift in Sources */,

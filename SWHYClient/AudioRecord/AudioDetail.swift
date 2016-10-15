@@ -229,6 +229,9 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
         if(self.txtTitle.text == "" || self.txtDesc.text == ""){
             PKNotification.toast("标题和摘要不允许为空!")
         }else{
+            let text = "请稍候，正在发布中..."
+            //self.showWaitOverlayWithText(text)
+            SwiftOverlays.showBlockingWaitOverlayWithText(text)
             
             let audiourl = DaiFileManager.document["/Audio/"+self.audioFileName].getAttr("C_URL")
             print(audiourl)
@@ -259,11 +262,13 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
         if result.status == "Error" {
             print("-------post  error-------------")
             PKNotification.toast(result.message)
+            SwiftOverlays.removeAllBlockingOverlays()
+            
         }else if result.status=="OK"{
             if result.tag == Config.RequestTag.PostUploadAudioFile {
                 //Audio文件保留上传的URL地址 
                 DaiFileManager.document["/Audio/"+self.audioFileName].setAttr("C_URL", value: Config.URL.AudioBaseURL + Message.shared.postUserName + "_" + self.audioFileName)
-                PKNotification.toast(result.message)
+                //PKNotification.toast(result.message)
                 //上传成功的话 就获取weixin token
                 NSNotificationCenter.defaultCenter().addObserver(self, selector: "HandleNetworkResult:", name: Config.RequestTag.GetWeiXinToken, object: nil)
                 NetworkEngine.sharedInstance.addRequestWithUrlString(Config.URL.GetWeiXinToken, tag: Config.RequestTag.GetWeiXinToken, useCache: false) 
@@ -304,7 +309,7 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
                     btnCopyReportURL.hidden = false
                 }
                 PKNotification.toast(result.message)
-                
+                SwiftOverlays.removeAllBlockingOverlays()
                 
             }
             

@@ -60,7 +60,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
         request.addValue("application/x-www-form-urlencoded;charset=utf-8", forHTTPHeaderField: "Content-Type")
         
         
-        print(postData)
+        //print(postData)
         
         //let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(Config.Encoding.GB2312))
         

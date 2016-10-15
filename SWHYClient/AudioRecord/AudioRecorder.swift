@@ -237,7 +237,7 @@ import AudioKit
         
         PKNotification.alert(
             title: "保存",
-            message: "保存并上传至录音库",
+            message: "保存并发布至公众号",
             items: [txtTitle, txtDesc, btnOK],
             cancelButtonTitle: "取消",
             tintColor: nil)
@@ -246,6 +246,10 @@ import AudioKit
     
     func covertToMP3(title:String, desc:String){
         print("coverttomp3")
+        let text = "请稍候，正在发布中..."
+        //self.showWaitOverlayWithText(text)
+        SwiftOverlays.showBlockingWaitOverlayWithText(text)
+        
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
             
             let path = DaiFileManager.document["/Audio_Tmp/" + self.audioTmpFileName].path
@@ -278,10 +282,15 @@ import AudioKit
         if result.status == "Error" {
             print("-------post  error-------------")
             PKNotification.toast(result.message)
+            // Remove everything
+            //self.removeAllOverlays()
+            
+            // Don't forget to unblock!
+            SwiftOverlays.removeAllBlockingOverlays()
         }else if result.status=="OK"{
             if result.tag == Config.NotifyTag.ConvertToMP3 {
-                print("保存至录音资源库成功---")
-                PKNotification.toast(result.message)
+                print(result.message)
+                //PKNotification.toast(result.message)
                 
                 //接着直接上传录音至服务器
                 let filePath = DaiFileManager.document["/Audio/"+self.audioFileName].path
@@ -289,9 +298,55 @@ import AudioKit
                 NetworkEngine.sharedInstance.postUploadFile(Config.URL.PostUploadAudioFile, filePath: filePath, tag: Config.RequestTag.PostUploadAudioFile)
             }else if result.tag == Config.RequestTag.PostUploadAudioFile{
                 DaiFileManager.document["/Audio/"+self.audioFileName].setAttr("C_URL", value: Config.URL.AudioBaseURL + Message.shared.postUserName + "_" + self.audioFileName)
+                //PKNotification.toast(result.message)
+                print(result.message)
+                //上传成功的话 就获取weixin token
+                NSNotificationCenter.defaultCenter().addObserver(self, selector: "HandleResult:", name: Config.RequestTag.GetWeiXinToken, object: nil)
+                NetworkEngine.sharedInstance.addRequestWithUrlString(Config.URL.GetWeiXinToken, tag: Config.RequestTag.GetWeiXinToken, useCache: false) 
+                
+            }else if result.tag == Config.RequestTag.GetWeiXinToken{
+                print(result.message)
+                //得到token成功  发送音频信息及URL
+                
+                /*
+                 {
+                 "title":"TITLE",         //标题 
+                 "content ":"CONTENT",    //内容
+                 "audiourl":"AUDIOURL",   //音频链接 
+                 "authorid ":"AUTHORID"   //作者工号
+                 }
+                 */
+                let title = DaiFileManager.document["/Audio/"+self.audioFileName].getAttr("C_Title")
+                let content = DaiFileManager.document["/Audio/"+self.audioFileName].getAttr("C_Desc")
+                let audiourl = DaiFileManager.document["/Audio/"+self.audioFileName].getAttr("C_URL")
+                let authorid = Message.shared.EmployeeId!
+                
+                print(Message.shared.EmployeeId)
+                //let json = "{\"title\":\"\(title)\",\"content\":\"\(content)\",\"audiourl\":\"\(audiourl)\",\"authorid\":\"\(authorid)\"}"
+                let json = "{title:\"\(title)\",content:\"\(content)\",audiourl:\"\(audiourl)\",authorid:\"\(authorid)\"}"
+                
+                
+                NSNotificationCenter.defaultCenter().addObserver(self, selector: "HandleResult:", name: Config.RequestTag.PostAudioTopic, object: nil)
+                //tk001hkieder25091
+                
+                print(Config.URL.PostAudioTopic+result.message)
+                NetworkEngine.sharedInstance.postRequestWithUrlString(Config.URL.PostAudioTopic+result.message, postData:json,tag:Config.RequestTag.PostAudioTopic)
+                
+            }else if result.tag == Config.RequestTag.PostAudioTopic{
+                //result.userinfo as! String
+                if result.status == "OK" {
+                    print("OK userinfo= \(result.userinfo as! String)")
+                    DaiFileManager.document["/Audio/"+self.audioFileName].setAttr("C_ReportID", value: result.userinfo as! String)
+                    //btnCopyReportURL.hidden = false
+                }
                 PKNotification.toast(result.message)
+                // Remove everything
+                //self.removeAllOverlays()
+                // Don't forget to unblock!
+                SwiftOverlays.removeAllBlockingOverlays()
                 
             }
+
             
             
         }
