@@ -22,66 +22,46 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eJT-iS-J70">
-                    <rect key="frame" x="60" y="269" width="200" height="70"/>
+                    <rect key="frame" x="76" y="269" width="168" height="147"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t0w-Xn-l7X" customClass="MKButton" customModule="SWHYClient_DEV" customModuleProvider="target">
-                            <rect key="frame" x="120" y="17" width="80" height="36"/>
-                            <color key="backgroundColor" red="0.8146109533" green="0.8146109533" blue="0.8146109533" alpha="1" colorSpace="calibratedRGB"/>
+                        <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t0w-Xn-l7X">
+                            <rect key="frame" x="104" y="42" width="64" height="64"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="80" id="6oE-Ij-Q8L"/>
-                                <constraint firstAttribute="height" constant="36" id="cgu-rN-VSH"/>
+                                <constraint firstAttribute="height" constant="64" id="9kJ-QR-lqH"/>
+                                <constraint firstAttribute="width" constant="64" id="bFO-lU-qxe"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <state key="normal" title="播  放">
+                            <state key="normal" title="播  放" image="btn_play_play">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                    <integer key="value" value="12"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="act_Play:" destination="-1" eventType="touchUpInside" id="T6z-65-Y0d"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nve-pK-r5a" customClass="MKButton" customModule="SWHYClient_DEV" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="17" width="80" height="36"/>
-                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lqp-jg-GVP">
+                            <rect key="frame" x="104" y="42" width="64" height="64"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="36" id="LFX-m0-2q4"/>
-                                <constraint firstAttribute="width" constant="80" id="kuD-JR-0oC"/>
+                                <constraint firstAttribute="height" constant="64" id="PoF-vg-592"/>
+                                <constraint firstAttribute="width" constant="64" id="hy8-qV-fvg"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
-                            <state key="normal" title="录音开始">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </state>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                    <integer key="value" value="12"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                            <connections>
-                                <action selector="act_Record:" destination="-1" eventType="touchUpInside" id="9Ty-Pu-8TY"/>
-                            </connections>
-                        </button>
-                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lqp-jg-GVP" customClass="MKButton" customModule="SWHYClient_DEV" customModuleProvider="target">
-                            <rect key="frame" x="120" y="17" width="80" height="36"/>
-                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="80" id="3fu-sp-3at"/>
-                                <constraint firstAttribute="height" constant="36" id="eP6-AB-eTF"/>
-                            </constraints>
-                            <state key="normal" title="录音暂停">
+                            <state key="normal" title="录音暂停" image="btn_record_pause">
                                 <color key="titleColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                    <integer key="value" value="12"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="act_Pause:" destination="-1" eventType="touchUpInside" id="VsJ-FC-aJ3"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nve-pK-r5a">
+                            <rect key="frame" x="0.0" y="42" width="64" height="64"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="64" id="Ohv-k7-FcQ"/>
+                                <constraint firstAttribute="width" constant="64" id="hPe-sD-8mg"/>
+                            </constraints>
+                            <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
+                            <state key="normal" image="btn_record_record">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="act_Record:" destination="-1" eventType="touchUpInside" id="9Ty-Pu-8TY"/>
                             </connections>
                         </button>
                     </subviews>
@@ -95,20 +75,25 @@
                         <constraint firstAttribute="trailing" secondItem="t0w-Xn-l7X" secondAttribute="trailing" id="tCX-Z6-pIx"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WzD-2S-s64">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WzD-2S-s64">
                     <rect key="frame" x="51" y="68" width="218" height="65"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-UltraLight" family="Helvetica Neue" pointSize="56"/>
-                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="0.0" green="0.3833451705" blue="0.0001173510778" alpha="1" colorSpace="calibratedRGB"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ncf-20-fzN" customClass="EZAudioPlot">
-                    <rect key="frame" x="0.0" y="153" width="320" height="80"/>
+                    <rect key="frame" x="0.0" y="173" width="320" height="80"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="80" id="Dv0-ZC-IhU"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="gain">
+                            <real key="value" value="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yih-kU-35x">
-                    <rect key="frame" x="110" y="347" width="100" height="30"/>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yih-kU-35x">
+                    <rect key="frame" x="110" y="424" width="100" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="hyq-50-KI2"/>
                     </constraints>
@@ -122,11 +107,11 @@
                 <constraint firstItem="eJT-iS-J70" firstAttribute="centerX" secondItem="WzD-2S-s64" secondAttribute="centerX" id="2mc-cG-nq4"/>
                 <constraint firstAttribute="trailing" secondItem="ncf-20-fzN" secondAttribute="trailing" id="4K9-NB-c6f"/>
                 <constraint firstItem="eJT-iS-J70" firstAttribute="top" secondItem="WzD-2S-s64" secondAttribute="bottom" constant="136" id="7e2-1x-Uia"/>
-                <constraint firstAttribute="bottom" secondItem="Yih-kU-35x" secondAttribute="bottom" constant="127" id="9mh-GY-Ppg"/>
+                <constraint firstAttribute="bottom" secondItem="Yih-kU-35x" secondAttribute="bottom" constant="50" id="9mh-GY-Ppg"/>
                 <constraint firstItem="Yih-kU-35x" firstAttribute="top" secondItem="eJT-iS-J70" secondAttribute="bottom" constant="8" symbolic="YES" id="ESb-r1-wDe"/>
                 <constraint firstItem="WzD-2S-s64" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-152" id="bpa-nf-9dH"/>
                 <constraint firstItem="Yih-kU-35x" firstAttribute="centerX" secondItem="eJT-iS-J70" secondAttribute="centerX" id="cJ6-0K-q5L"/>
-                <constraint firstItem="ncf-20-fzN" firstAttribute="top" secondItem="WzD-2S-s64" secondAttribute="bottom" constant="20" id="iMh-fS-63e"/>
+                <constraint firstItem="ncf-20-fzN" firstAttribute="top" secondItem="WzD-2S-s64" secondAttribute="bottom" constant="40" id="iMh-fS-63e"/>
                 <constraint firstItem="WzD-2S-s64" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="iTX-tP-KGV"/>
                 <constraint firstItem="ncf-20-fzN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="jPG-Hg-wfT"/>
                 <constraint firstItem="ncf-20-fzN" firstAttribute="top" secondItem="WzD-2S-s64" secondAttribute="bottom" constant="58" id="yIH-WH-ame"/>
@@ -141,4 +126,9 @@
             <point key="canvasLocation" x="173" y="327"/>
         </view>
     </objects>
+    <resources>
+        <image name="btn_play_play" width="128" height="128"/>
+        <image name="btn_record_pause" width="128" height="128"/>
+        <image name="btn_record_record" width="128" height="128"/>
+    </resources>
 </document>

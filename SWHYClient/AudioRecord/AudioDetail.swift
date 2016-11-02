@@ -10,7 +10,7 @@ import UIKit
 import Foundation
 import AVFoundation
 
-class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
+class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate,AVAudioPlayerDelegate  {
     
     @IBOutlet weak var txtTitle: UITextField!
     @IBOutlet weak var txtDesc: UITextView!
@@ -60,6 +60,29 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
     }
     
     
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        print("viewDidDisappear")
+        timer?.invalidate()
+        timer = nil
+        print("time end")
+        if let player = player {
+            player.stop()
+            self.player = nil
+            print("player set to nil")
+        }
+    } 
+    
+    
+    
+    
+    func sliderDidchange(slider:UISlider){
+        print(slider.value)
+        //self.player?.playAtTime(<#T##time: NSTimeInterval##NSTimeInterval#>)
+        self.player!.currentTime = NSTimeInterval(slider.value) //15.0  //slider.value as NSTimeInterval
+        self.updateTime()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -73,16 +96,24 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
         self.lblFileName.text = self.audioFileName
         print(DaiFileManager.document["/Audio/"+self.audioFileName].attrs)
         
-        progressSlider.setMinimumTrackImage(UIImage(named: "player_slider_playback_left"), forState: UIControlState.Normal)
-        progressSlider.setMaximumTrackImage(UIImage(named: "player_slider_playback_right"), forState: UIControlState.Normal)
-        progressSlider.setThumbImage(UIImage(named: "player_slider_playback_thumb"), forState: UIControlState.Normal)
+        //progressSlider.setMinimumTrackImage(UIImage(named: "player_slider_playback_left"), forState: UIControlState.Normal)
+        //progressSlider.setMaximumTrackImage(UIImage(named: "player_slider_playback_right"), forState: UIControlState.Normal)
+        //progressSlider.setThumbImage(UIImage(named: "player_slider_playback_thumb"), forState: UIControlState.Normal)
         
+        
+        
+        progressSlider.continuous = true //false  //滑块滑动停止后才触发ValueChanged事件
+        progressSlider.addTarget(self,action:"sliderDidchange:", forControlEvents:UIControlEvents.ValueChanged)
         
         print(DaiFileManager.document["/Audio/"+self.audioFileName])
         self.txtTitle.text = DaiFileManager.document["/Audio/"+self.audioFileName].getAttr("C_Title")
         self.txtDesc.text = DaiFileManager.document["/Audio/"+self.audioFileName].getAttr("C_Desc")
         self.allTimeLabel.text = DaiFileManager.document["/Audio/"+self.audioFileName].getAttr("C_Duration")
         self.lblDuration.text = self.allTimeLabel.text
+        
+        //progressSlider.minimumValue=0  //最小值
+        
+        //progressSlider.value=0.5  //当前默认值
         
         let fileSize = DaiFileManager.document["/Audio/"+self.audioFileName].attrs.fileSize() 
         //let fileSize = fileSizeNumber
@@ -151,7 +182,30 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
         //self.setNavigationBarItem()
         
     }
+    @IBAction func view2_click(sender: AnyObject) {
+        txtTitle.resignFirstResponder()
+        txtDesc.resignFirstResponder()
+    }
     
+    @IBAction func view3_click(sender: AnyObject) {
+        txtTitle.resignFirstResponder()
+        txtDesc.resignFirstResponder()
+    }
+    
+    @IBAction func view4_click(sender: AnyObject) {
+        txtTitle.resignFirstResponder()
+        txtDesc.resignFirstResponder()
+    }
+    
+    @IBAction func view1_click(sender: AnyObject) {
+        print(sender)
+        txtTitle.resignFirstResponder()
+        txtDesc.resignFirstResponder()
+    }
+    @IBAction func viewClick(sender: AnyObject) {
+        txtTitle.resignFirstResponder()
+        txtDesc.resignFirstResponder()
+    }
     
     func textDidEndEditing()
     {
@@ -183,6 +237,10 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
         do {
             //print(DaiFileManager.document["/Audio/"+self.audioFileName].path)
             try player = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: DaiFileManager.document["/Audio/"+self.audioFileName].path))
+            
+            //progressSlider.maximumValue = Float((player?.duration)!)  //最大值
+            //print(progressSlider.maximumValue)
+            //print(player?.duration)
         }
         catch let error as NSError {
             NSLog("error: \(error)")
@@ -197,14 +255,25 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
         //self.allTimeLabel.text = time as String
         
         
-        //player?.delegate = self
+        player?.delegate = self
         //player?.play()
         
         //self.audioPlayer.contentURL=NSURL(string:currentSong.url as String)
-        timer?.invalidate()
-        timer=NSTimer.scheduledTimerWithTimeInterval(0.4, target: self, selector: "updateTime", userInfo: nil, repeats: true)
-        playButton.setImage(UIImage(named: "player_btn_play_normal.png"), forState: UIControlState.Normal)
+        //timer?.invalidate()
+        //timer=NSTimer.scheduledTimerWithTimeInterval(0.4, target: self, selector: "updateTime", userInfo: nil, repeats: true)
+        //playButton.setImage(UIImage(named: "player_btn_play_normal.png"), forState: UIControlState.Normal)
         
+    }
+    
+    func audioPlayerDidFinishPlaying(player: AVAudioPlayer!, successfully flag: Bool) {
+        // 重新开启定时器
+        if flag{
+            print("play end")
+            timer?.invalidate()
+            print("timer end")
+            playButton.setImage(UIImage(named: "player_btn_play_normal"), forState: UIControlState.Normal)
+            playButton.selected = !playButton.selected
+        }
     }
     
     //播放
@@ -212,13 +281,17 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
         if sender.selected {
             //暂停播放
             self.player!.pause()
+            timer?.invalidate()
+            print("timer pause")
             //pauseLayer(photo.layer)
             playButton.setImage(UIImage(named: "player_btn_play_normal"), forState: UIControlState.Normal)
             
         }else{
             //开始/继续播放
             self.player!.play()
-            //resumeLayer(photo.layer)
+            timer?.invalidate()
+            timer=NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: "updateTime", userInfo: nil, repeats: true)
+            
             playButton.setImage(UIImage(named: "player_btn_pause_highlight.png"), forState: UIControlState.Normal)
         }
         sender.selected = !sender.selected
@@ -368,23 +441,28 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate {
         print("textViewDidEndEditing")  
     }  
     
-    
-    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
-        if(text == "\n") {
-            textView.resignFirstResponder()
-            return false
-        }
-        return true
-    }
+    /*
+     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+     if(text == "\n") {
+     textView.resignFirstResponder()
+     return false
+     }
+     return true
+     }
+     */
     //更新播放时间
     func updateTime(){
+        
         var c=self.player!.currentTime
-        //self.player?.duration
+        print("c = \(c) duration =\(self.player?.duration)")
         // audioPlayer.endPlaybackTime
         if c>0.0 {
+            //let t = CMTimeGetSeconds(self.player!.duration);
             let t=self.player!.duration
             let p:CFloat=CFloat(c/t)
-            progressSlider.value=p;
+            //progressSlider.value=p;
+            progressSlider.value=Float(c);
+            progressSlider.maximumValue = Float(t)
             let all:Int=Int(c)//共多少秒
             let m:Int=all % 60//秒
             let f:Int=Int(all/60)//分

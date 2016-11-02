@@ -20,8 +20,8 @@ import AudioKit
     
     //@IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var btn_Record: MKButton!
-    @IBOutlet weak var btn_Play: MKButton!
+    @IBOutlet weak var btn_Record: UIButton!
+    @IBOutlet weak var btn_Play: UIButton!
     @IBOutlet weak var btn_Save: UIButton!
     @IBOutlet weak var btn_pause: UIButton!
     
@@ -50,9 +50,13 @@ import AudioKit
     var mic: AKMicrophone!
     var tracker: AKFrequencyTracker!
     var silence: AKBooster!
+    var plot:AKNodeOutputPlot!
+    
+    var image_record_stop:UIImage = UIImage(named:"btn_record_stop")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+    var image_record_record:UIImage = UIImage(named:"btn_record_record")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
     
     
-    let noteFrequencies = [16.35,17.32,18.35,19.45,20.6,21.83,23.12,24.5,25.96,27.5,29.14,30.87]
+    //let noteFrequencies = [16.35,17.32,18.35,19.45,20.6,21.83,23.12,24.5,25.96,27.5,29.14,30.87]
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?){
         //let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as NSString
@@ -87,12 +91,14 @@ import AudioKit
         self.audioTmpPath = DaiFileManager.document["/Audio_Tmp/"].path
         self.audioPath = DaiFileManager.document["/Audio/"].path
         
-        btn_Record.userInteractionEnabled = true
-        self.recordercolor = btn_Record.backgroundColor
+        //btn_Record.userInteractionEnabled = true
+        //self.recordercolor = btn_Record.backgroundColor
+        
         
         mic = AKMicrophone()
         tracker = AKFrequencyTracker.init(mic)
         silence = AKBooster(tracker, gain: 0)
+        plot = AKNodeOutputPlot(mic, frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, 100))
         
         //初始化record-----------------------------------------
         let dateFormatter:NSDateFormatter = NSDateFormatter();
@@ -116,29 +122,33 @@ import AudioKit
         //recorder.delegate = self
         
     }
+     
+    
     func setupPlot() {
-        print(audioInputPlot.frame)
-        print(audioInputPlot.bounds)
-        //
-        //let plot = AKNodeOutputPlot(mic, frame: audioInputPlot.bounds)
-        let plot = AKNodeOutputPlot(mic, frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, 100))
+        print("setupPlot")
         plot.plotType = .Rolling
+        //plot.plotType = .Buffer
         plot.shouldFill = true
+        plot.gain = 5 as Float
+        
+        //plot.backgroundColor = UIColor.darkGrayColor()
         
         plot.shouldMirror = true
-        plot.color = UIColor.grayColor()
-        //plot.frame.width = audioInputPlot.frame.width
+        //plot.color = UIColor.lightGrayColor()
+        plot.color = UIColor.init(red: 45/255, green: 184/255, blue: 105/255, alpha: 1)
+        //plot.color = UIColor.init(red: 0/255, green: 128/255, blue: 0/255, alpha: 1)
+        //plot.color = UIColor.init(red: 0/255, green: 64/255, blue: 128/255, alpha: 1)
         
         print(plot.frame)
+        plot.clear()
         
-        //audioInputPlot.autoresizesSubviews = true
         audioInputPlot.addSubview(plot)
     }
     
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
+        print("view will appear")
         let backitem = UIBarButtonItem(title: Config.UI.PreNavItem, style: UIBarButtonItemStyle.Plain, target: self, action: "returnNavView")
         self.navigationItem.leftBarButtonItem = backitem
         
@@ -173,8 +183,38 @@ import AudioKit
         print("click return button")
         //self.navigationController?.popViewControllerAnimated(true)
         
+        if btn_pause.hidden == false{
+            if btn_pause.currentTitle == "录音暂停" {
+                print("recording  and not allow to return")
+                PKNotification.toast("录音时不能离开录音界面!")
+                return
+            }else if btn_pause.currentTitle == "录音继续" {
+                print("dd")
+                let btn_OK:PKButton = PKButton(title: "确定",
+                                               action: { (messageLabel, items) -> Bool in
+                                                print("=========click==========)")
+                                                //===code here
+                                                let mainViewController:MainViewController = MainViewController()
+                                                let nvc=UINavigationController(rootViewController:mainViewController)
+                                                self.slideMenuController()?.changeMainViewController(nvc, close: true)
+                                                return true
+                    },
+                                               fontColor: UIColor(red: 0, green: 0.55, blue: 0.9, alpha: 1.0),
+                                               backgroundColor: nil)
+                
+                // call alert
+                PKNotification.alert(
+                    title: "微录音",
+                    message: "放弃本次录音,并离开?",
+                    items: [btn_OK],
+                    cancelButtonTitle: "取消",
+                    tintColor: nil)
+            }
+            return
+        }
+        
         let mainViewController:MainViewController = MainViewController()
-        let nvc=UINavigationController(rootViewController:mainViewController);
+        let nvc=UINavigationController(rootViewController:mainViewController)
         self.slideMenuController()?.changeMainViewController(nvc, close: true)
         
     }
@@ -182,10 +222,40 @@ import AudioKit
     func gotoNavView(){
         print("click goto button")
         //self.navigationController?.popViewControllerAnimated(true)
+        if btn_pause.hidden == false{
+            if btn_pause.currentTitle == "录音暂停" {
+                print("recording  and not allow to return")
+                PKNotification.toast("录音时不能离开录音界面!")
+                return
+            }else if btn_pause.currentTitle == "录音继续" {
+                print("dd")
+                let btn_OK:PKButton = PKButton(title: "确定",
+                                               action: { (messageLabel, items) -> Bool in
+                                                print("=========click==========)")
+                                                //===code here
+                                                let fileViewController:AudioFileList = AudioFileList()
+                                                let nvc=UINavigationController(rootViewController:fileViewController)
+                                                self.slideMenuController()?.changeMainViewController(nvc, close: true)
+                                                
+                                                return true
+                    },
+                                               fontColor: UIColor(red: 0, green: 0.55, blue: 0.9, alpha: 1.0),
+                                               backgroundColor: nil)
+                
+                // call alert
+                PKNotification.alert(
+                    title: "微录音",
+                    message: "放弃本次录音,并离开?",
+                    items: [btn_OK],
+                    cancelButtonTitle: "取消",
+                    tintColor: nil)
+            }
+            return
+        }
         
         //let fileViewController:FileViewController = FileViewController()
         let fileViewController:AudioFileList = AudioFileList()
-        let nvc=UINavigationController(rootViewController:fileViewController);
+        let nvc=UINavigationController(rootViewController:fileViewController)
         self.slideMenuController()?.changeMainViewController(nvc, close: true)
         
     }
@@ -209,18 +279,46 @@ import AudioKit
         txtTitle.backgroundColor = UIColor(red: 0.95, green: 0.96, blue: 1.0, alpha: 1.0)
         txtTitle.textColor = UIColor.darkGrayColor()
         
+        /*
+         let txtDesc:UITextField = UITextField()
+         txtDesc.placeholder = "摘要"
+         txtDesc.backgroundColor = UIColor(red: 0.95, green: 0.96, blue: 1.0, alpha: 1.0)
+         txtDesc.textColor = UIColor.darkGrayColor()
+         */
         
-        let txtDesc:UITextField = UITextField()
-        txtDesc.placeholder = "摘要"
+        ///*
+        //let txtDesc:UITextView = UITextView(frame:CGRectMake(0,0,200,100))
+        var placeholderLabel:UILabel!
+        let txtDesc:UITextView = UITextView()
         txtDesc.backgroundColor = UIColor(red: 0.95, green: 0.96, blue: 1.0, alpha: 1.0)
         txtDesc.textColor = UIColor.darkGrayColor()
+        txtDesc.textContainer.lineFragmentPadding = 0; 
+        txtDesc.textContainerInset = UIEdgeInsetsZero;
+        //txtDesc.layoutMargins = UIEdgeInsetsMake(50, 0, 0, 0);
+        placeholderLabel = UILabel.init() // placeholderLabel是全局属性  
+        placeholderLabel.frame = CGRectMake(5 , 5, 100, 20)  
+        placeholderLabel.font = UIFont.systemFontOfSize(14)  
+        placeholderLabel.text = "摘要"  
+        //placeholderLabel.backgroundColor = UIColor.purpleColor() 
+        placeholderLabel.textColor = UIColor.lightGrayColor()  
+        /*placeholderLabel.layoutMargins = UIEdgeInsets(
+         top: 0,
+         left: 40,
+         bottom: 0,
+         right: 0)
+         */
+        txtDesc.addSubview(placeholderLabel)  
+        //self.placeholderLabel.textColor = UIColor.init(colorLiteralRed: 72/256, green: 82/256, blue: 93/256, alpha: 1)  
+        
+        //*/
         
         
         let btnOK:PKButton = PKButton(title: "确认",
                                       action: { (messageLabel, items) -> Bool in
                                         print("确认 is clicked.")
                                         let tmptxtTitle: UITextField = items[0] as! UITextField //items index number
-                                        let tmptxtDesc: UITextField = items[1] as! UITextField //items index number
+                                        //let tmptxtDesc: UITextField = items[1] as! UITextField //items index number
+                                        let tmptxtDesc: UITextView = items[1] as! UITextView //items index number
                                         
                                         if (tmptxtTitle.text == "" || tmptxtDesc.text == ""){
                                             messageLabel?.text = "请填写标题与摘要."
@@ -228,6 +326,7 @@ import AudioKit
                                             tmptxtDesc.backgroundColor = UIColor(red: 0.95, green: 0.8, blue: 0.8, alpha: 1.0)
                                             return false
                                         }
+                                        self.plot.clear()
                                         NSNotificationCenter.defaultCenter().addObserver(self, selector: "HandleResult:", name: Config.NotifyTag.ConvertToMP3, object: nil)
                                         self.covertToMP3(tmptxtTitle.text!,desc: tmptxtDesc.text!)
                                         return true
@@ -235,13 +334,22 @@ import AudioKit
                                       fontColor: UIColor(red: 0, green: 0.55, blue: 0.9, alpha: 1.0),
                                       backgroundColor: nil)
         
-        PKNotification.alert(
-            title: "保存",
-            message: "保存并发布至公众号",
-            items: [txtTitle, txtDesc, btnOK],
-            cancelButtonTitle: "取消",
-            tintColor: nil)
         
+        let btnCancel:PKButton = PKButton(title: "取消",
+                                          action: { (messageLabel, items) -> Bool in
+                                            print("取消 is clicked.")
+                                            self.plot.clear()
+                                            return true
+            },
+                                          fontColor: UIColor.grayColor(),
+                                          backgroundColor: nil)
+        
+        PKNotification.alert(
+            title: "保存并发布",
+            message: "保存并发布至公众号",
+            items: [txtTitle, txtDesc,btnCancel,btnOK],
+            cancelButtonTitle: "如果items里有取消字样的按钮，则会忽略这个取消按钮",
+            tintColor: nil)
     }
     
     func covertToMP3(title:String, desc:String){
@@ -346,7 +454,7 @@ import AudioKit
                 SwiftOverlays.removeAllBlockingOverlays()
                 
             }
-
+            
             
             
         }
@@ -386,16 +494,26 @@ import AudioKit
                     btn_pause.hidden = false
                     btn_pause.enabled = true
                     btn_pause.setTitle("录音暂停", forState: UIControlState.Normal)
-                    btn_pause.backgroundColor = UIColor.orangeColor()
+                    btn_pause.setImage(UIImage(named:"btn_record_pause"), forState: UIControlState.Normal)
+                    btn_pause.titleLabel?.hidden = true
+                    //btn_pause.backgroundColor = UIColor.orangeColor()
                     
                     btn_Record.enabled = true
                     btn_Record.setTitle("录音完成", forState: UIControlState.Normal)
-                    btn_Record.backgroundColor = UIColor.redColor()
+                    
+                    btn_Record.setImage(image_record_stop,forState:UIControlState.Normal)
+                    
+                    //imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal
+                    btn_Record.titleLabel?.hidden = true
+                    
+                    //btn_Record.backgroundColor = UIColor.redColor()
                     
                     btn_Play.hidden = true
                     btn_Play.enabled = false
                     btn_Play.setTitle("播  放", forState: UIControlState.Normal)
-                    btn_Play.backgroundColor = UIColor.grayColor()
+                    btn_Play.setImage(UIImage(named:"btn_play_play"),forState:UIControlState.Normal)
+                    btn_Play.titleLabel?.hidden = true
+                    //btn_Play.backgroundColor = UIColor.grayColor()
                 }else{
                     //点录音开始/完成铵扭后 录音停止状态
                     btn_pause.hidden = true
@@ -406,13 +524,18 @@ import AudioKit
                      */
                     btn_Play.hidden = false
                     btn_Play.enabled = true
+                    btn_Play.setImage(UIImage(named:"btn_play_play"),forState:UIControlState.Normal)
+                    btn_Play.titleLabel?.hidden = true
                     btn_Play.setTitle("播  放", forState: UIControlState.Normal)
-                    btn_Play.backgroundColor = self.recordercolor
+                    //btn_Play.backgroundColor = self.recordercolor
                     
                     btn_Record.enabled = true
+                    btn_Record.setImage(image_record_record,forState:UIControlState.Normal)
+                    btn_Record.titleLabel?.hidden = true
                     btn_Record.setTitle("录音开始", forState: UIControlState.Normal)
-                    btn_Record.backgroundColor = self.recordercolor
-                    
+                    //btn_Record.backgroundColor = self.recordercolor
+                    //录音停止时直接弹出信息框，可以保存并发布
+                    saveAudio(sender)
                 }
                 
             }else{
@@ -425,10 +548,12 @@ import AudioKit
                 if player.playing{
                     //按播放/停止按钮  播放中
                     btn_Play.setTitle("停  止", forState: UIControlState.Normal)
-                    btn_Play.backgroundColor = UIColor.redColor()
+                    btn_Play.setImage(UIImage(named:"btn_play_stop"),forState:UIControlState.Normal)
+                    btn_Play.titleLabel?.hidden = true
+                    //btn_Play.backgroundColor = UIColor.redColor()
                     
                     btn_Record.enabled = false
-                    btn_Record.backgroundColor = UIColor.grayColor()
+                    //btn_Record.backgroundColor = UIColor.grayColor()
                     
                     btn_pause.hidden = true
                     /*
@@ -439,16 +564,20 @@ import AudioKit
                     //按播放/停止按钮后 播放停止
                     btn_Play.enabled = true
                     btn_Play.setTitle("播  放", forState: UIControlState.Normal)
-                    btn_Play.backgroundColor = self.recordercolor
+                    btn_Play.setImage(UIImage(named:"btn_play_play"),forState:UIControlState.Normal)
+                    btn_Play.titleLabel?.hidden = true
+                    //btn_Play.backgroundColor = self.recordercolor
                     
                     ///保持原状态
                     btn_Record.enabled = true
-                    btn_Record.backgroundColor = self.recordercolor
+                    //btn_Record.backgroundColor = self.recordercolor
                     
                     //btn_pause.hidden = false //保持原状态
                     btn_pause.enabled = true
                     btn_pause.setTitle("录音继续", forState: UIControlState.Normal)
-                    btn_pause.backgroundColor = UIColor.orangeColor()
+                    btn_pause.setImage(UIImage(named:"btn_record_continue"), forState: UIControlState.Normal)
+                    btn_pause.titleLabel?.hidden = true
+                    //btn_pause.backgroundColor = UIColor.orangeColor()
                     
                 }
             }else{
@@ -458,37 +587,51 @@ import AudioKit
             
         }else if (sender as! NSObject == btn_pause){
             //按下 录音暂停/继续 按钮后  暂停状态
+            print(sender.tag)
             if sender.currentTitle == "录音暂停" {
                 btn_pause.hidden = false
                 btn_pause.enabled = true
                 btn_pause.setTitle("录音继续", forState: UIControlState.Normal)
-                btn_pause.backgroundColor = UIColor.orangeColor()
+                //btn_pause.backgroundColor = UIColor.orangeColor()
+                btn_pause.setImage(UIImage(named:"btn_record_continue"), forState: UIControlState.Normal)
+                btn_pause.titleLabel?.hidden = true
                 
                 btn_Record.enabled = true
                 btn_Record.setTitle("录音完成", forState: UIControlState.Normal)
-                btn_Record.backgroundColor = UIColor.redColor()
+                //btn_Record.backgroundColor = UIColor.redColor()
                 
+                btn_Record.setImage(image_record_stop, forState: UIControlState.Normal)
+                btn_Record.titleLabel?.hidden = true                
                 btn_Play.hidden = true
                 btn_Play.enabled = false
                 btn_Play.setTitle("播  放", forState: UIControlState.Normal)
-                btn_Play.backgroundColor = UIColor.grayColor()
+                //btn_Play.backgroundColor = UIColor.grayColor()
+                btn_Play.setImage(UIImage(named:"btn_play_play"), forState: UIControlState.Normal)
+                btn_Play.titleLabel?.hidden = true
                 
                 
             }else if sender.currentTitle == "录音继续" {
                 btn_pause.hidden = false
                 btn_pause.enabled = true
                 btn_pause.setTitle("录音暂停", forState: UIControlState.Normal)
-                btn_pause.backgroundColor = UIColor.orangeColor()
+                //btn_pause.backgroundColor = UIColor.orangeColor()
+                btn_pause.setImage(UIImage(named:"btn_record_pause"), forState: UIControlState.Normal)
+                btn_pause.titleLabel?.hidden = true
+                
                 
                 btn_Record.enabled = true
                 btn_Record.setTitle("录音完成", forState: UIControlState.Normal)
-                btn_Record.backgroundColor = UIColor.redColor()
+                //btn_Record.backgroundColor = UIColor.redColor()
+                
+                btn_Record.setImage(image_record_stop, forState: UIControlState.Normal)
+                btn_Record.titleLabel?.hidden = true
                 
                 btn_Play.hidden = true
                 btn_Play.enabled = false
                 btn_Play.setTitle("播  放", forState: UIControlState.Normal)
-                btn_Play.backgroundColor = UIColor.grayColor()
-                
+                //btn_Play.backgroundColor = UIColor.grayColor()
+                btn_Play.setImage(UIImage(named:"btn_play_play"), forState: UIControlState.Normal)
+                btn_Play.titleLabel?.hidden = true                
             }
         }
         
@@ -511,7 +654,7 @@ import AudioKit
         let hour = (ti / 3600)
         
         timeLabel.text = NSString(format: "%02d:%02d:%02d",hour, min, sec) as String
-        
+        print (timeLabel.text)
     }
     
     
@@ -523,9 +666,12 @@ import AudioKit
     }
     
     @IBAction func act_Record(sender: AnyObject) {
+        
         print("act_record \(sender.currentTitle)")
         timeTimer?.invalidate()
         //print("sender =\(sender.enabled)")
+        
+        
         
         if let recorder = recorder{
             if sender.currentTitle == "录音完成" {
@@ -534,6 +680,17 @@ import AudioKit
                 AudioKit.stop()
                 btn_Save.enabled = true
             }else if sender.currentTitle == "录音开始"{
+                print("set recording")
+                timeLabel.text = "00:00:00"
+                timeTimer = NSTimer.scheduledTimerWithTimeInterval(0.0167, target: self, selector: "updateTimeLabel:", userInfo: nil, repeats: true)
+                //recorder.deleteRecording()
+                //recorder.prepareToRecord()
+                recorder.record()
+                AudioKit.start()
+                btn_Save.enabled = false
+            }else{
+                //刚进来时 title是空的 只能点录音键
+                print("do nil")
                 print("set recording")
                 timeLabel.text = "00:00:00"
                 timeTimer = NSTimer.scheduledTimerWithTimeInterval(0.0167, target: self, selector: "updateTimeLabel:", userInfo: nil, repeats: true)

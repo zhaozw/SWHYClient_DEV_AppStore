@@ -35,6 +35,9 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
     
     class var sharedInstance: NetworkEngine {
         let configuration:NSURLSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
+        configuration.timeoutIntervalForRequest = 120  //超时设置为300秒
+        configuration.timeoutIntervalForResource = 120 
+        print(configuration.timeoutIntervalForRequest) //= 15 //连接超时时间
         Inner.instance.session = NSURLSession(configuration: configuration,delegate: Inner.instance,delegateQueue:NSOperationQueue.mainQueue())
         
         return Inner.instance
@@ -51,7 +54,6 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
     }
     //0EB020F9-F3DA-4585-8A24-57212DAEE985
     func postRequestWithUrlString(url:String,postData:String,tag:String){
-        
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
         //let request = NSMutableURLRequest(URL: NSURL(string: url)!)
         
@@ -87,6 +89,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                     errmsg = "用户名或密码错误"
                 }else{
                     errmsg = "网络连接出错，请检查网络或稍后再试"
+                    print("Error ====\(error!.localizedDescription) ==code=\(error!.code)")
                 }
                 
                 self.success_auth = 0
@@ -324,6 +327,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
     
     //===========上传文件===============================
     func postUploadFile(url:String,filePath:String,tag:String){
+         print(url)
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
         //let multiPartMime = MultiPartMime(dict: ["fulFile": MultiPartPart.StringWrapper(filename), "file": MultiPartPart.PNGImage(img, filename)])
         

@@ -1,31 +1,33 @@
 /*********************************************************************
-PKNotification.swift
-PKNotification
-
-Created by hakopako on 2014/12/24.
-Copyright (c) 2014 hakopako.
-Source:https://github.com/hakopako/PKNotification
-
-Permission is hereby granted, free of charge, to any person obtaining a
-copy of this software and associated documentation files (the
-"Software"), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be included
-in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
-OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
-CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
-SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-*********************************************************************/
+ PKNotification.swift
+ PKNotification
+ 有自定义更改的地方 不能升级时直接覆盖
+ Created by hakopako on 2014/12/24.
+ Copyright (c) 2014 hakopako.
+ Source:https://github.com/hakopako/PKNotification
+ 
+ Permission is hereby granted, free of charge, to any person obtaining a
+ copy of this software and associated documentation files (the
+ "Software"), to deal in the Software without restriction, including
+ without limitation the rights to use, copy, modify, merge, publish,
+ distribute, sublicense, and/or sell copies of the Software, and to
+ permit persons to whom the Software is furnished to do so, subject to
+ the following conditions:
+ 
+ The above copyright notice and this permission notice shall be included
+ in all copies or substantial portions of the Software.
+ 
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+ OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ 
+ 有自定义更改的地方 不能升级时直接覆盖
+ 
+ *********************************************************************/
 
 import UIKit
 
@@ -124,14 +126,14 @@ class PKNotificationClass: UIViewController {
         
         alertVC.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.1, 1.1);
         UIView.animateWithDuration(0.1,
-            delay: 0,
-            options: UIViewAnimationOptions.CurveLinear,
-            animations: { () -> Void in
-                alertVC.view.alpha = 1
-                alertVC.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
+                                   delay: 0,
+                                   options: UIViewAnimationOptions.CurveLinear,
+                                   animations: { () -> Void in
+                                    alertVC.view.alpha = 1
+                                    alertVC.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
             },
-            completion: { (finished:Bool) -> Void in
-                
+                                   completion: { (finished:Bool) -> Void in
+                                    
         })
     }
     
@@ -147,24 +149,24 @@ class PKNotificationClass: UIViewController {
         //println(toastVC.view.indexOfAccessibilityElement(UIApplication.sharedApplication().windows[0]))
         
         UIView.animateWithDuration(0.3,
-            delay: 0,
-            options: UIViewAnimationOptions.CurveLinear,
-            animations: { () -> Void in
-                toastVC.view.alpha = 1
-                //println("toast 1 \(message)")
+                                   delay: 0,
+                                   options: UIViewAnimationOptions.CurveLinear,
+                                   animations: { () -> Void in
+                                    toastVC.view.alpha = 1
+                                    //println("toast 1 \(message)")
             },
-            completion: { (finished:Bool) -> Void in
-                UIView.animateWithDuration(0.3,
-                    delay: 2,
-                    options: UIViewAnimationOptions.CurveLinear,
-                    animations: { () -> Void in
-                        toastVC.view.alpha = 0
-                        //println("toast 0 \(message)")
-                    },
-                    completion: { (finished:Bool) -> Void in
-                        self.view.removeFromSuperview()
-                        self.removeVCCollectionByObject(toastVC)
-                })
+                                   completion: { (finished:Bool) -> Void in
+                                    UIView.animateWithDuration(0.3,
+                                        delay: 2,
+                                        options: UIViewAnimationOptions.CurveLinear,
+                                        animations: { () -> Void in
+                                            toastVC.view.alpha = 0
+                                            //println("toast 0 \(message)")
+                                        },
+                                        completion: { (finished:Bool) -> Void in
+                                            self.view.removeFromSuperview()
+                                            self.removeVCCollectionByObject(toastVC)
+                                    })
         })
     }
     
@@ -198,23 +200,23 @@ class PKNotificationClass: UIViewController {
         
         progressVC.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.1, 1.1);
         UIView.animateWithDuration(0.1,
-            delay: 0,
-            options: UIViewAnimationOptions.CurveLinear,
-            animations: { () -> Void in
-                progressVC.view.alpha = 1
-                progressVC.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
+                                   delay: 0,
+                                   options: UIViewAnimationOptions.CurveLinear,
+                                   animations: { () -> Void in
+                                    progressVC.view.alpha = 1
+                                    progressVC.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
             },
-            completion: { (finished:Bool) -> Void in
-                UIView.animateWithDuration(0.1,
-                    delay: 2,
-                    options: UIViewAnimationOptions.CurveLinear,
-                    animations: { () -> Void in
-                        progressVC.view.alpha = 0
-                    },
-                    completion: { (finished:Bool) -> Void in
-                        progressVC.view.removeFromSuperview()
-                        self.removeVCCollectionByObject(progressVC)
-                })
+                                   completion: { (finished:Bool) -> Void in
+                                    UIView.animateWithDuration(0.1,
+                                        delay: 2,
+                                        options: UIViewAnimationOptions.CurveLinear,
+                                        animations: { () -> Void in
+                                            progressVC.view.alpha = 0
+                                        },
+                                        completion: { (finished:Bool) -> Void in
+                                            progressVC.view.removeFromSuperview()
+                                            self.removeVCCollectionByObject(progressVC)
+                                    })
         })
         
     }
@@ -227,23 +229,23 @@ class PKNotificationClass: UIViewController {
         
         progressVC.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1.1, 1.1);
         UIView.animateWithDuration(0.1,
-            delay: 0,
-            options: UIViewAnimationOptions.CurveLinear,
-            animations: { () -> Void in
-                progressVC.view.alpha = 1
-                progressVC.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
+                                   delay: 0,
+                                   options: UIViewAnimationOptions.CurveLinear,
+                                   animations: { () -> Void in
+                                    progressVC.view.alpha = 1
+                                    progressVC.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, 1, 1);
             },
-            completion: { (finished:Bool) -> Void in
-                UIView.animateWithDuration(0.1,
-                    delay: 2,
-                    options: UIViewAnimationOptions.CurveLinear,
-                    animations: { () -> Void in
-                        progressVC.view.alpha = 0
-                    },
-                    completion: { (finished:Bool) -> Void in
-                        progressVC.view.removeFromSuperview()
-                        self.removeVCCollectionByObject(progressVC)
-                })
+                                   completion: { (finished:Bool) -> Void in
+                                    UIView.animateWithDuration(0.1,
+                                        delay: 2,
+                                        options: UIViewAnimationOptions.CurveLinear,
+                                        animations: { () -> Void in
+                                            progressVC.view.alpha = 0
+                                        },
+                                        completion: { (finished:Bool) -> Void in
+                                            progressVC.view.removeFromSuperview()
+                                            self.removeVCCollectionByObject(progressVC)
+                                    })
         })
     }
     
@@ -291,11 +293,12 @@ class PKNotificationClass: UIViewController {
     }
     
     // MARK: - @CLASS PKAlert
-    class PKAlert: UIViewController {
+    class PKAlert: UIViewController,UITextViewDelegate {
         var parent:PKNotificationClass!
         let alertView:UIView = UIView(frame: CGRectMake(0, 0, 100, 100))
         var items:Array<AnyObject> = []
         var messageLabel:UILabel? = nil
+        var cancelBut:PKButton?
         
         // MARK: - Lifecycle
         init(title t:String?, message m:String?, items i:Array<AnyObject>?, cancelButtonTitle c:String?, tintColor tint:UIColor?, parent p:PKNotificationClass) {
@@ -330,33 +333,61 @@ class PKNotificationClass: UIViewController {
                         let theLast:AnyObject? = items.last
                         if (theLast != nil) {
                             if(!theLast!.isKindOfClass(UITextField)){
-                                continue
+                                //continue
                             }
                         }
                         (b as! UITextField).frame = CGRectMake(parent.alertMargin, 0, self.parent.alertWidth - 2 * parent.alertMargin, 44)
                         (b as! UITextField).layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
                         (b as! UITextField).font = parent.alertMEssageFontStyle
+                        print("----------")
                         items.append((b as! UITextField))
                         
-                    } else if (b.isKindOfClass(PKButton)){
-                        (b as! PKButton).frame = CGRectMake(0, 0, self.parent.alertWidth, 44)
-                        //TODO: Precise color choise
-                        let titleColor:UIColor? = ((b as! PKButton).titleLabel?.textColor == UIColor.whiteColor()) ? nil : (b as! PKButton).titleLabel?.textColor
-                        (b as! PKButton).setTitleColor((titleColor == nil) ? tintColor : titleColor, forState: UIControlState.Normal)
-                        (b as! PKButton).backgroundColor = ((b as! PKButton).backgroundColor == nil) ? self.parent.alertBackgroundColor : b.backgroundColor
-                        (b as! PKButton).addTarget(self, action:"buttonDown:", forControlEvents: UIControlEvents.TouchUpInside)
-                        items.append((b as! PKButton))
+                    }else if (b.isKindOfClass(UITextView)){
+                        let theLast:AnyObject? = items.last
+                        //print("UITextView\(b)")
+                        if (theLast != nil) {
+                            if(!theLast!.isKindOfClass(UITextView)){
+                                //continue
+                            }
+                        }
+                        (b as! UITextView).frame = CGRectMake(parent.alertMargin, 0, self.parent.alertWidth - 2 * parent.alertMargin, 144)
+                        (b as! UITextView).layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
+                        (b as! UITextView).font = parent.alertMEssageFontStyle
+                        print("==========")
+                        items.append((b as! UITextView))
+                        
+                    }else if (b.isKindOfClass(PKButton)){
+                        print((b as! PKButton).currentTitle)
+                        if (b as! PKButton).currentTitle != "取消"{
+                            (b as! PKButton).frame = CGRectMake(0, 0, self.parent.alertWidth, 44)
+                            //TODO: Precise color choise
+                            let titleColor:UIColor? = ((b as! PKButton).titleLabel?.textColor == UIColor.whiteColor()) ? nil : (b as! PKButton).titleLabel?.textColor
+                            (b as! PKButton).setTitleColor((titleColor == nil) ? tintColor : titleColor, forState: UIControlState.Normal)
+                            (b as! PKButton).backgroundColor = ((b as! PKButton).backgroundColor == nil) ? self.parent.alertBackgroundColor : b.backgroundColor
+                            (b as! PKButton).addTarget(self, action:"buttonDown:", forControlEvents: UIControlEvents.TouchUpInside)
+                            items.append((b as! PKButton))
+                        }else{
+                            self.cancelBut = b as! PKButton
+                        }
                     }
                 }
             }
+            
             
             let cancelButtonTitle:String! = (c == nil) ? "Dissmiss" : c
             let cancelButton:PKButton! = PKButton(title: cancelButtonTitle!, action: {(items) -> Bool in return true}, fontColor: tintColor, backgroundColor: parent.alertBackgroundColor)
             cancelButton.frame = CGRectMake(0, 0, parent.alertWidth, 44)
             cancelButton.addTarget(self, action:"buttonDown:", forControlEvents: UIControlEvents.TouchUpInside)
+            if (self.cancelBut != nil){
+                
+                self.cancelBut?.frame = CGRectMake(0, 0, parent.alertWidth, 44)
+                self.cancelBut?.addTarget(self, action:"buttonDown:", forControlEvents: UIControlEvents.TouchUpInside)
+            }
+            
             
             /* put parts on an alertview and add it as subview on self.view */
-            assembleDefaultStyle(titleLabel, cancelButton)
+            assembleDefaultStyle(titleLabel, self.cancelBut ?? cancelButton)
+            //assembleDefaultStyle(titleLabel, cancelButton)
         }
         
         required init?(coder aDecoder: NSCoder) {
@@ -373,7 +404,54 @@ class PKNotificationClass: UIViewController {
             let tapRecognizer = UITapGestureRecognizer(target: self, action: "handleSingleTap:")
             tapRecognizer.numberOfTapsRequired = 1
             self.view.addGestureRecognizer(tapRecognizer)
+            
+            //2016-11-02 键盘打开时 窗口显示在键盘上面
+            NSNotificationCenter.defaultCenter().addObserver(self,
+                                                             selector: "keyboardWillChange:",
+                                                             name: UIKeyboardWillChangeFrameNotification, object: nil)
+            
         }
+        
+        func keyboardWillChange(notification: NSNotification) {
+            if let userInfo = notification.userInfo,
+                value = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue,
+                duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double,
+                curve = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? UInt {
+                
+                //print(value)
+                
+                //let frame = value.CGRectValue()
+                let frame = self.view.frame
+                let screenSize: CGRect = UIScreen.mainScreen().bounds
+                var intersection = CGRectIntersection(value.CGRectValue(), self.view.frame)
+                //var intersection = CGRectIntersection(value.CGRectValue(), alertView.frame)
+                
+                //print("screenSize\(screenSize)")
+                //print("instersection height =\(intersection.height)")
+                //print("frame before =\(frame)")
+                
+                //if intersection.height == 0.0 {
+                //    intersection = CGRect(x: intersection.origin.x, y: intersection.origin.y, width: intersection.width, height: 100)
+                //}
+                UIView.animateWithDuration(duration, delay: 0.0,
+                                           options: UIViewAnimationOptions(rawValue: curve), animations: {
+                                            _ in
+                                            //改变下约束
+                                            //当键盘消失，让view回归原始位置
+                                            if intersection.height == 0.0 {
+                                                //self.view.center = UIApplication.sharedApplication().windows[0].center
+                                                self.alertView.center = self.view.center
+                                            }else{
+                                                self.alertView.frame = CGRectMake(self.alertView.frame.origin.x, screenSize.height - intersection.height - self.alertView.frame.size.height, self.alertView.frame.size.width, self.alertView.frame.size.height);
+                                                //self.view.frame = frame
+                                            }
+                                            //print("self.view.frame after \(self.view.frame)")
+                                            //self.bottomConstraint.constant = CGRectGetHeight(intersection)
+                                            //self.view.layoutIfNeeded()
+                    }, completion: nil)
+            }
+        }
+
         
         override func didReceiveMemoryWarning() {
             super.didReceiveMemoryWarning()
@@ -382,6 +460,36 @@ class PKNotificationClass: UIViewController {
         deinit {
             //NSLog("########### \(NSStringFromClass(self.dynamicType)): \(self) is deinitialized. ###########")
         }
+        
+        func textViewShouldBeginEditing(textView: UITextView) -> Bool {  
+            
+            for label in textView.subviews{
+                if label.isKindOfClass(UILabel){
+                    //print("textViewShouldBeginEditing\(label)")
+                    label.hidden = true // 隐藏  
+                }
+            }
+            return true
+        }
+        
+        func textViewDidEndEditing(textView: UITextView) {
+            
+            for label in textView.subviews{
+                if label.isKindOfClass(UILabel){
+                    //print("textViewDidEndEditing\(label)")
+                    
+                    if textView.text.isEmpty {  
+                        label.hidden = false  // 显示  
+                    }  
+                    else{  
+                        label.hidden = true  // 隐藏  
+                    }  
+                }
+            }
+            
+            
+        }  
+        
         
         // MARK: - UI
         func assembleDefaultStyle(titleLabel:UILabel?, _ cancelButton:PKButton!) -> Void {
@@ -397,13 +505,38 @@ class PKNotificationClass: UIViewController {
             var k=0
             for ; k < items.count; k++ {
                 let o:AnyObject = items[k]
-                if !o.isKindOfClass(UITextField){
+                
+                /*
+                 if !o.isKindOfClass(UITextField){
+                 break
+                 }
+                 let textField:UITextField = (o as! UITextField)
+                 textField.frame.offsetInPlace(dx: 0, dy: buttonPosY)
+                 buttonPosY += textField.frame.height + margin
+                 alertView.addSubview(textField)
+                 */
+                
+                if o.isKindOfClass(UITextField){
+                    let textField:UITextField = (o as! UITextField)
+                    //print("assemple textField \(textField)")
+                    textField.frame.offsetInPlace(dx: 0, dy: buttonPosY)
+                    buttonPosY += textField.frame.height + margin
+                    alertView.addSubview(textField)
+                }else if o.isKindOfClass(UITextView){
+                    
+                    let textView:UITextView = (o as! UITextView)
+                    textView.delegate = self
+                    
+                    //print("assemple textView \(textView)")
+                    textView.frame.offsetInPlace(dx: 0, dy: buttonPosY)
+                    buttonPosY += textView.frame.height + margin
+                    //print(textView.frame)
+                    alertView.addSubview(textView)
+                }else{
                     break
                 }
-                let textField:UITextField = (o as! UITextField)
-                textField.frame.offsetInPlace(dx: 0, dy: buttonPosY)
-                buttonPosY += textField.frame.height + margin
-                alertView.addSubview(textField)
+                
+                
             }
             
             let buttonCnt = items.count - k
@@ -489,7 +622,17 @@ class PKNotificationClass: UIViewController {
             if(messageLabel != nil){ alertView.addSubview(messageLabel!)}
             alertView.addSubview(cancelButton)
             self.view.addSubview(alertBackgroundView)
+            
+            var alertcenter:CGPoint = UIApplication.sharedApplication().windows[0].center
+            
+            //alertcenter = CGPointMake(alertcenter.x , alertcenter.y - 60)
+            //alertcenter = CGPointMake(alertcenter.x , alertcenter.y)
+            
+            //alertView.center = alertcenter            
             alertView.center = UIApplication.sharedApplication().windows[0].center
+            
+            print(UIApplication.sharedApplication().windows[0].center)
+            
             self.view.addSubview( (parent.onVersion < 8.0) ? rotate4os7(alertView) : alertView )
             
         }
@@ -505,21 +648,21 @@ class PKNotificationClass: UIViewController {
             if (sender.actionBlock(messageLabel: messageLabel, items: items)) {
                 //Dissmiss alert
                 UIView.animateWithDuration(0.1,
-                    delay: 0,
-                    options: UIViewAnimationOptions.CurveLinear,
-                    animations: { () -> Void in
-                        self.view.alpha = 0
+                                           delay: 0,
+                                           options: UIViewAnimationOptions.CurveLinear,
+                                           animations: { () -> Void in
+                                            self.view.alpha = 0
                     },
-                    completion: { (finished:Bool) -> Void in
-                        self.view.removeFromSuperview()
-                        let cnt:Int = 0;
-                        for vc:UIViewController in _PKNotificationSingleton.vcCollection {
-                            if (vc == self){
-                                _PKNotificationSingleton.vcCollection.removeAtIndex(cnt)
-                                break;
-                            }
-                            
-                        }
+                                           completion: { (finished:Bool) -> Void in
+                                            self.view.removeFromSuperview()
+                                            let cnt:Int = 0;
+                                            for vc:UIViewController in _PKNotificationSingleton.vcCollection {
+                                                if (vc == self){
+                                                    _PKNotificationSingleton.vcCollection.removeAtIndex(cnt)
+                                                    break;
+                                                }
+                                                
+                                            }
                 })
             }
         }
@@ -539,8 +682,8 @@ class PKNotificationClass: UIViewController {
         
         
         /**
-        * For iOS7
-        */
+         * For iOS7
+         */
         func rotate4os7(v:UIView) -> UIView {
             switch(UIApplication.sharedApplication().statusBarOrientation){
             case .Portrait: break
@@ -583,7 +726,7 @@ class PKNotificationClass: UIViewController {
         }
         
         //required override init() {
-         //   super.init()
+        //   super.init()
         //}
         
         required init?(coder aDecoder: NSCoder) {
@@ -631,7 +774,7 @@ class PKNotificationClass: UIViewController {
             if(parent.onVersion < 8.0){
                 if(UIApplication.sharedApplication().statusBarOrientation == .LandscapeLeft
                     || UIApplication.sharedApplication().statusBarOrientation == .LandscapeRight){
-                        messageLabel.frame.size.width = height
+                    messageLabel.frame.size.width = height
                 } else {
                     messageLabel.frame.size.width = width
                 }
@@ -653,8 +796,8 @@ class PKNotificationClass: UIViewController {
         }
         
         /**
-        * For iOS7
-        */
+         * For iOS7
+         */
         func rotate4os7(v:UIView) -> UIView {
             switch(UIApplication.sharedApplication().statusBarOrientation){
             case .Portrait: break
@@ -831,8 +974,8 @@ class PKNotificationClass: UIViewController {
         }
         
         /**
-        * For iOS7
-        */
+         * For iOS7
+         */
         func rotate4os7(v:UIView) -> UIView {
             switch(UIApplication.sharedApplication().statusBarOrientation){
             case .Portrait: break

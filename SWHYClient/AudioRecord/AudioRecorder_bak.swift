@@ -344,7 +344,7 @@ import AudioKit
                     btn_Play.backgroundColor = self.recordercolor
                     
                     btn_Record.enabled = true
-                    btn_Record.setTitle("开始录音", forState: UIControlState.Normal)
+                    btn_Record.setTitle("录音开始", forState: UIControlState.Normal)
                     btn_Record.backgroundColor = self.recordercolor
                     
                 }

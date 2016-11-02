@@ -52,11 +52,15 @@ class Config{
         static let CustomerAddressBook = "http://swinbak.swsresearch.net/mobile/customerinfo.nsf/GetCustomerInfoByUserName?openagent"
         static let CustomerAddressBook_Group = "http://swinbak.swsresearch.net/mobile/customerinfo.nsf/GetGroupInfoByUserName?openagent"
         
+        //static let CustomerAddressBook = "http://swin.swsresearch.mobi/mobile/customerinfo.nsf/GetCustomerInfoByUserName?openagent"
+        //static let CustomerAddressBook_Group = "http://swin.swsresearch.mobi/mobile/customerinfo.nsf/GetGroupInfoByUserName?openagent"
+        
         static let PostAccessLog = "http://swinbak.swsresearch.net/mobile/Log.nsf/DoPostAccessLog?openagent"
         static let PostCustomerLog = "http://swinbak.swsresearch.net/mobile/Log.nsf/DoPostCustomerLog?openagent"
         
         static let GetParameter_CallDuration = "http://swinbak.swsresearch.net/Mobile/mobileInterface.nsf/ag_getparameter?Openagent&key=IOS-Call-Duration-Default"
-        //static let PostUploadFile = "http://192.168.1.106/audio/uploadhandler.ashx"
+        //static let PostUploadAudioFile = "http://192.168.1.105/upload/uploadhandler.ashx"
+        //static let PostUploadAudioFile = "http://192.168.1.105/audio/uploadhandler.ashx"
         static let PostUploadAudioFile = "http://download.swsresearch.net/audio/uploadhandler.ashx"
         
         
