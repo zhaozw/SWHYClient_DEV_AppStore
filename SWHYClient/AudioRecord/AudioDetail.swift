@@ -26,6 +26,16 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate,AVAud
     
     @IBOutlet weak var lblDuration: MKLabel!
     
+    @IBOutlet weak var btn1: UIButton!
+    @IBOutlet weak var btn2: UIButton!
+    @IBOutlet weak var btn3: UIButton!
+    @IBOutlet weak var btn4: UIButton!
+    @IBOutlet weak var btn5: UIButton!
+    
+    var butlist:[UIButton]!
+    
+    
+    
     //var audioPlayer:AVPlayerViewController = AVPlayerViewController()
     var player: AVAudioPlayer? = AVAudioPlayer()
     var timer:NSTimer?
@@ -141,9 +151,88 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate,AVAud
         //self.placeholderLabel.textColor = UIColor.init(colorLiteralRed: 72/256, green: 82/256, blue: 93/256, alpha: 1)  
         self.placeholderLabel.textColor = UIColor.lightGrayColor()  
         
+        let auth = DaiFileManager.document["/Audio/"+self.audioFileName].getAttr("C_Auth")
+        self.butlist = [btn1,btn2,btn3,btn4,btn5]
+        for but in self.butlist {     
+            but.titleLabel!.font = UIFont.systemFontOfSize(14)
+            but.layer.cornerRadius = 4
+            but.layer.borderColor = UIColor.lightGrayColor().CGColor  
+            but.layer.borderWidth = 1
+            but.setTitleColor(UIColor.lightGrayColor(), forState: .Normal) 
+            //but.contentEdgeInsets = UIEdgeInsetMake(10, 10, 10, 10)
+            but.contentEdgeInsets = UIEdgeInsetsMake(2,2,2,2) 
+            but.addTarget(self, action: "clickbtn:", forControlEvents: UIControlEvents.TouchUpInside)
+        }
+        
+        if auth.componentsSeparatedByString("公开").count > 1 { 
+            btn1.backgroundColor = UIColor.redColor()
+            btn1.layer.borderWidth = 0
+            btn1.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        }
+        if auth.componentsSeparatedByString("研究所").count > 1 {  
+            btn2.backgroundColor = UIColor.redColor()
+            btn2.layer.borderWidth = 0
+            btn2.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        } 
+        if auth.componentsSeparatedByString("机构客户").count > 1 {  
+            btn3.backgroundColor = UIColor.redColor()
+            btn3.layer.borderWidth = 0
+            btn3.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        } 
+        if auth.componentsSeparatedByString("投顾").count > 1 {  
+            btn4.backgroundColor = UIColor.redColor()
+            btn4.layer.borderWidth = 0
+            btn4.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        }         
+        if auth.componentsSeparatedByString("认证客户").count > 1 {  
+            btn5.backgroundColor = UIColor.redColor()
+            btn5.layer.borderWidth = 0
+            btn5.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        }
+        
+        
+        
         
         //NSNotificationCenter.defaultCenter().addObserver(self, selector: "textDidEndEditing", name: UITextViewTextDidEndEditingNotification, object: nil)
     }
+    
+    
+    func clickbtn(sender:UIButton)
+    {
+        print("点击事件\(sender.currentTitle)")
+        print("背景色\(sender.backgroundColor)")
+        
+        if(sender.backgroundColor == nil){
+            sender.backgroundColor = UIColor.redColor()
+            sender.layer.borderWidth = 0
+            sender.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+            
+            if(sender.currentTitle != "公开"){
+                btn1.backgroundColor = nil
+                btn1.layer.borderWidth = 1
+                btn1.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+            }
+            
+        }else{
+            sender.backgroundColor = nil
+            sender.layer.borderWidth = 1
+            sender.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+            
+        }
+        
+        var authtext:String = ""
+        for item1 in self.butlist {     
+            if(item1.backgroundColor != nil){
+                authtext = authtext + item1.currentTitle! + ","
+            }
+        }
+        DaiFileManager.document["/Audio/"+self.audioFileName].setAttr("C_Auth", value: authtext)
+        
+        
+        
+    }
+
+    
     override func viewWillAppear(animated: Bool) {
         print("viewwill appear")
         super.viewWillAppear(animated)
@@ -391,7 +480,7 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate,AVAud
                     }
                     authkey = authkey + "000000"
                 }
-
+                
                 
                 print(Message.shared.EmployeeId)
                 //let json = "{\"title\":\"\(title)\",\"content\":\"\(content)\",\"audiourl\":\"\(audiourl)\",\"authorid\":\"\(authorid)\"}"
