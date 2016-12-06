@@ -129,16 +129,6 @@
                             <nil key="highlightedColor"/>
                             <size key="shadowOffset" width="-1" height="-1"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="记住密码" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5g7-Jz-m3Q">
-                            <rect key="frame" x="46" y="218" width="65" height="26"/>
-                            <constraints>
-                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="26" id="3v8-bp-zyK"/>
-                                <constraint firstAttribute="height" constant="26" id="G8k-pC-HcQ"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                            <color key="textColor" red="0.13358015810000001" green="0.41485018899999998" blue="0.64315025250000002" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qce-Cx-hRW" userLabel="chkpassword" customClass="AIFlatSwitch" customModule="SWHYClient_DEV" customModuleProvider="target">
                             <rect key="frame" x="22" y="222" width="16" height="16"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -159,6 +149,16 @@
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="selected" value="NO"/>
                             </userDefinedRuntimeAttributes>
                         </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="记住密码" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5g7-Jz-m3Q">
+                            <rect key="frame" x="46" y="218" width="65" height="26"/>
+                            <constraints>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="26" id="3v8-bp-zyK"/>
+                                <constraint firstAttribute="height" constant="26" id="G8k-pC-HcQ"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                            <color key="textColor" red="0.13358015810000001" green="0.41485018899999998" blue="0.64315025250000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                     <constraints>

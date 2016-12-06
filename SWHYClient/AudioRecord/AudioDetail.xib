@@ -269,7 +269,8 @@
                                             <exclude reference="tV4-zH-uLi"/>
                                         </mask>
                                     </variation>
-                                    <variation key="widthClass=compact">
+                                    <variation key="widthClass=compact" misplaced="YES">
+                                        <rect key="frame" x="112" y="10" width="280" height="20"/>
                                         <mask key="constraints">
                                             <include reference="tV4-zH-uLi"/>
                                         </mask>
@@ -581,26 +582,6 @@
                         <action selector="playButtonClick:" destination="-1" eventType="touchUpInside" id="GaX-nu-UMG"/>
                     </connections>
                 </button>
-                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Lorem ipsum dolor sit er elit lamet, id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="K0s-4h-OVW" userLabel="txtDesc">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="100" id="uwT-Kx-48w"/>
-                    </constraints>
-                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                    <variation key="default">
-                        <mask key="constraints">
-                            <exclude reference="uwT-Kx-48w"/>
-                        </mask>
-                    </variation>
-                    <variation key="widthClass=compact">
-                        <mask key="constraints">
-                            <include reference="uwT-Kx-48w"/>
-                        </mask>
-                    </variation>
-                </textView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vg1-Hw-Vyb">
                     <rect key="frame" x="277" y="507" width="46" height="30"/>
                     <constraints>
@@ -623,6 +604,27 @@
                         <action selector="doUpload:" destination="-1" eventType="touchUpInside" id="cbL-qg-7oT"/>
                     </connections>
                 </button>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Lorem ipsum dolor sit er elit lamet, id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="K0s-4h-OVW" userLabel="txtDesc">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="uwT-Kx-48w"/>
+                    </constraints>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="uwT-Kx-48w"/>
+                        </mask>
+                    </variation>
+                    <variation key="widthClass=compact" misplaced="YES">
+                        <rect key="frame" x="106" y="236" width="274" height="100"/>
+                        <mask key="constraints">
+                            <include reference="uwT-Kx-48w"/>
+                        </mask>
+                    </variation>
+                </textView>
             </subviews>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="K0s-4h-OVW" secondAttribute="trailing" constant="20" id="0AS-0U-TbY"/>
@@ -676,38 +678,38 @@
                     <exclude reference="sgD-88-cut"/>
                     <exclude reference="DRr-YH-BPe"/>
                     <exclude reference="zAL-1C-hfK"/>
-                    <exclude reference="K0s-4h-OVW"/>
                     <exclude reference="Vg1-Hw-Vyb"/>
+                    <exclude reference="K0s-4h-OVW"/>
                 </mask>
                 <mask key="constraints">
+                    <exclude reference="1lc-c8-ldv"/>
+                    <exclude reference="9Rn-mO-jVH"/>
+                    <exclude reference="oFO-lg-OgY"/>
+                    <exclude reference="aoI-vx-oJS"/>
+                    <exclude reference="k2Q-H1-b2s"/>
                     <exclude reference="2wA-p5-cy5"/>
                     <exclude reference="VnH-Ba-Tf8"/>
                     <exclude reference="yiz-Xo-5gA"/>
-                    <exclude reference="EcW-Fe-KJM"/>
-                    <exclude reference="fda-om-OqQ"/>
-                    <exclude reference="vsd-Pr-fng"/>
-                    <exclude reference="aoI-vx-oJS"/>
-                    <exclude reference="k2Q-H1-b2s"/>
                     <exclude reference="0AS-0U-TbY"/>
                     <exclude reference="EN0-oH-TJi"/>
                     <exclude reference="Lb6-1l-kJC"/>
                     <exclude reference="MDR-Zd-XmQ"/>
                     <exclude reference="eq8-Gf-3eP"/>
                     <exclude reference="l6i-cX-6FA"/>
+                    <exclude reference="EcW-Fe-KJM"/>
+                    <exclude reference="fda-om-OqQ"/>
+                    <exclude reference="vsd-Pr-fng"/>
                     <exclude reference="9OG-ab-eJf"/>
                     <exclude reference="Tgm-kT-l2J"/>
                     <exclude reference="Ese-td-hp4"/>
                     <exclude reference="TNG-fx-u2T"/>
                     <exclude reference="haU-W2-0He"/>
                     <exclude reference="imH-LH-8OA"/>
+                    <exclude reference="3Ia-YA-9pm"/>
+                    <exclude reference="ux8-1E-4NO"/>
                     <exclude reference="B5N-pC-Oeo"/>
                     <exclude reference="nPl-Xy-wqy"/>
                     <exclude reference="skr-FP-2cp"/>
-                    <exclude reference="3Ia-YA-9pm"/>
-                    <exclude reference="ux8-1E-4NO"/>
-                    <exclude reference="1lc-c8-ldv"/>
-                    <exclude reference="9Rn-mO-jVH"/>
-                    <exclude reference="oFO-lg-OgY"/>
                 </mask>
             </variation>
             <variation key="widthClass=compact">
@@ -720,38 +722,38 @@
                     <include reference="sgD-88-cut"/>
                     <include reference="DRr-YH-BPe"/>
                     <include reference="zAL-1C-hfK"/>
-                    <include reference="K0s-4h-OVW"/>
                     <include reference="Vg1-Hw-Vyb"/>
+                    <include reference="K0s-4h-OVW"/>
                 </mask>
                 <mask key="constraints">
+                    <include reference="1lc-c8-ldv"/>
+                    <include reference="9Rn-mO-jVH"/>
+                    <include reference="oFO-lg-OgY"/>
+                    <include reference="aoI-vx-oJS"/>
+                    <include reference="k2Q-H1-b2s"/>
                     <include reference="2wA-p5-cy5"/>
                     <include reference="VnH-Ba-Tf8"/>
                     <include reference="yiz-Xo-5gA"/>
-                    <include reference="EcW-Fe-KJM"/>
-                    <include reference="fda-om-OqQ"/>
-                    <include reference="vsd-Pr-fng"/>
-                    <include reference="aoI-vx-oJS"/>
-                    <include reference="k2Q-H1-b2s"/>
                     <include reference="0AS-0U-TbY"/>
                     <exclude reference="EN0-oH-TJi"/>
                     <exclude reference="Lb6-1l-kJC"/>
                     <include reference="MDR-Zd-XmQ"/>
                     <include reference="eq8-Gf-3eP"/>
                     <include reference="l6i-cX-6FA"/>
+                    <include reference="EcW-Fe-KJM"/>
+                    <include reference="fda-om-OqQ"/>
+                    <include reference="vsd-Pr-fng"/>
                     <include reference="9OG-ab-eJf"/>
                     <include reference="Tgm-kT-l2J"/>
                     <include reference="Ese-td-hp4"/>
                     <include reference="TNG-fx-u2T"/>
                     <include reference="haU-W2-0He"/>
                     <include reference="imH-LH-8OA"/>
+                    <include reference="3Ia-YA-9pm"/>
+                    <include reference="ux8-1E-4NO"/>
                     <include reference="B5N-pC-Oeo"/>
                     <include reference="nPl-Xy-wqy"/>
                     <exclude reference="skr-FP-2cp"/>
-                    <include reference="3Ia-YA-9pm"/>
-                    <include reference="ux8-1E-4NO"/>
-                    <include reference="1lc-c8-ldv"/>
-                    <include reference="9Rn-mO-jVH"/>
-                    <include reference="oFO-lg-OgY"/>
                 </mask>
             </variation>
             <connections>

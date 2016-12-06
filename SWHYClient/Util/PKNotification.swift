@@ -339,7 +339,7 @@ class PKNotificationClass: UIViewController {
                         (b as! UITextField).frame = CGRectMake(parent.alertMargin, 0, self.parent.alertWidth - 2 * parent.alertMargin, 44)
                         (b as! UITextField).layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
                         (b as! UITextField).font = parent.alertMEssageFontStyle
-                        print("----------")
+                        print("-----UITextField-----")
                         items.append((b as! UITextField))
                         
                     }else if (b.isKindOfClass(UITextView)){
@@ -353,10 +353,11 @@ class PKNotificationClass: UIViewController {
                         (b as! UITextView).frame = CGRectMake(parent.alertMargin, 0, self.parent.alertWidth - 2 * parent.alertMargin, 144)
                         (b as! UITextView).layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
                         (b as! UITextView).font = parent.alertMEssageFontStyle
-                        print("==========")
+                        print("=====UITextView=====")
                         items.append((b as! UITextView))
                         
                     }else if (b.isKindOfClass(PKButton)){
+                        print("======PKButton====")
                         print((b as! PKButton).currentTitle)
                         if (b as! PKButton).currentTitle != "取消"{
                             (b as! PKButton).frame = CGRectMake(0, 0, self.parent.alertWidth, 44)
@@ -369,6 +370,20 @@ class PKNotificationClass: UIViewController {
                         }else{
                             self.cancelBut = b as! PKButton
                         }
+                    }else if (b.isKindOfClass(UIView)){
+                        let theLast:AnyObject? = items.last
+                        //print("UITextView\(b)")
+                        if (theLast != nil) {
+                            if(!theLast!.isKindOfClass(UIView)){
+                                //continue
+                            }
+                        }
+                        (b as! UIView).frame = CGRectMake(parent.alertMargin, 0, self.parent.alertWidth - 2 * parent.alertMargin, 14)
+                        (b as! UIView).layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
+                        //(b as! UIView).font = parent.alertMEssageFontStyle
+                        print("======UIView====")
+                        items.append((b as! UIView))
+                        
                     }
                 }
             }
@@ -379,7 +394,7 @@ class PKNotificationClass: UIViewController {
             cancelButton.frame = CGRectMake(0, 0, parent.alertWidth, 44)
             cancelButton.addTarget(self, action:"buttonDown:", forControlEvents: UIControlEvents.TouchUpInside)
             if (self.cancelBut != nil){
-                
+                print("cancelbut not nil")
                 self.cancelBut?.frame = CGRectMake(0, 0, parent.alertWidth, 44)
                 self.cancelBut?.addTarget(self, action:"buttonDown:", forControlEvents: UIControlEvents.TouchUpInside)
             }
@@ -532,6 +547,16 @@ class PKNotificationClass: UIViewController {
                     buttonPosY += textView.frame.height + margin
                     //print(textView.frame)
                     alertView.addSubview(textView)
+                }else if o.isKindOfClass(UIView) && !o.isKindOfClass(PKButton){
+                    
+                    let tmpView:UIView = (o as! UIView)
+                    //tmpView.delegate = self
+                    
+                    //print("assemple textView \(textView)")
+                    tmpView.frame.offsetInPlace(dx: 0, dy: buttonPosY)
+                    buttonPosY += tmpView.frame.height + margin
+                    //print(textView.frame)
+                    alertView.addSubview(tmpView)
                 }else{
                     break
                 }
@@ -540,7 +565,9 @@ class PKNotificationClass: UIViewController {
             }
             
             let buttonCnt = items.count - k
+            print("buttonCnt\(buttonCnt)")
             buttonPosY += margin*2
+            print("buttonPosY\(buttonPosY)")
             if(buttonCnt == 1) { //total button count is 2
                 /* cancelbutton resize and adjust the shape */
                 cancelButton.frame.size = CGSizeMake(parent.alertWidth/2+1, cancelButton.frame.height)
@@ -573,7 +600,7 @@ class PKNotificationClass: UIViewController {
                 
                 
             } else { //total button count is 1, 3 or more
-                
+                var posx:CGFloat = 0
                 for ; k < items.count; k++  {
                     let o:AnyObject = items[k]
                     if !o.isKindOfClass(PKButton){
@@ -592,9 +619,15 @@ class PKNotificationClass: UIViewController {
                     button.layer.borderWidth = 1.0
                     button.layer.borderColor = lineColor.CGColor
                     
-                    buttonPosY += button.frame.height
+                    //buttonPosY += button.frame.height  //luyonghua remark
+                    //button.frame.width = parent.alertWidth/items.count
+                    
+                    posx = posx + parent.alertWidth/3
+                    button.frame = CGRectMake(posx , buttonPosY, parent.alertWidth/3, cancelButton.frame.height)
+                    print("button frame = \(button.frame)")
                     alertView.addSubview(button)
                 }
+                //buttonPosY += 44 //button.frame.height //luyonghua add
                 
                 let rectCancelButton:CGRect = cancelButton.bounds
                 let rectCancelButtonMask:CGRect = CGRectMake(1, 0, rectCancelButton.width-2, rectCancelButton.height-1)
@@ -607,10 +640,12 @@ class PKNotificationClass: UIViewController {
                 
                 cancelButton.layer.borderWidth = 1.0
                 cancelButton.layer.borderColor = lineColor.CGColor
+                
+                print("cancelButton frame \(cancelButton.frame)")
             }
             
             cancelButton.frame.offsetInPlace(dx: 0, dy: buttonPosY)
-            
+            cancelButton.frame = CGRectMake(0 , buttonPosY, parent.alertWidth/3, cancelButton.frame.height)
             let alertBackgroundView = parent.generateBackground(color: UIColor.blackColor(), uiEnabled: true)
             alertBackgroundView.alpha = 0.3
             

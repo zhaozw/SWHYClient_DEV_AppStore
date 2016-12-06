@@ -230,7 +230,7 @@ import AudioKit
                                             tmptxtDesc.backgroundColor = UIColor(red: 0.95, green: 0.8, blue: 0.8, alpha: 1.0)
                                             return false
                                         }
-                                        NSNotificationCenter.defaultCenter().addObserver(self, selector: "HandleResult:", name: Config.NotifyTag.ConvertToMP3, object: nil)
+                                        NSNotificationCenter.defaultCenter().addObserver(self, selector: "HandleResult:", name: Config.NotifyTag.ConvertToMP3AndPublish, object: nil)
                                         self.covertToMP3(tmptxtTitle.text!,desc: tmptxtDesc.text!)
                                         return true
             },
@@ -264,8 +264,8 @@ import AudioKit
                 
                 //这里返回主线程，写需要主线程执行的代码
                 //println("这里返回主线程，写需要主线程执行的代码  --  Dispatch")
-                let result:Result = Result(status: "OK",message:"保存至录音资源库成功",userinfo:NSObject(),tag:Config.NotifyTag.ConvertToMP3)
-                NSNotificationCenter.defaultCenter().postNotificationName(Config.NotifyTag.ConvertToMP3, object: result)
+                let result:Result = Result(status: "OK",message:"保存至录音资源库成功",userinfo:NSObject(),tag:Config.NotifyTag.ConvertToMP3AndPublish)
+                NSNotificationCenter.defaultCenter().postNotificationName(Config.NotifyTag.ConvertToMP3AndPublish, object: result)
             })
         }
         
@@ -281,7 +281,7 @@ import AudioKit
             print("-------post  error-------------")
             PKNotification.toast(result.message)
         }else if result.status=="OK"{
-            if result.tag == Config.NotifyTag.ConvertToMP3 {
+            if result.tag == Config.NotifyTag.ConvertToMP3AndPublish {
                 print("保存至录音资源库成功---")
                 PKNotification.toast(result.message)
                 

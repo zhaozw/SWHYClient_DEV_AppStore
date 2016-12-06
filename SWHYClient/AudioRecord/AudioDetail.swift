@@ -360,12 +360,47 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate,AVAud
                  */
                 let title = DaiFileManager.document["/Audio/"+self.audioFileName].getAttr("C_Title")
                 let content = DaiFileManager.document["/Audio/"+self.audioFileName].getAttr("C_Desc")
+                let auth = DaiFileManager.document["/Audio/"+self.audioFileName].getAttr("C_Auth")
                 let audiourl = DaiFileManager.document["/Audio/"+self.audioFileName].getAttr("C_URL")
                 let authorid = Message.shared.EmployeeId!
                 
+                print(auth)
+                var authkey:String = ""
+                if auth.componentsSeparatedByString("公开").count > 1 { 
+                    authkey = "1111111111"
+                } else { 
+                    if auth.componentsSeparatedByString("研究所").count > 1 {  
+                        authkey = authkey + "1" 
+                    } else {  
+                        authkey = authkey + "0"
+                    }  
+                    if auth.componentsSeparatedByString("机构客户").count > 1 {  
+                        authkey = authkey + "1" 
+                    } else {  
+                        authkey = authkey + "0"
+                    } 
+                    if auth.componentsSeparatedByString("投顾").count > 1 {  
+                        authkey = authkey + "1" 
+                    } else {  
+                        authkey = authkey + "0"
+                    }
+                    if auth.componentsSeparatedByString("认证客户").count > 1 {  
+                        authkey = authkey+"1" 
+                    } else {  
+                        authkey = authkey + "0"
+                    }
+                    authkey = authkey + "000000"
+                }
+
+                
                 print(Message.shared.EmployeeId)
                 //let json = "{\"title\":\"\(title)\",\"content\":\"\(content)\",\"audiourl\":\"\(audiourl)\",\"authorid\":\"\(authorid)\"}"
-                let json = "{title:\"\(title)\",content:\"\(content)\",audiourl:\"\(audiourl)\",authorid:\"\(authorid)\"}"
+                //let json = "{title:\"\(title)\",content:\"\(content)\",audiourl:\"\(audiourl)\",authorid:\"\(authorid)\"}"
+                
+                print(authkey)
+                //let json = "{\"title\":\"\(title)\",\"content\":\"\(content)\",\"audiourl\":\"\(audiourl)\",\"authorid\":\"\(authorid)\"}"
+                let json = "{title:\"\(title)\",content:\"\(content)\",audiourl:\"\(audiourl)\",authorid:\"\(authorid)\",cardpermission:\"\(authkey)\"}"
+                print(json)
                 
                 
                 NSNotificationCenter.defaultCenter().addObserver(self, selector: "HandleNetworkResult:", name: Config.RequestTag.PostAudioTopic, object: nil)

@@ -55,6 +55,13 @@ import AudioKit
     var image_record_stop:UIImage = UIImage(named:"btn_record_stop")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
     var image_record_record:UIImage = UIImage(named:"btn_record_record")!.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
     
+    var but1:UIButton!
+    var but2:UIButton!
+    var but3:UIButton!
+    var but4:UIButton!
+    var but5:UIButton!
+    var butlist:[UIButton]!
+    
     
     //let noteFrequencies = [16.35,17.32,18.35,19.45,20.6,21.83,23.12,24.5,25.96,27.5,29.14,30.87]
     
@@ -122,7 +129,7 @@ import AudioKit
         //recorder.delegate = self
         
     }
-     
+    
     
     func setupPlot() {
         print("setupPlot")
@@ -311,11 +318,98 @@ import AudioKit
         //self.placeholderLabel.textColor = UIColor.init(colorLiteralRed: 72/256, green: 82/256, blue: 93/256, alpha: 1)  
         
         //*/
+        //var flatSwitch = AIFlatSwitch(frame: CGRectMake(0, 0, 50, 50))
+        
+        let labelView:UIView = UIView()
+        labelView.userInteractionEnabled=true
+        
+        /*
+         var label1:UILabel!
+         label1 = UILabel.init() // placeholderLabel是全局属性  
+         label1.frame = CGRectMake(0 , 5, 40, 20)  
+         label1.font = UIFont.systemFontOfSize(14)  
+         //label1.text = "公开"
+         label1.backgroundColor = UIColor.purpleColor() 
+         label1.textColor = UIColor.lightGrayColor()
+         label1.userInteractionEnabled=true
+         let tap = UITapGestureRecognizer.init(target: self, action: Selector.init("tapLabel1"))
+         
+         //let tap = UITapGestureRecognizer.init(target: self, action: #selector(AudioRecorder.userClick(sender:)))
+         label1.addGestureRecognizer(tap)
+         */
+        
+        //var but1:UIButton!
+        but1 = UIButton.init()
+        but1.frame = CGRectMake(0 , 5, 30, 20) 
+        but1.backgroundColor = UIColor.redColor() 
+        but1.setTitle("公开", forState:UIControlState.Normal)
+        but1.titleLabel!.font = UIFont.systemFontOfSize(13) 
+        but1.layer.cornerRadius = 4
+        but1.layer.borderColor = UIColor.lightGrayColor().CGColor  
+        but1.layer.borderWidth = 1
+        
+        but1.addTarget(self, action: "clickbtn:", forControlEvents: UIControlEvents.TouchUpInside)
+        labelView.addSubview(but1)
         
         
-        let btnOK:PKButton = PKButton(title: "确认",
+        //var but2:UIButton!
+        but2 = UIButton.init()
+        but2.frame = CGRectMake(35 , 5, 45, 20) 
+        //but2.backgroundColor = UIColor.lightGrayColor()
+        but2.setTitle("研究所", forState:UIControlState.Normal)
+        but2.titleLabel!.font = UIFont.systemFontOfSize(13) 
+        but2.layer.cornerRadius = 4
+        but2.layer.borderColor = UIColor.lightGrayColor().CGColor  
+        but2.layer.borderWidth = 1
+        but2.setTitleColor(UIColor.lightGrayColor(), forState: .Normal) 
+        but2.addTarget(self, action: "clickbtn:", forControlEvents: UIControlEvents.TouchUpInside)
+        labelView.addSubview(but2)
+        
+        //var but3:UIButton!
+        but3 = UIButton.init()
+        but3.frame = CGRectMake(85 , 5, 55, 20) 
+        //but3.backgroundColor = UIColor.lightGrayColor() 
+        but3.setTitle("机构客户", forState:UIControlState.Normal)
+        but3.titleLabel!.font = UIFont.systemFontOfSize(13) 
+        but3.layer.cornerRadius = 4
+        but3.layer.borderColor = UIColor.lightGrayColor().CGColor  
+        but3.layer.borderWidth = 1
+        but3.setTitleColor(UIColor.lightGrayColor(), forState: .Normal) 
+        but3.addTarget(self, action: "clickbtn:", forControlEvents: UIControlEvents.TouchUpInside)
+        labelView.addSubview(but3)
+        
+        //var but4:UIButton!
+        but4 = UIButton.init()
+        but4.frame = CGRectMake(145 , 5, 35, 20) 
+        //but4.backgroundColor = UIColor.lightGrayColor() 
+        but4.setTitle("投顾", forState:UIControlState.Normal)
+        but4.titleLabel!.font = UIFont.systemFontOfSize(13)
+        but4.layer.cornerRadius = 4
+        but4.layer.borderColor = UIColor.lightGrayColor().CGColor  
+        but4.layer.borderWidth = 1
+        but4.setTitleColor(UIColor.lightGrayColor(), forState: .Normal) 
+        but4.addTarget(self, action: "clickbtn:", forControlEvents: UIControlEvents.TouchUpInside)
+        labelView.addSubview(but4)
+        
+        //var but5:UIButton!
+        but5 = UIButton.init()
+        but5.frame = CGRectMake(185 , 5, 55, 20) 
+        //but5.backgroundColor = UIColor.lightGrayColor() 
+        but5.setTitle("认证客户", forState:UIControlState.Normal)
+        but5.titleLabel!.font = UIFont.systemFontOfSize(13) 
+        but5.layer.cornerRadius = 4
+        but5.layer.borderColor = UIColor.lightGrayColor().CGColor  
+        but5.layer.borderWidth = 1
+        but5.setTitleColor(UIColor.lightGrayColor(), forState: .Normal) 
+        but5.addTarget(self, action: "clickbtn:", forControlEvents: UIControlEvents.TouchUpInside)
+        labelView.addSubview(but5)
+        
+        butlist = [but1,but2,but3,but4,but5]
+        print(butlist.count)
+        
+        let btnOK:PKButton = PKButton(title: "发布",
                                       action: { (messageLabel, items) -> Bool in
-                                        print("确认 is clicked.")
+                                        print("发布 is clicked.")
                                         let tmptxtTitle: UITextField = items[0] as! UITextField //items index number
                                         //let tmptxtDesc: UITextField = items[1] as! UITextField //items index number
                                         let tmptxtDesc: UITextView = items[1] as! UITextView //items index number
@@ -326,14 +420,55 @@ import AudioKit
                                             tmptxtDesc.backgroundColor = UIColor(red: 0.95, green: 0.8, blue: 0.8, alpha: 1.0)
                                             return false
                                         }
+                                        
+                                        var authtext:String = ""
+                                        for item1 in self.butlist {     
+                                            if(item1.backgroundColor != nil){
+                                                authtext = authtext + item1.currentTitle! + ","
+                                            }
+                                        }
+                                        print(authtext)
+                                        
+                                        
                                         self.plot.clear()
-                                        NSNotificationCenter.defaultCenter().addObserver(self, selector: "HandleResult:", name: Config.NotifyTag.ConvertToMP3, object: nil)
-                                        self.covertToMP3(tmptxtTitle.text!,desc: tmptxtDesc.text!)
+                                        NSNotificationCenter.defaultCenter().addObserver(self, selector: "HandleResult:", name: Config.NotifyTag.ConvertToMP3AndPublish, object: nil)
+                                        self.covertToMP3(tmptxtTitle.text!,desc: tmptxtDesc.text!,auth:authtext,tag:Config.NotifyTag.ConvertToMP3AndPublish)
                                         return true
             },
                                       fontColor: UIColor(red: 0, green: 0.55, blue: 0.9, alpha: 1.0),
                                       backgroundColor: nil)
         
+        
+        let btnSave:PKButton = PKButton(title: "保存",
+                                        action: { (messageLabel, items) -> Bool in
+                                            print("保存 is clicked.")
+                                            let tmptxtTitle: UITextField = items[0] as! UITextField //items index number
+                                            //let tmptxtDesc: UITextField = items[1] as! UITextField //items index number
+                                            let tmptxtDesc: UITextView = items[1] as! UITextView //items index number
+                                            
+                                            if (tmptxtTitle.text == "" || tmptxtDesc.text == ""){
+                                                messageLabel?.text = "请填写标题与摘要."
+                                                tmptxtTitle.backgroundColor = UIColor(red: 0.95, green: 0.8, blue: 0.8, alpha: 1.0)
+                                                tmptxtDesc.backgroundColor = UIColor(red: 0.95, green: 0.8, blue: 0.8, alpha: 1.0)
+                                                return false
+                                            }
+                                            
+                                            
+                                            var authtext:String = ""
+                                            for item1 in self.butlist {     
+                                                if(item1.backgroundColor != nil){
+                                                    authtext = authtext + item1.currentTitle! + ","
+                                                }
+                                            }
+                                            print(authtext)
+                                            self.plot.clear()
+                                            NSNotificationCenter.defaultCenter().addObserver(self, selector: "HandleResult:", name: Config.NotifyTag.ConvertToMP3AndSave, object: nil)
+                                            //self.covertToMP3(tmptxtTitle.text!,desc: tmptxtDesc.text!)
+                                            self.covertToMP3(tmptxtTitle.text!,desc: tmptxtDesc.text!,auth:authtext,tag:Config.NotifyTag.ConvertToMP3AndSave)
+                                            return true
+            },
+                                        fontColor: UIColor(red: 0, green: 0.55, blue: 0.9, alpha: 1.0),
+                                        backgroundColor: nil)
         
         let btnCancel:PKButton = PKButton(title: "取消",
                                           action: { (messageLabel, items) -> Bool in
@@ -345,14 +480,16 @@ import AudioKit
                                           backgroundColor: nil)
         
         PKNotification.alert(
-            title: "保存并发布",
-            message: "保存并发布至公众号",
-            items: [txtTitle, txtDesc,btnCancel,btnOK],
+            title: "保存或发布",
+            message: "保存或发布至公众号",
+            items: [txtTitle, txtDesc,labelView,btnCancel,btnSave,btnOK],
             cancelButtonTitle: "如果items里有取消字样的按钮，则会忽略这个取消按钮",
             tintColor: nil)
     }
     
-    func covertToMP3(title:String, desc:String){
+    
+    
+    func covertToMP3(title:String, desc:String,auth:String,tag:String){
         print("coverttomp3")
         let text = "请稍候，正在发布中..."
         //self.showWaitOverlayWithText(text)
@@ -368,14 +505,15 @@ import AudioKit
             
             DaiFileManager.document["/Audio/"+self.audioFileName].setAttr("C_Title", value: title)
             DaiFileManager.document["/Audio/"+self.audioFileName].setAttr("C_Desc", value: desc)
+            DaiFileManager.document["/Audio/"+self.audioFileName].setAttr("C_Auth", value: auth)
             DaiFileManager.document["/Audio/"+self.audioFileName].setAttr("C_Duration", value: self.timeLabel.text!)
             //PKNotification.toast("保存至录音资源库成功")
             dispatch_async(dispatch_get_main_queue(), {
                 
                 //这里返回主线程，写需要主线程执行的代码
                 //println("这里返回主线程，写需要主线程执行的代码  --  Dispatch")
-                let result:Result = Result(status: "OK",message:"保存至录音资源库成功",userinfo:NSObject(),tag:Config.NotifyTag.ConvertToMP3)
-                NSNotificationCenter.defaultCenter().postNotificationName(Config.NotifyTag.ConvertToMP3, object: result)
+                let result:Result = Result(status: "OK",message:"保存至录音资源库成功",userinfo:NSObject(),tag:tag)
+                NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
             })
         }
         
@@ -396,7 +534,15 @@ import AudioKit
             // Don't forget to unblock!
             SwiftOverlays.removeAllBlockingOverlays()
         }else if result.status=="OK"{
-            if result.tag == Config.NotifyTag.ConvertToMP3 {
+            if result.tag == Config.NotifyTag.ConvertToMP3AndSave {
+                print(result.message)
+                PKNotification.toast(result.message)
+                SwiftOverlays.removeAllBlockingOverlays()
+                //接着直接上传录音至服务器
+                //let filePath = DaiFileManager.document["/Audio/"+self.audioFileName].path
+                //NSNotificationCenter.defaultCenter().addObserver(self, selector: "HandleResult:", name: Config.RequestTag.PostUploadAudioFile, object: nil)
+                //NetworkEngine.sharedInstance.postUploadFile(Config.URL.PostUploadAudioFile, filePath: filePath, tag: Config.RequestTag.PostUploadAudioFile)
+            }else if result.tag == Config.NotifyTag.ConvertToMP3AndPublish {
                 print(result.message)
                 //PKNotification.toast(result.message)
                 
@@ -426,13 +572,41 @@ import AudioKit
                  */
                 let title = DaiFileManager.document["/Audio/"+self.audioFileName].getAttr("C_Title")
                 let content = DaiFileManager.document["/Audio/"+self.audioFileName].getAttr("C_Desc")
+                let auth = DaiFileManager.document["/Audio/"+self.audioFileName].getAttr("C_Auth")
                 let audiourl = DaiFileManager.document["/Audio/"+self.audioFileName].getAttr("C_URL")
                 let authorid = Message.shared.EmployeeId!
-                
+                print(auth)
+                var authkey:String = ""
+                if auth.componentsSeparatedByString("公开").count > 1 { 
+                    authkey = "1111111111"
+                } else { 
+                    if auth.componentsSeparatedByString("研究所").count > 1 {  
+                        authkey = authkey + "1" 
+                    } else {  
+                        authkey = authkey + "0"
+                    }  
+                    if auth.componentsSeparatedByString("机构客户").count > 1 {  
+                        authkey = authkey + "1" 
+                    } else {  
+                        authkey = authkey + "0"
+                    } 
+                    if auth.componentsSeparatedByString("投顾").count > 1 {  
+                        authkey = authkey + "1" 
+                    } else {  
+                        authkey = authkey + "0"
+                    }
+                    if auth.componentsSeparatedByString("认证客户").count > 1 {  
+                        authkey = authkey+"1" 
+                    } else {  
+                        authkey = authkey + "0"
+                    }
+                    authkey = authkey + "000000"
+                }
                 print(Message.shared.EmployeeId)
+                print(authkey)
                 //let json = "{\"title\":\"\(title)\",\"content\":\"\(content)\",\"audiourl\":\"\(audiourl)\",\"authorid\":\"\(authorid)\"}"
-                let json = "{title:\"\(title)\",content:\"\(content)\",audiourl:\"\(audiourl)\",authorid:\"\(authorid)\"}"
-                
+                let json = "{title:\"\(title)\",content:\"\(content)\",audiourl:\"\(audiourl)\",authorid:\"\(authorid)\",cardpermission:\"\(authkey)\"}"
+                print(json)
                 
                 NSNotificationCenter.defaultCenter().addObserver(self, selector: "HandleResult:", name: Config.RequestTag.PostAudioTopic, object: nil)
                 //tk001hkieder25091
@@ -757,6 +931,42 @@ import AudioKit
         }
         
     }
-    
-    
+    func userClick(sender: UITapGestureRecognizer) {
+        
+        
+        //let myLabel = view.viewWithTag(sender.view!.tag) as! UILabel
+        print("click lable")
+    }
+    func tapLabel1(){
+        
+        print("tap the label 1")
+        
+    }
+    func clickbtn(sender:UIButton)
+    {
+        print("点击事件\(sender.currentTitle)")
+        print("背景色\(sender.backgroundColor)")
+        
+        if(sender.backgroundColor == nil){
+            sender.backgroundColor = UIColor.redColor()
+            sender.layer.borderWidth = 0
+            sender.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+            
+            if(sender.currentTitle != "公开"){
+                but1.backgroundColor = nil
+                but1.layer.borderWidth = 1
+                but1.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+            }
+            
+        }else{
+            sender.backgroundColor = nil
+            sender.layer.borderWidth = 1
+            sender.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+            
+        }
+        
+        
+        
+        
+    }
 }

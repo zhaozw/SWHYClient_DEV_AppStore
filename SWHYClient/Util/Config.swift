@@ -32,7 +32,9 @@ class Config{
     struct NotifyTag {
         static let RevokeSyncAddressbook = "RevokeSyncAddressbook"
         static let RevokeRemoveAddressbook = "RevokeRemoveAddressbook"
-        static let ConvertToMP3 = "ConvertToMP3"
+        static let ConvertToMP3AndPublish = "ConvertToMP3AndPublish"
+        static let ConvertToMP3AndSave = "ConvertToMP3AndSave"
+
     }
     
     
