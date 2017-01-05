@@ -207,18 +207,37 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate,AVAud
             sender.layer.borderWidth = 0
             sender.setTitleColor(UIColor.whiteColor(), forState: .Normal)
             
-            if(sender.currentTitle != "公开"){
-                btn1.backgroundColor = nil
-                btn1.layer.borderWidth = 1
-                btn1.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+            //公开选中时，全选所有按钮
+            if(sender.currentTitle == "公开"){
+                for item1 in self.butlist {     
+                    item1.backgroundColor = UIColor.redColor()
+                    item1.layer.borderWidth = 0
+                    item1.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+                } 
             }
-            
+                        
         }else{
             sender.backgroundColor = nil
             sender.layer.borderWidth = 1
             sender.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
             
+            //公开非选中时，非选所有按钮
+            if(sender.currentTitle == "公开"){
+                for item1 in self.butlist {     
+                    item1.backgroundColor = nil
+                    item1.layer.borderWidth = 1
+                    item1.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+                } 
+            }else{
+                btn1.backgroundColor = nil
+                btn1.layer.borderWidth = 1
+                btn1.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+            
+            }
+            
         }
+        
+        
         
         var authtext:String = ""
         for item1 in self.butlist {     

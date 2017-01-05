@@ -346,7 +346,7 @@ import AudioKit
         but1.titleLabel!.font = UIFont.systemFontOfSize(13) 
         but1.layer.cornerRadius = 4
         but1.layer.borderColor = UIColor.lightGrayColor().CGColor  
-        but1.layer.borderWidth = 1
+        but1.layer.borderWidth = 0
         
         but1.addTarget(self, action: "clickbtn:", forControlEvents: UIControlEvents.TouchUpInside)
         labelView.addSubview(but1)
@@ -355,52 +355,52 @@ import AudioKit
         //var but2:UIButton!
         but2 = UIButton.init()
         but2.frame = CGRectMake(35 , 5, 45, 20) 
-        //but2.backgroundColor = UIColor.lightGrayColor()
+        but2.backgroundColor = UIColor.redColor()
         but2.setTitle("研究所", forState:UIControlState.Normal)
         but2.titleLabel!.font = UIFont.systemFontOfSize(13) 
         but2.layer.cornerRadius = 4
         but2.layer.borderColor = UIColor.lightGrayColor().CGColor  
-        but2.layer.borderWidth = 1
-        but2.setTitleColor(UIColor.lightGrayColor(), forState: .Normal) 
+        but2.layer.borderWidth = 0
+        but2.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         but2.addTarget(self, action: "clickbtn:", forControlEvents: UIControlEvents.TouchUpInside)
         labelView.addSubview(but2)
         
         //var but3:UIButton!
         but3 = UIButton.init()
         but3.frame = CGRectMake(85 , 5, 55, 20) 
-        //but3.backgroundColor = UIColor.lightGrayColor() 
+        but3.backgroundColor = UIColor.redColor() 
         but3.setTitle("机构客户", forState:UIControlState.Normal)
         but3.titleLabel!.font = UIFont.systemFontOfSize(13) 
         but3.layer.cornerRadius = 4
         but3.layer.borderColor = UIColor.lightGrayColor().CGColor  
-        but3.layer.borderWidth = 1
-        but3.setTitleColor(UIColor.lightGrayColor(), forState: .Normal) 
+        but3.layer.borderWidth = 0
+        but3.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         but3.addTarget(self, action: "clickbtn:", forControlEvents: UIControlEvents.TouchUpInside)
         labelView.addSubview(but3)
         
         //var but4:UIButton!
         but4 = UIButton.init()
         but4.frame = CGRectMake(145 , 5, 35, 20) 
-        //but4.backgroundColor = UIColor.lightGrayColor() 
+        but4.backgroundColor = UIColor.redColor() 
         but4.setTitle("投顾", forState:UIControlState.Normal)
         but4.titleLabel!.font = UIFont.systemFontOfSize(13)
         but4.layer.cornerRadius = 4
         but4.layer.borderColor = UIColor.lightGrayColor().CGColor  
-        but4.layer.borderWidth = 1
-        but4.setTitleColor(UIColor.lightGrayColor(), forState: .Normal) 
+        but4.layer.borderWidth = 0
+        but4.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         but4.addTarget(self, action: "clickbtn:", forControlEvents: UIControlEvents.TouchUpInside)
         labelView.addSubview(but4)
         
         //var but5:UIButton!
         but5 = UIButton.init()
         but5.frame = CGRectMake(185 , 5, 55, 20) 
-        //but5.backgroundColor = UIColor.lightGrayColor() 
+        but5.backgroundColor = UIColor.redColor()
         but5.setTitle("认证客户", forState:UIControlState.Normal)
         but5.titleLabel!.font = UIFont.systemFontOfSize(13) 
         but5.layer.cornerRadius = 4
         but5.layer.borderColor = UIColor.lightGrayColor().CGColor  
-        but5.layer.borderWidth = 1
-        but5.setTitleColor(UIColor.lightGrayColor(), forState: .Normal) 
+        but5.layer.borderWidth = 0
+        but5.setTitleColor(UIColor.whiteColor(), forState: .Normal)
         but5.addTarget(self, action: "clickbtn:", forControlEvents: UIControlEvents.TouchUpInside)
         labelView.addSubview(but5)
         
@@ -505,7 +505,7 @@ import AudioKit
             
             DaiFileManager.document["/Audio/"+self.audioFileName].setAttr("C_Title", value: title)
             DaiFileManager.document["/Audio/"+self.audioFileName].setAttr("C_Desc", value: desc)
-            DaiFileManager.document["/Audio/"+self.audioFileName].setAttr("C_Auth", value: auth)
+                                                    
             DaiFileManager.document["/Audio/"+self.audioFileName].setAttr("C_Duration", value: self.timeLabel.text!)
             //PKNotification.toast("保存至录音资源库成功")
             dispatch_async(dispatch_get_main_queue(), {
@@ -947,6 +947,7 @@ import AudioKit
         print("点击事件\(sender.currentTitle)")
         print("背景色\(sender.backgroundColor)")
         
+        /*
         if(sender.backgroundColor == nil){
             sender.backgroundColor = UIColor.redColor()
             sender.layer.borderWidth = 0
@@ -964,8 +965,42 @@ import AudioKit
             sender.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
             
         }
-        
-        
+        */
+        if(sender.backgroundColor == nil){
+            sender.backgroundColor = UIColor.redColor()
+            sender.layer.borderWidth = 0
+            sender.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+            
+            //公开选中时，全选所有按钮
+            if(sender.currentTitle == "公开"){
+                for item1 in self.butlist {     
+                    item1.backgroundColor = UIColor.redColor()
+                    item1.layer.borderWidth = 0
+                    item1.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+                } 
+            }
+            
+        }else{
+            sender.backgroundColor = nil
+            sender.layer.borderWidth = 1
+            sender.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+            
+            //公开非选中时，非选所有按钮
+            if(sender.currentTitle == "公开"){
+                for item1 in self.butlist {     
+                    item1.backgroundColor = nil
+                    item1.layer.borderWidth = 1
+                    item1.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+                } 
+            }else{
+                but1.backgroundColor = nil
+                but1.layer.borderWidth = 1
+                but1.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+                
+            }
+            
+        }
+
         
         
     }
