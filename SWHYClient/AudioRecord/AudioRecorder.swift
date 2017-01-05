@@ -505,7 +505,7 @@ import AudioKit
             
             DaiFileManager.document["/Audio/"+self.audioFileName].setAttr("C_Title", value: title)
             DaiFileManager.document["/Audio/"+self.audioFileName].setAttr("C_Desc", value: desc)
-                                                    
+            DaiFileManager.document["/Audio/"+self.audioFileName].setAttr("C_Auth", value: auth)
             DaiFileManager.document["/Audio/"+self.audioFileName].setAttr("C_Duration", value: self.timeLabel.text!)
             //PKNotification.toast("保存至录音资源库成功")
             dispatch_async(dispatch_get_main_queue(), {
