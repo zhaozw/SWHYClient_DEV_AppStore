@@ -14,15 +14,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="358" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XKz-UI-uFG" userLabel="name">
-                        <rect key="frame" x="58" y="4" width="201" height="20"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="170" id="tFe-jj-Xl2"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nuN-Zy-d3E">
                         <rect key="frame" x="8" y="3" width="44" height="38"/>
                         <constraints>
@@ -64,18 +55,27 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XKz-UI-uFG" userLabel="name">
+                        <rect key="frame" x="60" y="4" width="205" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="205" id="tFe-jj-Xl2"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="cn0-TP-jbu" secondAttribute="bottom" id="4SK-Iv-bPu"/>
                     <constraint firstItem="7vQ-30-AMd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="3" id="CvT-qT-Etg"/>
                     <constraint firstItem="nuN-Zy-d3E" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="Cw7-sT-0gj"/>
-                    <constraint firstItem="XKz-UI-uFG" firstAttribute="leading" secondItem="nuN-Zy-d3E" secondAttribute="trailing" constant="6" id="DHW-r0-6Z1"/>
-                    <constraint firstItem="XKz-UI-uFG" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="G94-Xz-aQJ"/>
                     <constraint firstAttribute="bottom" secondItem="pm9-l2-ZPt" secondAttribute="bottom" id="Xbk-0S-gCE"/>
                     <constraint firstAttribute="trailing" secondItem="cn0-TP-jbu" secondAttribute="trailing" constant="30" id="bAJ-fc-O6t"/>
                     <constraint firstAttribute="trailing" secondItem="7vQ-30-AMd" secondAttribute="trailing" id="dkg-xl-5h2"/>
                     <constraint firstItem="nuN-Zy-d3E" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="3" id="eIZ-AH-HHs"/>
                     <constraint firstItem="pm9-l2-ZPt" firstAttribute="leading" secondItem="nuN-Zy-d3E" secondAttribute="trailing" constant="8" id="lE2-xH-L2T"/>
+                    <constraint firstItem="XKz-UI-uFG" firstAttribute="leading" secondItem="pm9-l2-ZPt" secondAttribute="leading" id="mcc-Fb-28f"/>
+                    <constraint firstItem="XKz-UI-uFG" firstAttribute="bottom" secondItem="7vQ-30-AMd" secondAttribute="bottom" id="w0V-Gh-Nkm"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

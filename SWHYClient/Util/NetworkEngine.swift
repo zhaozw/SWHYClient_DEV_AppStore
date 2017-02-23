@@ -62,7 +62,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
         request.addValue("application/x-www-form-urlencoded;charset=utf-8", forHTTPHeaderField: "Content-Type")
         
         
-        //print(postData)
+        print(postData)
         
         //let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(Config.Encoding.GB2312))
         
@@ -794,16 +794,16 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
             print("challenge host= \(self.serverlist[challenge.protectionSpace.host])")
             //if self.alive == false {
             if self.serverlist[challenge.protectionSpace.host] != true {
-                //if success_auth == 0 {
-                //print("send credential NTLM with user credential \(String(success_auth))")
+                if success_auth == 0 {
+                print("send credential NTLM with user credential \(String(success_auth))")
                 let defaultCredentials: NSURLCredential = NSURLCredential(user: Config.Net.Domain+"\\"+username, password: password, persistence:NSURLCredentialPersistence.ForSession)
                 completionHandler(NSURLSessionAuthChallengeDisposition.UseCredential,defaultCredentials)
                 success_auth = success_auth + 1  
-                //} else
-                //{
-                //    println("Cancel Challenge \(String(success_auth))")
-                //    completionHandler(NSURLSessionAuthChallengeDisposition.CancelAuthenticationChallenge,nil)
-                //}
+                }
+                else{
+                    print("Cancel Challenge \(String(success_auth))")
+                    completionHandler(NSURLSessionAuthChallengeDisposition.CancelAuthenticationChallenge,nil)
+                }
             }else{
                 print("Challenge Credential Default alive \(String(success_auth))")
                 completionHandler(NSURLSessionAuthChallengeDisposition.PerformDefaultHandling,nil)

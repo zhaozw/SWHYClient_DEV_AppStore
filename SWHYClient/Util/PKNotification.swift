@@ -645,7 +645,8 @@ class PKNotificationClass: UIViewController {
             }
             
             cancelButton.frame.offsetInPlace(dx: 0, dy: buttonPosY)
-            cancelButton.frame = CGRectMake(0 , buttonPosY, parent.alertWidth/3, cancelButton.frame.height)
+            //cancelButton.frame = CGRectMake(0 , buttonPosY, parent.alertWidth/3, cancelButton.frame.height)
+            cancelButton.frame = CGRectMake(0 , buttonPosY, parent.alertWidth/CGFloat(Float((buttonCnt+1))), cancelButton.frame.height)
             let alertBackgroundView = parent.generateBackground(color: UIColor.blackColor(), uiEnabled: true)
             alertBackgroundView.alpha = 0.3
             
