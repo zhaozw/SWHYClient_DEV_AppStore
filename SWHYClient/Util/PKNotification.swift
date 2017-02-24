@@ -378,7 +378,7 @@ class PKNotificationClass: UIViewController {
                                 //continue
                             }
                         }
-                        (b as! UIView).frame = CGRectMake(parent.alertMargin, 0, self.parent.alertWidth - 2 * parent.alertMargin, 14)
+                        //(b as! UIView).frame = CGRectMake(parent.alertMargin, 0, self.parent.alertWidth - 2 * parent.alertMargin, 14)
                         (b as! UIView).layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
                         //(b as! UIView).font = parent.alertMEssageFontStyle
                         print("======UIView====")
