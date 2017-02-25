@@ -635,10 +635,12 @@
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rvk-EN-HcI" userLabel="Btn2">
                     <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="80" id="lb8-e1-mJA"/>
                         <constraint firstAttribute="height" constant="30" id="ljL-cx-DuO"/>
                     </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <state key="normal" title="机构客户">
                         <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -772,38 +774,38 @@
                     <exclude reference="K0s-4h-OVW"/>
                 </mask>
                 <mask key="constraints">
+                    <exclude reference="ca3-kh-ClM"/>
+                    <exclude reference="d4W-Lv-io0"/>
+                    <exclude reference="1lc-c8-ldv"/>
+                    <exclude reference="9Rn-mO-jVH"/>
+                    <exclude reference="oFO-lg-OgY"/>
+                    <exclude reference="3cJ-77-ser"/>
+                    <exclude reference="OcR-QJ-Zn6"/>
+                    <exclude reference="Ytn-he-nIx"/>
+                    <exclude reference="aoI-vx-oJS"/>
+                    <exclude reference="k2Q-H1-b2s"/>
                     <exclude reference="2wA-p5-cy5"/>
                     <exclude reference="VnH-Ba-Tf8"/>
                     <exclude reference="yiz-Xo-5gA"/>
-                    <exclude reference="EcW-Fe-KJM"/>
-                    <exclude reference="fda-om-OqQ"/>
-                    <exclude reference="vsd-Pr-fng"/>
-                    <exclude reference="aoI-vx-oJS"/>
-                    <exclude reference="k2Q-H1-b2s"/>
                     <exclude reference="0AS-0U-TbY"/>
                     <exclude reference="MDR-Zd-XmQ"/>
                     <exclude reference="eq8-Gf-3eP"/>
                     <exclude reference="l6i-cX-6FA"/>
-                    <exclude reference="3cJ-77-ser"/>
-                    <exclude reference="OcR-QJ-Zn6"/>
-                    <exclude reference="Ytn-he-nIx"/>
+                    <exclude reference="EcW-Fe-KJM"/>
+                    <exclude reference="fda-om-OqQ"/>
+                    <exclude reference="vsd-Pr-fng"/>
                     <exclude reference="9OG-ab-eJf"/>
                     <exclude reference="GET-XA-Hae"/>
                     <exclude reference="Tgm-kT-l2J"/>
                     <exclude reference="ZTt-Ji-uNJ"/>
                     <exclude reference="Ese-td-hp4"/>
                     <exclude reference="TNG-fx-u2T"/>
-                    <exclude reference="ca3-kh-ClM"/>
-                    <exclude reference="d4W-Lv-io0"/>
                     <exclude reference="haU-W2-0He"/>
                     <exclude reference="imH-LH-8OA"/>
-                    <exclude reference="B5N-pC-Oeo"/>
-                    <exclude reference="nPl-Xy-wqy"/>
                     <exclude reference="3Ia-YA-9pm"/>
                     <exclude reference="ux8-1E-4NO"/>
-                    <exclude reference="1lc-c8-ldv"/>
-                    <exclude reference="9Rn-mO-jVH"/>
-                    <exclude reference="oFO-lg-OgY"/>
+                    <exclude reference="B5N-pC-Oeo"/>
+                    <exclude reference="nPl-Xy-wqy"/>
                 </mask>
             </variation>
             <variation key="widthClass=compact">
@@ -823,38 +825,38 @@
                     <include reference="K0s-4h-OVW"/>
                 </mask>
                 <mask key="constraints">
+                    <include reference="ca3-kh-ClM"/>
+                    <include reference="d4W-Lv-io0"/>
+                    <include reference="1lc-c8-ldv"/>
+                    <include reference="9Rn-mO-jVH"/>
+                    <include reference="oFO-lg-OgY"/>
+                    <include reference="3cJ-77-ser"/>
+                    <include reference="OcR-QJ-Zn6"/>
+                    <include reference="Ytn-he-nIx"/>
+                    <include reference="aoI-vx-oJS"/>
+                    <include reference="k2Q-H1-b2s"/>
                     <include reference="2wA-p5-cy5"/>
                     <include reference="VnH-Ba-Tf8"/>
                     <include reference="yiz-Xo-5gA"/>
-                    <include reference="EcW-Fe-KJM"/>
-                    <include reference="fda-om-OqQ"/>
-                    <include reference="vsd-Pr-fng"/>
-                    <include reference="aoI-vx-oJS"/>
-                    <include reference="k2Q-H1-b2s"/>
                     <include reference="0AS-0U-TbY"/>
                     <include reference="MDR-Zd-XmQ"/>
                     <include reference="eq8-Gf-3eP"/>
                     <include reference="l6i-cX-6FA"/>
-                    <include reference="3cJ-77-ser"/>
-                    <include reference="OcR-QJ-Zn6"/>
-                    <include reference="Ytn-he-nIx"/>
+                    <include reference="EcW-Fe-KJM"/>
+                    <include reference="fda-om-OqQ"/>
+                    <include reference="vsd-Pr-fng"/>
                     <include reference="9OG-ab-eJf"/>
                     <include reference="GET-XA-Hae"/>
                     <include reference="Tgm-kT-l2J"/>
                     <include reference="ZTt-Ji-uNJ"/>
                     <include reference="Ese-td-hp4"/>
                     <include reference="TNG-fx-u2T"/>
-                    <include reference="ca3-kh-ClM"/>
-                    <include reference="d4W-Lv-io0"/>
                     <include reference="haU-W2-0He"/>
                     <include reference="imH-LH-8OA"/>
-                    <include reference="B5N-pC-Oeo"/>
-                    <include reference="nPl-Xy-wqy"/>
                     <include reference="3Ia-YA-9pm"/>
                     <include reference="ux8-1E-4NO"/>
-                    <include reference="1lc-c8-ldv"/>
-                    <include reference="9Rn-mO-jVH"/>
-                    <include reference="oFO-lg-OgY"/>
+                    <include reference="B5N-pC-Oeo"/>
+                    <include reference="nPl-Xy-wqy"/>
                 </mask>
             </variation>
             <connections>

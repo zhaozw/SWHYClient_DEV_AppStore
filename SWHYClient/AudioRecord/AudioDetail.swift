@@ -195,6 +195,8 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate,AVAud
          点的不是公开  则选中  自己选中
          非选中   自己和公开都非选中
          */
+        /*
+         2017-02-25 取消联动
         if(sender.currentTitle == "公开"){
             for item1 in self.butlist {     
                 item1.selected = sender.selected
@@ -205,7 +207,7 @@ class AudioDetail: UIViewController,UITextFieldDelegate,UITextViewDelegate,AVAud
             }
             
         }
-               
+        */
         
         var authtext:String = ""
         for item1 in self.butlist {     

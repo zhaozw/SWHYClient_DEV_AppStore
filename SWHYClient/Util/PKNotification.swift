@@ -580,7 +580,8 @@ class PKNotificationClass: UIViewController {
                 cancelMaskLayer.path = cancelMaskPath.CGPath
                 cancelButton.layer.mask = cancelMaskLayer
                 cancelButton.layer.borderWidth = 1.0
-                cancelButton.layer.borderColor = lineColor.CGColor
+                //cancelButton.layer.borderColor = lineColor.CGColor
+                cancelButton.layer.borderColor = UIColor(red: 178/255, green: 178/255, blue: 178/255, alpha: 0.5).CGColor
                 
                 /* the other button resize and adjust the shape */
                 let button = (items[k] as! PKButton)
@@ -616,8 +617,9 @@ class PKNotificationClass: UIViewController {
                     maskLayer.frame = button.bounds
                     maskLayer.path = maskPath.CGPath
                     button.layer.mask = maskLayer
-                    button.layer.borderWidth = 1.0
-                    button.layer.borderColor = lineColor.CGColor
+                    button.layer.borderWidth = 1.0 //1.0
+                    //button.layer.borderColor = lineColor.CGColor
+                    button.layer.borderColor = UIColor(red: 178/255, green: 178/255, blue: 178/255, alpha: 0.5).CGColor
                     
                     //buttonPosY += button.frame.height  //luyonghua remark
                     //button.frame.width = parent.alertWidth/items.count
@@ -625,6 +627,7 @@ class PKNotificationClass: UIViewController {
                     posx = posx + parent.alertWidth/3
                     button.frame = CGRectMake(posx , buttonPosY, parent.alertWidth/3, cancelButton.frame.height)
                     print("button frame = \(button.frame)")
+                    button.backgroundColor = UIColor.clearColor()
                     alertView.addSubview(button)
                 }
                 //buttonPosY += 44 //button.frame.height //luyonghua add
