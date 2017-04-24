@@ -250,14 +250,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate,WXApiDelegate {
         }
     }
     func application(application: UIApplication, handleOpenURL url: NSURL) -> Bool {
+        print("application HandleOpenURL 111= \(url)")
         return WXApi.handleOpenURL(url, delegate: self)
+        //return CCOpenAPI.handleOpenURL(url, sourceApplication: <#T##String!#>)
     }
+    
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-        return WXApi.handleOpenURL(url, delegate: self)
-    }
+        
+        //print("application HandleOpenURL 222= \(url) sourceapp \(sourceApplication)")
+        if url.scheme == NSURLFileScheme {
+            print("Started downloading file from \(url)")
+            do {
+                //let documentDirectoryPath: String = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first!
+                let fileNameFromURL = url.lastPathComponent
+                let documentDirectoryPath: String = DaiFileManager.document["/Audio/"].path
+                let filePathForDocs = String(format:"%@%@", documentDirectoryPath, fileNameFromURL! as String)
+                
+                print("filePathForDocs = \(filePathForDocs)")
+                
+                let fileData = try NSData(contentsOfURL: url, options: NSDataReadingOptions())
+                
+                let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+                dispatch_async(dispatch_get_global_queue(priority, 0)) {
+                    fileData.writeToFile(filePathForDocs, atomically: true)
+                    print("File saved")
+                }
+                
+            }
+            catch {
+                print("I am not able to download this file")
+            }
+            return false;
+        }else{
+            //return WXApi.handleOpenURL(url, delegate: self)
+            return CCOpenAPI.handleOpenURL(url, sourceApplication: sourceApplication)
+        } 
+   }
+
     func onReq(req: BaseReq!) {
         //onReq是微信终端向第三方程序发起请求，要求第三方程序响应。第三方程序响应完后必须调用sendRsp返回。在调用sendRsp返回时，会切回到微信终端程序界面。
     }
+    
     func onResp(resp: BaseResp!) {
         //如果第三方程序向微信发送了sendReq的请求，那么onResp会被回调。sendReq请求调用后，会切到微信终端程序界面。
     }

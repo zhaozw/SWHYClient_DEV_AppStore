@@ -22,3 +22,4 @@
 #import <sys/xattr.h>
 #import <string.h>
 #import "AudioWrapper.h"
+#import <CamCardOpenAPIFramework/OpenAPI.h>

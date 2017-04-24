@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A31755B11EAD011A00B4C4A8 /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A329276E1D90000C004673BC /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A329276F1D90000C004673BC /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A329276E1D90000C004673BC /* AudioKit.framework */; };
 		A32927701D900E51004673BC /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A329276E1D90000C004673BC /* AudioKit.framework */; };
-		A32927711D900E51004673BC /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A329276E1D90000C004673BC /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A34298D11D3FB7B40086B27C /* WebViewMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34298D01D3FB7B40086B27C /* WebViewMenuViewController.swift */; };
 		A352DAFD1B05D0B90035B4AF /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352DAFC1B05D0B90035B4AF /* MenuViewController.swift */; };
 		A352DB011B05D3770035B4AF /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352DB001B05D3770035B4AF /* SettingViewController.swift */; };
@@ -27,6 +27,10 @@
 		A36906871D4DF1B90043AFB6 /* AudioRecorder.xib in Resources */ = {isa = PBXBuildFile; fileRef = A36906861D4DF1B90043AFB6 /* AudioRecorder.xib */; };
 		A36E20811DB1FFC1002EA793 /* AudioRecorder copy.xib in Resources */ = {isa = PBXBuildFile; fileRef = A36E20801DB1FFC1002EA793 /* AudioRecorder copy.xib */; };
 		A36E20831DB222A4002EA793 /* AudioRecorder_bak2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36E20821DB222A4002EA793 /* AudioRecorder_bak2.swift */; };
+		A37675411EACEB5D00CAB57F /* CamCardOpenAPIFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A39D5FBD1EABAA45007D7FB9 /* CamCardOpenAPIFramework.framework */; };
+		A37675451EACF4EF00CAB57F /* CardMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37675431EACF4EF00CAB57F /* CardMain.swift */; };
+		A37675461EACF4EF00CAB57F /* CardMain.xib in Resources */ = {isa = PBXBuildFile; fileRef = A37675441EACF4EF00CAB57F /* CardMain.xib */; };
+		A39D5FBE1EABAA45007D7FB9 /* CamCardOpenAPIFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A39D5FBD1EABAA45007D7FB9 /* CamCardOpenAPIFramework.framework */; };
 		A3A082811BB92CE6009E5A04 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A3A082801BB92CE6009E5A04 /* Info.plist */; };
 		A3A457401D925E210036E12E /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A4573F1D925E210036E12E /* AudioRecorder.swift */; };
 		A3AC2F161C5A255A00356744 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AC2F151C5A255A00356744 /* Log.swift */; };
@@ -98,6 +102,8 @@
 		A3CB54DF1D5712BE00CBCFB5 /* AudioDetail_bak.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3CB54DE1D5712BE00CBCFB5 /* AudioDetail_bak.xib */; };
 		A3CB54E11D571C7900CBCFB5 /* AudioDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CB54E01D571C7900CBCFB5 /* AudioDetail.swift */; };
 		A3CB54E51D575A5D00CBCFB5 /* NSURL+xattr.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CB54E41D575A5D00CBCFB5 /* NSURL+xattr.swift */; };
+		A3CCE9391EAE3020004E4457 /* CardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3CCE9381EAE3020004E4457 /* CardView.xib */; };
+		A3CCE93D1EAE3050004E4457 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCE93C1EAE3050004E4457 /* CardView.swift */; };
 		A3CDFF9F1D8ADD9D004EFF66 /* AudioDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3CDFF9E1D8ADD9D004EFF66 /* AudioDetail.xib */; };
 		A3D2D82D1BB7D5F7002491ED /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D2D8181BB7D5F7002491ED /* Cache.swift */; };
 		A3D2D82E1BB7D5F7002491ED /* CGSize+Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D2D8191BB7D5F7002491ED /* CGSize+Swift.swift */; };
@@ -181,7 +187,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				A32927711D900E51004673BC /* AudioKit.framework in Embed Frameworks */,
+				A31755B11EAD011A00B4C4A8 /* AudioKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -215,6 +221,9 @@
 		A36906861D4DF1B90043AFB6 /* AudioRecorder.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioRecorder.xib; sourceTree = "<group>"; };
 		A36E20801DB1FFC1002EA793 /* AudioRecorder copy.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "AudioRecorder copy.xib"; sourceTree = "<group>"; };
 		A36E20821DB222A4002EA793 /* AudioRecorder_bak2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecorder_bak2.swift; sourceTree = "<group>"; };
+		A37675431EACF4EF00CAB57F /* CardMain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardMain.swift; path = Card/CardMain.swift; sourceTree = "<group>"; };
+		A37675441EACF4EF00CAB57F /* CardMain.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CardMain.xib; path = Card/CardMain.xib; sourceTree = "<group>"; };
+		A39D5FBD1EABAA45007D7FB9 /* CamCardOpenAPIFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CamCardOpenAPIFramework.framework; sourceTree = "<group>"; };
 		A3A082801BB92CE6009E5A04 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = SWHYClient/Info.plist; sourceTree = "<group>"; };
 		A3A4573F1D925E210036E12E /* AudioRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
 		A3AC2F151C5A255A00356744 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
@@ -310,6 +319,8 @@
 		A3CB54DE1D5712BE00CBCFB5 /* AudioDetail_bak.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioDetail_bak.xib; sourceTree = "<group>"; };
 		A3CB54E01D571C7900CBCFB5 /* AudioDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioDetail.swift; sourceTree = "<group>"; };
 		A3CB54E41D575A5D00CBCFB5 /* NSURL+xattr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURL+xattr.swift"; sourceTree = "<group>"; };
+		A3CCE9381EAE3020004E4457 /* CardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CardView.xib; path = Card/CardView.xib; sourceTree = "<group>"; };
+		A3CCE93C1EAE3050004E4457 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardView.swift; path = Card/CardView.swift; sourceTree = "<group>"; };
 		A3CD08501ABFAB1000020495 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		A3CDFF9E1D8ADD9D004EFF66 /* AudioDetail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioDetail.xib; sourceTree = "<group>"; };
 		A3D2D8181BB7D5F7002491ED /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
@@ -382,7 +393,9 @@
 				A3EA2D021D3E6227002D936D /* SystemConfiguration.framework in Frameworks */,
 				A3F7A9971BDB9EC500923D23 /* Security.framework in Frameworks */,
 				A3D2D88F1BB80BB3002491ED /* libsqlite3.tbd in Frameworks */,
+				A39D5FBE1EABAA45007D7FB9 /* CamCardOpenAPIFramework.framework in Frameworks */,
 				A3EA2D001D3E617B002D936D /* libWeChatSDK.a in Frameworks */,
+				A37675411EACEB5D00CAB57F /* CamCardOpenAPIFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,6 +437,17 @@
 				A3A4573F1D925E210036E12E /* AudioRecorder.swift */,
 			);
 			path = AudioRecord;
+			sourceTree = "<group>";
+		};
+		A376753C1EACDE1500CAB57F /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				A3CCE93C1EAE3050004E4457 /* CardView.swift */,
+				A3CCE9381EAE3020004E4457 /* CardView.xib */,
+				A37675431EACF4EF00CAB57F /* CardMain.swift */,
+				A37675441EACF4EF00CAB57F /* CardMain.xib */,
+			);
+			name = Card;
 			sourceTree = "<group>";
 		};
 		A3BA012A1B09B9D900EA1448 /* UIKit */ = {
@@ -559,6 +583,7 @@
 		A3C73AF71ABDEF96002C299D = {
 			isa = PBXGroup;
 			children = (
+				A39D5FBD1EABAA45007D7FB9 /* CamCardOpenAPIFramework.framework */,
 				A329276E1D90000C004673BC /* AudioKit.framework */,
 				A3D6BFF81D61FC38008EE6F3 /* lame.framework */,
 				A3C997B01D3E66CC006EE61D /* CoreTelephony.framework */,
@@ -590,6 +615,7 @@
 		A3C73B021ABDEF96002C299D /* SWHYClient */ = {
 			isa = PBXGroup;
 			children = (
+				A376753C1EACDE1500CAB57F /* Card */,
 				A369067E1D4DCE180043AFB6 /* AudioRecord */,
 				A3BA012A1B09B9D900EA1448 /* UIKit */,
 				A3BDBDBB1B045E5D0085DFF1 /* Setting */,
@@ -903,10 +929,12 @@
 			files = (
 				A3CB54DF1D5712BE00CBCFB5 /* AudioDetail_bak.xib in Resources */,
 				A3532B6E1D1673A000C47D97 /* Common.entitlements in Resources */,
+				A3CCE9391EAE3020004E4457 /* CardView.xib in Resources */,
 				A36E20811DB1FFC1002EA793 /* AudioRecorder copy.xib in Resources */,
 				A3D2D8AF1BB830E6002491ED /* Images.xcassets in Resources */,
 				A3D2D8AE1BB827FB002491ED /* data.db in Resources */,
 				A3DE300F1D7C06A5005A43B8 /* AudioFileList.xib in Resources */,
+				A37675461EACF4EF00CAB57F /* CardMain.xib in Resources */,
 				A3D2D8AC1BB81B47002491ED /* Main.storyboard in Resources */,
 				A3CDFF9F1D8ADD9D004EFF66 /* AudioDetail.xib in Resources */,
 				A3D2D8A21BB810E6002491ED /* InnerAddressBookHeader.xib in Resources */,
@@ -953,6 +981,7 @@
 				A3BA34941B16E510002C08C5 /* CustomerAddressGroupItem.swift in Sources */,
 				A3D2D8391BB7D5F7002491ED /* NetworkFetcher.swift in Sources */,
 				A3C73B391ABDF00D002C299D /* LoginViewController.swift in Sources */,
+				A37675451EACF4EF00CAB57F /* CardMain.swift in Sources */,
 				A3FA90E91D8EEA7600CB2465 /* String-Extras.swift in Sources */,
 				A3C73B3D1ABDF00D002C299D /* MainMenuItemBO.swift in Sources */,
 				A3F7A9D51BDBA66100923D23 /* KeychainQuery.swift in Sources */,
@@ -1047,6 +1076,7 @@
 				A3C2C7931D8853B800F7F5C6 /* MKRefreshControl.swift in Sources */,
 				A3BA3A9C1ADE299C003025E4 /* DBAdapter.swift in Sources */,
 				A3BD365E1AD7944700B59399 /* Message.swift in Sources */,
+				A3CCE93D1EAE3050004E4457 /* CardView.swift in Sources */,
 				A3F5710E1D68718000520721 /* MultiPartMime.swift in Sources */,
 				A3C28C9F1B25CD9A0018F308 /* CustomerAddressDetail.swift in Sources */,
 				A3CB54E51D575A5D00CBCFB5 /* NSURL+xattr.swift in Sources */,
@@ -1122,6 +1152,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -1140,6 +1171,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				PROVISIONING_PROFILE = "91f631d1-f8c0-4101-985f-2fced5f75ed6";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1168,6 +1200,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Shanghai Dengyan Information Technology Co., Ltd.";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1180,6 +1213,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-ObjC";
 				PROVISIONING_PROFILE = "91f631d1-f8c0-4101-985f-2fced5f75ed6";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1198,9 +1232,11 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yonghua Lu (A27223J676)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/framework",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = SWHYClient/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
@@ -1215,7 +1251,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dy-info.swhyclient-dev";
 				PRODUCT_NAME = SWHYClient_DEV;
-				PROVISIONING_PROFILE = "d7f146ae-ffab-451e-abe6-149b90b120a1";
+				PROVISIONING_PROFILE = "58e53e8c-7cc6-4b2e-b350-dedd92fbebb0";
 				SWIFT_OBJC_BRIDGING_HEADER = SWHYClient/Util/BridgeHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1234,9 +1270,11 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yonghua Lu (A27223J676)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/framework",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = SWHYClient/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
@@ -1251,7 +1289,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dy-info.swhyclient-dev";
 				PRODUCT_NAME = SWHYClient_DEV;
-				PROVISIONING_PROFILE = "91f631d1-f8c0-4101-985f-2fced5f75ed6";
+				PROVISIONING_PROFILE = "58e53e8c-7cc6-4b2e-b350-dedd92fbebb0";
 				SWIFT_OBJC_BRIDGING_HEADER = SWHYClient/Util/BridgeHeader.h;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
