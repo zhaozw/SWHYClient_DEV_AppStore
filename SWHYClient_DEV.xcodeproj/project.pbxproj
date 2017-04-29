@@ -161,6 +161,7 @@
 		A3F7A9D91BDBA6AF00923D23 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F7A9D81BDBA6AF00923D23 /* Keychain.swift */; };
 		A3F7A9DB1BDBA6DE00923D23 /* GenericKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F7A9DA1BDBA6DE00923D23 /* GenericKey.swift */; };
 		A3F7A9DD1BDBA70200923D23 /* ArchiveKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F7A9DC1BDBA70200923D23 /* ArchiveKey.swift */; };
+		A3FA28531EAF9DD900F7109B /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FA28521EAF9DD800F7109B /* UIImage+Extension.swift */; };
 		A3FA90E61D8EEA7600CB2465 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = A3FA90E21D8EEA7600CB2465 /* .gitignore */; };
 		A3FA90E71D8EEA7600CB2465 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = A3FA90E31D8EEA7600CB2465 /* README.md */; };
 		A3FA90E81D8EEA7600CB2465 /* SQLiteDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3FA90E41D8EEA7600CB2465 /* SQLiteDB.swift */; };
@@ -369,6 +370,7 @@
 		A3F7A9D81BDBA6AF00923D23 /* Keychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		A3F7A9DA1BDBA6DE00923D23 /* GenericKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenericKey.swift; sourceTree = "<group>"; };
 		A3F7A9DC1BDBA70200923D23 /* ArchiveKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArchiveKey.swift; sourceTree = "<group>"; };
+		A3FA28521EAF9DD800F7109B /* UIImage+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		A3FA90E21D8EEA7600CB2465 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		A3FA90E31D8EEA7600CB2465 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		A3FA90E41D8EEA7600CB2465 /* SQLiteDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLiteDB.swift; sourceTree = "<group>"; };
@@ -689,6 +691,7 @@
 				A3BA3A9B1ADE299C003025E4 /* DBAdapter.swift */,
 				A361007C1D55BC8C00B45BA2 /* DaiFileManager.swift */,
 				A3CB54E41D575A5D00CBCFB5 /* NSURL+xattr.swift */,
+				A3FA28521EAF9DD800F7109B /* UIImage+Extension.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -1013,6 +1016,7 @@
 				A3C73B3F1ABDF00D002C299D /* WebViewController.swift in Sources */,
 				A3D2D83D1BB7D5F7002491ED /* UIButton+Haneke.swift in Sources */,
 				A3BDBDBF1B045EEF0085DFF1 /* InnerAddressMenuViewController.swift in Sources */,
+				A3FA28531EAF9DD900F7109B /* UIImage+Extension.swift in Sources */,
 				A361007F1D5645DE00B45BA2 /* AudioRecorderMenuViewController.swift in Sources */,
 				A3BAAC481B1BC59700A912E6 /* CustomerAddressMenuViewController.swift in Sources */,
 				A3C2C7921D8853B800F7F5C6 /* MKNavigationBar.swift in Sources */,
@@ -1251,7 +1255,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dy-info.swhyclient-dev";
 				PRODUCT_NAME = SWHYClient_DEV;
-				PROVISIONING_PROFILE = "58e53e8c-7cc6-4b2e-b350-dedd92fbebb0";
+				PROVISIONING_PROFILE = "820cfa99-6da1-424a-b8d7-e6dc1d7cccac";
 				SWIFT_OBJC_BRIDGING_HEADER = SWHYClient/Util/BridgeHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1289,7 +1293,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dy-info.swhyclient-dev";
 				PRODUCT_NAME = SWHYClient_DEV;
-				PROVISIONING_PROFILE = "58e53e8c-7cc6-4b2e-b350-dedd92fbebb0";
+				PROVISIONING_PROFILE = "820cfa99-6da1-424a-b8d7-e6dc1d7cccac";
 				SWIFT_OBJC_BRIDGING_HEADER = SWHYClient/Util/BridgeHeader.h;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

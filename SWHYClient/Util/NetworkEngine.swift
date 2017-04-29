@@ -323,6 +323,107 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
     }
     
     
+    func postUploadCardImage(url:String,image:UIImage,tag:String){
+        var result:String = ""
+        //let data=UIImagePNGRepresentation(image)//把图片转成data  
+        
+        let data = image.compressImage(image, maxLength: 10240000)
+        
+        let uploadurl:String=url+"&size=\(data!.length)"//设置服务器接收地址  
+        
+        let request=NSMutableURLRequest(URL:NSURL(string:uploadurl)!)  
+        request.HTTPMethod="POST"//设置请求方式  
+        let boundary:String="-------------------21212222222222222222222"  
+        
+        let contentType:String="multipart/form-data;boundary="+boundary  
+        
+        request.addValue(contentType, forHTTPHeaderField:"Content-Type")  
+    
+    
+        let body=NSMutableData()  
+        /*
+        //在表单中插入要上传的数据  
+        body.appendData(NSString(format: "--%@\r\n", boundary).dataUsingEncoding(NSUTF8StringEncoding)!);  
+        body.appendData(NSString(format: "Content-Disposition:form-data;name=\"userid\"\r\n\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)  
+        
+        body.appendData("\("123")\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)  
+ */
+        //在表单中写入要上传的图片   
+        body.appendData(NSString(format:"--\(boundary)\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)  
+
+        //body.appendData(NSString(format:"Content-Disposition:form-data;name=\"upfile\";filename=\"dd.jpg\"\r\n").dataUsingEncoding(NSUTF8StringEncoding)!) 
+        body.appendData(NSString(format:"Content-Disposition:form-data;name=\"upfile\"\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)  
+        
+        //body.appendData(NSString(format:"Content-Type:application/octet-stream\r\n\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)  
+        body.appendData("Content-Type:image/png\r\n\r\n".dataUsingEncoding(NSUTF8StringEncoding)!)  
+        
+        body.appendData(data!)  
+        
+        body.appendData(NSString(format:"\r\n--\(boundary)--\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)  
+        
+        //设置post的请求体  
+        request.HTTPBody=body  
+        
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
+            data, response, error in
+            
+            
+            
+            print("response =\(response)  Error = \(error)")
+            if let httpResponse = response as? NSHTTPURLResponse {
+                if httpResponse.statusCode != 200 {
+                    print("response was not 200: \(response)")
+                    result =  "Error: \(httpResponse.statusCode)"
+                    self.dispatchResponse(result,tag: tag)
+                    
+                }
+            }
+            if (error != nil) {
+                print("Error ====\(error!.localizedDescription) ==code=\(error!.code)")
+                var errmsg = ""
+                if error!.code == -999{
+                    //cancelled  用户名密码验证不通过时，取消请求
+                    errmsg = "用户名或密码错误"
+                }else{
+                    errmsg = "网络连接出错，请检查网络或稍后再试"
+                }
+                
+                self.success_auth = 0
+                self.alive = false
+                //print("request url host = false  \(request.URL?.host!)")
+                self.serverlist.updateValue(false, forKey: request.URL?.host!  ?? "AnyServer")
+                let result:Result = Result(status: "Error",message:errmsg,userinfo:error!,tag:tag)
+                NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)          
+            }else{
+                // handle the data of the successful response here
+                //let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(Config.Encoding.GB2312))
+                //let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(NSUTF8StringEncoding))
+                /*
+                let res:String = NSString(data: data!, encoding: NSUTF8StringEncoding)! as String
+                
+                print(" res convert =\(res)")
+                if res.componentsSeparatedByString("OK").count > 1 {
+                    
+                    result = "Success: 图片文件成功"
+                    print(result)
+                    self.dispatchResponse(result,tag: tag)                
+                }else if res.componentsSeparatedByString("Error").count > 1{
+                    
+                    result = "Error: 上传图片出错"
+                    print(result)
+                    self.dispatchResponse(result,tag: tag)
+                }
+                */
+                self.dispatchResponseData(data!,tag: tag) 
+            }
+        }
+        print("before resume")
+        task.resume()
+ 
+    
+        
+        
+    }
     //==========================================================
     
     //===========上传文件===============================
@@ -467,6 +568,84 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
         }
         task.resume()
     }
+    
+    func dispatchResponseData(data:NSData?,tag:String){
+        
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
+            
+            //这里写需要大量时间的代码
+            //println("这里写需要大量时间的代码----Dispatch")
+            //print("dispatch \(res)")
+            var result:Result
+            print(tag)
+            switch tag{
+                
+            case Config.RequestTag.PostUploadCardImage:
+                var userInfo = Dictionary<String, AnyObject>()
+
+                //let tmpdata:NSData = NSData([0xFF,0xD8])
+                //let dataarray:[UInt8] = [UInt8] (data)
+
+                
+                
+                /*
+                let data: NSData = cardImage.compressImage(cardImage, maxLength: 10240000)!
+                let count = data.length / sizeof(UInt8)
+                // create an array of Uint8
+                var array = [UInt8](count: count, repeatedValue: 0)
+                // copy bytes into array
+                data.getBytes(&array, length:count * sizeof(UInt8))
+                
+                print("JPG Image Data=\(array)")
+                
+                let datos: NSData = NSData(bytes: array, length: array.count)
+                let resultimage = UIImage(data: datos) // Note it's optional. Don't force unwrap!!!
+*/                
+                let byteArray = Array(UnsafeBufferPointer(start: UnsafePointer<UInt8>(data!.bytes), count: data!.length))
+                
+                let jsondata = byteArray.split(0xFF, maxSplit: 1, allowEmptySlices: false)
+                //let imagedata = byteArray.split(0xD8, maxSplit: 1, allowEmptySlices: false)
+                //let imagedata = byteArray.split(0xD8, maxSplit: 1, allowEmptySlices: false)
+                
+                let resultjson = String(bytes: jsondata[0], encoding: NSUTF8StringEncoding)
+                
+                var imageByteArray = Array(jsondata[1])
+                
+                print("------------0000000----------")
+                imageByteArray.insert(0xFF, atIndex: 0)
+                print("-------------0101010101------------------")
+                
+                let datos: NSData = NSData(bytes: imageByteArray, length: imageByteArray.count)
+                let resultimage = UIImage(data: datos) // Note it's optional. Don't force unwrap!!!
+
+                print("JSON=\(resultjson)")
+                print("image=\(imageByteArray)")
+                userInfo.updateValue(resultjson!, forKey: "JSON")
+                print("-------1111----------")
+
+                userInfo.updateValue(resultimage!, forKey: "UIImage")
+                print("-------2222----------")
+
+                result = Result(status: "OK",message:"",userinfo:userInfo,tag:tag)
+                print("-------3333----------")
+            default:
+                return        
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                print("-----------ready to return---------------")
+                //这里返回主线程，写需要主线程执行的代码
+                //println("这里返回主线程，写需要主线程执行的代码  --  Dispatch")
+                NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
+            })
+        }) 
+        
+        
+        
+    }
+
+        
     
     func dispatchResponse(res:String,tag:String){
         
@@ -724,7 +903,17 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                     userInfo = json[0]["errmsg"].asString ?? ""
                     result = Result(status: "Error",message:"发布音频失败",userinfo:userInfo,tag:tag)
                 }
+            case Config.RequestTag.PostUploadCardImage:
+                print("dispatch \(res)  \(tag)")
                 
+                if res.componentsSeparatedByString("errcode").count > 1{
+                    result = Result(status: "Error",message:res,userinfo:NSObject(),tag:tag)
+                }else{
+                    let json = JSONClass(string:res.stringByReplacingOccurrencesOfString("\'", withString: "\"", options: NSStringCompareOptions.LiteralSearch, range: nil))
+                    //print(json.toString())
+                    //print(json["token"].asString)
+                    result = Result(status: "OK",message:json["token"].asString!,userinfo:NSObject(),tag:tag)
+                }
                 
                 
             default:

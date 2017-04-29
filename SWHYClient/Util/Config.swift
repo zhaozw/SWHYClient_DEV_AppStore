@@ -27,6 +27,8 @@ class Config{
         static let GetWeiXinToken = "GetWeiXinToken"
         static let PostAudioTopic = "PostAudioTopic"
         static let GetPersonInfoByAD = "GetPersonInfoByAD"
+        
+        static let PostUploadCardImage = "PostUploadCardImage"
     } 
 
     struct NotifyTag {

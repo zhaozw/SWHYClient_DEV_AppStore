@@ -17,20 +17,52 @@
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LnV-oa-LCu">
                     <rect key="frame" x="250" y="129" width="120" height="30"/>
-                    <state key="normal" title="打开名片王拍图片"/>
+                    <state key="normal" title="API：名片王拍摄"/>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="128" y="132" width="120" height="30"/>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="133" y="132" width="120" height="30"/>
+                    </variation>
                     <connections>
                         <action selector="TestCard:" destination="-1" eventType="touchUpInside" id="1n9-pd-Sza"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kgx-NG-FKB">
                     <rect key="frame" x="250" y="215" width="90" height="30"/>
-                    <state key="normal" title="选择图片识别"/>
+                    <state key="normal" title="API：本地相机拍摄"/>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="119" y="275" width="148" height="30"/>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="148" y="213" width="90" height="30"/>
+                    </variation>
                     <connections>
                         <action selector="TestCardWithImage:" destination="-1" eventType="touchUpInside" id="9fT-mB-cn3"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MMt-mV-nQT">
+                    <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                    <state key="normal" title="WEB：本机拍摄"/>
+                    <variation key="widthClass=compact" fixedFrame="YES">
+                        <rect key="frame" x="128" y="400" width="121" height="30"/>
+                    </variation>
+                    <connections>
+                        <action selector="webTest:" destination="-1" eventType="touchUpInside" id="zM9-TQ-I1D"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <variation key="default">
+                <mask key="subviews">
+                    <exclude reference="MMt-mV-nQT"/>
+                </mask>
+            </variation>
+            <variation key="widthClass=compact">
+                <mask key="subviews">
+                    <include reference="MMt-mV-nQT"/>
+                </mask>
+            </variation>
         </view>
     </objects>
 </document>

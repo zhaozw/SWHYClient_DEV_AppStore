@@ -53,10 +53,11 @@ import Foundation
     
     
     @IBAction func TestCardWithImage(sender: AnyObject) {
-        
+        //使用系统拍照组件，调用本地CARD API
         let imagePickerController:UIImagePickerController = UIImagePickerController()
         imagePickerController.sourceType = UIImagePickerControllerSourceType.Camera
         imagePickerController.delegate = self
+        imagePickerController.title = "API TEST"
         presentViewController(imagePickerController, animated: true, completion: nil)
         
         /*
@@ -69,12 +70,52 @@ import Foundation
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        //打开系统拍照界面返回的处理事件
         picker.dismissViewControllerAnimated(true, completion: nil)
+        print("----------------------use camcard api-----------------------\(picker.title)")
         let cardImage:UIImage = (info[UIImagePickerControllerOriginalImage] as? UIImage)!
-        self.openCCWithImage(cardImage)
         
+        if (picker.title == "API TEST"){
+            self.openCCWithImage(cardImage)
+        }
+        else if (picker.title == "WEB TEST"){
+            let url = "http://bcr2.intsig.net/BCRService/BCR_Crop?user=weiwei@swsresearch.com&pass=MAC4CLL5Q6D8S56S&json=1&lang=15"
+            //let url = "http://bcr2.intsig.net/BCRService/BCR_VCF2?PIN=290BD181296&user=weiwei@swsresearch.com&pass=MAC4CLL5Q6D8S56S&json=1&lang=15"
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: "HandleNetworkResult:", name: Config.RequestTag.PostUploadCardImage,object: nil)
+            NetworkEngine.sharedInstance.postUploadCardImage(url, image: cardImage, tag: Config.RequestTag.PostUploadCardImage)
+            
+           /*
+            let data: NSData = cardImage.compressImage(cardImage, maxLength: 10240000)!
+            let count = data.length / sizeof(UInt8)
+            // create an array of Uint8
+            var array = [UInt8](count: count, repeatedValue: 0)
+            // copy bytes into array
+            data.getBytes(&array, length:count * sizeof(UInt8))
+            
+            print("JPG Image Data=\(array)")
+            
+            let datos: NSData = NSData(bytes: array, length: array.count)
+            let resultimage = UIImage(data: datos) // Note it's optional. Don't force unwrap!!!
+            
+            let cardView:CardView = CardView()
+            cardView.cardImage = resultimage!
+            cardView.cardString = "====="
+            self.presentViewController(cardView, animated: true, completion: nil)
+        */
+        }
     }
     
+    @IBAction func webTest(sender: AnyObject) {
+        print("============web test========")
+        let imagePickerWeb:UIImagePickerController = UIImagePickerController()
+        imagePickerWeb.sourceType = UIImagePickerControllerSourceType.Camera
+        imagePickerWeb.delegate = self
+        imagePickerWeb.title = "WEB TEST"
+        presentViewController(imagePickerWeb, animated: true, completion: nil)
+        
+        
+    }
+   
     /*
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         picker.dismissViewControllerAnimated(true, completion: nil)
@@ -85,6 +126,7 @@ import Foundation
     */
     
     func openCCWithImage(cardImage:UIImage){
+        //传送Image给CARD API识别
         print("-----------------------openCCWithImage-------------------------")
         let recogCardReq:CCOpenAPIRecogCardRequest = CCOpenAPIRecogCardRequest()
         recogCardReq.cardImage = cardImage
@@ -94,6 +136,8 @@ import Foundation
     
     
     func didReceiveResponseFromCamCardOpenAPI(notify:NSNotification){
+        //两个调用API返回的事件
+        
         print("----------------------didReceiveResponseFromCamCardOpenAPI---------------------------")
         
         if notify.object!.isKindOfClass(CCOpenAPIRecogCardResponse) == true{
@@ -105,5 +149,28 @@ import Foundation
             self.presentViewController(cardView, animated: true, completion: nil)
         }
     }
+    
+    
+    func HandleNetworkResult(notify:NSNotification)
+    {
+        print("-----------------get return web response------------------")
+        let result:Result = notify.valueForKey("object") as! Result
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: result.tag, object: nil)
+        if result.status == "Error" {
+            PKNotification.toast(result.message)
+        }else if result.status=="OK"{
+            if result.tag == Config.RequestTag.PostUploadCardImage {
+                let json:String = result.userinfo.valueForKey("JSON") as! String
+                let image:UIImage = result.userinfo.valueForKey("UIImage") as! UIImage
+                let cardView:CardView = CardView()
+                cardView.cardImage = image
+                cardView.cardString = json
+                self.presentViewController(cardView, animated: true, completion: nil)
+            }
+            
+        }
+        
+    }
+
     
 }
