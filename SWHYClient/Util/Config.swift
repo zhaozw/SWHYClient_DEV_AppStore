@@ -68,8 +68,13 @@ class Config{
         static let PostUploadAudioFile = "http://download.swsresearch.net/audio/uploadhandler.ashx"
         
         
-        static let GetWeiXinToken = "http://202.109.73.185/swhyweixin/gettoken.ashx?appid=swhyapp&secret=weiwei"
-        static let PostAudioTopic = "http://202.109.73.185/swhyweixin/gentopic.ashx?token="
+        //static let GetWeiXinToken = "http://202.109.73.185/swhyweixin/gettoken.ashx?appid=swhyapp&secret=weiwei"
+        //static let PostAudioTopic = "http://202.109.73.185/swhyweixin/gentopic.ashx?token="
+        
+        //222.73.228.234
+        static let GetWeiXinToken = "http://wx.swsresearch.com/swhyweixin/gettoken.ashx?appid=swhyapp&secret=weiwei"
+        static let PostAudioTopic = "http://wx.swsresearch.com/swhyweixin/gentopic.ashx?token="
+        
         static let AudioBaseURL = "http://download.swsresearch.net/audio/audiofile/"
         static let ViewWeiXinReport = "http://wxweb.swsresearch.com/report/getDetailReportInfo.do?reportType=2&reportId="
         

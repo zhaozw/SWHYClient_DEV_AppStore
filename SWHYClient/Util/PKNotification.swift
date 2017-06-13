@@ -135,6 +135,7 @@ class PKNotificationClass: UIViewController {
                                    completion: { (finished:Bool) -> Void in
                                     
         })
+        
     }
     
     func toast(message:String!) {

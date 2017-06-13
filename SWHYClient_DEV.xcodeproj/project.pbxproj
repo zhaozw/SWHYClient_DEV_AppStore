@@ -1152,8 +1152,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Shanghai Dengyan Information Technology Co., Ltd.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Shanghai Dengyan Information Technology Co., Ltd.";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
@@ -1176,7 +1176,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PROVISIONING_PROFILE = "91f631d1-f8c0-4101-985f-2fced5f75ed6";
+				PROVISIONING_PROFILE = "ed92a09e-cc63-4cab-b8f2-d1af5bff8982";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALIDATE_PRODUCT = YES;
@@ -1218,7 +1218,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PROVISIONING_PROFILE = "91f631d1-f8c0-4101-985f-2fced5f75ed6";
+				PROVISIONING_PROFILE = "ed92a09e-cc63-4cab-b8f2-d1af5bff8982";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1232,8 +1232,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = SWHYClient/Common.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Yonghua Lu (A27223J676)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yonghua Lu (A27223J676)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Shanghai Dengyan Information Technology Co., Ltd.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Shanghai Dengyan Information Technology Co., Ltd.";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
@@ -1255,7 +1255,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dy-info.swhyclient-dev";
 				PRODUCT_NAME = SWHYClient_DEV;
-				PROVISIONING_PROFILE = "820cfa99-6da1-424a-b8d7-e6dc1d7cccac";
+				PROVISIONING_PROFILE = "d6ee97d1-9912-41d5-aac3-0c3cf33a3565";
 				SWIFT_OBJC_BRIDGING_HEADER = SWHYClient/Util/BridgeHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1270,8 +1270,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = SWHYClient/Common.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Yonghua Lu (A27223J676)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Yonghua Lu (A27223J676)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Shanghai Dengyan Information Technology Co., Ltd.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Shanghai Dengyan Information Technology Co., Ltd.";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
@@ -1293,7 +1293,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dy-info.swhyclient-dev";
 				PRODUCT_NAME = SWHYClient_DEV;
-				PROVISIONING_PROFILE = "820cfa99-6da1-424a-b8d7-e6dc1d7cccac";
+				PROVISIONING_PROFILE = "d6ee97d1-9912-41d5-aac3-0c3cf33a3565";
 				SWIFT_OBJC_BRIDGING_HEADER = SWHYClient/Util/BridgeHeader.h;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
