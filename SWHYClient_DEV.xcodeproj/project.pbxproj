@@ -892,7 +892,7 @@
 				TargetAttributes = {
 					A3C73AFF1ABDEF96002C299D = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = VWY3F558EY;
+						DevelopmentTeam = P955C46355;
 						SystemCapabilities = {
 							com.apple.SafariKeychain = {
 								enabled = 1;
@@ -1232,8 +1232,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = SWHYClient/Common.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Shanghai Dengyan Information Technology Co., Ltd.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Shanghai Dengyan Information Technology Co., Ltd.";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
@@ -1255,7 +1255,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dy-info.swhyclient-dev";
 				PRODUCT_NAME = SWHYClient_DEV;
-				PROVISIONING_PROFILE = "d6ee97d1-9912-41d5-aac3-0c3cf33a3565";
+				PROVISIONING_PROFILE = "fadbd65f-022d-49a3-9c15-cb3ca64f9c3f";
 				SWIFT_OBJC_BRIDGING_HEADER = SWHYClient/Util/BridgeHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1270,8 +1270,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = SWHYClient/Common.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Shanghai Dengyan Information Technology Co., Ltd.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Shanghai Dengyan Information Technology Co., Ltd.";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
@@ -1293,7 +1293,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.dy-info.swhyclient-dev";
 				PRODUCT_NAME = SWHYClient_DEV;
-				PROVISIONING_PROFILE = "d6ee97d1-9912-41d5-aac3-0c3cf33a3565";
+				PROVISIONING_PROFILE = "fadbd65f-022d-49a3-9c15-cb3ca64f9c3f";
 				SWIFT_OBJC_BRIDGING_HEADER = SWHYClient/Util/BridgeHeader.h;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
