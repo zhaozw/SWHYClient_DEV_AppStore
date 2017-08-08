@@ -33,7 +33,7 @@
             <connections>
                 <outlet property="delegate" destination="-1" id="7dL-Sv-5RZ"/>
             </connections>
-            <point key="canvasLocation" x="1012" y="541.5"/>
+            <point key="canvasLocation" x="750" y="558.5"/>
         </tableView>
         <searchDisplayController id="wz2-x9-2kP">
             <connections>

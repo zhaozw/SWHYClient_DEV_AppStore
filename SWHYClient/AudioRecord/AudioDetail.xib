@@ -862,7 +862,7 @@
             <connections>
                 <action selector="viewClick:" destination="-1" eventType="touchUpInside" id="MJf-Dk-oHg"/>
             </connections>
-            <point key="canvasLocation" x="78" y="151"/>
+            <point key="canvasLocation" x="279" y="120"/>
         </view>
     </objects>
     <resources>

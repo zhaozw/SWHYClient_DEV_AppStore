@@ -6,6 +6,8 @@
 	<false/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>申万宏源(T)</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
@@ -26,7 +28,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>申万宏源(T)</string>
+	<string>SWHYClient</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -56,7 +58,7 @@
 			<string></string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.dy-info.swhyclient-dev</string>
+				<string>com.swsresearch</string>
 			</array>
 		</dict>
 	</array>

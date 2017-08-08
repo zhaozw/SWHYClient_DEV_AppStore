@@ -92,7 +92,7 @@ import AudioKit
         super.viewDidLoad()
         self.title = Message.shared.curMenuItem.name
         self.navigationController?.setNavigationBarHidden(false, animated: false)
-        
+        print("AudioRecorder viewDidLoad  111")
         DaiFileManager.document["/Audio_Tmp/"].delete()
         
         self.audioTmpPath = DaiFileManager.document["/Audio_Tmp/"].path
@@ -101,12 +101,13 @@ import AudioKit
         //btn_Record.userInteractionEnabled = true
         //self.recordercolor = btn_Record.backgroundColor
         
-        
+        print("AudioRecorder viewDidLoad  222")
         mic = AKMicrophone()
+        print("AudioRecorder viewDidLoad  33")
         tracker = AKFrequencyTracker.init(mic)
         silence = AKBooster(tracker, gain: 0)
         plot = AKNodeOutputPlot(mic, frame: CGRectMake(0, 0, UIScreen.mainScreen().bounds.width, 100))
-        
+         
         //初始化record-----------------------------------------
         let dateFormatter:NSDateFormatter = NSDateFormatter();
         dateFormatter.dateFormat = "yyyyMMddHHmmss";
@@ -117,7 +118,7 @@ import AudioKit
         
         self.audioTmpFilePath = self.audioTmpPath + self.audioTmpFileName        
         self.audioFilePath = self.audioPath + self.audioFileName
-        
+         print("AudioRecorder viewDidLoad  44")
         outputURL = NSURL(fileURLWithPath: audioTmpFilePath)
         
         let settings = [AVFormatIDKey: NSNumber(unsignedInt: kAudioFormatLinearPCM),//编码格式
@@ -125,6 +126,7 @@ import AudioKit
             AVNumberOfChannelsKey: NSNumber(integer: 2),////采集音轨
             AVEncoderAudioQualityKey : NSNumber(int: Int32(AVAudioQuality.High.rawValue))//音量
         ]
+         print("AudioRecorder viewDidLoad  555")
         try! recorder = AVAudioRecorder(URL: outputURL, settings: settings)
         //recorder.delegate = self
         

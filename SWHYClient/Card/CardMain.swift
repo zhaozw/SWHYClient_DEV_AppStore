@@ -7,7 +7,7 @@
 //
 
 import Foundation
-//import <CamCardOpenAPIFramework/OpenAPI.h>;
+
 
 @objc(CardMain) class CardMain: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate{
 
@@ -36,18 +36,30 @@ import Foundation
         
         //NSNotificationCenter.defaultCenter().addObserver(self, selector: "didReceiveResponseFromCamCardOpenAPI:", name: CamCardOpenAPIDidReceiveRequestNotification, object: nil)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didReceiveResponseFromCamCardOpenAPI:", name: CamCardOpenAPIDidReceiveResponseNotification, object: nil)
-    }
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CardMain.didReceiveResponseFromCamCardOpenAPI(_:)), name: CamCardOpenAPIDidReceiveResponseNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didReceiveResponseFromCamCardOpenAPI:", name: CamCardOpenAPIDidReceiveRequestNotification, object: nil)
+     }
     
     
     
     @IBAction func TestCard(sender: AnyObject) {
+        
+        
+        
+            
+        print("判断名片王是否安装支持\(CCOpenAPI.isCCAppInstalled() )")
+        print("名片王 版本 \(CCOpenAPI.currentAPIVersion())")
+        
+        
         //打开名片王，不带图片，自动调用名片王的图像捕获程序
         let recogCardReq:CCOpenAPIRecogCardRequest  = CCOpenAPIRecogCardRequest();
         
         recogCardReq.addRecognizeLanguage(BCRLanguage_English)
-        //recogCardReq.userID = "weiwei@swsresearch.com"
-        recogCardReq.appKey = "VdBybLhN9gWW99V7CeChY8ab"
+        recogCardReq.userID = "weiwei@swsresearch.com"
+        //recogCardReq.appKey = "VdBybLhN9gWW99V7CeChY8ab"
+        recogCardReq.appKey = "MAC4CLL5Q6D8S56S"
+        
+        //NSNotificationCenter.defaultCenter().addObserver(self, selector: "HandleNetworkResult:", name: Config.RequestTag.PostUploadCardImage,object: nil)
         CCOpenAPI.sendRequest(recogCardReq)
     }
     
@@ -130,7 +142,11 @@ import Foundation
         print("-----------------------openCCWithImage-------------------------")
         let recogCardReq:CCOpenAPIRecogCardRequest = CCOpenAPIRecogCardRequest()
         recogCardReq.cardImage = cardImage
-        recogCardReq.appKey = "VdBybLhN9gWW99V7CeChY8ab"
+        //recogCardReq.appKey = "VdBybLhN9gWW99V7CeChY8ab"
+        
+        recogCardReq.userID = "weiwei@swsresearch.com"
+        //recogCardReq.appKey = "VdBybLhN9gWW99V7CeChY8ab"
+        recogCardReq.appKey = "MAC4CLL5Q6D8S56S"
         CCOpenAPI.sendRequest(recogCardReq)
     }
     
@@ -139,13 +155,14 @@ import Foundation
         //两个调用API返回的事件
         
         print("----------------------didReceiveResponseFromCamCardOpenAPI---------------------------")
-        
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: notify.name, object: nil)
+
         if notify.object!.isKindOfClass(CCOpenAPIRecogCardResponse) == true{
             print("===========didReceiveResponseFromCamCardOpenAPI===================")
             let response:CCOpenAPIRecogCardResponse = notify.object as! CCOpenAPIRecogCardResponse
             let cardView:CardView = CardView()
             cardView.cardImage = response.cardImage
-            cardView.cardString = response.vcfString
+            cardView.cardString =  "response.vcfString"
             self.presentViewController(cardView, animated: true, completion: nil)
         }
     }

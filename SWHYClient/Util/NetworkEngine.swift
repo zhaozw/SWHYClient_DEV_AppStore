@@ -620,7 +620,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                 let resultimage = UIImage(data: datos) // Note it's optional. Don't force unwrap!!!
 
                 print("JSON=\(resultjson)")
-                print("image=\(imageByteArray)")
+                //print("image=\(imageByteArray)")
                 userInfo.updateValue(resultjson!, forKey: "JSON")
                 print("-------1111----------")
 

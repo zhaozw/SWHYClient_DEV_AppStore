@@ -92,6 +92,14 @@ class Config{
         
     }
     
+    struct Card {
+        static let AppKey = "MAC4CLL5Q6D8S56S"
+        static let UserID = "weiwei@swsresearch.com"
+        //static let URL = "https://bcr2.intsig.net/BCRService/BCR_VCF2?user=weiwei@swsresearch.com&pass=MAC4CLL5Q6D8S56S"
+        static let URL = "https://bcr2.intsig.net/BCRService/BCR_Crop?user=weiwei@swsresearch.com&pass=MAC4CLL5Q6D8S56S"   //返回切割过的图片
+        
+    }
+    
     struct TableName {
         static let MainMenuList = "MainMenuList"
         static let InnerAddressList = "InnerAddressList"
