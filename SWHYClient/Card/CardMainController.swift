@@ -13,35 +13,105 @@ import UIKit
     @IBOutlet weak var segmentview: UIView!
     
     @IBOutlet weak var contentview: UIView!
+    
+    var cardFileList:CardFileList = CardFileList()  
+    
         
     override func viewDidLoad() {
         super.viewDidLoad()
+       
         
-        let frame = CGRect(x: 10.0, y: 0.0, width: segmentview.bounds.size.width - 20.0, height: 44.0)
+        // NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(didReceiveResponseFromCamCardOpenAPI(_:)), name: CamCardOpenAPIDidReceiveResponseNotification, object: nil)
+        
+        /*
+        let frame = CGRect(x: 10.0, y: 0.0, width: segmentview.bounds.size.width - 20.0, height: 30.0)
         let segmentControl = JTSegmentControl(frame: frame)
         segmentControl.delegate = self
         segmentControl.items = ["名片夹", "云名片"]
         segmentControl.showBridge(true, index: 4)
-        segmentControl.selectedIndex = 1
+        segmentControl.selectedIndex = 0
         segmentControl.autoAdjustWidth = false
-        segmentControl.bounces = true
-        segmentControl.itemSelectedTextColor = UIColor.grayColor()
-        segmentview.addSubview(segmentControl)
-        //view.backgroundColor = UIColor.yellowColor()
+        segmentControl.bounces = false
+        segmentControl.itemTextColor = UIColor.lightTextColor()
+        segmentControl.itemSelectedTextColor = UIColor.whiteColor()
+        segmentControl.itemBackgroundColor = UIColor.blackColor()
+        segmentControl.itemSelectedBackgroundColor = UIColor.blackColor()
+        segmentControl.selectedFont = UIFont.boldSystemFontOfSize(13)        
+        segmentControl.font = UIFont.boldSystemFontOfSize(13)
+        segmentControl.sliderViewColor = UIColor.lightGrayColor()
         
-        let cardFileList = CardFileList()  
-        cardFileList.viewDidLoad()//同样在切换的时候需要启动页面加载函数  
+        segmentview.addSubview(segmentControl)
+        */
+        self.title = Message.shared.curMenuItem.name
+        
+        //let self.cardFileList = CardFileList()  
+        self.cardFileList.viewDidLoad()//同样在切换的时候需要启动页面加载函数  
         //orderservingview.view.width(self.view_Order.width())  
-        [self.contentview.addSubview(cardFileList.view)];  
+        [self.contentview.addSubview(self.cardFileList.view)];  
 
         
+        self.cardFileList.view.translatesAutoresizingMaskIntoConstraints = false
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CardMain.didReceiveResponseFromCamCardOpenAPI(_:)), name: CamCardOpenAPIDidReceiveResponseNotification, object: nil)
+        /*
+        //宽度约束
+        let width:NSLayoutConstraint = NSLayoutConstraint(item: cardFileList.view, attribute: NSLayoutAttribute.Width, relatedBy:NSLayoutRelation.Equal, toItem:nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier:0.0, constant:200)
+        
+        cardFileList.view.addConstraint(width)//自己添加约束
+        
+        //高度约束
+        let height:NSLayoutConstraint = NSLayoutConstraint(item: cardFileList.view, attribute: NSLayoutAttribute.Height, relatedBy:NSLayoutRelation.Equal, toItem:nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier:0.0, constant:200)
+        
+        cardFileList.view.addConstraint(height)//自己添加约束
+       */
+        
+        //右边
+        let right:NSLayoutConstraint = NSLayoutConstraint(item: cardFileList.view, attribute: NSLayoutAttribute.Right, relatedBy:NSLayoutRelation.Equal, toItem:self.contentview, attribute:NSLayoutAttribute.Right, multiplier:1.0, constant: 0)
+        
+        self.contentview.addConstraint(right)//父控件添加约束
+        
+        //左边
+        let left:NSLayoutConstraint = NSLayoutConstraint(item: cardFileList.view, attribute: NSLayoutAttribute.Left, relatedBy:NSLayoutRelation.Equal, toItem:self.contentview, attribute:NSLayoutAttribute.Left, multiplier:1.0, constant: 0)
+        
+        self.contentview.addConstraint(left)//父控件添加约束
+        
+        //上边
+        let top:NSLayoutConstraint = NSLayoutConstraint(item: cardFileList.view, attribute: NSLayoutAttribute.Top, relatedBy:NSLayoutRelation.Equal, toItem:self.contentview, attribute:NSLayoutAttribute.Top, multiplier:1.0, constant: 0)
+        
+        self.contentview.addConstraint(top)//父控件添加约束
+        
+        //底边
+        let bottom:NSLayoutConstraint = NSLayoutConstraint(item: cardFileList.view, attribute: NSLayoutAttribute.Bottom, relatedBy:NSLayoutRelation.Equal, toItem:self.contentview, attribute:NSLayoutAttribute.Bottom, multiplier:1.0, constant: 0)
+        
+        self.contentview.addConstraint(bottom)//父控件添加约束
+       
+        
         
      }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         print("view will appear")
+        
+        
+        let frame = CGRect(x: 10.0, y: 0.0, width: segmentview.bounds.size.width - 20.0, height: 30.0)
+        let segmentControl = JTSegmentControl(frame: frame)
+        segmentControl.delegate = self
+        segmentControl.items = ["名片夹", "云名片"]
+        segmentControl.showBridge(true, index: 4)
+        segmentControl.selectedIndex = 0
+        segmentControl.autoAdjustWidth = false
+        segmentControl.bounces = false
+        segmentControl.itemTextColor = UIColor.lightTextColor()
+        segmentControl.itemSelectedTextColor = UIColor.whiteColor()
+        segmentControl.itemBackgroundColor = UIColor.blackColor()
+        segmentControl.itemSelectedBackgroundColor = UIColor.blackColor()
+        segmentControl.selectedFont = UIFont.boldSystemFontOfSize(13)        
+        segmentControl.font = UIFont.boldSystemFontOfSize(13)
+        segmentControl.sliderViewColor = UIColor.lightGrayColor()
+        
+        segmentview.addSubview(segmentControl)
+        
+        
+        
         let backitem = UIBarButtonItem(title: Config.UI.PreNavItem, style: UIBarButtonItemStyle.Plain, target: self, action: "returnNavView")
         self.navigationItem.leftBarButtonItem = backitem
         
@@ -66,7 +136,8 @@ import UIKit
         print("拍摄名片")
         //let fileViewController:FileViewController = FileViewController()
         print("判断名片王是否安装支持\(CCOpenAPI.isCCAppInstalled() )")
-        print("名片王 版本 \(CCOpenAPI.currentAPIVersion())")
+        print("名片王 是否支持OPENAPI\(CCOpenAPI.isCCAppSupportAPI())")
+        
         
         if (CCOpenAPI.isCCAppInstalled()){
             print("通过名片王APP")
@@ -79,6 +150,10 @@ import UIKit
             recogCardReq.appKey = Config.Card.AppKey
             
             //NSNotificationCenter.defaultCenter().addObserver(self, selector: "HandleNetworkResult:", name: Config.RequestTag.PostUploadCardImage,object: nil)
+            
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(didReceiveResponseFromCamCardOpenAPI(_:)), name: CamCardOpenAPIDidReceiveResponseNotification, object: nil)
+            
+            
             CCOpenAPI.sendRequest(recogCardReq)
 
 
@@ -158,12 +233,15 @@ import UIKit
 
                 cardDetail.image = image
                 cardDetail.cardItem = cardItem
+                
+                print ("HandleNetWork Result CardItem = \(cardItem)")
                 //self.presentViewController(cardDetail, animated: true, completion: nil)
                 
                 
                 //let nextController:AudioDetail = AudioDetail()
                 //Message.shared.audioFileName = self.itemlist[indexPath.row].filename
-                self.navigationController?.pushViewController(cardDetail,animated:false);
+                //self.navigationController?.pushViewController(cardDetail,animated:false);
+                self.showDetailViewController(cardDetail, sender: self)  
                 
          }
             
@@ -192,6 +270,7 @@ extension CardMainController : JTSegmentControlDelegate {
         
         switch(index){  
         case 0:  
+            /*
             let array1 = [self.view.subviews] as NSArray  
             if ([array1.count] == 2) {//如果用于切换页面的view中已经有了两个子页面，那么就去掉一个，这样可以实现segment的无限制次数的切换  
                 array1.objectAtIndex(1).removeFromSuperview()  
@@ -202,13 +281,19 @@ extension CardMainController : JTSegmentControlDelegate {
             let cardFileList = CardFileList()  
             cardFileList.viewDidLoad()//同样在切换的时候需要启动页面加载函数  
             //orderservingview.view.width(self.view_Order.width())  
+            */
             [self.contentview.addSubview(cardFileList.view)];  
+            
+           
+            
             break;  
         case 1:  
+            /*
             let array1 = [self.view.subviews] as NSArray  
             if ([array1.count] == 2) {  
                 array1.objectAtIndex(1).removeFromSuperview()  
             }  
+ */
             let orderhistoryview = CardMain()//第二个用于切换的controller  
             orderhistoryview.viewDidLoad()  
             //orderhistoryview.view.width(self.view_Order.width())  
@@ -247,7 +332,7 @@ extension CardMainController : JTSegmentControlDelegate {
                 card.mobile = v["item"]["number"].asString
             
             }else if (v["item"]["type"].asString == "work"){
-                card.telephone = v["item"]["number"].asString
+                card.tel = v["item"]["number"].asString
             }
             
             
@@ -257,7 +342,10 @@ extension CardMainController : JTSegmentControlDelegate {
         card.title = jsonObj["title"][0]["item"].asString
         card.website = jsonObj["url"][0]["item"].asString
         card.unid = NSUUID().UUIDString
-        
+        card.imageurl = ""
+        card.filename = ""
+        card.uploadflag = ""
+        card.saveflag = ""  //肯定还没有保存
         
         return card
     }

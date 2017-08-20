@@ -19,9 +19,9 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WLv-DQ-wvf" userLabel="SegmentView">
                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                    <color key="backgroundColor" red="0.48334809010000002" green="0.88806029040000001" blue="0.68139318370000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="44" id="mg4-pB-sep"/>
+                        <constraint firstAttribute="height" constant="30" id="mg4-pB-sep"/>
                     </constraints>
                     <variation key="default">
                         <mask key="constraints">
@@ -83,7 +83,7 @@
                     <include reference="mal-uC-FHH"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="357" y="388"/>
+            <point key="canvasLocation" x="43" y="188"/>
         </view>
     </objects>
 </document>

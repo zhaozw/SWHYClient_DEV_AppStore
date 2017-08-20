@@ -37,7 +37,7 @@ import Foundation
         //NSNotificationCenter.defaultCenter().addObserver(self, selector: "didReceiveResponseFromCamCardOpenAPI:", name: CamCardOpenAPIDidReceiveRequestNotification, object: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CardMain.didReceiveResponseFromCamCardOpenAPI(_:)), name: CamCardOpenAPIDidReceiveResponseNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didReceiveResponseFromCamCardOpenAPI:", name: CamCardOpenAPIDidReceiveRequestNotification, object: nil)
+        //NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CardMain.didReceiveResponseFromCamCardOpenAPI(_:)), name: CamCardOpenAPIDidReceiveRequestNotification, object: nil)
      }
     
     
@@ -55,7 +55,7 @@ import Foundation
         let recogCardReq:CCOpenAPIRecogCardRequest  = CCOpenAPIRecogCardRequest();
         
         recogCardReq.addRecognizeLanguage(BCRLanguage_English)
-        recogCardReq.userID = "weiwei@swsresearch.com"
+        recogCardReq.userID = nil  //"weiwei@swsresearch.com"
         //recogCardReq.appKey = "VdBybLhN9gWW99V7CeChY8ab"
         recogCardReq.appKey = "MAC4CLL5Q6D8S56S"
         

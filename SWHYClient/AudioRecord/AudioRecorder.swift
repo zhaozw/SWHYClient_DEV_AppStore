@@ -500,7 +500,7 @@ import AudioKit
                 
                 //这里返回主线程，写需要主线程执行的代码
                 //println("这里返回主线程，写需要主线程执行的代码  --  Dispatch")
-                let result:Result = Result(status: "OK",message:"保存至录音资源库成功",userinfo:NSObject(),tag:tag)
+                let result:Result = Result(status: "OK",message:"保存至录音资源库成功",userinfo:NSObject(),tag:tag,key:"")
                 NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
             })
         }

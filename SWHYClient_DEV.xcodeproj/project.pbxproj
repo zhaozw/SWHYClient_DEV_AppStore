@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A3064C831F3B98C3006B6F0B /* CardListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3064C811F3B98C3006B6F0B /* CardListCell.swift */; };
+		A3064C841F3B98C3006B6F0B /* CardListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3064C821F3B98C3006B6F0B /* CardListCell.xib */; };
 		A31C5C181F30C8230044145F /* lame.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3D6BFF81D61FC38008EE6F3 /* lame.framework */; };
 		A34298D11D3FB7B40086B27C /* WebViewMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A34298D01D3FB7B40086B27C /* WebViewMenuViewController.swift */; };
 		A352DAFD1B05D0B90035B4AF /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A352DAFC1B05D0B90035B4AF /* MenuViewController.swift */; };
@@ -53,8 +55,6 @@
 		A37FB3EF1F36140B00D92DAF /* CardMainController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A37FB3EE1F36140B00D92DAF /* CardMainController.xib */; };
 		A37FB3F11F36352000D92DAF /* CardDetail_bak.xib in Resources */ = {isa = PBXBuildFile; fileRef = A37FB3F01F36352000D92DAF /* CardDetail_bak.xib */; };
 		A37FB3F31F363A2900D92DAF /* CardDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37FB3F21F363A2900D92DAF /* CardDetail.swift */; };
-		A3943FDC1F336221000E067B /* CardList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3943FDB1F336221000E067B /* CardList.swift */; };
-		A3943FE21F336DB6000E067B /* CardList.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3943FE11F336DB6000E067B /* CardList.xib */; };
 		A3A082811BB92CE6009E5A04 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A3A082801BB92CE6009E5A04 /* Info.plist */; };
 		A3A0CF3C1F322E9500315400 /* CamCardOpenAPIFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3A0CF381F322E9500315400 /* CamCardOpenAPIFramework.framework */; };
 		A3A0CF3D1F322E9500315400 /* CamCardOpenAPIFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3A0CF3A1F322E9500315400 /* CamCardOpenAPIFramework.framework */; };
@@ -69,8 +69,8 @@
 		A3B900CE1F30DB9200A1901A /* CardFileList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B900CD1F30DB9200A1901A /* CardFileList.swift */; };
 		A3B900D01F30DBA900A1901A /* CardFileList.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3B900CF1F30DBA900A1901A /* CardFileList.xib */; };
 		A3B900D21F30DBB200A1901A /* CardFileItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B900D11F30DBB200A1901A /* CardFileItem.swift */; };
-		A3B900D81F30E27C00A1901A /* CardListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B900D71F30E27C00A1901A /* CardListCell.swift */; };
-		A3B900DA1F30E28500A1901A /* CardListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3B900D91F30E28500A1901A /* CardListCell.xib */; };
+		A3B900D81F30E27C00A1901A /* CardListCell_bak.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B900D71F30E27C00A1901A /* CardListCell_bak.swift */; };
+		A3B900DA1F30E28500A1901A /* CardListCell_bak.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3B900D91F30E28500A1901A /* CardListCell_bak.xib */; };
 		A3B91B9A1AC2895900DC3D5A /* InnerAddressBookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B91B981AC2895900DC3D5A /* InnerAddressBookCell.swift */; };
 		A3BA012E1B09BA1800EA1448 /* AIFlatSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BA012D1B09BA1800EA1448 /* AIFlatSwitch.swift */; };
 		A3BA348E1B16DC95002C08C5 /* CustomerAddressBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BA348D1B16DC95002C08C5 /* CustomerAddressBook.swift */; };
@@ -232,6 +232,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A3064C811F3B98C3006B6F0B /* CardListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardListCell.swift; path = Card/CardListCell.swift; sourceTree = "<group>"; };
+		A3064C821F3B98C3006B6F0B /* CardListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CardListCell.xib; path = Card/CardListCell.xib; sourceTree = "<group>"; };
 		A30C24C31AC53C8B003FBBB7 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A34298D01D3FB7B40086B27C /* WebViewMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewMenuViewController.swift; sourceTree = "<group>"; };
 		A352DAFC1B05D0B90035B4AF /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
@@ -277,8 +279,6 @@
 		A37FB3EE1F36140B00D92DAF /* CardMainController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CardMainController.xib; path = Card/CardMainController.xib; sourceTree = "<group>"; };
 		A37FB3F01F36352000D92DAF /* CardDetail_bak.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CardDetail_bak.xib; path = Card/CardDetail_bak.xib; sourceTree = "<group>"; };
 		A37FB3F21F363A2900D92DAF /* CardDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardDetail.swift; path = Card/CardDetail.swift; sourceTree = "<group>"; };
-		A3943FDB1F336221000E067B /* CardList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardList.swift; path = Card/CardList.swift; sourceTree = "<group>"; };
-		A3943FE11F336DB6000E067B /* CardList.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CardList.xib; path = Card/CardList.xib; sourceTree = "<group>"; };
 		A3A082801BB92CE6009E5A04 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = SWHYClient/Info.plist; sourceTree = "<group>"; };
 		A3A0CF381F322E9500315400 /* CamCardOpenAPIFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CamCardOpenAPIFramework.framework; sourceTree = "<group>"; };
 		A3A0CF3A1F322E9500315400 /* CamCardOpenAPIFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CamCardOpenAPIFramework.framework; sourceTree = "<group>"; };
@@ -291,8 +291,8 @@
 		A3B900CD1F30DB9200A1901A /* CardFileList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardFileList.swift; path = Card/CardFileList.swift; sourceTree = "<group>"; };
 		A3B900CF1F30DBA900A1901A /* CardFileList.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CardFileList.xib; path = Card/CardFileList.xib; sourceTree = "<group>"; };
 		A3B900D11F30DBB200A1901A /* CardFileItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardFileItem.swift; path = Card/CardFileItem.swift; sourceTree = "<group>"; };
-		A3B900D71F30E27C00A1901A /* CardListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardListCell.swift; path = Card/CardListCell.swift; sourceTree = "<group>"; };
-		A3B900D91F30E28500A1901A /* CardListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CardListCell.xib; path = Card/CardListCell.xib; sourceTree = "<group>"; };
+		A3B900D71F30E27C00A1901A /* CardListCell_bak.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardListCell_bak.swift; path = Card/CardListCell_bak.swift; sourceTree = "<group>"; };
+		A3B900D91F30E28500A1901A /* CardListCell_bak.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CardListCell_bak.xib; path = Card/CardListCell_bak.xib; sourceTree = "<group>"; };
 		A3B91B981AC2895900DC3D5A /* InnerAddressBookCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InnerAddressBookCell.swift; sourceTree = "<group>"; };
 		A3B91B991AC2895900DC3D5A /* InnerAddressBookCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InnerAddressBookCell.xib; sourceTree = "<group>"; };
 		A3BA012D1B09BA1800EA1448 /* AIFlatSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AIFlatSwitch.swift; sourceTree = "<group>"; };
@@ -510,8 +510,10 @@
 		A376753C1EACDE1500CAB57F /* Card */ = {
 			isa = PBXGroup;
 			children = (
-				A3B900D91F30E28500A1901A /* CardListCell.xib */,
-				A3B900D71F30E27C00A1901A /* CardListCell.swift */,
+				A3064C811F3B98C3006B6F0B /* CardListCell.swift */,
+				A3064C821F3B98C3006B6F0B /* CardListCell.xib */,
+				A3B900D91F30E28500A1901A /* CardListCell_bak.xib */,
+				A3B900D71F30E27C00A1901A /* CardListCell_bak.swift */,
 				A3B900D11F30DBB200A1901A /* CardFileItem.swift */,
 				A3B900CF1F30DBA900A1901A /* CardFileList.xib */,
 				A3B900CD1F30DB9200A1901A /* CardFileList.swift */,
@@ -519,8 +521,6 @@
 				A3CCE9381EAE3020004E4457 /* CardView.xib */,
 				A37675431EACF4EF00CAB57F /* CardMain.swift */,
 				A37675441EACF4EF00CAB57F /* CardMain.xib */,
-				A3943FDB1F336221000E067B /* CardList.swift */,
-				A3943FE11F336DB6000E067B /* CardList.xib */,
 				A3A3729B1F35DB2800E803E0 /* CardMainController.swift */,
 				A37FB3EE1F36140B00D92DAF /* CardMainController.xib */,
 				A37FB3F21F363A2900D92DAF /* CardDetail.swift */,
@@ -1133,6 +1133,7 @@
 				A3DE300F1D7C06A5005A43B8 /* AudioFileList.xib in Resources */,
 				A37675461EACF4EF00CAB57F /* CardMain.xib in Resources */,
 				A3D2D8AC1BB81B47002491ED /* Main.storyboard in Resources */,
+				A3064C841F3B98C3006B6F0B /* CardListCell.xib in Resources */,
 				A3CDFF9F1D8ADD9D004EFF66 /* AudioDetail.xib in Resources */,
 				A3D2D8A21BB810E6002491ED /* InnerAddressBookHeader.xib in Resources */,
 				A3D2D8A31BB810E6002491ED /* InnerAddressDetail.xib in Resources */,
@@ -1147,12 +1148,11 @@
 				A3B900D01F30DBA900A1901A /* CardFileList.xib in Resources */,
 				A3785A2F1F374C3600360A2D /* Info.plist in Resources */,
 				A3FA90EF1D8EEA8300CB2465 /* LICENSE in Resources */,
-				A3943FE21F336DB6000E067B /* CardList.xib in Resources */,
 				A3D2D8A91BB810E6002491ED /* MainMenuItem.xib in Resources */,
 				A3D2D8AA1BB810E6002491ED /* MainViewController.xib in Resources */,
 				A37FB3F11F36352000D92DAF /* CardDetail_bak.xib in Resources */,
 				A3D2D8AB1BB810E6002491ED /* WebViewController.xib in Resources */,
-				A3B900DA1F30E28500A1901A /* CardListCell.xib in Resources */,
+				A3B900DA1F30E28500A1901A /* CardListCell_bak.xib in Resources */,
 				A3D2D8A11BB81080002491ED /* InnerAddressBookCell.xib in Resources */,
 				A3D2D8A01BB81071002491ED /* InnerAddressBook.xib in Resources */,
 				A3DE30131D7C0A0F005A43B8 /* AudioListCell.xib in Resources */,
@@ -1242,7 +1242,7 @@
 				A3C2C78E1D8853B800F7F5C6 /* MKEmbedMainControllerSegue.swift in Sources */,
 				A36906811D4DCE180043AFB6 /* AudioRecorderViewController.swift in Sources */,
 				A36906851D4DEE140043AFB6 /* AudioRecorder_bak.swift in Sources */,
-				A3B900D81F30E27C00A1901A /* CardListCell.swift in Sources */,
+				A3B900D81F30E27C00A1901A /* CardListCell_bak.swift in Sources */,
 				A3D2D8401BB7D5F7002491ED /* UIView+Haneke.swift in Sources */,
 				A3AC2F161C5A255A00356744 /* Log.swift in Sources */,
 				A3BA34921B16DEC5002C08C5 /* CustomerAddressItem.swift in Sources */,
@@ -1278,7 +1278,6 @@
 				A3C2C7951D8853B800F7F5C6 /* MKSnackbar.swift in Sources */,
 				A3BDBDC71B0460FA0085DFF1 /* UIViewControllerExtension.swift in Sources */,
 				A3D2D82D1BB7D5F7002491ED /* Cache.swift in Sources */,
-				A3943FDC1F336221000E067B /* CardList.swift in Sources */,
 				A3BDBDCD1B04625D0085DFF1 /* UITableViewExtension.swift in Sources */,
 				A3C2C78F1D8853B800F7F5C6 /* MKImageView.swift in Sources */,
 				A3D2D82E1BB7D5F7002491ED /* CGSize+Swift.swift in Sources */,
@@ -1316,6 +1315,7 @@
 				A3F7A9D71BDBA68800923D23 /* KeychainItem.swift in Sources */,
 				A352DB011B05D3770035B4AF /* SettingViewController.swift in Sources */,
 				A3BA51481B07F21A00F1800A /* ContactHelper.swift in Sources */,
+				A3064C831F3B98C3006B6F0B /* CardListCell.swift in Sources */,
 				A3BDBDC31B04601A0085DFF1 /* NonMemuController.swift in Sources */,
 				A3BDBDB91B045A940085DFF1 /* SlideMenuController.swift in Sources */,
 				A3785A1F1F374C3600360A2D /* FormLabelCell.swift in Sources */,
@@ -1486,7 +1486,7 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.swsresearch;
+				PRODUCT_BUNDLE_IDENTIFIER = com.swsresearch.dev;
 				PRODUCT_NAME = SWHYClient_DEV;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = SWHYClient/Util/BridgeHeader.h;
@@ -1525,7 +1525,7 @@
 					"-all_load",
 					"-ObjC",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.swsresearch;
+				PRODUCT_BUNDLE_IDENTIFIER = com.swsresearch.dev;
 				PRODUCT_NAME = SWHYClient_DEV;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = SWHYClient/Util/BridgeHeader.h;

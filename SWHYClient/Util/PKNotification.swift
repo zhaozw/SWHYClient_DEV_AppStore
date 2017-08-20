@@ -143,7 +143,15 @@ class PKNotificationClass: UIViewController {
         _PKNotificationSingleton.vcCollection.append(toastVC)
         
         toastVC.view.alpha = 0
-        UIApplication.sharedApplication().windows[0].addSubview(toastVC.view)
+        print("---- PKNotification UIApplication.sharedApplication().windows[0] = \(UIApplication.sharedApplication().windows[0])")
+        print ("---- PKNotification toastVC.ivew = \(toastVC.view)")
+        print ("---- PKNotification keyWindow = \(UIApplication.sharedApplication().keyWindow)")
+        //UIApplication.sharedApplication().windows[0].addSubview(toastVC.view)
+        
+        //UIApplication.sharedApplication().keyWindow!.backgroundColor = UIColor.redColor()
+        print("====Toast Message \(message)====")
+        UIApplication.sharedApplication().keyWindow!.addSubview(toastVC.view)
+        
         //UIApplication.sharedApplication().windows[0].bringSubviewToFront(toastVC.view)
         
         //print("toast \(message)")

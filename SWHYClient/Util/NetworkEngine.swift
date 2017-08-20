@@ -14,12 +14,14 @@ class Result {
     var message:String
     var userinfo:AnyObject
     var tag:String
+    var key:String
     
-    init(status:String,message:String,userinfo:AnyObject,tag:String){
+    init(status:String,message:String,userinfo:AnyObject,tag:String,key:String){
         self.status = status
         self.message = message
         self.userinfo = userinfo
         self.tag = tag
+        self.key = key
     }
     
 }
@@ -35,7 +37,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
     
     class var sharedInstance: NetworkEngine {
         let configuration:NSURLSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
-        configuration.timeoutIntervalForRequest = 120  //超时设置为300秒
+        configuration.timeoutIntervalForRequest = 30  //超时设置为300秒
         configuration.timeoutIntervalForResource = 120 
         print(configuration.timeoutIntervalForRequest) //= 15 //连接超时时间
         Inner.instance.session = NSURLSession(configuration: configuration,delegate: Inner.instance,delegateQueue:NSOperationQueue.mainQueue())
@@ -60,15 +62,15 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         //request.setValue("application/text", forHTTPHeaderField: "Content-Type")
         request.addValue("application/x-www-form-urlencoded;charset=utf-8", forHTTPHeaderField: "Content-Type")
-        
-        
+                          
+        //request.addValue(contenttype, forHTTPHeaderField: "Content-Type")
         print(postData)
         
         //let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(Config.Encoding.GB2312))
-        
+        //request.HTTPBody = postData.dataUsingEncoding(enc)
         request.HTTPBody = postData.dataUsingEncoding(NSUTF8StringEncoding)     
-        //request.HTTPBody = postData.dataUsingEncoding(enc)   
-        request.HTTPMethod = "POST"
+           
+        request.HTTPMethod = "post"
         var result:String = ""
         
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
@@ -78,7 +80,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                 if httpResponse.statusCode != 200 {
                     print("response was not 200: \(response)")
                     result =  "Error: \(httpResponse.statusCode)"
-                    self.dispatchResponse(result,tag: tag)
+                    self.dispatchResponse(result,tag: tag,key:"")
                 }
             }
             if (error != nil) {
@@ -86,7 +88,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                 var errmsg = ""
                 if error!.code == -999{
                     //cancelled  用户名密码验证不通过时，取消请求
-                    errmsg = "用户名或密码错误"
+                    errmsg = "登陆失败，请稍候重试"
                 }else{
                     errmsg = "网络连接出错，请检查网络或稍后再试"
                     print("Error ====\(error!.localizedDescription) ==code=\(error!.code)")
@@ -96,7 +98,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                 self.alive = false
                 //print("request url host = false  \(request.URL?.host!)")
                 self.serverlist.updateValue(false, forKey: request.URL?.host!  ?? "AnyServer")
-                let result:Result = Result(status: "Error",message:errmsg,userinfo:error!,tag:tag)
+                let result:Result = Result(status: "Error",message:errmsg,userinfo:error!,tag:tag,key:"")
                 NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
             }else{
                 // handle the data of the successful response here
@@ -105,7 +107,100 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                 
                 let res:String = NSString(data: data!, encoding: NSUTF8StringEncoding)! as String
                 print(" res convert =\(res) tag:\(tag)")
-                self.dispatchResponse(res,tag: tag)    
+                self.dispatchResponse(res,tag: tag,key:"")    
+            }
+        }
+        task.resume()
+        
+    }
+    
+    //0EB020F9-F3DA-4585-8A24-57212DAEE985
+    func processRequestWithUrlString(url:String,postData:NSData,method:String,contenttype:String,tag:String,key:String){
+        
+        //Key是传入是为了识别返回时 如果是循环 要判断具体要处理哪一个对象
+    
+        let request = NSMutableURLRequest(URL: NSURL(string: url)!)
+        //let request = NSMutableURLRequest(URL: NSURL(string: url)!)
+        print ("get request with url \(url)")
+        //request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        //request.setValue("application/text", forHTTPHeaderField: "Content-Type")
+        //request.addValue("application/x-www-form-urlencoded;charset=utf-8", forHTTPHeaderField: "Content-Type")
+        
+        request.addValue(contenttype, forHTTPHeaderField: "Content-Type")
+        
+        //request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        
+        
+        //request.setValue("application/json;charset=utf-8", forHTTPHeaderField: "Content-Type")
+        //request.setValue("application/json", forHTTPHeaderField: "Accept")
+       
+        //postData = 
+    
+        //let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(Config.Encoding.GB2312))
+        //request.HTTPBody = postData.dataUsingEncoding(enc)
+        
+        request.HTTPBody = postData        
+        
+        //request.HTTPBody = postData.stringByAddingPercentEscapesUsingEncoding(enc)!.dataUsingEncoding(enc)
+        
+        
+        //request.HTTPBody = postData.dataUsingEncoding(NSUTF8StringEncoding)     
+         
+        
+        //let json = ["userldap":"weiwei","IdSurvey":"102","IdUser":"iOSclient","UserInformation":"iOSClient"]
+        
+        
+        //let data : NSData = NSKeyedArchiver.archivedDataWithRootObject(json)
+        
+        
+        //NSJSONSerialization.isValidJSONObject(json)
+        
+        //request.HTTPBody = data
+        
+         print(request.HTTPBody)
+        
+        //request.HTTPBody = postData.dataUsingEncoding(enc)
+        
+        request.HTTPMethod = method
+        var result:String = ""
+        
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
+            data, response, error in
+            print("get request response =\(response)")
+            if let httpResponse = response as? NSHTTPURLResponse {
+                if httpResponse.statusCode != 200 {
+                    print("response was not 200: \(response)")
+                    result =  "Error: \(httpResponse.statusCode)"
+                    self.dispatchResponse(result,tag: tag,key:key)
+                }
+            }
+            if (error != nil) {
+                print("Error ====\(error!.localizedDescription) ==code=\(error!.code)")
+                var errmsg = ""
+                if error!.code == -999{
+                    //cancelled  用户名密码验证不通过时，取消请求
+                    errmsg = "登陆失败，请稍候重试"
+                     print("Error ==process request==\(error!.localizedDescription) ==code=\(error!.code)")
+                }else{
+                    errmsg = "网络连接出错，请检查网络或稍后再试"
+                    print("Error ==process request==\(error!.localizedDescription) ==code=\(error!.code)")
+                }
+                
+                self.success_auth = 0
+                self.alive = false
+                //print("request url host = false  \(request.URL?.host!)")
+                self.serverlist.updateValue(false, forKey: request.URL?.host!  ?? "AnyServer")
+                let result:Result = Result(status: "Error",message:errmsg,userinfo:error!,tag:tag,key:"")
+                NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
+            }else{
+                // handle the data of the successful response here
+                //print(data)
+                let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(Config.Encoding.GB2312))
+                let res:String = NSString(data: data!, encoding: enc)! as String
+                
+                //let res:String = NSString(data: data!, encoding: NSUTF8StringEncoding)! as String
+                print(" ------ res convert process request=\(res) tag:\(tag)")
+                self.dispatchResponse(res,tag: tag,key:key)    
             }
         }
         task.resume()
@@ -148,7 +243,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
             request.HTTPBody = data!.dataUsingEncoding(enc)             
             request.HTTPMethod = "POST"
             
-            //print(request.HTTPBody)
+            print("====post log list =\(request.HTTPBody)")
             
             let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
                 data, response, error in
@@ -157,7 +252,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                     if httpResponse.statusCode != 200 {
                         print("response was not 200: \(response)")
                         result =  "Error: \(httpResponse.statusCode)"
-                        self.dispatchResponse(result,tag: tag)
+                        self.dispatchResponse(result,tag: tag,key:"")
                         
                     }
                 }
@@ -166,7 +261,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                     var errmsg = ""
                     if error!.code == -999{
                         //cancelled  用户名密码验证不通过时，取消请求
-                        errmsg = "用户名或密码错误"
+                        errmsg = "登陆失败，请稍候重试"
                     }else{
                         errmsg = "网络连接出错，请检查网络或稍后再试"
                     }
@@ -175,7 +270,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                     self.alive = false
                     //print("request url host = false  \(request.URL?.host!)")
                     self.serverlist.updateValue(false, forKey: request.URL?.host!  ?? "AnyServer")
-                    let result:Result = Result(status: "Error",message:errmsg,userinfo:error!,tag:tag)
+                    let result:Result = Result(status: "Error",message:errmsg,userinfo:error!,tag:tag,key:"")
                     NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
                     
                 }else{
@@ -193,7 +288,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                             //println(sqlresult)
                             //let sqlresult = 999
                             
-                            self.dispatchResponse("系统已自动同步访问日志:\(String(sqlresult)) 条",tag: tag)
+                            self.dispatchResponse("系统已自动同步访问日志:\(String(sqlresult)) 条",tag: tag,key:"")
                             
                         }else if (tag != Config.RequestTag.PostAccessLog){
                             
@@ -205,7 +300,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                         
                         result = "Error: 同步访问日志出错)"
                         //println(result)
-                        self.dispatchResponse(result,tag: tag)
+                        self.dispatchResponse(result,tag: tag,key:"")
                     }
                 }
             }
@@ -266,7 +361,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                     if httpResponse.statusCode != 200 {
                         //print("response was not 200: \(response)")
                         result =  "Error: \(httpResponse.statusCode)"
-                        self.dispatchResponse(result,tag: tag)
+                        self.dispatchResponse(result,tag: tag,key:"")
                         
                     }
                 }
@@ -275,7 +370,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                     var errmsg = ""
                     if error!.code == -999{
                         //cancelled  用户名密码验证不通过时，取消请求
-                        errmsg = "用户名或密码错误"
+                        errmsg = "登陆失败，请稍候重试"
                     }else{
                         errmsg = "网络连接出错，请检查网络或稍后再试"
                     }
@@ -284,7 +379,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                     self.alive = false
                     //print("request url host = false  \(request.URL?.host!)")
                     self.serverlist.updateValue(false, forKey: request.URL?.host!  ?? "AnyServer")
-                    let result:Result = Result(status: "Error",message:errmsg,userinfo:error!,tag:tag)
+                    let result:Result = Result(status: "Error",message:errmsg,userinfo:error!,tag:tag,key:"")
                     NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
                     
                 }else{
@@ -302,7 +397,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                             //println(sqlresult)
                             //let sqlresult = 999
                             
-                            self.dispatchResponse("系统已自动同步客户通讯录日志:\(String(sqlresult)) 条",tag: tag)
+                            self.dispatchResponse("系统已自动同步客户通讯录日志:\(String(sqlresult)) 条",tag: tag,key:"")
                             
                         }else if (tag != Config.RequestTag.PostCustomerLog){
                             
@@ -312,7 +407,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                         
                         result = "Error: 同步客户通讯录日志出错)"
                         //println(result)
-                        self.dispatchResponse(result,tag: tag)
+                        self.dispatchResponse(result,tag: tag,key:"")
                     }
                 }
             }
@@ -324,6 +419,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
     
     
     func postUploadCardImage(url:String,image:UIImage,tag:String){
+        //上传名片图片至名片王解析服务器进行解析
         var result:String = ""
         //let data=UIImagePNGRepresentation(image)//把图片转成data  
         
@@ -374,7 +470,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                 if httpResponse.statusCode != 200 {
                     print("response was not 200: \(response)")
                     result =  "Error: \(httpResponse.statusCode)"
-                    self.dispatchResponse(result,tag: tag)
+                    self.dispatchResponse(result,tag: tag,key:"")
                     
                 }
             }
@@ -383,7 +479,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                 var errmsg = ""
                 if error!.code == -999{
                     //cancelled  用户名密码验证不通过时，取消请求
-                    errmsg = "用户名或密码错误"
+                    errmsg = "登陆失败，请稍候重试"
                 }else{
                     errmsg = "网络连接出错，请检查网络或稍后再试"
                 }
@@ -392,7 +488,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                 self.alive = false
                 //print("request url host = false  \(request.URL?.host!)")
                 self.serverlist.updateValue(false, forKey: request.URL?.host!  ?? "AnyServer")
-                let result:Result = Result(status: "Error",message:errmsg,userinfo:error!,tag:tag)
+                let result:Result = Result(status: "Error",message:errmsg,userinfo:error!,tag:tag,key:"")
                 NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)          
             }else{
                 // handle the data of the successful response here
@@ -456,7 +552,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                 if httpResponse.statusCode != 200 {
                     print("response was not 200: \(response)")
                     result =  "Error: \(httpResponse.statusCode)"
-                    self.dispatchResponse(result,tag: tag)
+                    self.dispatchResponse(result,tag: tag,key:"")
                     
                 }
             }
@@ -465,7 +561,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                 var errmsg = ""
                 if error!.code == -999{
                     //cancelled  用户名密码验证不通过时，取消请求
-                    errmsg = "用户名或密码错误"
+                    errmsg = "登陆失败，请稍候重试"
                 }else{
                     errmsg = "网络连接出错，请检查网络或稍后再试"
                 }
@@ -474,7 +570,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                 self.alive = false
                 //print("request url host = false  \(request.URL?.host!)")
                 self.serverlist.updateValue(false, forKey: request.URL?.host!  ?? "AnyServer")
-                let result:Result = Result(status: "Error",message:errmsg,userinfo:error!,tag:tag)
+                let result:Result = Result(status: "Error",message:errmsg,userinfo:error!,tag:tag,key:"")
                 NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)          
             }else{
                 // handle the data of the successful response here
@@ -488,12 +584,12 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                     
                     result = "Success: 上传文件成功"
                     print(result)
-                    self.dispatchResponse(result,tag: tag)                
+                    self.dispatchResponse(result,tag: tag,key:"")                
                 }else if res.componentsSeparatedByString("Error").count > 1{
                     
                     result = "Error: 上传文件出错"
                     print(result)
-                    self.dispatchResponse(result,tag: tag)
+                    self.dispatchResponse(result,tag: tag,key:"")
                 }
             }
         }
@@ -501,6 +597,87 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
         task.resume()
         
     }
+    
+    
+    //===========上传文件===============================
+    func postUploadModuleFile(url:String,filename:String,moduleName:String,tag:String){
+        print("---url = \(url)")
+        let filepath = DaiFileManager.document[filename].path
+        print("上传文件 filename =\(filename)")
+        let request = NSMutableURLRequest(URL: NSURL(string: url)!)
+        //let multiPartMime = MultiPartMime(dict: ["fulFile": MultiPartPart.StringWrapper(filename), "file": MultiPartPart.PNGImage(img, filename)])
+        
+        let multiPartMime = MultiPartMime(dict: ["File": MultiPartPart.File(filepath),"UserName":MultiPartPart.StringWrapper(Message.shared.postUserName),"Module":MultiPartPart.StringWrapper(moduleName)])
+        
+        //let multiPartMime = MultiPartMime(dict: ["UserName":MultiPartPart.StringWrapper(Message.shared.postUserName)])
+        
+        request.HTTPBody = multiPartMime.multiPartData           
+        request.HTTPMethod = "POST"
+        
+        request.setValue(multiPartMime.contentTypeString, forHTTPHeaderField:"Content-Type")
+        //print("---- httpbody =\(request.HTTPBody)")
+        
+        //var datastring = String(data: request.HTTPBody!, encoding: NSUTF8StringEncoding)
+        
+        //print("dataString = \(datastring)")
+        //print(multiPartMime.multiPartData)
+        var result:String = ""
+        //-------------------
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) {
+            data, response, error in
+            
+            print("response =\(response)")
+            if let httpResponse = response as? NSHTTPURLResponse {
+                if httpResponse.statusCode != 200 {
+                    print("response was not 200: \(response)")
+                    result =  "Error: \(httpResponse.statusCode)"
+                    self.dispatchResponse(result,tag: tag,key:"")
+                    
+                }
+            }
+            if (error != nil) {
+                print("Error ====\(error!.localizedDescription) ==code=\(error!.code)")
+                var errmsg = ""
+                if error!.code == -999{
+                    //cancelled  用户名密码验证不通过时，取消请求
+                    errmsg = "登陆失败，请稍候重试"
+                }else{
+                    errmsg = "网络连接出错，请检查网络或稍后再试"
+                }
+                
+                self.success_auth = 0
+                self.alive = false
+                //print("request url host = false  \(request.URL?.host!)")
+                self.serverlist.updateValue(false, forKey: request.URL?.host!  ?? "AnyServer")
+                let result:Result = Result(status: "Error",message:errmsg,userinfo:error!,tag:tag,key:"")
+                NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)          
+            }else{
+                // handle the data of the successful response here
+                //let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(Config.Encoding.GB2312))
+                //let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(NSUTF8StringEncoding))
+                
+                let res:String = NSString(data: data!, encoding: NSUTF8StringEncoding)! as String
+                       
+                
+                print(" res convert =\(res)")
+                if res.componentsSeparatedByString("OK").count > 1 {
+                    
+                    result = filename    //如果上传成功 回传上传的文件名 以便后续程序可以判断是哪个文件上传成功
+                    print(result)
+                    self.dispatchResponse(result,tag: tag,key:"")                
+                }else if res.componentsSeparatedByString("Error").count > 1{
+                    
+                    result = res
+                    print(result)
+                    self.dispatchResponse(result,tag: tag,key:"")
+                }
+            }
+        }
+        print("before resume")
+        task.resume()
+        
+    }
+
     
     
     func addRequestWithUrlString(url:String,tag:String,useCache:Bool?){
@@ -526,14 +703,14 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
         //let url1 = "https://github.com"
         let request = NSMutableURLRequest(URL: NSURL(string: url+"&client="+Config.Net.ClientType)!)
         //let request = NSMutableURLRequest(URL: NSURL(string: url1)!)
-        //print("url =\(url1)")
+        print("url =\(request.URL?.absoluteString)")
         let task = self.session.dataTaskWithRequest(request){(data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
             if error != nil {
                 print("Error ====\(error!.localizedDescription) ==code=\(error!.code)")
                 var errmsg = ""
                 if error!.code == -999{
                     //cancelled  用户名密码验证不通过时，取消请求
-                    errmsg = "用户名或密码错误"
+                    errmsg = "登陆失败，请稍候重试"
                 }else{
                     errmsg = "网络连接出错，请检查网络或稍后再试"
                 }
@@ -542,7 +719,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                 self.alive = false
                 //print("request url host = false  \(request.URL?.host!)")
                 self.serverlist.updateValue(false, forKey: request.URL?.host!  ?? "AnyServer")
-                let result:Result = Result(status: "Error",message:errmsg,userinfo:error!,tag:tag)
+                let result:Result = Result(status: "Error",message:errmsg,userinfo:error!,tag:tag,key:"")
                 NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
                 
             } else {
@@ -561,7 +738,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                     //print("______________get ReS_____________\(res)")
                     
                     
-                    self.dispatchResponse(res,tag: tag)
+                    self.dispatchResponse(res,tag: tag,key:"")
                 }
                 //NSNotificationCenter.defaultCenter().postNotificationName(tag, object: res)
             }
@@ -627,7 +804,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                 userInfo.updateValue(resultimage!, forKey: "UIImage")
                 print("-------2222----------")
 
-                result = Result(status: "OK",message:"",userinfo:userInfo,tag:tag)
+                result = Result(status: "OK",message:"",userinfo:userInfo,tag:tag,key:"")
                 print("-------3333----------")
             default:
                 return        
@@ -647,7 +824,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
 
         
     
-    func dispatchResponse(res:String,tag:String){
+    func dispatchResponse(res:String,tag:String,key:String){
         
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
@@ -670,7 +847,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                 userInfo.updateValue(tmparr[2], forKey: "UpgradeURL")
                 userInfo.updateValue(tmparr[3], forKey: "Message")
                 
-                result = Result(status: "OK",message:"",userinfo:userInfo,tag:tag)
+                result = Result(status: "OK",message:"",userinfo:userInfo,tag:tag,key:key)
                 //NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
                 
                 
@@ -699,7 +876,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                     //mainMenuItemBO.initWithDic(dict as NSDictionary)
                     userInfo.addObject(mainMenuItemBO)
                 }
-                result = Result(status: "OK",message:"",userinfo:userInfo,tag:tag)
+                result = Result(status: "OK",message:"",userinfo:userInfo,tag:tag,key:key)
                 //NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)   
                 
             case Config.RequestTag.GetInnerAddressBook:
@@ -738,7 +915,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                     
                     userInfo.addObject(item)
                 }
-                result = Result(status: "OK",message:"",userinfo:userInfo,tag:tag)
+                result = Result(status: "OK",message:"",userinfo:userInfo,tag:tag,key:key)
                 //NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
                 
             case Config.RequestTag.GetInnerAddressBook_Dept:
@@ -752,32 +929,32 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                     }
                     
                 }
-                result = Result(status: "OK",message:"",userinfo:userInfo,tag:tag)
+                result = Result(status: "OK",message:"",userinfo:userInfo,tag:tag,key:key)
             //NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
             case Config.RequestTag.WebViewPreGet:
-                result = Result(status: "OK",message:"",userinfo:NSObject(),tag:tag)
+                result = Result(status: "OK",message:"",userinfo:NSObject(),tag:tag,key:key)
                 //NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
                 
             case Config.RequestTag.PostAccessLog:
                 //println("dispatch \(res)  \(tag)")
                 if res.componentsSeparatedByString("Error").count > 1{
                     //println("========postnotification =====\(res)")
-                    result = Result(status: "Error",message:res,userinfo:NSObject(),tag:tag)
+                    result = Result(status: "Error",message:res,userinfo:NSObject(),tag:tag,key:key)
                     //NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
                 }else{
                     //println("========postnotification =====\(res)  \(tag)")
-                    result = Result(status: "OK",message:res,userinfo:NSObject(),tag:tag)
+                    result = Result(status: "OK",message:res,userinfo:NSObject(),tag:tag,key:key)
                     //NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
                 }
             case Config.RequestTag.PostCustomerLog:
                 //println("dispatch \(res)  \(tag)")
                 if res.componentsSeparatedByString("Error").count > 1{
                     //println("========postnotification =====\(res)")
-                    result = Result(status: "Error",message:res,userinfo:NSObject(),tag:tag)
+                    result = Result(status: "Error",message:res,userinfo:NSObject(),tag:tag,key:key)
                     //NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
                 }else{
                     //println("========postnotification =====\(res)  \(tag)")
-                    result = Result(status: "OK",message:res,userinfo:NSObject(),tag:tag)
+                    result = Result(status: "OK",message:res,userinfo:NSObject(),tag:tag,key:key)
                     //NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
                 }
             case Config.RequestTag.GetCustomerAddressBook:
@@ -824,7 +1001,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                     
                     userInfo.addObject(item)
                 }
-                result = Result(status: "OK",message:"",userinfo:userInfo,tag:tag)
+                result = Result(status: "OK",message:"",userinfo:userInfo,tag:tag,key:key)
                 //NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
                 
             case Config.RequestTag.GetCustomerAddressBook_Group:
@@ -841,7 +1018,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                     }
                     
                 }
-                result = Result(status: "OK",message:"",userinfo:userInfo,tag:tag)
+                result = Result(status: "OK",message:"",userinfo:userInfo,tag:tag,key:key)
             //NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
             case Config.RequestTag.GetParameter_CallDuration:
                 var userInfo = ""
@@ -849,7 +1026,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                 print(res)
                 let json = JSONClass(string:res)
                 userInfo = json["JSON"][0]["value"].asString  ?? "++"
-                result = Result(status: "OK",message:"",userinfo:userInfo,tag:tag)
+                result = Result(status: "OK",message:"",userinfo:userInfo,tag:tag,key:key)
                 //NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
                 
             case Config.RequestTag.GetPersonInfoByAD:
@@ -858,31 +1035,53 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                 print(res)
                 let json = JSONClass(string:res)
                 userInfo = json["JSON"][0]["value"].asString  ?? "++"
-                result = Result(status: "OK",message:"",userinfo:userInfo,tag:tag)
+                result = Result(status: "OK",message:"",userinfo:userInfo,tag:tag,key:key)
                 //NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
 
             case Config.RequestTag.PostUploadAudioFile:
                 //println("dispatch \(res)  \(tag)")
                 if res.componentsSeparatedByString("Error").count > 1{
                     //println("========postnotification =====\(res)")
-                    result = Result(status: "Error",message:res,userinfo:NSObject(),tag:tag)
+                    result = Result(status: "Error",message:res,userinfo:NSObject(),tag:tag,key:key)
                     //NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
                 }else{
                     //println("========postnotification =====\(res)  \(tag)")
-                    result = Result(status: "OK",message:res,userinfo:NSObject(),tag:tag)
+                    result = Result(status: "OK",message:res,userinfo:NSObject(),tag:tag,key:key)
                     //NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
                 }
-                
+            case Config.RequestTag.PostUploadCardFile:
+                //println("dispatch \(res)  \(tag)")
+                if res.componentsSeparatedByString("Error").count > 1{
+                    //println("========postnotification =====\(res)")
+                    result = Result(status: "Error",message:res,userinfo:NSObject(),tag:tag,key:key)
+                    //NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
+                }else{
+                    //println("========postnotification =====\(res)  \(tag)")
+                    result = Result(status: "OK",message:res,userinfo:NSObject(),tag:tag,key:key)
+                    //NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
+                }
+            case Config.RequestTag.PostUploadCardFileMuti:
+                //println("dispatch \(res)  \(tag)")
+                if res.componentsSeparatedByString("Error").count > 1{
+                    //println("========postnotification =====\(res)")
+                    result = Result(status: "Error",message:res,userinfo:NSObject(),tag:tag,key:key)
+                    //NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
+                }else{
+                    //println("========postnotification =====\(res)  \(tag)")
+                    result = Result(status: "OK",message:res,userinfo:NSObject(),tag:tag,key:key)
+                    //NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
+                }
+
             case Config.RequestTag.GetWeiXinToken:
                 print("dispatch \(res)  \(tag)")
                 
                 if res.componentsSeparatedByString("errcode").count > 1{
-                    result = Result(status: "Error",message:res,userinfo:NSObject(),tag:tag)
+                    result = Result(status: "Error",message:res,userinfo:NSObject(),tag:tag,key:key)
                 }else{
                     let json = JSONClass(string:res.stringByReplacingOccurrencesOfString("\'", withString: "\"", options: NSStringCompareOptions.LiteralSearch, range: nil))
                     //print(json.toString())
                     //print(json["token"].asString)
-                    result = Result(status: "OK",message:json["token"].asString!,userinfo:NSObject(),tag:tag)
+                    result = Result(status: "OK",message:json["token"].asString!,userinfo:NSObject(),tag:tag,key:key)
                 }
                 
                 
@@ -898,23 +1097,36 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                     
                     userInfo = json[0]["reportid"].asString ?? ""
                     //print(userInfo)
-                    result = Result(status: "OK",message:"发布音频成功",userinfo:userInfo,tag:tag)
+                    result = Result(status: "OK",message:"发布音频成功",userinfo:userInfo,tag:tag,key:key)
                 }else{
                     userInfo = json[0]["errmsg"].asString ?? ""
-                    result = Result(status: "Error",message:"发布音频失败",userinfo:userInfo,tag:tag)
+                    result = Result(status: "Error",message:"发布音频失败",userinfo:userInfo,tag:tag,key:key)
                 }
             case Config.RequestTag.PostUploadCardImage:
                 print("dispatch \(res)  \(tag)")
                 
                 if res.componentsSeparatedByString("errcode").count > 1{
-                    result = Result(status: "Error",message:res,userinfo:NSObject(),tag:tag)
+                    result = Result(status: "Error",message:res,userinfo:NSObject(),tag:tag,key:key)
                 }else{
                     let json = JSONClass(string:res.stringByReplacingOccurrencesOfString("\'", withString: "\"", options: NSStringCompareOptions.LiteralSearch, range: nil))
                     //print(json.toString())
                     //print(json["token"].asString)
-                    result = Result(status: "OK",message:json["token"].asString!,userinfo:NSObject(),tag:tag)
+                    result = Result(status: "OK",message:json["token"].asString!,userinfo:NSObject(),tag:tag,key:key)
+                }
+            case Config.RequestTag.PostCardRecord:
+                
+                
+                if res.componentsSeparatedByString("Error").count > 1{
+                    //println("========postnotification =====\(res)")
+                    result = Result(status: "Error",message:res,userinfo:NSObject(),tag:tag,key:key)
+                    //NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
+                }else{
+                    //println("========postnotification =====\(res)  \(tag)")
+                    result = Result(status: "OK",message:res,userinfo:NSObject(),tag:tag,key:key)
+                    //NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
                 }
                 
+                //NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)   
                 
             default:
                 return        

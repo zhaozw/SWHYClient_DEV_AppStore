@@ -253,7 +253,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,WXApiDelegate {
         print("application HandleOpenURL 111= \(url)")
         return WXApi.handleOpenURL(url, delegate: self)
         //return CCOpenAPI.handleOpenURL(url, sourceApplication: <#T##String!#>)
-            }
+    }
     
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         

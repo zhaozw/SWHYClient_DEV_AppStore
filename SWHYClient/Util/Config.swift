@@ -24,11 +24,16 @@ class Config{
         static let PostCustomerLog = "PostCustomerLog"
         static let GetParameter_CallDuration = "GetParameter_CallDuration"
         static let PostUploadAudioFile = "PostUploadAudioFile"
+        static let PostUploadCardFile = "PostUploadCardFile"        //上传至内网名片图片服务器
+        
+        static let PostUploadCardFileMuti = "PostUploadCardFileMuti"        //上传至内网名片图片服务器
+
+        
         static let GetWeiXinToken = "GetWeiXinToken"
         static let PostAudioTopic = "PostAudioTopic"
         static let GetPersonInfoByAD = "GetPersonInfoByAD"
-        
-        static let PostUploadCardImage = "PostUploadCardImage"
+        static let PostCardRecord = "PostCardRecord"
+        static let PostUploadCardImage = "PostUploadCardImage"    //上传至第一方识别服务器
     } 
 
     struct NotifyTag {
@@ -42,30 +47,33 @@ class Config{
     
     struct Encoding {
         static let GB2312 = CFStringEncodings.GB_18030_2000.rawValue
+        static let GB2312_80 = CFStringEncodings.GB_2312_80.rawValue
         static let UTF8 = NSUTF8StringEncoding
     }
     
     struct URL {
         static let BaseURL = "http://swinbak.swsresearch.net"
-        static let Login = "http://swinbak.swsresearch.net/Mobile/mobileInterface.nsf/ag_checkMobile?Openagent"
+        static let Login = "https://swinbak.swsresearch.net/Mobile/mobileInterface.nsf/ag_checkMobile?Openagent"
         //static let ToDoList = "http://swinbak.swsresearch.net/mobile/mobileflow.nsf/fm_workflowplatform?openform"
-        static let MainMenuList = "http://swinbak.swsresearch.net/Mobile/mobileInterface.nsf/fm_showMobileHP_ios?readForm"
-        static let InnerAddressBook = "http://swinbak.swsresearch.net/Portal/SysBase/SysUserInfo.nsf/fm_allPersonXML?readform"
-        static let InnerAddressBook_Dept = "http://swinbak.swsresearch.net/portal/SysBase/SysAppReg.nsf/fm_allDeptXML?readform"
+        static let MainMenuList = "https://swinbak.swsresearch.net/Mobile/mobileInterface.nsf/fm_showMobileHP_ios?readForm"
+        static let InnerAddressBook = "https://swinbak.swsresearch.net/Portal/SysBase/SysUserInfo.nsf/fm_allPersonXML?readform"
+        static let InnerAddressBook_Dept = "https://swinbak.swsresearch.net/portal/SysBase/SysAppReg.nsf/fm_allDeptXML?readform"
         
-        static let CustomerAddressBook = "http://swinbak.swsresearch.net/mobile/customerinfo.nsf/GetCustomerInfoByUserName?openagent"
-        static let CustomerAddressBook_Group = "http://swinbak.swsresearch.net/mobile/customerinfo.nsf/GetGroupInfoByUserName?openagent"
+        static let CustomerAddressBook = "http:s//swinbak.swsresearch.net/mobile/customerinfo.nsf/GetCustomerInfoByUserName?openagent"
+        static let CustomerAddressBook_Group = "https://swinbak.swsresearch.net/mobile/customerinfo.nsf/GetGroupInfoByUserName?openagent"
         
         //static let CustomerAddressBook = "http://swin.swsresearch.mobi/mobile/customerinfo.nsf/GetCustomerInfoByUserName?openagent"
         //static let CustomerAddressBook_Group = "http://swin.swsresearch.mobi/mobile/customerinfo.nsf/GetGroupInfoByUserName?openagent"
         
-        static let PostAccessLog = "http://swinbak.swsresearch.net/mobile/Log.nsf/DoPostAccessLog?openagent"
-        static let PostCustomerLog = "http://swinbak.swsresearch.net/mobile/Log.nsf/DoPostCustomerLog?openagent"
+        static let PostAccessLog = "https://swinbak.swsresearch.net/mobile/Log.nsf/DoPostAccessLog?openagent"
+        static let PostCustomerLog = "https://swinbak.swsresearch.net/mobile/Log.nsf/DoPostCustomerLog?openagent"
         
-        static let GetParameter_CallDuration = "http://swinbak.swsresearch.net/Mobile/mobileInterface.nsf/ag_getparameter?Openagent&key=IOS-Call-Duration-Default"
+        static let GetParameter_CallDuration = "https://swinbak.swsresearch.net/Mobile/mobileInterface.nsf/ag_getparameter?Openagent&key=IOS-Call-Duration-Default"
         //static let PostUploadAudioFile = "http://192.168.1.105/upload/uploadhandler.ashx"
         //static let PostUploadAudioFile = "http://192.168.1.105/audio/uploadhandler.ashx"
-        static let PostUploadAudioFile = "http://download.swsresearch.net/audio/uploadhandler.ashx"
+        static let PostUploadAudioFile = "https://download.swsresearch.net/audio/uploadhandler.ashx"
+        
+        static let PostUploadCardFile = "https://download.swsresearch.net/upload/uploadhandler.ashx"
         
         
         //static let GetWeiXinToken = "http://202.109.73.185/swhyweixin/gettoken.ashx?appid=swhyapp&secret=weiwei"
@@ -76,9 +84,13 @@ class Config{
         static let PostAudioTopic = "http://wx.swsresearch.com/swhyweixin/gentopic.ashx?token="
         
         static let AudioBaseURL = "http://download.swsresearch.net/audio/audiofile/"
+        static let CardBaseURL = "http://download.swsresearch.net/upload/UploadFile/"
         static let ViewWeiXinReport = "http://wxweb.swsresearch.com/report/getDetailReportInfo.do?reportType=2&reportId="
         
-        static let GetPersonInfoByAD = "http://swinbak.swsresearch.net/Portal/SysBase/SysUserInfo.nsf/ag_getPersonInfoByAD?openagent&ReturnField=txtEmployeeID&AD="
+        //static let PostCardRecord = "https://swinbak.swsresearch.net/servlet/uploadCard"
+        static let PostCardRecord = "https://swinbak.swsresearch.net/mobile/card.nsf/DoPostCardInfo?openagent"
+        
+        static let GetPersonInfoByAD = "https://swinbak.swsresearch.net/Portal/SysBase/SysUserInfo.nsf/ag_getPersonInfoByAD?openagent&ReturnField=txtEmployeeID&AD="
         //ReturnField是要返回的字段 可更改   AD是传入的AD账号  注意参数大小写
     }
     struct Net {
@@ -87,12 +99,12 @@ class Config{
     }
     
     struct UI {
-        static let Title = "申万宏源证券研究所"
+        static let Title = "申万宏源研究"
         static let PreNavItem = "< 返回"
         
     }
     
-    struct Card {
+    struct Card {            
         static let AppKey = "MAC4CLL5Q6D8S56S"
         static let UserID = "weiwei@swsresearch.com"
         //static let URL = "https://bcr2.intsig.net/BCRService/BCR_VCF2?user=weiwei@swsresearch.com&pass=MAC4CLL5Q6D8S56S"

@@ -512,7 +512,7 @@ public class JTSegmentControl: UIControl {
         
         var x:CGFloat = 0.0
         let y:CGFloat = 0.0
-        var width:CGFloat = segmentWidth(selectedIndex)
+        var width:CGFloat = segmentWidth(selectedIndex)-10
         let height:CGFloat = bounds.size.height
         
         sliderView.frame = CGRect(x: currentItemX(selectedIndex), y: contentView.bounds.size.height - JTSegmentPattern.sliderHeight, width: width, height: JTSegmentPattern.sliderHeight)

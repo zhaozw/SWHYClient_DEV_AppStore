@@ -181,7 +181,7 @@ class ContactsHelper {
             //print("no access to addressbook")
             message = "没有权限访问手机通讯录"
             status = "Error"
-            let result:Result = Result(status: status,message:message,userinfo:NSObject(),tag:tag)
+            let result:Result = Result(status: status,message:message,userinfo:NSObject(),tag:tag,key:"")
             NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
         case .Authorized, .NotDetermined:
             var err : Unmanaged<CFError>? = nil
@@ -193,7 +193,7 @@ class ContactsHelper {
                 status = "Error"
                 print(message)
                 
-                let result:Result = Result(status: status,message:message,userinfo:NSObject(),tag:tag)
+                let result:Result = Result(status: status,message:message,userinfo:NSObject(),tag:tag,key:"")
                 NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
             }else{
                 ABAddressBookRequestAccessWithCompletion(adbk) {
@@ -261,7 +261,7 @@ class ContactsHelper {
                     dispatch_async(dispatch_get_main_queue(), {
                         //这里返回主线程，写需要主线程执行的代码
                         print("main queue remove \(message)")
-                        let result:Result = Result(status: status,message:message,userinfo:NSObject(),tag:tag)
+                        let result:Result = Result(status: status,message:message,userinfo:NSObject(),tag:tag,key:"")
                         NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
                         
                     })
@@ -287,7 +287,7 @@ class ContactsHelper {
             print("sync no access to addressbook")
             message = "没有权限访问手机通讯录"
             status = "Error"
-            let result:Result = Result(status: status,message:message,userinfo:NSObject(),tag:tag)
+            let result:Result = Result(status: status,message:message,userinfo:NSObject(),tag:tag,key:"")
             NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
             
         case .Authorized, .NotDetermined:
@@ -300,7 +300,7 @@ class ContactsHelper {
                 status = "Error"
                 print(message)
                 
-                let result:Result = Result(status: status,message:message,userinfo:NSObject(),tag:tag)
+                let result:Result = Result(status: status,message:message,userinfo:NSObject(),tag:tag,key:"")
                 NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
             }else{
                 ABAddressBookRequestAccessWithCompletion(adbk) {
@@ -384,7 +384,7 @@ class ContactsHelper {
                     dispatch_async(dispatch_get_main_queue(), {
                         //这里返回主线程，写需要主线程执行的代码
                         print("sync \(message)")
-                        let result:Result = Result(status: status,message:message,userinfo:NSObject(),tag:tag)
+                        let result:Result = Result(status: status,message:message,userinfo:NSObject(),tag:tag,key:"")
                         NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
                         
                     })
