@@ -26,6 +26,8 @@ class CardItem {
     var im:String!
     var imageurl:String!
     var other:String!
+    var fax:String!
+    
     
     var query:String!
     var filename:String!
@@ -40,5 +42,8 @@ class CardItem {
     
     //self.imageOrientation = "0"
     //self.rotation_angle = "0"
+        self.tel = ""
+        self.mobile = ""
+        self.other = ""
     }
 }

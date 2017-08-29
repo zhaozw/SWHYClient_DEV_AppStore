@@ -22,6 +22,8 @@ class Message {
     var audioFileName:String = ""
     var EmployeeId:String? = ""                  //当前用户的工号
     
+    var webViewURL:String = ""                  //WEB View打开时指定的URL
+    
     class var shared: Message {
         return Inner.instance
     }

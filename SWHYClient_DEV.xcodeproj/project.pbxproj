@@ -19,6 +19,8 @@
 		A361007B1D55AD3800B45BA2 /* NSFileManager+Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D2D8261BB7D5F7002491ED /* NSFileManager+Haneke.swift */; };
 		A361007D1D55BC8C00B45BA2 /* DaiFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A361007C1D55BC8C00B45BA2 /* DaiFileManager.swift */; };
 		A361007F1D5645DE00B45BA2 /* AudioRecorderMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A361007E1D5645DE00B45BA2 /* AudioRecorderMenuViewController.swift */; };
+		A365C2CA1F4DD44F00F64D1A /* VCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A365C2C91F4DD44F00F64D1A /* VCard.swift */; };
+		A365C2CC1F4DD49500F64D1A /* VCardProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = A365C2CB1F4DD49500F64D1A /* VCardProperty.swift */; };
 		A368D1211D7C122500FFF29E /* AudioFileItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A368D1201D7C122500FFF29E /* AudioFileItem.swift */; };
 		A368D1251D7C34E500FFF29E /* AudioListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A368D1241D7C34E500FFF29E /* AudioListCell.swift */; };
 		A36906811D4DCE180043AFB6 /* AudioRecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A369067F1D4DCE180043AFB6 /* AudioRecorderViewController.swift */; };
@@ -57,15 +59,13 @@
 		A37FB3F31F363A2900D92DAF /* CardDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A37FB3F21F363A2900D92DAF /* CardDetail.swift */; };
 		A3A082811BB92CE6009E5A04 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A3A082801BB92CE6009E5A04 /* Info.plist */; };
 		A3A0CF3C1F322E9500315400 /* CamCardOpenAPIFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3A0CF381F322E9500315400 /* CamCardOpenAPIFramework.framework */; };
-		A3A0CF3D1F322E9500315400 /* CamCardOpenAPIFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3A0CF3A1F322E9500315400 /* CamCardOpenAPIFramework.framework */; };
 		A3A372981F35D9A700E803E0 /* JTSegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A372971F35D9A700E803E0 /* JTSegmentControl.swift */; };
 		A3A3729A1F35D9E700E803E0 /* JTSegmentPattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A372991F35D9E700E803E0 /* JTSegmentPattern.swift */; };
 		A3A3729C1F35DB2800E803E0 /* CardMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A3729B1F35DB2800E803E0 /* CardMainController.swift */; };
 		A3A457401D925E210036E12E /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A4573F1D925E210036E12E /* AudioRecorder.swift */; };
+		A3A799F91F55EE7E00066766 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3A799F81F55EE7E00066766 /* AudioKit.framework */; };
+		A3A799FA1F55EE9E00066766 /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A3A799F81F55EE7E00066766 /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A3AC2F161C5A255A00356744 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AC2F151C5A255A00356744 /* Log.swift */; };
-		A3B900CA1F30D2AC00A1901A /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3B900C91F30D2AC00A1901A /* AudioKit.framework */; };
-		A3B900CB1F30D80B00A1901A /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A3B900C91F30D2AC00A1901A /* AudioKit.framework */; };
-		A3B900CC1F30D80B00A1901A /* AudioKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A3B900C91F30D2AC00A1901A /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A3B900CE1F30DB9200A1901A /* CardFileList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B900CD1F30DB9200A1901A /* CardFileList.swift */; };
 		A3B900D01F30DBA900A1901A /* CardFileList.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3B900CF1F30DBA900A1901A /* CardFileList.xib */; };
 		A3B900D21F30DBB200A1901A /* CardFileItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3B900D11F30DBB200A1901A /* CardFileItem.swift */; };
@@ -143,6 +143,8 @@
 		A3CCE9391EAE3020004E4457 /* CardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3CCE9381EAE3020004E4457 /* CardView.xib */; };
 		A3CCE93D1EAE3050004E4457 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CCE93C1EAE3050004E4457 /* CardView.swift */; };
 		A3CDFF9F1D8ADD9D004EFF66 /* AudioDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3CDFF9E1D8ADD9D004EFF66 /* AudioDetail.xib */; };
+		A3D0DC5F1F52E739002956BB /* CardWebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3D0DC5E1F52E739002956BB /* CardWebView.xib */; };
+		A3D0DC611F52E77D002956BB /* CardWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D0DC601F52E77D002956BB /* CardWebView.swift */; };
 		A3D21F8A1F3789F80076940D /* CardDetail.xib in Resources */ = {isa = PBXBuildFile; fileRef = A3D21F891F3789F80076940D /* CardDetail.xib */; };
 		A3D2D82D1BB7D5F7002491ED /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D2D8181BB7D5F7002491ED /* Cache.swift */; };
 		A3D2D82E1BB7D5F7002491ED /* CGSize+Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3D2D8191BB7D5F7002491ED /* CGSize+Swift.swift */; };
@@ -219,14 +221,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		A3BEA1051ABEA3DC003B1162 /* CopyFiles */ = {
+		A3A799EF1F55DC8C00066766 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				A3B900CC1F30D80B00A1901A /* AudioKit.framework in CopyFiles */,
+				A3A799FA1F55EE9E00066766 /* AudioKit.framework in Embed Frameworks */,
 			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -242,6 +245,8 @@
 		A36100781D55A64300B45BA2 /* FileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileViewController.swift; sourceTree = "<group>"; };
 		A361007C1D55BC8C00B45BA2 /* DaiFileManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaiFileManager.swift; sourceTree = "<group>"; };
 		A361007E1D5645DE00B45BA2 /* AudioRecorderMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecorderMenuViewController.swift; sourceTree = "<group>"; };
+		A365C2C91F4DD44F00F64D1A /* VCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VCard.swift; path = Card/VCard.swift; sourceTree = "<group>"; };
+		A365C2CB1F4DD49500F64D1A /* VCardProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VCardProperty.swift; path = Card/VCardProperty.swift; sourceTree = "<group>"; };
 		A368D1201D7C122500FFF29E /* AudioFileItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioFileItem.swift; sourceTree = "<group>"; };
 		A368D1241D7C34E500FFF29E /* AudioListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioListCell.swift; sourceTree = "<group>"; };
 		A369067F1D4DCE180043AFB6 /* AudioRecorderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecorderViewController.swift; sourceTree = "<group>"; };
@@ -286,8 +291,8 @@
 		A3A372991F35D9E700E803E0 /* JTSegmentPattern.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JTSegmentPattern.swift; sourceTree = "<group>"; };
 		A3A3729B1F35DB2800E803E0 /* CardMainController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardMainController.swift; path = Card/CardMainController.swift; sourceTree = "<group>"; };
 		A3A4573F1D925E210036E12E /* AudioRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
+		A3A799F81F55EE7E00066766 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKit.framework; path = framework/AudioKit.framework; sourceTree = "<group>"; };
 		A3AC2F151C5A255A00356744 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
-		A3B900C91F30D2AC00A1901A /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKit.framework; path = framework/AudioKit.framework; sourceTree = "<group>"; };
 		A3B900CD1F30DB9200A1901A /* CardFileList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardFileList.swift; path = Card/CardFileList.swift; sourceTree = "<group>"; };
 		A3B900CF1F30DBA900A1901A /* CardFileList.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CardFileList.xib; path = Card/CardFileList.xib; sourceTree = "<group>"; };
 		A3B900D11F30DBB200A1901A /* CardFileItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardFileItem.swift; path = Card/CardFileItem.swift; sourceTree = "<group>"; };
@@ -390,6 +395,8 @@
 		A3CCE93C1EAE3050004E4457 /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardView.swift; path = Card/CardView.swift; sourceTree = "<group>"; };
 		A3CD08501ABFAB1000020495 /* MainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		A3CDFF9E1D8ADD9D004EFF66 /* AudioDetail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioDetail.xib; sourceTree = "<group>"; };
+		A3D0DC5E1F52E739002956BB /* CardWebView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CardWebView.xib; path = Card/CardWebView.xib; sourceTree = "<group>"; };
+		A3D0DC601F52E77D002956BB /* CardWebView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CardWebView.swift; path = Card/CardWebView.swift; sourceTree = "<group>"; };
 		A3D21F891F3789F80076940D /* CardDetail.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CardDetail.xib; path = Card/CardDetail.xib; sourceTree = "<group>"; };
 		A3D2D8181BB7D5F7002491ED /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		A3D2D8191BB7D5F7002491ED /* CGSize+Swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGSize+Swift.swift"; sourceTree = "<group>"; };
@@ -452,17 +459,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A3B900CA1F30D2AC00A1901A /* AudioKit.framework in Frameworks */,
 				A31C5C181F30C8230044145F /* lame.framework in Frameworks */,
 				A3C997B11D3E66CC006EE61D /* CoreTelephony.framework in Frameworks */,
 				A3EA2D081D3E627C002D936D /* libc++.tbd in Frameworks */,
 				A3EA2D041D3E625B002D936D /* libz.tbd in Frameworks */,
-				A3B900CB1F30D80B00A1901A /* AudioKit.framework in Frameworks */,
 				A3EA2D021D3E6227002D936D /* SystemConfiguration.framework in Frameworks */,
 				A3A0CF3C1F322E9500315400 /* CamCardOpenAPIFramework.framework in Frameworks */,
 				A3F7A9971BDB9EC500923D23 /* Security.framework in Frameworks */,
 				A3D2D88F1BB80BB3002491ED /* libsqlite3.tbd in Frameworks */,
-				A3A0CF3D1F322E9500315400 /* CamCardOpenAPIFramework.framework in Frameworks */,
+				A3A799F91F55EE7E00066766 /* AudioKit.framework in Frameworks */,
 				A3EA2D001D3E617B002D936D /* libWeChatSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -527,6 +532,10 @@
 				A37FB3F01F36352000D92DAF /* CardDetail_bak.xib */,
 				A3D21F891F3789F80076940D /* CardDetail.xib */,
 				A3BFBB1E1F37036200EB7228 /* CardItem.swift */,
+				A365C2C91F4DD44F00F64D1A /* VCard.swift */,
+				A365C2CB1F4DD49500F64D1A /* VCardProperty.swift */,
+				A3D0DC5E1F52E739002956BB /* CardWebView.xib */,
+				A3D0DC601F52E77D002956BB /* CardWebView.swift */,
 			);
 			name = Card;
 			sourceTree = "<group>";
@@ -780,8 +789,8 @@
 		A3C73AF71ABDEF96002C299D = {
 			isa = PBXGroup;
 			children = (
+				A3A799F81F55EE7E00066766 /* AudioKit.framework */,
 				A3A0CF351F322E9500315400 /* CamCardOpenAPIFramework.embeddedframework */,
-				A3B900C91F30D2AC00A1901A /* AudioKit.framework */,
 				A3D6BFF81D61FC38008EE6F3 /* lame.framework */,
 				A3C997B01D3E66CC006EE61D /* CoreTelephony.framework */,
 				A3EA2D071D3E627C002D936D /* libc++.tbd */,
@@ -1043,8 +1052,8 @@
 			buildPhases = (
 				A3C73AFC1ABDEF96002C299D /* Sources */,
 				A3C73AFE1ABDEF96002C299D /* Resources */,
-				A3BEA1051ABEA3DC003B1162 /* CopyFiles */,
 				A3C73AFD1ABDEF96002C299D /* Frameworks */,
+				A3A799EF1F55DC8C00066766 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1095,7 +1104,7 @@
 					};
 					A3C73B171ABDEF96002C299D = {
 						CreatedOnToolsVersion = 6.1.1;
-						DevelopmentTeam = VWY3F558EY;
+						DevelopmentTeam = P955C46355;
 						TestTargetID = A3C73AFF1ABDEF96002C299D;
 					};
 				};
@@ -1161,6 +1170,7 @@
 				A3A082811BB92CE6009E5A04 /* Info.plist in Resources */,
 				A3FA90E61D8EEA7600CB2465 /* .gitignore in Resources */,
 				A3D2D8961BB8102C002491ED /* Setting.storyboard in Resources */,
+				A3D0DC5F1F52E739002956BB /* CardWebView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1314,6 +1324,7 @@
 				A3785A291F374C3600360A2D /* FormSelector.swift in Sources */,
 				A3F7A9D71BDBA68800923D23 /* KeychainItem.swift in Sources */,
 				A352DB011B05D3770035B4AF /* SettingViewController.swift in Sources */,
+				A365C2CA1F4DD44F00F64D1A /* VCard.swift in Sources */,
 				A3BA51481B07F21A00F1800A /* ContactHelper.swift in Sources */,
 				A3064C831F3B98C3006B6F0B /* CardListCell.swift in Sources */,
 				A3BDBDC31B04601A0085DFF1 /* NonMemuController.swift in Sources */,
@@ -1326,6 +1337,8 @@
 				A3C0000E1B1C96130050EBCE /* SMSegmentView.swift in Sources */,
 				A3BAF41D1B19796E00D3EA3C /* CustomerAddressBookCell.swift in Sources */,
 				A3CAA52C1AC9185100600394 /* PKNotification.swift in Sources */,
+				A365C2CC1F4DD49500F64D1A /* VCardProperty.swift in Sources */,
+				A3D0DC611F52E77D002956BB /* CardWebView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1408,7 +1421,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PROVISIONING_PROFILE = "03c465f1-6680-41ea-ba80-4032e7af101f";
+				PROVISIONING_PROFILE = "c81f745e-7988-4b31-9757-e3907638d3b3";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VALIDATE_PRODUCT = YES;
@@ -1450,7 +1463,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "-ObjC";
-				PROVISIONING_PROFILE = "03c465f1-6680-41ea-ba80-4032e7af101f";
+				PROVISIONING_PROFILE = "c81f745e-7988-4b31-9757-e3907638d3b3";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1464,8 +1477,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = SWHYClient/Common.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: wei wei (XZF68WGA3G)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: wei wei (XZF68WGA3G)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1474,6 +1487,8 @@
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/framework/CamCardOpenAPIFramework.embeddedframework/__MACOSX/CamCardOpenAPIFramework.embeddedframework",
 					"$(PROJECT_DIR)/framework/CamCardOpenAPIFramework.embeddedframework/CamCardOpenAPIFramework.embeddedframework",
+					"$(inherited)",
+					"$(PROJECT_DIR)/framework",
 				);
 				INFOPLIST_FILE = SWHYClient/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
@@ -1488,7 +1503,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.swsresearch.dev;
 				PRODUCT_NAME = SWHYClient_DEV;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "1e5ca4a7-9e13-4f41-a9da-28e742d33c75";
 				SWIFT_OBJC_BRIDGING_HEADER = SWHYClient/Util/BridgeHeader.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1503,8 +1518,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = SWHYClient/Common.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: wei wei (XZF68WGA3G)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: wei wei (XZF68WGA3G)";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1527,7 +1542,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.swsresearch.dev;
 				PRODUCT_NAME = SWHYClient_DEV;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "1e5ca4a7-9e13-4f41-a9da-28e742d33c75";
 				SWIFT_OBJC_BRIDGING_HEADER = SWHYClient/Util/BridgeHeader.h;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1550,7 +1565,7 @@
 				INFOPLIST_FILE = SWHYClientTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = SWHYClient_DEV;
-				PROVISIONING_PROFILE = "03c465f1-6680-41ea-ba80-4032e7af101f";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SWHYClient_DEV.app/SWHYClient_DEV";
 			};
 			name = Debug;
@@ -1568,7 +1583,7 @@
 				INFOPLIST_FILE = SWHYClientTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = SWHYClient_DEV;
-				PROVISIONING_PROFILE = "03c465f1-6680-41ea-ba80-4032e7af101f";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SWHYClient_DEV.app/SWHYClient_DEV";
 			};
 			name = Release;

@@ -14,7 +14,9 @@ import Foundation
     @IBOutlet weak var txtName: UITextField!
     @IBOutlet weak var txtTitle: UITextField!
     @IBOutlet weak var txtCompany: UITextField!
+    @IBOutlet weak var txtDept: UITextField!
     @IBOutlet weak var txtMobile: UITextField!
+    @IBOutlet weak var txtTel: UITextField!
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtAddress: UITextField!
     @IBOutlet weak var txtFax: UITextField!
@@ -26,6 +28,10 @@ import Foundation
     @IBOutlet weak var navBar: UINavigationBar!
     
     @IBOutlet weak var navItem: UINavigationItem!
+    
+    @IBOutlet weak var imglinephone: UIImageView!
+    @IBOutlet weak var imgmobilephone: UIImageView!
+    
     //var cardImage:UIImage
     //var cardString:String
     //var cardItem:CardItem
@@ -87,15 +93,16 @@ import Foundation
     func creatSusPendBtn(){
         print ("---- creatSusPendBtn")
         
-        floatButton.setTitle("发布", forState: .Normal)
+        floatButton.setTitle("上传到云名片夹", forState: .Normal)
         
         let screensize:CGSize = UIScreen.mainScreen().bounds.size
         
-        let frame:CGRect = CGRectMake(screensize.width/2-60, screensize.height - 32, 120, 30)
+        let frame:CGRect = CGRectMake(screensize.width/2-100, screensize.height - 32, 200, 30)
         floatButton.frame = frame
-        floatButton.backgroundColor = UIColor.darkGrayColor()
-        floatButton.alpha = 0.5
-        floatButton.layer.cornerRadius = 2.0;//2.0是圆角的弧度，根据需求自己更改
+        floatButton.backgroundColor = UIColor.redColor()
+        floatButton.alpha = 0.7
+        floatButton.titleLabel?.font = UIFont.systemFontOfSize(15)
+        floatButton.layer.cornerRadius = 5.0;//2.0是圆角的弧度，根据需求自己更改
         floatButton.addTarget(self, action: #selector(CardDetail.uploadCard(_:)), forControlEvents: .TouchUpInside)
             
         
@@ -170,14 +177,15 @@ import Foundation
         DaiFileManager.document[filename].setAttr("C_Address", value: txtAddress.text!)
         DaiFileManager.document[filename].setAttr("C_Comment", value: txtMemo.text!)
         DaiFileManager.document[filename].setAttr("C_Email", value: txtEmail.text!)
-        //DaiFileManager.document[filepath].setAttr("C_IM", value: cardItem.im)
+        DaiFileManager.document[filename].setAttr("C_Other", value: txtOther.text!)
         //在上传成功后赋值
-        //DaiFileManager.document[filepath].setAttr("C_ImageUrl", value: cardItem.imageurl)
+        DaiFileManager.document[filename].setAttr("C_Memo", value: txtMemo.text!)
         //DaiFileManager.document[filepath].setAttr("C_Label", value: cardItem.label)
         DaiFileManager.document[filename].setAttr("C_Company", value: txtCompany.text!)
-        //DaiFileManager.document[filepath].setAttr("C_Role", value: cardItem.role)
-        //DaiFileManager.document[filepath].setAttr("C_SNS", value: cardItem.sns)
+        DaiFileManager.document[filename].setAttr("C_Dept", value: txtDept.text!)
+        DaiFileManager.document[filename].setAttr("C_Fax", value: txtFax.text!)
         DaiFileManager.document[filename].setAttr("C_Mobile", value: txtMobile.text!)
+        DaiFileManager.document[filename].setAttr("C_Tel", value: txtTel.text!)
         DaiFileManager.document[filename].setAttr("C_Title", value: txtTitle.text!)
         DaiFileManager.document[filename].setAttr("C_UNID", value: cardItem.unid)
         DaiFileManager.document[filename].setAttr("C_Website", value: txtWebsite.text!)
@@ -187,6 +195,8 @@ import Foundation
         DaiFileManager.document[filename].setAttr("C_Orientation", value: String(self.image.imageOrientation.rawValue))
         
         cardItem.saveflag = "Y"
+        
+        print("save adress =\(txtAddress.text!)")
         
         if cardItem.uploadflag != "Y" && cardItem.saveflag == "Y" {
             creatSusPendBtn()
@@ -243,18 +253,30 @@ import Foundation
         self.txtName.text = cardItem.name
         self.txtTitle.text = cardItem.title
         self.txtCompany.text = cardItem.company
-        self.txtMobile.text = cardItem.tel
+        self.txtDept.text = cardItem.dept
+        self.txtTel.text = cardItem.tel
+        self.txtMobile.text = cardItem.mobile
         self.txtEmail.text = cardItem.email
         self.txtAddress.text = cardItem.address
         
-        //self.txtFax.text = cardItem.
+        self.txtFax.text = cardItem.fax
+        
         self.txtWebsite.text = cardItem.website
-        //self.txtOther.text = cardItem.Other
+        self.txtOther.text = cardItem.other
         self.txtMemo.text = cardItem.memo
+        
+     
+        
         
         print("\(cardItem.rotation_angle)   unid= \(cardItem.unid)")
       
-     
+        let tap_linephone:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(CardDetail.onClick_LinePhone(_:)))
+        imglinephone.addGestureRecognizer(tap_linephone)
+        
+        
+        let tap_mobilephone:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(CardDetail.onClick_MobilePhone(_:)))
+        imgmobilephone.addGestureRecognizer(tap_mobilephone)
+        
      
 
         //2016-11-02 键盘打开时 窗口显示在键盘上面
@@ -263,6 +285,19 @@ import Foundation
                                                          name: UIKeyboardWillChangeFrameNotification, object: nil)
 
     }
+    
+    func onClick_LinePhone(sender:UITapGestureRecognizer!){
+        print("click line phone")
+        let num = txtTel?.text
+        if num != nil{
+            confirmCall(num!)
+        }}
+    func onClick_MobilePhone(sender:UITapGestureRecognizer!){
+        print ("click mobile phone")
+        let num = txtMobile?.text
+        if num != nil{
+            confirmCall(num!)
+        }}
     
     func keyboardWillChange(notification: NSNotification) {
         if let userInfo = notification.userInfo,
@@ -382,7 +417,7 @@ import Foundation
                 //let filePath = DaiFileManager.document[filename].path
                  //print("上传文件开始 --------------\(filePath)")
                 NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(CardDetail.HandleNetworkResult(_:)), name: Config.RequestTag.PostUploadCardFile, object: nil)
-                NetworkEngine.sharedInstance.postUploadModuleFile(Config.URL.PostUploadCardFile, filename: filename, moduleName:"Card",tag: Config.RequestTag.PostUploadCardFile)
+                NetworkEngine.sharedInstance.postUploadModuleFile(Config.URL.PostUploadCardFile, filename: filename, moduleName:"Card",tag: Config.RequestTag.PostUploadCardFile,key:filename)
             }else{
                 print("直接发布Card")
                 PKNotification.toast("直接发布Card")
@@ -406,7 +441,7 @@ import Foundation
         
         if result.status == "Error" {
             print("-------post  error-------------")
-            PKNotification.toast(result.message)
+            PKNotification.toast("名片 \(result.key) 上传失败")
             SwiftOverlays.removeAllBlockingOverlays()
             
         }else if result.status=="OK"{
@@ -470,10 +505,14 @@ import Foundation
         let c_Title = DaiFileManager.document["Card/" + cardItem.unid+".png"].getAttr("C_Title")
         let c_UNID = DaiFileManager.document["Card/" + cardItem.unid+".png"].getAttr("C_UNID")
         let c_Website = DaiFileManager.document["Card/" + cardItem.unid+".png"].getAttr("C_Website")
-        
+        let c_Fax = DaiFileManager.document["Card/" + cardItem.unid+".png"].getAttr("C_Fax")
+        let c_Other = DaiFileManager.document["Card/" + cardItem.unid+".png"].getAttr("C_Other")
+        let c_Memo = DaiFileManager.document["Card/" + cardItem.unid+".png"].getAttr("C_Memo")
+
+               
         let c_ImageUrl = DaiFileManager.document["Card/" + cardItem.unid+".png"].getAttr("C_ImageUrl")
         
-        let json = "[{\"userldap\":\"\(Message.shared.postUserName)\",\"unid\":\"\(c_UNID)\",\"name\":\"\(c_Name)\",\"organization\":\"\(c_Company)\",\"dept\":\"\(c_Dept)\",\"title\":\"\(c_Title)\",\"address\":\"\(c_Address)\",\"mobile\":\"\(c_Mobile)\",\"tel\":\"\(c_Tel)\",\"email\":\"\(c_Email)\",\"imageurl\":\"\(c_ImageUrl)\",\"comments\":\"\(c_Comments)\",\"website\":\"\(c_Website)\"}]"
+        let json = "[{\"userldap\":\"\(Message.shared.postUserName)\",\"unid\":\"\(c_UNID)\",\"name\":\"\(c_Name)\",\"organization\":\"\(c_Company)\",\"dept\":\"\(c_Dept)\",\"title\":\"\(c_Title)\",\"address\":\"\(c_Address)\",\"mobile\":\"\(c_Mobile)\",\"tel\":\"\(c_Tel)\",\"email\":\"\(c_Email)\",\"imageurl\":\"\(c_ImageUrl)\",\"comments\":\"\(c_Comments)\",\"website\":\"\(c_Website)\",\"fax\":\"\(c_Fax)\",\"other\":\"\(c_Other)\",\"memo\":\"\(c_Memo)\"}]"
         print(json)
         
         let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(Config.Encoding.GB2312))
@@ -503,5 +542,32 @@ import Foundation
     
     }
     
+    
+    
+    func confirmCall(num:String){
+        
+        if num != "" {
+            let btn_OK:PKButton = PKButton(title: "拨打",
+                                           action: { (messageLabel, items) -> Bool in
+                                            let urlstr = "tel://\(num)"
+                                            //print("=========click==========\(urlstr)")
+                                            let url1 = NSURL(string: urlstr)
+                                            UIApplication.sharedApplication().openURL(url1!)
+                                            return true
+                },
+                                           fontColor: UIColor(red: 0, green: 0.55, blue: 0.9, alpha: 1.0),
+                                           backgroundColor: nil)
+            
+            // call alert
+            PKNotification.alert(
+                title: "通话确认",
+                message: "确认拨打电话:\(num)?",
+                items: [btn_OK],
+                cancelButtonTitle: "取消",
+                tintColor: nil)
+            
+        }
+        
+    }
 
 }

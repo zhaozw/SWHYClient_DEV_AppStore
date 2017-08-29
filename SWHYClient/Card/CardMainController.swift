@@ -15,7 +15,7 @@ import UIKit
     @IBOutlet weak var contentview: UIView!
     
     var cardFileList:CardFileList = CardFileList()  
-    
+    var cardWebView:CardWebView = CardWebView()
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,13 +45,26 @@ import UIKit
         self.title = Message.shared.curMenuItem.name
         
         //let self.cardFileList = CardFileList()  
-        self.cardFileList.viewDidLoad()//同样在切换的时候需要启动页面加载函数  
+        self.cardFileList.viewDidLoad()//同样在切换的时候需要启动页面加载函数 
+        
+        print("============webview init =========start ================")
+        Message.shared.webViewURL = Config.URL.YunCard + Message.shared.postUserName
+        
+        //let aClass = NSClassFromString("CardWebView") as! CardWebView.Type
+        //cardWebView = aClass.init() as CardWebView
+        
+        
+        print ("-----------------webview init   -----------end ----------------")
+        
+       // self.webViewController.viewDidLoad()
+        
         //orderservingview.view.width(self.view_Order.width())  
         [self.contentview.addSubview(self.cardFileList.view)];  
+        
 
         
         self.cardFileList.view.translatesAutoresizingMaskIntoConstraints = false
-        
+        //self.cardWebView.view.translatesAutoresizingMaskIntoConstraints = false
         /*
         //宽度约束
         let width:NSLayoutConstraint = NSLayoutConstraint(item: cardFileList.view, attribute: NSLayoutAttribute.Width, relatedBy:NSLayoutRelation.Equal, toItem:nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier:0.0, constant:200)
@@ -63,6 +76,14 @@ import UIKit
         
         cardFileList.view.addConstraint(height)//自己添加约束
        */
+        
+        
+        //宽度约束
+        //let width:NSLayoutConstraint = NSLayoutConstraint(item: cardWebView.view, attribute: NSLayoutAttribute.Width, relatedBy:NSLayoutRelation.Equal, toItem:nil, attribute: NSLayoutAttribute.NotAnAttribute, multiplier:1.0, constant:350)
+        
+        //cardWebView.view.addConstraint(width)//自己添加约束
+        
+                
         
         //右边
         let right:NSLayoutConstraint = NSLayoutConstraint(item: cardFileList.view, attribute: NSLayoutAttribute.Right, relatedBy:NSLayoutRelation.Equal, toItem:self.contentview, attribute:NSLayoutAttribute.Right, multiplier:1.0, constant: 0)
@@ -85,11 +106,35 @@ import UIKit
         self.contentview.addConstraint(bottom)//父控件添加约束
        
         
+        //================
+               
+        
+        /*
+        //右边
+        let right1:NSLayoutConstraint = NSLayoutConstraint(item: self.contentview, attribute: NSLayoutAttribute.Right, relatedBy:NSLayoutRelation.Equal, toItem:cardWebView.view, attribute:NSLayoutAttribute.Right, multiplier:1.0, constant: 0)
+        
+        self.contentview.addConstraint(right1)//父控件添加约束
+        
+        //左边
+        let left1:NSLayoutConstraint = NSLayoutConstraint(item: self.contentview, attribute: NSLayoutAttribute.Left, relatedBy:NSLayoutRelation.Equal, toItem:cardWebView.view, attribute:NSLayoutAttribute.Left, multiplier:1.0, constant: 0)
+        
+        self.contentview.addConstraint(left1)//父控件添加约束
+        
+        //上边
+        let top1:NSLayoutConstraint = NSLayoutConstraint(item: self.contentview, attribute: NSLayoutAttribute.Top, relatedBy:NSLayoutRelation.Equal, toItem:cardWebView.view, attribute:NSLayoutAttribute.Top, multiplier:1.0, constant: 0)
+        
+        self.contentview.addConstraint(top1)//父控件添加约束
+        
+        //底边
+        let bottom1:NSLayoutConstraint = NSLayoutConstraint(item: self.contentview, attribute: NSLayoutAttribute.Bottom, relatedBy:NSLayoutRelation.Equal, toItem:cardWebView.view, attribute:NSLayoutAttribute.Bottom, multiplier:1.0, constant: 0)
+        
+        self.contentview.addConstraint(bottom1)//父控件添加约束
+        */
         
      }
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        print("view will appear")
+        //print("view will appear")
         
         
         let frame = CGRect(x: 10.0, y: 0.0, width: segmentview.bounds.size.width - 20.0, height: 30.0)
@@ -145,7 +190,7 @@ import UIKit
             //打开名片王，不带图片，自动调用名片王的图像捕获程序
             let recogCardReq:CCOpenAPIRecogCardRequest  = CCOpenAPIRecogCardRequest();
             
-            recogCardReq.addRecognizeLanguage(BCRLanguage_English)
+            recogCardReq.addRecognizeLanguage(BCRLanguage_ChineseSimplified)
             recogCardReq.userID = Config.Card.UserID
             recogCardReq.appKey = Config.Card.AppKey
             
@@ -184,11 +229,64 @@ import UIKit
             //cardView.cardImage = response.cardImage
             //cardView.cardString = "adfadfadf"
             print(response.responseCode)
-            print(response.vcfString)
+            if (response.responseCode == 0) {
+            //print(response.vcfString)
+           
             
-            //self.presentViewController(cardView, animated: true, completion: nil)
-        }
+            let cardItem:CardItem = processCardItemFromVCard(response.vcfString)
+            
+            let cardDetail:CardDetail = CardDetail()
+            //let cardDetail:ExampleFormViewController = ExampleFormViewController()
+            
+            cardDetail.image = response.cardImage
+            cardDetail.cardItem = cardItem
+            
+            print ("HandleNetWork Result CardItem = \(cardItem)")
+            self.showDetailViewController(cardDetail, sender: self)  
+            }else{
+                PKNotification.toast("名片王识别失败: code \(response.responseCode)")
+            }
+           }
     }
+    
+    
+    func processCardItemFromVCard(vcfString:String) -> CardItem{
+        //print(jsonObj.allValues)
+        var card:CardItem = CardItem()
+        let vcard:VCard = VCard(vCardString: vcfString)
+        
+        card.rotation_angle = "0"
+        card.name = vcard.lastName + vcard.firstName
+        card.address = vcard.address
+        
+        card.memo = vcard.description
+        card.email = vcard.eMail
+        //card.other = jsonObj["label"][0]["item"].toString()
+        card.im = ""
+        
+        card.title = vcard.title
+        
+        card.company = vcard.company
+        //card.telephone = jsonObj["telephone"][0]["item"]["number"].asString
+        
+        card.tel = vcard.tel
+        
+        card.mobile = vcard.mobile
+        
+        card.fax = vcard.fax
+        
+        card.website = vcard.website
+        card.unid = NSUUID().UUIDString
+        card.imageurl = ""
+        card.filename = ""
+        card.uploadflag = ""
+        card.saveflag = ""  //肯定还没有保存
+        
+        
+        print (card.tel)
+        return card
+    }
+
 
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         //打开系统拍照界面返回的处理事件
@@ -249,7 +347,7 @@ import UIKit
         
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesBegan(touches, withEvent: event)
         //        self.segmentControl?.itemTextColor = UIColor.red
     }
@@ -270,11 +368,12 @@ extension CardMainController : JTSegmentControlDelegate {
         
         switch(index){  
         case 0:  
-            /*
+            
             let array1 = [self.view.subviews] as NSArray  
             if ([array1.count] == 2) {//如果用于切换页面的view中已经有了两个子页面，那么就去掉一个，这样可以实现segment的无限制次数的切换  
-                array1.objectAtIndex(1).removeFromSuperview()  
+                array1.objectAtIndex(0).removeFromSuperview()  
             }  
+            /*
             let frame1 = CGRect(x: 10.0, y: 64.0, width: UIScreen.mainScreen().applicationFrame.size.width - 20.0, height: 44.0)
             
             
@@ -288,16 +387,21 @@ extension CardMainController : JTSegmentControlDelegate {
             
             break;  
         case 1:  
-            /*
+            
+            cardFileList.tableView!.setEditing(false, animated:true)
+            //cardFileList.floatButton.removeFromSuperview()
+            cardFileList.viewWillDisappear(false)
             let array1 = [self.view.subviews] as NSArray  
             if ([array1.count] == 2) {  
                 array1.objectAtIndex(1).removeFromSuperview()  
             }  
- */
-            let orderhistoryview = CardMain()//第二个用于切换的controller  
-            orderhistoryview.viewDidLoad()  
-            //orderhistoryview.view.width(self.view_Order.width())  
-            [self.contentview.addSubview(orderhistoryview.view)];  
+
+           
+            //cardWebView.viewDidLoad()
+            cardWebView.view.frame = cardFileList.view.frame
+            
+            [self.contentview.addSubview(cardWebView.view)];  
+            //webViewController
             break;  
         default:  
             break;  
@@ -306,6 +410,7 @@ extension CardMainController : JTSegmentControlDelegate {
     
     
     func processCardItem(jsonObj:JSONClass) -> CardItem{
+        //print(jsonObj.allValues)
         var card:CardItem = CardItem()
         
         card.rotation_angle = jsonObj["rotation_angle"].asString
@@ -314,9 +419,9 @@ extension CardMainController : JTSegmentControlDelegate {
         
         card.memo = jsonObj["comment"][0]["item"].asString
         card.email = jsonObj["email"][0]["item"].asString
-        card.other = jsonObj["label"][0]["item"].allValues.toString()
+        //card.other = jsonObj["label"][0]["item"].toString()
         card.im = jsonObj["im"][0]["item"].asString
-        card.company = jsonObj["organization"][0]["item"]["name"].asString
+        
         card.role = jsonObj["role"][0]["item"].asString
         
         card.sns = jsonObj["sns"][0]["item"].asString
@@ -324,19 +429,38 @@ extension CardMainController : JTSegmentControlDelegate {
         
         var tmpobj:JSONClass
         
-        for (k, v) in jsonObj["telephone"] {
+        for (k, v) in jsonObj["organization"] {
             // k is NSString, v is another JSON object
-            print ("K = \(k)  V=\(v.toString())")
+           print(v["item"].toString())
+                       
+            //res.componentsSeparatedByString("OK").count > 1
+            if (v["item"].toString().componentsSeparatedByString("unit").count > 1 ) {
+                card.dept = v["item"]["unit"].asString
             
-            if (v["item"]["type"].asString == "cellular"){
-                card.mobile = v["item"]["number"].asString
-            
-            }else if (v["item"]["type"].asString == "work"){
-                card.tel = v["item"]["number"].asString
+            }else if (v["item"].toString().componentsSeparatedByString("name").count > 1) {
+                card.company = v["item"]["name"].asString
             }
             
             
            }
+        
+                
+        for (k, v) in jsonObj["telephone"] {
+            // k is NSString, v is another JSON object
+           
+            //res.componentsSeparatedByString("OK").count > 1
+            if (v["item"].allValues.toString().componentsSeparatedByString("\"cellular\",\"voice\"").count > 1 ) {
+                card.mobile = v["item"]["number"].asString
+                
+            }else if (v["item"].allValues.toString().componentsSeparatedByString("\"work\",\"voice\"").count > 1) {
+                card.tel = v["item"]["number"].asString
+            }
+            else if (v["item"].allValues.toString().componentsSeparatedByString("\"work\",\"facsimile\"").count > 1) {
+                card.fax = v["item"]["number"].asString
+            }
+            
+            
+        }
         
         
         card.title = jsonObj["title"][0]["item"].asString
@@ -347,6 +471,8 @@ extension CardMainController : JTSegmentControlDelegate {
         card.uploadflag = ""
         card.saveflag = ""  //肯定还没有保存
         
+        
+        print (card.tel)
         return card
     }
     

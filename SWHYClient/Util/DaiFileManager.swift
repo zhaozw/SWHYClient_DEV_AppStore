@@ -92,7 +92,7 @@ extension DaiFileManagerPath {
             //let url = docURL.URLByAppendingPathComponent("example.txt")
             //let docURL = try DaiFileManager.defaultManager.URLForDirectory(.DocumentDirectory, inDomain:.UserDomainMask, appropriateForURL:nil, create:true)
             let docURL = NSURL(fileURLWithPath: self.path)
-            print(docURL.absoluteURL)
+            //print(docURL.absoluteURL)
             docURL.setAttribute(name, value: value)
         }
         catch {

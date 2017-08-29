@@ -55,9 +55,9 @@ import Foundation
         let recogCardReq:CCOpenAPIRecogCardRequest  = CCOpenAPIRecogCardRequest();
         
         recogCardReq.addRecognizeLanguage(BCRLanguage_English)
-        recogCardReq.userID = nil  //"weiwei@swsresearch.com"
-        //recogCardReq.appKey = "VdBybLhN9gWW99V7CeChY8ab"
-        recogCardReq.appKey = "MAC4CLL5Q6D8S56S"
+        //recogCardReq.userID = nil  //"weiwei@swsresearch.com"
+        recogCardReq.appKey = "VdBybLhN9gWW99V7CeChY8ab"
+        //recogCardReq.appKey = "MAC4CLL5Q6D8S56S"
         
         //NSNotificationCenter.defaultCenter().addObserver(self, selector: "HandleNetworkResult:", name: Config.RequestTag.PostUploadCardImage,object: nil)
         CCOpenAPI.sendRequest(recogCardReq)
@@ -142,11 +142,11 @@ import Foundation
         print("-----------------------openCCWithImage-------------------------")
         let recogCardReq:CCOpenAPIRecogCardRequest = CCOpenAPIRecogCardRequest()
         recogCardReq.cardImage = cardImage
-        //recogCardReq.appKey = "VdBybLhN9gWW99V7CeChY8ab"
+        recogCardReq.appKey = "VdBybLhN9gWW99V7CeChY8ab"
         
         recogCardReq.userID = "weiwei@swsresearch.com"
         //recogCardReq.appKey = "VdBybLhN9gWW99V7CeChY8ab"
-        recogCardReq.appKey = "MAC4CLL5Q6D8S56S"
+        //recogCardReq.appKey = "MAC4CLL5Q6D8S56S"
         CCOpenAPI.sendRequest(recogCardReq)
     }
     

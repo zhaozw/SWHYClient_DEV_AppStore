@@ -52,7 +52,7 @@ class Config{
     }
     
     struct URL {
-        static let BaseURL = "http://swinbak.swsresearch.net"
+        static let BaseURL = "https://swinbak.swsresearch.net"
         static let Login = "https://swinbak.swsresearch.net/Mobile/mobileInterface.nsf/ag_checkMobile?Openagent"
         //static let ToDoList = "http://swinbak.swsresearch.net/mobile/mobileflow.nsf/fm_workflowplatform?openform"
         static let MainMenuList = "https://swinbak.swsresearch.net/Mobile/mobileInterface.nsf/fm_showMobileHP_ios?readForm"
@@ -92,6 +92,9 @@ class Config{
         
         static let GetPersonInfoByAD = "https://swinbak.swsresearch.net/Portal/SysBase/SysUserInfo.nsf/ag_getPersonInfoByAD?openagent&ReturnField=txtEmployeeID&AD="
         //ReturnField是要返回的字段 可更改   AD是传入的AD账号  注意参数大小写
+        
+        static let YunCard = "https://swinbak.swsresearch.net/mobile/card.nsf/(vi_pageTemplate)/myCloudCard?opendocument&charset=utf8&userldap="  //在线云名片URL地址
+        //static let YunCard = "https://www.baidu.com?"  //在线云名片URL地址
     }
     struct Net {
         static let Domain = "swsresearch"
@@ -105,7 +108,8 @@ class Config{
     }
     
     struct Card {            
-        static let AppKey = "MAC4CLL5Q6D8S56S"
+        //static let AppKey = "MAC4CLL5Q6D8S56S"
+        static let AppKey = "VdBybLhN9gWW99V7CeChY8ab"
         static let UserID = "weiwei@swsresearch.com"
         //static let URL = "https://bcr2.intsig.net/BCRService/BCR_VCF2?user=weiwei@swsresearch.com&pass=MAC4CLL5Q6D8S56S"
         static let URL = "https://bcr2.intsig.net/BCRService/BCR_Crop?user=weiwei@swsresearch.com&pass=MAC4CLL5Q6D8S56S"   //返回切割过的图片

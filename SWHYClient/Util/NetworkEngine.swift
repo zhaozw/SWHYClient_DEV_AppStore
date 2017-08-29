@@ -78,7 +78,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
             
             if let httpResponse = response as? NSHTTPURLResponse {
                 if httpResponse.statusCode != 200 {
-                    print("response was not 200: \(response)")
+                    print("postRequestWithUrlString response was not 200: \(response)")
                     result =  "Error: \(httpResponse.statusCode)"
                     self.dispatchResponse(result,tag: tag,key:"")
                 }
@@ -97,13 +97,15 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                 self.success_auth = 0
                 self.alive = false
                 //print("request url host = false  \(request.URL?.host!)")
-                self.serverlist.updateValue(false, forKey: request.URL?.host!  ?? "AnyServer")
+                self.serverlist.updateValue(false, forKey:(request.URL?.host)! ?? "AnyServer")
                 let result:Result = Result(status: "Error",message:errmsg,userinfo:error!,tag:tag,key:"")
                 NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
             }else{
                 // handle the data of the successful response here
                 //let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(Config.Encoding.GB2312))
                 //let res:String = NSString(data: data!, encoding: enc)! as String
+                
+                self.serverlist.updateValue(true, forKey:(request.URL?.host)! ?? "AnyServer")
                 
                 let res:String = NSString(data: data!, encoding: NSUTF8StringEncoding)! as String
                 print(" res convert =\(res) tag:\(tag)")
@@ -169,7 +171,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
             print("get request response =\(response)")
             if let httpResponse = response as? NSHTTPURLResponse {
                 if httpResponse.statusCode != 200 {
-                    print("response was not 200: \(response)")
+                    print("processRequestWithUrlString response was not 200: \(response)")
                     result =  "Error: \(httpResponse.statusCode)"
                     self.dispatchResponse(result,tag: tag,key:key)
                 }
@@ -189,10 +191,12 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                 self.success_auth = 0
                 self.alive = false
                 //print("request url host = false  \(request.URL?.host!)")
-                self.serverlist.updateValue(false, forKey: request.URL?.host!  ?? "AnyServer")
+                self.serverlist.updateValue(false, forKey: ((request.URL?.host)! + ":" + String((request.URL?.port)!))  ?? "AnyServer")
                 let result:Result = Result(status: "Error",message:errmsg,userinfo:error!,tag:tag,key:"")
                 NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
             }else{
+                
+                self.serverlist.updateValue(true, forKey:(request.URL?.host)! ?? "AnyServer")
                 // handle the data of the successful response here
                 //print(data)
                 let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(Config.Encoding.GB2312))
@@ -250,7 +254,8 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                 
                 if let httpResponse = response as? NSHTTPURLResponse {
                     if httpResponse.statusCode != 200 {
-                        print("response was not 200: \(response)")
+                        self.serverlist.updateValue(false, forKey:(request.URL?.host)! ?? "AnyServer")
+                        print("postLogList response was not 200: \(response)")
                         result =  "Error: \(httpResponse.statusCode)"
                         self.dispatchResponse(result,tag: tag,key:"")
                         
@@ -269,12 +274,12 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                     self.success_auth = 0
                     self.alive = false
                     //print("request url host = false  \(request.URL?.host!)")
-                    self.serverlist.updateValue(false, forKey: request.URL?.host!  ?? "AnyServer")
+                    self.serverlist.updateValue(false, forKey: ((request.URL?.host)! + ":" + String((request.URL?.port)!))  ?? "AnyServer")
                     let result:Result = Result(status: "Error",message:errmsg,userinfo:error!,tag:tag,key:"")
                     NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
                     
                 }else{
-                    
+                    self.serverlist.updateValue(true, forKey:(request.URL?.host)! ?? "AnyServer")
                     // handle the data of the successful response here
                     let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(Config.Encoding.GB2312))
                     let res:String = NSString(data: data!, encoding: enc)! as String
@@ -359,6 +364,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                 
                 if let httpResponse = response as? NSHTTPURLResponse {
                     if httpResponse.statusCode != 200 {
+                        self.serverlist.updateValue(false, forKey:(request.URL?.host)! ?? "AnyServer")
                         //print("response was not 200: \(response)")
                         result =  "Error: \(httpResponse.statusCode)"
                         self.dispatchResponse(result,tag: tag,key:"")
@@ -378,12 +384,12 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                     self.success_auth = 0
                     self.alive = false
                     //print("request url host = false  \(request.URL?.host!)")
-                    self.serverlist.updateValue(false, forKey: request.URL?.host!  ?? "AnyServer")
+                   self.serverlist.updateValue(false, forKey: ((request.URL?.host)! + ":" + String((request.URL?.port)!))  ?? "AnyServer")
                     let result:Result = Result(status: "Error",message:errmsg,userinfo:error!,tag:tag,key:"")
                     NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
                     
                 }else{
-                    
+                    self.serverlist.updateValue(true, forKey:(request.URL?.host)! ?? "AnyServer")
                     // handle the data of the successful response here
                     let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(Config.Encoding.GB2312))
                     let res:String = NSString(data: data!, encoding: enc)! as String
@@ -468,7 +474,8 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
             print("response =\(response)  Error = \(error)")
             if let httpResponse = response as? NSHTTPURLResponse {
                 if httpResponse.statusCode != 200 {
-                    print("response was not 200: \(response)")
+                    self.serverlist.updateValue(false, forKey:(request.URL?.host)! ?? "AnyServer")
+                    print("postUploadCardImage response was not 200: \(response)")
                     result =  "Error: \(httpResponse.statusCode)"
                     self.dispatchResponse(result,tag: tag,key:"")
                     
@@ -487,10 +494,11 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                 self.success_auth = 0
                 self.alive = false
                 //print("request url host = false  \(request.URL?.host!)")
-                self.serverlist.updateValue(false, forKey: request.URL?.host!  ?? "AnyServer")
+                self.serverlist.updateValue(false, forKey: ((request.URL?.host)!)  ?? "AnyServer")
                 let result:Result = Result(status: "Error",message:errmsg,userinfo:error!,tag:tag,key:"")
                 NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)          
             }else{
+                self.serverlist.updateValue(true, forKey:(request.URL?.host)! ?? "AnyServer")
                 // handle the data of the successful response here
                 //let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(Config.Encoding.GB2312))
                 //let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(NSUTF8StringEncoding))
@@ -550,7 +558,8 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
             print("response =\(response)")
             if let httpResponse = response as? NSHTTPURLResponse {
                 if httpResponse.statusCode != 200 {
-                    print("response was not 200: \(response)")
+                    self.serverlist.updateValue(false, forKey:(request.URL?.host)! ?? "AnyServer")
+                    print("postUploadFile response was not 200: \(response)")
                     result =  "Error: \(httpResponse.statusCode)"
                     self.dispatchResponse(result,tag: tag,key:"")
                     
@@ -569,10 +578,11 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                 self.success_auth = 0
                 self.alive = false
                 //print("request url host = false  \(request.URL?.host!)")
-                self.serverlist.updateValue(false, forKey: request.URL?.host!  ?? "AnyServer")
+                self.serverlist.updateValue(false, forKey: (request.URL?.host)! ?? "AnyServer")
                 let result:Result = Result(status: "Error",message:errmsg,userinfo:error!,tag:tag,key:"")
                 NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)          
             }else{
+                self.serverlist.updateValue(true, forKey:(request.URL?.host)! ?? "AnyServer")
                 // handle the data of the successful response here
                 //let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(Config.Encoding.GB2312))
                 //let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(NSUTF8StringEncoding))
@@ -600,7 +610,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
     
     
     //===========上传文件===============================
-    func postUploadModuleFile(url:String,filename:String,moduleName:String,tag:String){
+    func postUploadModuleFile(url:String,filename:String,moduleName:String,tag:String,key:String){
         print("---url = \(url)")
         let filepath = DaiFileManager.document[filename].path
         print("上传文件 filename =\(filename)")
@@ -629,9 +639,10 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
             print("response =\(response)")
             if let httpResponse = response as? NSHTTPURLResponse {
                 if httpResponse.statusCode != 200 {
-                    print("response was not 200: \(response)")
+                    self.serverlist.updateValue(false, forKey:(request.URL?.host)! ?? "AnyServer")
+                    print("postUploadModuleFile response was not 200: \(response)")
                     result =  "Error: \(httpResponse.statusCode)"
-                    self.dispatchResponse(result,tag: tag,key:"")
+                    self.dispatchResponse(result,tag: tag,key:key)
                     
                 }
             }
@@ -648,10 +659,11 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                 self.success_auth = 0
                 self.alive = false
                 //print("request url host = false  \(request.URL?.host!)")
-                self.serverlist.updateValue(false, forKey: request.URL?.host!  ?? "AnyServer")
-                let result:Result = Result(status: "Error",message:errmsg,userinfo:error!,tag:tag,key:"")
+                self.serverlist.updateValue(false, forKey: ((request.URL?.host)!)  ?? "AnyServer")
+                let result:Result = Result(status: "Error",message:errmsg,userinfo:error!,tag:tag,key:key)
                 NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)          
             }else{
+                self.serverlist.updateValue(true, forKey:(request.URL?.host)! ?? "AnyServer")
                 // handle the data of the successful response here
                 //let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(Config.Encoding.GB2312))
                 //let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(NSUTF8StringEncoding))
@@ -664,12 +676,12 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                     
                     result = filename    //如果上传成功 回传上传的文件名 以便后续程序可以判断是哪个文件上传成功
                     print(result)
-                    self.dispatchResponse(result,tag: tag,key:"")                
+                    self.dispatchResponse(result,tag: tag,key:key)                
                 }else if res.componentsSeparatedByString("Error").count > 1{
                     
                     result = res
                     print(result)
-                    self.dispatchResponse(result,tag: tag,key:"")
+                    self.dispatchResponse(result,tag: tag,key:key)
                 }
             }
         }
@@ -706,7 +718,7 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
         print("url =\(request.URL?.absoluteString)")
         let task = self.session.dataTaskWithRequest(request){(data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
             if error != nil {
-                print("Error ====\(error!.localizedDescription) ==code=\(error!.code)")
+                print("Error ====\(error!.description) ==code=\(error!.code)")
                 var errmsg = ""
                 if error!.code == -999{
                     //cancelled  用户名密码验证不通过时，取消请求
@@ -718,24 +730,36 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
                 self.success_auth = 0
                 self.alive = false
                 //print("request url host = false  \(request.URL?.host!)")
-                self.serverlist.updateValue(false, forKey: request.URL?.host!  ?? "AnyServer")
+                self.serverlist.updateValue(false, forKey: ((request.URL?.host)!)  ?? "AnyServer")
                 let result:Result = Result(status: "Error",message:errmsg,userinfo:error!,tag:tag,key:"")
                 NSNotificationCenter.defaultCenter().postNotificationName(tag, object: result)
                 
             } else {
+                print("---- addRequestWithUrlString response OK  host=\(request.URL?.host)!)")
+                print("port = \(request.URL?.port)")
                 
+                //self.serverlist.updateValue(true, forKey:(request.URL?.host)! ?? "AnyServer")
+                self.serverlist.updateValue(true, forKey: request.URL?.host!  ?? "AnyServer")
                 //println("--------------set cache---------------")
                 
                 //cache.set(value: data, key: url)   //原hanekeswift的方法
-                print("request url host = true  \(request.URL?.host!)")
-                self.serverlist.updateValue(true, forKey: request.URL?.host! ?? "AnyServer")
+                
+                print("+++++++++++++++++++++")
                 self.alive = true
                 if getcache == false {
                     
+                    var encoding:UInt
+                    if url.componentsSeparatedByString("&charset=utf8").count > 1{
+                    
                     //println("______________get ReS_____________")
-                    let enc = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(Config.Encoding.GB2312))
-                    let res:String = NSString(data: data!, encoding: enc)! as String
-                    //print("______________get ReS_____________\(res)")
+                        encoding = NSUTF8StringEncoding
+                        
+                    }else{
+                        encoding = CFStringConvertEncodingToNSStringEncoding(CFStringEncoding(Config.Encoding.GB2312))
+                    }
+                        
+                    let res:String = NSString(data: data!, encoding: encoding)! as String
+                    print("______________get ReS_____________\(res)")
                     
                     
                     self.dispatchResponse(res,tag: tag,key:"")
@@ -1192,21 +1216,26 @@ class NetworkEngine:NSObject, NSURLSessionDelegate {
             completionHandler(NSURLSessionAuthChallengeDisposition.UseCredential,defaultCredentials)
             
         }else if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodNTLM{
-            print("challenge host= \(self.serverlist[challenge.protectionSpace.host])")
+            let host = challenge.protectionSpace.host
+            let port = String(challenge.protectionSpace.port)
+            
+            let conkey:String = host //+ ":" + port
+            print("======conkey ==== \(conkey)   \(serverlist)")
+            
             //if self.alive == false {
-            if self.serverlist[challenge.protectionSpace.host] != true {
+            if self.serverlist[conkey] != true {
                 if success_auth == 0 {
-                print("send credential NTLM with user credential \(String(success_auth))")
+                print("-----send credential NTLM with user credential \(String(success_auth))")
                 let defaultCredentials: NSURLCredential = NSURLCredential(user: Config.Net.Domain+"\\"+username, password: password, persistence:NSURLCredentialPersistence.ForSession)
                 completionHandler(NSURLSessionAuthChallengeDisposition.UseCredential,defaultCredentials)
                 success_auth = success_auth + 1  
                 }
                 else{
-                    print("Cancel Challenge \(String(success_auth))")
+                    print("----Cancel Challenge \(String(success_auth))")
                     completionHandler(NSURLSessionAuthChallengeDisposition.CancelAuthenticationChallenge,nil)
                 }
             }else{
-                print("Challenge Credential Default alive \(String(success_auth))")
+                print("----Challenge Credential Default alive \(String(success_auth))")
                 completionHandler(NSURLSessionAuthChallengeDisposition.PerformDefaultHandling,nil)
             }
             

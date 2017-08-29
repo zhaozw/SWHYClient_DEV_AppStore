@@ -8,22 +8,24 @@
 
 import UIKit
 
-@objc(WebViewController) class WebViewController: UIViewController,UIWebViewDelegate,NSURLConnectionDelegate {
-    @IBOutlet weak var webView: UIWebView!
+@objc(CardWebView) class CardWebView: UIViewController,UIWebViewDelegate,NSURLConnectionDelegate {
 
+    @IBOutlet weak var webView: UIWebView!
+    
     //let webView:UIWebView = UIWebView()
     var request:NSURLRequest = NSURLRequest()
     var authenticated:Bool = false
     var failure_auth = 0
     var urlstr = ""
     
+    /*
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?){
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
     }
     convenience init() {
         print("===init webview controller===")
-        self.init(nibName: "WebViewController", bundle: nil)
+        self.init(nibName: "CardWebView", bundle: nil)
         //self.init(nibName: "LaunchScreen", bundle: nil)
         
     }
@@ -33,7 +35,7 @@ import UIKit
         fatalError("init(coder:) has not been implemented")
         
     }
-    
+    */
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,23 +43,23 @@ import UIKit
         //webView = UIWebView()
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         
-        if webView == nil {
-            webView = self.view.viewWithTag(10) as! UIWebView
-
-        }
-        view.bringSubviewToFront(webView)
-        print("webview = \(webView)")
+        //if webView == nil {
+        ////    webView = self.view.viewWithTag(10) as! UIWebView
+            
+        //}
+        //view.bringSubviewToFront(webView)
+        print("webview = \(self.webView)")
         
         webView.frame = self.view.frame
-        webView.delegate = self
-        self.view.addSubview(webView)
+        //webView.delegate = self
+        //self.view.addSubview(webView)
         //webView.backgroundColor = UIColor.redColor()
         
         
-        //var tmpurl:String = Message.shared.webViewURL
-            
+        var tmpurl:String = Message.shared.webViewURL
+        
         //if tmpurl == "" {
-          let tmpurl =  Message.shared.curMenuItem.uri
+        //    tmpurl =  Message.shared.curMenuItem.uri
         //}
         
         let range=tmpurl.rangeOfString("&wechat=1", options: NSStringCompareOptions()) //Swift 2.0
@@ -68,9 +70,8 @@ import UIKit
             urlstr = tmpurl.substringToIndex((endIndex)!) //Swift 2.0
         }else{
             urlstr = tmpurl
-        
         }
-        
+        //urlstr = "https://www.baidu.com?"
         
         print("url = \(urlstr)")
         let url:NSURL = NSURL(string: urlstr)!
@@ -86,24 +87,11 @@ import UIKit
         print("loading : \(webView.loading)")
         
     }
-  
+    
     override func viewWillAppear(animated: Bool) {
         //print("viewwill appear")
         super.viewWillAppear(animated)
-        //webView.loadRequest(request)
-        
-        
-        self.title = Message.shared.curMenuItem.name
-        let backitem = UIBarButtonItem(title: Config.UI.PreNavItem, style: UIBarButtonItemStyle.Plain, target: self, action: "returnNavView")
-        self.navigationItem.leftBarButtonItem = backitem
-       
-        
-        let storyboard = UIStoryboard(name: "Setting", bundle: nil)
-        let webViewMenuViewController = storyboard.instantiateViewControllerWithIdentifier("WebViewMenuViewController") as! WebViewMenuViewController
-        self.slideMenuController()?.changeRightViewController(webViewMenuViewController, closeRight: true)
-        self.setNavigationBarItem()
- 
-        
+                
     }
     
     func returnNavView(){
@@ -125,42 +113,42 @@ import UIKit
     }
     func webViewDidStartLoad(webView: UIWebView){
         print("did start load \(webView.request)")
-       
-    }
-    
-   /*
-    func webView(webView: UIWebView, didReceiveAuthenticationChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential!) -> Void) {
-        print("webView:\(webView) didReceiveAuthenticationChallenge:\(challenge) completionHandler:\(completionHandler)")
-        
-        
-            let credential = NSURLCredential(user: "swsresearch\\shenyd", password: "east", persistence: NSURLCredentialPersistence.ForSession)
-            completionHandler(.UseCredential, credential)
         
     }
     
-    func connection(connection: NSURLConnection, willSendRequestForAuthenticationChallenge challenge: NSURLAuthenticationChallenge){
-        
-        if challenge.previousFailureCount == 0 {
-            print("--------willSendRequestForAuthenticationChallenge----do-----")
-            authenticated = true
-            let credential = NSURLCredential(user: "swsresearch\\shenyd", password: "east", persistence: NSURLCredentialPersistence.ForSession)
-            challenge.sender!.useCredential(credential, forAuthenticationChallenge: challenge)
-        } else {
-            print("--------willSendRequestForAuthenticationChallenge-----cancel----")
-            challenge.sender!.cancelAuthenticationChallenge(challenge)
-        }
-    }
+    /*
+     func webView(webView: UIWebView, didReceiveAuthenticationChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential!) -> Void) {
+     print("webView:\(webView) didReceiveAuthenticationChallenge:\(challenge) completionHandler:\(completionHandler)")
+     
+     
+     let credential = NSURLCredential(user: "swsresearch\\shenyd", password: "east", persistence: NSURLCredentialPersistence.ForSession)
+     completionHandler(.UseCredential, credential)
+     
+     }
+     
+     func connection(connection: NSURLConnection, willSendRequestForAuthenticationChallenge challenge: NSURLAuthenticationChallenge){
+     
+     if challenge.previousFailureCount == 0 {
+     print("--------willSendRequestForAuthenticationChallenge----do-----")
+     authenticated = true
+     let credential = NSURLCredential(user: "swsresearch\\shenyd", password: "east", persistence: NSURLCredentialPersistence.ForSession)
+     challenge.sender!.useCredential(credential, forAuthenticationChallenge: challenge)
+     } else {
+     print("--------willSendRequestForAuthenticationChallenge-----cancel----")
+     challenge.sender!.cancelAuthenticationChallenge(challenge)
+     }
+     }
+     
+     func connectionShouldUseCredentialStorage(connection: NSURLConnection) -> Bool{
+     print("--------connectionShouldUseCredentialStorage---------")
+     return true
+     }
+     
+     func connection(connection: NSURLConnection, didFailWithError error: NSError){
+     print("--------connection---------")
+     }
+     */
     
-    func connectionShouldUseCredentialStorage(connection: NSURLConnection) -> Bool{
-        print("--------connectionShouldUseCredentialStorage---------")
-        return true
-    }
-    
-    func connection(connection: NSURLConnection, didFailWithError error: NSError){
-        print("--------connection---------")
-    }
-    */
-        
     func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         
         if self.authenticated == false { 
@@ -171,11 +159,11 @@ import UIKit
             return false
         }
         print("----webview asking for permission to start loading   true")
-
+        
         return true
     }
     
-       
+    
     func webViewDidFinishLoad(webView: UIWebView) {
         print("webview did finish load!")
     }

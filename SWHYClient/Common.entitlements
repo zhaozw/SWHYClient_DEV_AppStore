@@ -11,7 +11,7 @@
 	</array>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>P955C46355.com.swsresearch.swhyclient</string>
+		<string>P955C46355.com.swsresearch.dev</string>
 	</array>
 </dict>
 </plist>

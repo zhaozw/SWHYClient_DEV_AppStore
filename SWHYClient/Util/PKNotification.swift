@@ -58,6 +58,7 @@ class PKNotificationClass: UIViewController {
     var toastHeight:CGFloat = 50
     var toastAlpha:CGFloat = 0.8
     var toastRadious:CGFloat = 1
+    //var toastBackgroundColor:UIColor = UIColor.darkGrayColor()
     var toastBackgroundColor:UIColor = UIColor.blackColor()
     var toastFontColor:UIColor = UIColor.whiteColor()
     var toastFontStyle:UIFont = UIFont.systemFontOfSize(15)
@@ -143,13 +144,13 @@ class PKNotificationClass: UIViewController {
         _PKNotificationSingleton.vcCollection.append(toastVC)
         
         toastVC.view.alpha = 0
-        print("---- PKNotification UIApplication.sharedApplication().windows[0] = \(UIApplication.sharedApplication().windows[0])")
-        print ("---- PKNotification toastVC.ivew = \(toastVC.view)")
-        print ("---- PKNotification keyWindow = \(UIApplication.sharedApplication().keyWindow)")
+        //print("---- PKNotification UIApplication.sharedApplication().windows[0] = \(UIApplication.sharedApplication().windows[0])")
+        //print ("---- PKNotification toastVC.ivew = \(toastVC.view)")
+        //print ("---- PKNotification keyWindow = \(UIApplication.sharedApplication().keyWindow)")
         //UIApplication.sharedApplication().windows[0].addSubview(toastVC.view)
         
         //UIApplication.sharedApplication().keyWindow!.backgroundColor = UIColor.redColor()
-        print("====Toast Message \(message)====")
+        //print("====Toast Message \(message)====")
         UIApplication.sharedApplication().keyWindow!.addSubview(toastVC.view)
         
         //UIApplication.sharedApplication().windows[0].bringSubviewToFront(toastVC.view)
@@ -803,7 +804,8 @@ class PKNotificationClass: UIViewController {
         // MARK: - generate
         func generate(message m:String) {
             posX = parent.toastMargin
-            posY = rectBounds.size.height - parent.toastMargin - parent.toastHeight
+            //posY = rectBounds.size.height - parent.toastMargin - parent.toastHeight
+            posY = rectBounds.size.height - parent.toastMargin - parent.toastHeight - 32
             width = rectBounds.size.width - parent.toastMargin * 2
             height = parent.toastHeight
             let rectToast:CGRect = CGRectMake(posX, posY, width, height)

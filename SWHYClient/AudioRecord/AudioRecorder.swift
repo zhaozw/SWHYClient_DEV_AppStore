@@ -99,7 +99,7 @@ import AudioKit
         self.audioPath = DaiFileManager.document["/Audio/"].path
         
         //btn_Record.userInteractionEnabled = true
-        //self.recordercolor = btn_Record.backgroundColor
+        //self.recordercolor = btn_Record.backgroundColoradf
         
         print("AudioRecorder viewDidLoad  222")
         mic = AKMicrophone()
